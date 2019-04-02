@@ -3,7 +3,7 @@ import { login, loginError } from './auth.actions';
 import { normalizeResponseErrors } from './utils';
 
 export const createUser = (username, email, password) => dispatch => {
-  return fetch(`${API_BASE_URL}/user`, {
+  return fetch(`${API_BASE_URL}/users`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'

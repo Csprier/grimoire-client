@@ -25,7 +25,7 @@ class UserCreationForm extends Component {
   
   handleRegisterSubmit(values) {
     this.props.dispatch(createUser(values.username, values.email, values.password))
-      .then(() => this.moveToDashboard());
+      // .then(() => this.moveToDashboard());
   }
 
   render() {
