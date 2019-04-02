@@ -1,28 +1,68 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import { connect } from 'react-redux';
+import { Router, Route, withRouter } from 'react-router-dom';
+
+// User forms for landing page
+import UserCreationForm from './components/Register';
+import UserLoginForm from './components/Login';
+
+import { refreshAuthToken } from './actions/auth.actions';
+
+// History object
+import history from './history';
+
+// CSS
 import './App.css';
 
 class App extends Component {
+  // trigger each time a prop value is changed
+  componentDidUpdate(prevProps) {
+    if (!prevProps.loggedIn && this.props.loggedIn) {
+      // When we are logged in, refresh the auth token periodically
+      this.startPeriodicRefresh();
+    } 
+    else if (prevProps.loggedIn && !this.props.loggedIn) {
+      // stop refreshing when we log out
+      this.startPeriodicRefresh();
+    }
+  }
+
+  // Perform any clean up before the component is 'destroyed'
+  componentWillUnmount() {
+    this.stopPeriodicRefresh();
+  }
+
+  startPeriodicRefresh() {
+    this.refreshInterval = setInterval(
+      () => this.props.dispatch(refreshAuthToken()), 
+      60 * 60 * 1000 // One hour
+    );
+  }
+
+  stopPeriodicRefresh() {
+    if (!this.refreshInterval) {
+      return;
+    }
+    clearInterval(this.refreshInterval);
+  }
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <Router history={history}>
+        <div className="App">
+          <main>
+            <Route exact path="/" component={UserLoginForm} />
+            <Route exact path="/register" component={UserCreationForm} />
+          </main>
+        </div>
+      </Router>
     );
   }
 }
 
-export default App;
+const mapStateToProps = state => ({
+  hasAuthToken: state.auth.authToken !== null,
+  loggedIn: state.auth.user !== null
+})
+
+export default withRouter(connect(mapStateToProps)(App));
