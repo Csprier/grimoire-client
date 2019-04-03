@@ -7,6 +7,7 @@ import { loadAuthToken } from './local-storage';
 
 // Reducers
 import authReducer from './reducers/auth.reducer';
+import searchReducer from './reducers/search.reducer';
 
 // Actions
 import { setAuthToken, refreshAuthToken } from './actions/auth.actions';
@@ -14,6 +15,7 @@ import { setAuthToken, refreshAuthToken } from './actions/auth.actions';
 const rootReducer = combineReducers({
   auth: authReducer,
   form: formReducer,
+  search: searchReducer
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

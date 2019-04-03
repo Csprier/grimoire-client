@@ -15,7 +15,6 @@ class Dashboard extends Component {
       <div className="dashboard-container">
         <div className="dashboard">
           <h1>Dashboard</h1>
-          {/* <p>Welcome, {this.props.user}.</p> */}
         </div>
       </div>
     );
