@@ -1,0 +1,39 @@
+.note-list-container {
+  width: 100%;
+  height: auto;
+  border: 1px solid black;
+}
+
+.note-list {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+}
+
+.note {
+  display: flex;
+  flex-direction: column;
+  width: 98%;
+  margin: 5px auto;
+  padding: 0px;
+  font-family: arial;
+  border-bottom: 1px solid black;
+}
+
+.note h3 {
+  width: 100%;
+  margin: 0px;
+  padding: 0px;
+  color: white;
+  background-color: black;
+}
+
+.tags-container {
+  width: 25%;
+}
+.tags-container h4 {
+  border-bottom: 1px solid black;
+}
+.tags-container li {
+  list-style-type: none;
+}
