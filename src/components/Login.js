@@ -15,8 +15,13 @@ import { login } from '../actions/auth.actions';
 // import './forms.css';
 
 class UserLoginForm extends Component {
+  moveToDashboard() {
+    this.props.history.push('/dashboard')
+  }
+  
   handleLoginSubmit(values) {
     this.props.dispatch(login(values.username, values.password))
+      .then(() => this.moveToDashboard());
   }
 
   render() {

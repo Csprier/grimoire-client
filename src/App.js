@@ -5,6 +5,8 @@ import { Router, Route, withRouter } from 'react-router-dom';
 // User forms for landing page
 import UserCreationForm from './components/Register';
 import UserLoginForm from './components/Login';
+import Dashboard from './components/Dashboard';
+
 
 import { refreshAuthToken } from './actions/auth.actions';
 
@@ -53,6 +55,7 @@ class App extends Component {
           <main>
             <Route exact path="/" component={UserLoginForm} />
             <Route exact path="/register" component={UserCreationForm} />
+            <Route exact path="/dashboard" component={Dashboard} />
           </main>
         </div>
       </Router>
