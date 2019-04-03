@@ -19,7 +19,12 @@ class NoteList extends Component {
         <li className="note" key={note.id}>
           <h3>FI: {note.folderId} || {note.title}</h3>
           <p>{note.content}</p>
-          <div>Tags: {note.tags.map(tag => <p>{tag.name}</p>)}</div>
+          <ul>
+            <h4>Tags:</h4>
+            {note.tags.map(tag => {
+              return <li key={tag._id}>{tag.name}</li>
+            })}
+          </ul>
         </li>
       )
     })

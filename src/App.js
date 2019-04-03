@@ -6,7 +6,7 @@ import { Router, Route, withRouter } from 'react-router-dom';
 import UserCreationForm from './components/Register';
 import UserLoginForm from './components/Login';
 import Dashboard from './components/Dashboard';
-
+import LandingPage from './components/LandingPage';
 
 import { refreshAuthToken } from './actions/auth.actions';
 
@@ -18,21 +18,16 @@ import './App.css';
 
 class App extends Component {
   // trigger each time a prop value is changed
-  componentDidUpdate(prevProps) {
-    if (!prevProps.loggedIn && this.props.loggedIn) {
-      // When we are logged in, refresh the auth token periodically
-      this.startPeriodicRefresh();
-    } 
-    else if (prevProps.loggedIn && !this.props.loggedIn) {
-      // stop refreshing when we log out
-      this.startPeriodicRefresh();
-    }
-  }
-
-  // Perform any clean up before the component is 'destroyed'
-  componentWillUnmount() {
-    this.stopPeriodicRefresh();
-  }
+  // componentDidUpdate(prevProps) {
+  //   if (this.props.loggedIn) {
+  //     // When we are logged in, refresh the auth token periodically
+  //     this.startPeriodicRefresh();
+  //   } 
+  //   else if (!this.props.loggedIn) {
+  //     // stop refreshing when we log out
+  //     this.stopPeriodicRefresh();
+  //   }
+  // }
 
   startPeriodicRefresh() {
     this.refreshInterval = setInterval(
@@ -53,6 +48,7 @@ class App extends Component {
       <Router history={history}>
         <div className="App">
           <main>
+            <Route exact path ="/" component={LandingPage} />
             <Route exact path="/" component={UserLoginForm} />
             <Route exact path="/register" component={UserCreationForm} />
             <Route exact path="/dashboard" component={Dashboard} />
