@@ -35,7 +35,15 @@ export const getNotes = () => (dispatch, getState) => {
       }
     })
     .then((res) => {
-      dispatch(getNotesSuccess(res.data));
+      const notesData = res.data.map(note => ({
+          id: note._id,
+          title: note.title,
+          content: note.content,
+          folderId: note.folderId,
+          tags: note.tags
+        })
+      )
+      dispatch(getNotesSuccess(notesData));
     })
     .catch(e => {
       console.error(e);

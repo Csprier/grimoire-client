@@ -15,14 +15,13 @@ class NoteList extends Component {
 
   render() {
     let notes = this.props.notes.map(note => {
-      console.log(note);
-      // return (
-      //   <li className="note">
-      //     <h3>FI: {note.folderId} || {note.title}</h3>
-      //     <p>{note.content}</p>
-      //     <p>Tags: {note.tags.map(tag => <p>{tag}</p>)}</p>
-      //   </li>
-      // )
+      return (
+        <li className="note" key={note.id}>
+          <h3>FI: {note.folderId} || {note.title}</h3>
+          <p>{note.content}</p>
+          <div>Tags: {note.tags.map(tag => <p>{tag.name}</p>)}</div>
+        </li>
+      )
     })
 
     return (
