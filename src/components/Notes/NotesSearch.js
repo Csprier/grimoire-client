@@ -6,12 +6,14 @@ import {
 } from 'redux-form';
 import renderField from '../Field/renderField';
 
-import { updateSearchTerm } from '../../actions/search.actions';
+// Actions for search term
+import { updateSearchTerm, searchNotes } from '../../actions/search.actions';
 
 class NotesSearch extends Component {
   handleSearchSubmit(e) {
     let searchTerm = e;
-    this.props.dispatch(updateSearchTerm(searchTerm))
+    this.props.dispatch(updateSearchTerm(searchTerm));
+    this.props.dispatch(searchNotes(searchTerm));
   }
 
   render() {
