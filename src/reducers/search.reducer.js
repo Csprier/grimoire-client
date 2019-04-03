@@ -14,7 +14,7 @@ export default function searchReducer(state = initialState, action) {
       return {
         ...state,
         query: {
-          searchTerm: action.searchTerm
+          searchTerm: action.term  
         }
       }
     default:

@@ -10,6 +10,7 @@ import { logout } from '../actions/auth.actions';
 
 // Components
 import NoteList from './Notes/NoteList';
+import NotesSearch from './Notes/NotesSearch';
 
 class Dashboard extends Component {
   onClickLogout = () => {
@@ -29,6 +30,7 @@ class Dashboard extends Component {
           <Link to="/" onClick={this.onClickLogout}>LogOut</Link>
         </header>
         <div className="dashboard">
+          <NotesSearch />
           <NoteList />
         </div>
       </div>
