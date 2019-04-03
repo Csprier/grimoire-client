@@ -1,6 +1,5 @@
 import {
   UPDATE_SEARCH_TERM,
-  // UPDATE_SEARCH_TERM_SUCCESS
 } from '../actions/search.actions';
 
 const initialState = {

@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 // HOC
 import RequiresLogin from './requires-login';
 
+// Components
+import NoteList from './Notes/NoteList';
 
 class Dashboard extends Component {
   render() {
@@ -15,6 +17,7 @@ class Dashboard extends Component {
       <div className="dashboard-container">
         <div className="dashboard">
           <h1>Dashboard</h1>
+          <NoteList />
         </div>
       </div>
     );
