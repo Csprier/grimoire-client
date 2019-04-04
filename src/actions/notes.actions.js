@@ -8,11 +8,18 @@ export const GET_NOTES_REQUEST = 'GET_NOTES_REQUEST',
     }
   }
 
+export const GET_NOTES_DATA = 'GET_NOTES_DATA',
+  getNotesData = (data) => {
+    return {
+      type: GET_NOTES_DATA,
+      data
+    }
+  }
+
 export const GET_NOTES_SUCCESS = 'GET_NOTES_SUCCESS',
-  getNotesSuccess = (data) => {
+  getNotesSuccess = () => {
     return {
       type: GET_NOTES_SUCCESS,
-      data
     }
   }
 
@@ -43,7 +50,8 @@ export const getNotes = () => (dispatch, getState) => {
           tags: note.tags
         })
       )
-      dispatch(getNotesSuccess(notesData));
+      dispatch(getNotesData(notesData));
+      dispatch(getNotesSuccess());
     })
     .catch(e => {
       console.error(e);

@@ -1,5 +1,6 @@
 import Axios from 'axios';
 import { API_BASE_URL } from '../config';
+import { getNotesData } from './notes.actions';
 
 export const UPDATE_SEARCH_TERM = 'UPDATE_SEARCH_TERM',
   updateSearchTerm = term => {
@@ -28,7 +29,7 @@ export const searchNotes = () => (dispatch, getState) => {
   })
   .then((res) => {
     let filteredNotes = res.data.filter(note => note.title.includes(searchTerm));
-    console.log(filteredNotes);
+    dispatch(getNotesData(filteredNotes));
   })
   .catch(e => {
     console.error(e);
