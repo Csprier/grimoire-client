@@ -2,12 +2,15 @@ import {
   GET_NOTES_REQUEST,
   GET_NOTES_DATA,
   GET_NOTES_SUCCESS,
-  GET_NOTES_ERROR
+  GET_NOTES_ERROR,
+  FILTER_NOTES,
+  FILTER_NOTES_SUCCESS
 } from '../actions/notes.actions';
 
 const initialState = {
   data: [],
-  loading: false
+  loading: false,
+  filtered: []
 }
 
 export default function notesReducer(state = initialState, action) {
@@ -31,6 +34,17 @@ export default function notesReducer(state = initialState, action) {
       return {
         ...state,
         error: action.error,
+        loading: false
+      }
+    case FILTER_NOTES:
+      return {
+        ...state,
+        filtered: action.filteredNotes,
+        loading: true
+      }
+    case FILTER_NOTES_SUCCESS:
+      return {
+        ...state,
         loading: false
       }
     default:

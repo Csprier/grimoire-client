@@ -48,8 +48,7 @@ export const getNotes = () => (dispatch, getState) => {
           content: note.content,
           folderId: note.folderId,
           tags: note.tags
-        })
-      )
+        }));
       dispatch(getNotesData(notesData));
       dispatch(getNotesSuccess());
     })
@@ -58,3 +57,18 @@ export const getNotes = () => (dispatch, getState) => {
       dispatch(getNotesError(e));
     });
 }
+
+export const FILTER_NOTES = 'FILTERED_NOTES',
+  filterNotes = (filteredNotes) => {
+    return {
+      type: FILTER_NOTES,
+      filteredNotes
+    }
+  }
+
+export const FILTER_NOTES_SUCCESS = 'FILTERED_NOTES_SUCCESS',
+  filterNotesSuccess = () => {
+    return {
+      type: FILTER_NOTES_SUCCESS,
+    }
+  }
