@@ -31,9 +31,9 @@ export const RESET_SEARCH_TERM_SUCCESS = 'RESET_SEARCH_TERM_SUCCESS',
     }
   }
 
-export const searchNotes = (searchTerm) => (dispatch, getState) => {
+export const searchNotes = () => (dispatch, getState) => {
   const authToken = getState().auth.authToken;
-  // let searchTerm = getState().search.query.searchTerm || '';
+  let searchTerm = getState().search.query.searchTerm || '';
   let url = `${API_BASE_URL}/notes`;
 
   return Axios.get(url, {
