@@ -10,18 +10,24 @@ import renderField from '../Field/renderField';
 import renderTextarea from '../Field/renderTextarea';
 
 // Actions
-import { addNote } from '../../actions/notes.actions';
+import { addNewNote } from '../../actions/notes.actions';
 
 class AddNote extends Component {
   cancelNote = () => {
     this.props.history.push('/dashboard');
   }
+  backToDashboard = () => {
+    this.props.history.push('/dashboard');
+  }
+
 
   handleAddNoteSubmit = (e) => {
     let userId = this.props.user.id,
         title = e.title,
-        content = e.content;
-    this.props.dispatch(addNote(title, content, userId));
+        content = e.content,
+        tags = e.tags || [];
+    let newNote = { userId, title, content, tags };
+    this.props.dispatch(addNewNote(newNote));
   }
 
   render() {

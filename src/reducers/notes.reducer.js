@@ -4,7 +4,11 @@ import {
   GET_NOTES_SUCCESS,
   GET_NOTES_ERROR,
   FILTER_NOTES,
-  FILTER_NOTES_SUCCESS
+  FILTER_NOTES_SUCCESS,
+  ADD_NOTE_REQUEST,
+  ADD_NOTE,
+  ADD_NOTE_SUCCESS,
+  ADD_NOTE_ERROR
 } from '../actions/notes.actions';
 
 const initialState = {
@@ -46,6 +50,25 @@ export default function notesReducer(state = initialState, action) {
     case FILTER_NOTES_SUCCESS:
       return {
         ...state,
+        loading: false
+      }
+    case ADD_NOTE_REQUEST:
+      return {
+        loading: true
+      }
+    case ADD_NOTE:
+      return {
+        data: state.notes.data.push(action.note),
+        loading: true
+      }
+    case ADD_NOTE_SUCCESS:
+      return {
+        ...state,
+        loading: false
+      }
+    case ADD_NOTE_ERROR:
+      return {
+        error: action.error,
         loading: false
       }
     default:

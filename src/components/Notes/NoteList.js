@@ -26,7 +26,9 @@ class NoteList extends Component {
           <p>{note.content}</p>
           <ul className="tags-container">
             <h4>Tags:</h4>
-            {note.tags.map(tag => <li key={tag._id}>{tag.name}</li>)}
+            {(note.tags.length > 0) 
+            ? note.tags.map(tag => <li key={tag._id}>{tag.name}</li>) 
+            : <p>No tags added yet</p>}
           </ul>
         </li>
       )});

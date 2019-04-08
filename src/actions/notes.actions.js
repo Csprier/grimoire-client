@@ -88,6 +88,14 @@ export const ADD_NOTE_REQUEST = 'ADD_NOTE_REQUEST',
     }
   }
 
+export const ADD_NOTE = 'ADD_NOTE',
+  addNote = (note) => {
+    return {
+      type: ADD_NOTE,
+      note
+    }
+  }
+
 export const ADD_NOTE_SUCCESS = 'ADD_NOTE_SUCCESS',
   addNoteSuccess = () => {
     return {
@@ -95,19 +103,19 @@ export const ADD_NOTE_SUCCESS = 'ADD_NOTE_SUCCESS',
     }
   }
 
-export const addNote = (title, content, userId, tags = [], folderId = '') => (dispatch, getState) => {
-  dispatch(getNotesRequest());
+export const ADD_NOTE_ERROR = 'ADD_NOTE_ERROR',
+  addNoteError = (error) => {
+    return {
+      type: ADD_NOTE_ERROR,
+      error
+    }
+  }
+
+export const addNewNote = (newNote) => (dispatch, getState) => {
+  dispatch(addNoteRequest());
   const authToken = getState().auth.authToken;
   const url = `${API_BASE_URL}/notes`;
-  const newNote = { title, content, tags, folderId, userId };
 
-  // return Axios.post(url, newNote, {
-  //   headers: {
-  //     'Content-Type': 'application/json',
-  //     'Access-Control-Allow-Origin': '*',
-  //     'Authorization': 'bearer ' + authToken
-  //   }
-  // })
   const options = {
     method: 'POST',
     headers: {
@@ -115,15 +123,15 @@ export const addNote = (title, content, userId, tags = [], folderId = '') => (di
       'Access-Control-Allow-Origin': '*',
       'Authorization': 'bearer ' + authToken
     },
-    body: JSON.stringify(newNote)
   }
-  return fetch(url, options)
-  .then((res) => {
-    res.json()
-    console.log('POST response', res);
-  })
-  .catch(e => {
-    console.error(e);
-    dispatch(getNotesError(e));
-  });
+  
+  return Axios.post(url, newNote, options)
+    .then(() => {
+      dispatch(addNoteSuccess());
+      dispatch(getNotes());
+    })
+    .catch(e => { 
+      console.error(e);
+      dispatch(addNoteError(e));
+    });
 }
