@@ -18,6 +18,10 @@ class Dashboard extends Component {
     this.props.history.push('/');
   }
 
+  moveToAddNote = () => {
+    this.props.history.push('/addNote');
+  }
+
   render() {
     if (this.props.loading){
 			return (<div className="loader">Loading...</div>);
@@ -31,6 +35,7 @@ class Dashboard extends Component {
         </header>
         <div className="dashboard">
           <NotesSearch />
+          <button onClick={this.moveToAddNote}>Add a Note</button>
           <NoteList />
         </div>
       </div>

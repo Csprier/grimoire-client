@@ -41,12 +41,12 @@ class NotesSearch extends Component {
   }
 }
 
-NotesSearch = reduxForm({
-  form: 'NotesSearch'
-})(NotesSearch);
-
 const mapStateToProps = state => ({
   searchTerm: state.search.query.searchTerm
 });
+
+NotesSearch = reduxForm({
+  form: 'NotesSearch'
+})(NotesSearch);
 
 export default connect(mapStateToProps)(NotesSearch);
