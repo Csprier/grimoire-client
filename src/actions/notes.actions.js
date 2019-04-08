@@ -1,6 +1,7 @@
 import Axios from 'axios';
 import { API_BASE_URL } from '../config';
 
+// =======================================================
 export const GET_NOTES_REQUEST = 'GET_NOTES_REQUEST',
   getNotesRequest = () => {
     return {
@@ -38,7 +39,7 @@ export const getNotes = () => (dispatch, getState) => {
 
   return Axios.get(url, {
       headers: {
-        'Authorization': "bearer " + authToken
+        'Authorization': 'bearer ' + authToken
       }
     })
     .then((res) => {
@@ -58,6 +59,10 @@ export const getNotes = () => (dispatch, getState) => {
     });
 }
 
+
+// =======================================================
+// FILTER ACTIONS
+// =======================================================
 export const FILTER_NOTES = 'FILTERED_NOTES',
   filterNotes = (filteredNotes) => {
     return {
@@ -72,3 +77,53 @@ export const FILTER_NOTES_SUCCESS = 'FILTERED_NOTES_SUCCESS',
       type: FILTER_NOTES_SUCCESS,
     }
   }
+
+// =======================================================
+// ADD NOTE ACTIONS
+// =======================================================
+export const ADD_NOTE_REQUEST = 'ADD_NOTE_REQUEST',
+  addNoteRequest = () => {
+    return {
+      type: ADD_NOTE_REQUEST
+    }
+  }
+
+export const ADD_NOTE_SUCCESS = 'ADD_NOTE_SUCCESS',
+  addNoteSuccess = () => {
+    return {
+      type: ADD_NOTE_SUCCESS
+    }
+  }
+
+export const addNote = (title, content, userId, tags = [], folderId = '') => (dispatch, getState) => {
+  dispatch(getNotesRequest());
+  const authToken = getState().auth.authToken;
+  const url = `${API_BASE_URL}/notes`;
+  const newNote = { title, content, tags, folderId, userId };
+
+  // return Axios.post(url, newNote, {
+  //   headers: {
+  //     'Content-Type': 'application/json',
+  //     'Access-Control-Allow-Origin': '*',
+  //     'Authorization': 'bearer ' + authToken
+  //   }
+  // })
+  const options = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'Authorization': 'bearer ' + authToken
+    },
+    body: JSON.stringify(newNote)
+  }
+  return fetch(url, options)
+  .then((res) => {
+    res.json()
+    console.log('POST response', res);
+  })
+  .catch(e => {
+    console.error(e);
+    dispatch(getNotesError(e));
+  });
+}

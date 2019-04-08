@@ -10,7 +10,8 @@ import {
 const initialState = {
   data: [],
   loading: false,
-  filtered: []
+  filtered: [],
+  error: null
 }
 
 export default function notesReducer(state = initialState, action) {
@@ -32,7 +33,7 @@ export default function notesReducer(state = initialState, action) {
       }
     case GET_NOTES_ERROR:
       return {
-        ...state,
+        // ...state,
         error: action.error,
         loading: false
       }
