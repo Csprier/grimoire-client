@@ -8,7 +8,10 @@ import {
   ADD_NOTE_REQUEST,
   ADD_NOTE,
   ADD_NOTE_SUCCESS,
-  ADD_NOTE_ERROR
+  ADD_NOTE_ERROR,
+  DELETE_NOTE_REQUEST,
+  DELETE_NOTE_SUCCESS,
+  DELETE_NOTE_ERROR
 } from '../actions/notes.actions';
 
 const initialState = {
@@ -37,7 +40,6 @@ export default function notesReducer(state = initialState, action) {
       }
     case GET_NOTES_ERROR:
       return {
-        // ...state,
         error: action.error,
         loading: false
       }
@@ -68,6 +70,22 @@ export default function notesReducer(state = initialState, action) {
       }
     case ADD_NOTE_ERROR:
       return {
+        error: action.error,
+        loading: false
+      }
+    case DELETE_NOTE_REQUEST:
+      return {
+        ...state,
+        loading: true
+      }
+    case DELETE_NOTE_SUCCESS:
+      return {
+        ...state,
+        loading: false
+      }
+    case DELETE_NOTE_ERROR:
+      return {
+        ...state,
         error: action.error,
         loading: false
       }

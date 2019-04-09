@@ -146,14 +146,6 @@ export const DELETE_NOTE_REQUEST = 'DELETE_NOTE_REQUEST',
     }
   }
 
-// export const DELETE_NOTE = 'DELETE_NOTE',
-//   deleteNote = (noteId) => {
-//     return {
-//       type: DELETE_NOTE,
-//       noteId
-//     }
-//   }
-
 export const DELETE_NOTE_SUCCESS = 'DELETE_NOTE_SUCCESS',
   deleteNoteSuccess = () => {
     return {
