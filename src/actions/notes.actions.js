@@ -135,3 +135,61 @@ export const addNewNote = (newNote) => (dispatch, getState) => {
       dispatch(addNoteError(e));
     });
 }
+
+// =======================================================
+// DELETE NOTE ACTIONS
+// =======================================================
+export const DELETE_NOTE_REQUEST = 'DELETE_NOTE_REQUEST',
+  deleteNoteRequest = () => {
+    return {
+      type: DELETE_NOTE_REQUEST
+    }
+  }
+
+// export const DELETE_NOTE = 'DELETE_NOTE',
+//   deleteNote = (noteId) => {
+//     return {
+//       type: DELETE_NOTE,
+//       noteId
+//     }
+//   }
+
+export const DELETE_NOTE_SUCCESS = 'DELETE_NOTE_SUCCESS',
+  deleteNoteSuccess = () => {
+    return {
+      type: DELETE_NOTE_SUCCESS
+    }
+  }
+
+export const DELETE_NOTE_ERROR = 'DELETE_NOTE_ERROR',
+  deleteNoteError = (error) => {
+    return {
+      type: DELETE_NOTE_ERROR,
+      error
+    }
+  }
+
+  export const deleteNoteById = (noteId) => (dispatch, getState) => {
+    dispatch(deleteNoteRequest());
+    const authToken = getState().auth.authToken;
+    const url = `${API_BASE_URL}/notes/${noteId}`;
+  
+    const options = {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'Authorization': 'bearer ' + authToken
+      },
+    }
+    
+    return Axios.delete(url, options)
+      .then(() => {
+        dispatch(deleteNoteSuccess());
+        dispatch(getNotes());
+      })
+      .catch(e => { 
+        console.error(e);
+        dispatch(deleteNoteError(e));
+      });
+  }
