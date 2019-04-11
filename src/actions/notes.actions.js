@@ -2,6 +2,8 @@ import Axios from 'axios';
 import { API_BASE_URL } from '../config';
 
 // =======================================================
+// GET NOTE ACTIONS
+// =======================================================
 export const GET_NOTES_REQUEST = 'GET_NOTES_REQUEST',
   getNotesRequest = () => {
     return {
