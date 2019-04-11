@@ -28,6 +28,7 @@ class AddNote extends Component {
         tags = e.tags || [];
     let newNote = { userId, title, content, tags };
     this.props.dispatch(addNewNote(newNote));
+    this.props.history.push('/dashboard');
   }
 
   render() {
@@ -39,12 +40,13 @@ class AddNote extends Component {
         </div>
       )
     }
+
     return (
       <div className="add-note-container">
         <h2>Add Note</h2>
         <form onSubmit={this.props.handleSubmit((e) => {
             this.handleAddNoteSubmit(e);
-          })} ref="form">
+          })} ref="form" className="add-note-form">
           <Field 
             name="title"
             component={renderField}
