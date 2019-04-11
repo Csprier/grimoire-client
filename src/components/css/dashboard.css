@@ -1,0 +1,21 @@
+.logout-button {
+  margin: 5px;
+  padding: 0px;
+  width: 25px;
+  height: 25px;
+  /* border: 1px solid green; */
+}
+
+.logout-button img {
+  margin: 0px;
+  padding: 0px;
+  width: 25px;
+  height: 25px;
+  /* border: 1px solid black; */
+}
+
+.header-elements {
+  display: flex;
+  justify-content: space-between;
+  /* border: 1px solid orange; */
+}

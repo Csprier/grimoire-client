@@ -12,6 +12,12 @@ import { logout } from '../actions/auth.actions';
 import NoteList from './Notes/NoteList';
 import NotesSearch from './Notes/NotesSearch';
 
+// logout image
+import LOImage from '../images/logout.png';
+
+// css
+import './css/dashboard.css';
+
 class Dashboard extends Component {
   onClickLogout = () => {
     this.props.dispatch(logout());
@@ -30,12 +36,16 @@ class Dashboard extends Component {
     return(
       <div className="dashboard-container">
         <header>
-          <h1>Dashboard</h1>
-          <Link to="/" onClick={this.onClickLogout}>LogOut</Link>
+          <div className="header-elements">
+            <h1>Dashboard</h1>
+            <Link to="/" onClick={this.onClickLogout} className="logout-button">
+              <img src={LOImage} alt="logout icon" />
+            </Link>
+          </div>
         </header>
         <div className="dashboard">
           <NotesSearch />
-          <button onClick={this.moveToAddNote}>Add a Note</button>
+          <button onClick={this.moveToAddNote}></button>
           <NoteList />
         </div>
       </div>
