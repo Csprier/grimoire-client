@@ -9,3 +9,7 @@
   flex-direction: column;
   border: 1px solid black;
 }
+
+.note-list h4 {
+  font-family: arial;
+}

@@ -3,17 +3,17 @@
   flex-direction: column;
   width: 98%;
   margin: 5px auto;
+  margin-bottom: 10px;
   padding: 0px;
   font-family: arial;
   border-bottom: 1px solid black;
 }
 
-.note h3 {
+.note h4 {
+  font-family: arial;
   width: 100%;
   margin: 0px;
   padding: 0px;
-  color: white;
-  background-color: black;
 }
 
 .note p {
@@ -29,7 +29,7 @@
   padding: 0px;
   width: 100%;
   height: auto;
-  border: 1px solid black;
+  /* border: 1px solid black; */
 }
 
 /* ================= TAGS ================= */

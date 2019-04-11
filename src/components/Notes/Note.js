@@ -6,11 +6,12 @@ import { deleteNoteById } from '../../actions/notes.actions';
 
 // CSS
 import '../css/note.css';
-import deleteIcon from '../../images/delete-button.png'
+// import deleteIcon from '../../images/delete-button.png'
 
 class Note extends Component {
   handleDelete = (e) => {
     let noteId = e.target.value;
+    console.log(`Deleting: ${noteId}`);
     this.props.dispatch(deleteNoteById(noteId));
   }
 
@@ -18,8 +19,9 @@ class Note extends Component {
     const { key, title, id, content, tags } = this.props.note;
     return (
       <li className="note" key={key}>
-        <h3>{title}</h3>
+        <h4>{title}</h4>
         <p>{content}</p>
+
         <div className="note-information">
           <ul className="tags-container">
             <h4>Tags:</h4>
@@ -31,10 +33,9 @@ class Note extends Component {
             className="delete-button" 
             onClick={this.handleDelete} 
             value={id}
-          >
-            <img src={deleteIcon} alt="delete note" />
-          </button>
+          >X</button>
         </div>
+
       </li>
     )
   }
