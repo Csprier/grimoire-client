@@ -11,6 +11,9 @@ import { updateSearchTerm, updateSearchTermSuccess, searchNotes } from '../../ac
 // import { updateSearchTerm } from '../../actions/search.actions';
 // import { getNotes } from '../../actions/notes.actions';
 
+// CSS
+import '../css/notes-search.css'; 
+
 class NotesSearch extends Component {
   handleSearchSubmit() {
     // let searchTerm = e;

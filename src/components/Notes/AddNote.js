@@ -12,6 +12,9 @@ import renderTextarea from '../Field/renderTextarea';
 // Actions
 import { addNewNote } from '../../actions/notes.actions';
 
+// CSS
+import '../css/add-note.css';
+
 class AddNote extends Component {
   cancelNote = () => {
     this.props.history.push('/dashboard');
