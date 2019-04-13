@@ -44,8 +44,8 @@ class Dashboard extends Component {
           </div>
         </header>
         <div className="dashboard">
-          <NotesSearch />
           <button onClick={this.moveToAddNote}>Add Note</button>
+          <NotesSearch />
           <NoteList />
         </div>
       </div>

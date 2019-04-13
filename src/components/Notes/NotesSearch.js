@@ -7,16 +7,11 @@ import {
 import renderField from '../Field/renderField';
 import { updateSearchTerm, updateSearchTermSuccess, searchNotes } from '../../actions/search.actions';
 
-// Actions for search term
-// import { updateSearchTerm } from '../../actions/search.actions';
-// import { getNotes } from '../../actions/notes.actions';
-
 // CSS
 import '../css/notes-search.css'; 
 
 class NotesSearch extends Component {
   handleSearchSubmit() {
-    // let searchTerm = e;
     this.props.dispatch(searchNotes());
   }
 
@@ -28,7 +23,7 @@ class NotesSearch extends Component {
           <Field 
             name="searchTerm"
             component={renderField}
-            onChange={event => {
+            onChange={(event) => {
               this.props.dispatch(updateSearchTerm(event.target.value));
               this.props.dispatch(updateSearchTermSuccess());
               this.handleSearchSubmit(this.props.searchTerm);
