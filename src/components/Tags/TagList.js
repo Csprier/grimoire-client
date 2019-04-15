@@ -25,7 +25,7 @@ class TagList extends Component {
       <div className="tag-list-container">
         <h1>List of Tags</h1>
         <button onClick={this.returnToDashboard}>Back to Dashboard</button>
-        {this.props.tags.map(tag => <Tag tag={tag} />)}
+        {this.props.tags.map((tag, i) => <Tag tag={tag} key={i} />)}
       </div>
     )
   }
