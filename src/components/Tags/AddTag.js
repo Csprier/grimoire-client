@@ -19,8 +19,9 @@ class AddTag extends Component {
   handleAddTagSubmit = (e) => {
     let userId = this.props.user.id,
         newTag = e["add-tag"];
+
     console.log(`Add tag "${newTag}" to user ${userId}.`);
-    // this.props.dispatch(addNewNote(newNote));
+    // this.props.dispatch(addNewTag(newTag));
   }
 
   render() {

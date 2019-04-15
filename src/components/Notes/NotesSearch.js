@@ -8,7 +8,7 @@ import renderField from '../Field/renderField';
 import { updateSearchTerm, updateSearchTermSuccess, searchNotes } from '../../actions/search.actions';
 
 // CSS
-import '../css/notes-search.css'; 
+import '../css/notes/notes-search.css'; 
 
 class NotesSearch extends Component {
   handleSearchSubmit() {

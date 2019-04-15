@@ -9,7 +9,7 @@ import Tag from '../Tags/Tag';
 import { deleteNoteById } from '../../actions/notes.actions';
 
 // CSS
-import '../css/note.css';
+import '../css/notes/note.css';
 
 
 class Note extends Component {

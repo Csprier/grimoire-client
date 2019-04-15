@@ -12,7 +12,7 @@ import { getNotes } from '../../actions/notes.actions';
 import Note from './Note';
 
 // CSS
-import '../css/notes-list.css';
+import '../css/notes/notes-list.css';
 
 class NoteList extends Component {
   componentDidMount() {
