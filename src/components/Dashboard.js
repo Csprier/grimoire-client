@@ -28,6 +28,10 @@ class Dashboard extends Component {
     this.props.history.push('/addNote');
   }
 
+  moveToTagList = () => {
+    this.props.history.push('/tagList');
+  }
+
   render() {
     if (this.props.loading){
 			return (<div className="loader">Loading...</div>);
@@ -44,7 +48,8 @@ class Dashboard extends Component {
           </div>
         </header>
         <div className="dashboard">
-          <button onClick={this.moveToAddNote}>Add Note</button>
+          <button onClick={this.moveToAddNote}>| Add Note |</button>
+          <button onClick={this.moveToTagList}>| View Tags |</button>
           <NotesSearch />
           <NoteList />
         </div>
