@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 // CSS
-import '../css/tag.css';
+import '../css/tags/tag.css';
 
 class Tag extends Component {
   handleDelete = (e) => {

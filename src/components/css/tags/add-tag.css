@@ -1,0 +1,12 @@
+.add-tag-form-container {
+  /* border: 1px solid red; */
+}
+
+.add-tag-form {
+  display: flex;
+  justify-content: row;
+}
+
+.add-tag-form input {
+  border: 1px solid black;
+}

@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+// Components
+import AddTag from '../Tags/AddTag';
+import Tag from '../Tags/Tag';
+
 // Async Actions
 import { deleteNoteById } from '../../actions/notes.actions';
 
 // CSS
 import '../css/note.css';
-// import deleteIcon from '../../images/delete-button.png'
 
-import Tag from '../Tags/Tag';
 
 class Note extends Component {
   handleDelete = (e) => {
@@ -27,6 +29,7 @@ class Note extends Component {
         <div className="note-information">
           <ul className="tags-container">
             <h4>Tags:</h4>
+            <AddTag />
             {(tags.length > 0) 
             ? tags.map(tag => <Tag tag={tag} key={tag._id}/>)
             : <p>No tags added yet</p>}
