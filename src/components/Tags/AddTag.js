@@ -10,18 +10,19 @@ import RequiresLogin from '../requires-login';
 import renderField from '../Field/renderField';
 
 // Actions
-// import { addNewNote } from '../../actions/notes.actions';
+import { addNewTagToNote } from '../../actions/tags.actions';
 
 // CSS
 import '../css/tags/add-tag.css';
 
 class AddTag extends Component {
-  handleAddTagSubmit = (e) => {
+  handleAddTagToNoteSubmit = (e) => {
     let userId = this.props.user.id,
+        noteId = this.props.noteId,
         newTag = e["add-tag"];
 
     console.log(`Add tag "${newTag}" to user ${userId}.`);
-    // this.props.dispatch(addNewTag(newTag));
+    this.props.dispatch(addNewTagToNote(userId, noteId, newTag));
   }
 
   render() {
@@ -36,8 +37,9 @@ class AddTag extends Component {
 
     return (
       <div className="add-tag-form-container">
+        <p>NoteId: {this.props.noteId}</p>
         <form onSubmit={this.props.handleSubmit((e) => {
-          this.handleAddTagSubmit(e);
+          this.handleAddTagToNoteSubmit(e);
         })} ref="form" className="add-tag-form">
           <Field 
             name="add-tag"

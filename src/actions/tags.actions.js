@@ -56,3 +56,20 @@ export const getTags = () => (dispatch, getState) => {
     dispatch(getTagsError(e));
   });
 }
+
+export const addNewTagToNote = (userId, noteId, newTag) => (dispatch, getState) => {
+  const authToken = getState().auth.authToken,
+        url = `${API_BASE_URL}/tags`;
+
+  return Axios.post(url, {
+    headers: {
+      'Authorization': 'bearer ' + authToken
+    }
+  })
+  .then(res => {
+    console.log(res);
+  })
+  .catch(e => {
+    console.error(e);
+  })
+}

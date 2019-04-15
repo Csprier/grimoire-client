@@ -24,7 +24,7 @@ class Note extends Component {
     return (
       <li className="note" key={key}>
         <h4>{title}</h4>
-        <p>{id}</p>
+        <p>NoteId: {id}</p>
         <p>{content}</p>
     
         <div className="note-information">
