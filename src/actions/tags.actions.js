@@ -45,7 +45,6 @@ export const getTags = () => (dispatch, getState) => {
     }
   })
   .then((res) => {
-    console.log(res);
     const tagsData = res.data.map(tag => ({
       name: tag.name
     }));
