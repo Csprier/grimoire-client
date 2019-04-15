@@ -1,0 +1,12 @@
+.tag {
+  display: flex;
+  flex-direction: row;
+}
+
+.tag p {
+  display: flex;
+}
+
+.tag-delete-button {
+  display: flex;
+}

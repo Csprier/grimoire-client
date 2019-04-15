@@ -8,6 +8,8 @@ import { deleteNoteById } from '../../actions/notes.actions';
 import '../css/note.css';
 // import deleteIcon from '../../images/delete-button.png'
 
+import Tag from '../Tags/Tag';
+
 class Note extends Component {
   handleDelete = (e) => {
     let noteId = e.target.value;
@@ -26,7 +28,7 @@ class Note extends Component {
           <ul className="tags-container">
             <h4>Tags:</h4>
             {(tags.length > 0) 
-            ? tags.map(tag => <li key={tag._id}>{tag.name}</li>) 
+            ? tags.map(tag => <Tag tag={tag} key={tag._id}/>)
             : <p>No tags added yet</p>}
           </ul>
           <button 
