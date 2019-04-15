@@ -5,10 +5,10 @@ import { connect } from 'react-redux';
 import '../css/tags/tag.css';
 
 class Tag extends Component {
-  handleDelete = (e) => {
-    let tagId = e.target.value;
-    console.log(`Deleting: ${tagId}`);
-    // this.props.dispatch(deleteTagById(tagId));
+  handleDeleteFromNote = (e) => {
+    let tagId = e.target.value,
+        noteId = this.props.noteId;
+    console.log(`Delete: ${tagId}, from note ${noteId}`);
   }
 
   render() {
@@ -17,7 +17,7 @@ class Tag extends Component {
         <p>{this.props.tag.name}</p>
         <button
           className="tag-delete-button"
-          onClick={this.handleDelete}
+          onClick={this.handleDeleteFromNote}
           value={this.props.tag._id}
         >X</button>
       </li>
