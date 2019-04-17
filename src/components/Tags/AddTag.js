@@ -10,19 +10,18 @@ import RequiresLogin from '../requires-login';
 import renderField from '../Field/renderField';
 
 // Actions
-import { addNewTagToNote } from '../../actions/tags.actions';
+import { addNewTag } from '../../actions/tags.actions';
 
 // CSS
 import '../css/tags/add-tag.css';
 
 class AddTag extends Component {
-  handleAddTagToNoteSubmit = (e) => {
+  handleAddTagSubmit = (e) => {
     let userId = this.props.user.id,
-        noteId = this.props.noteId,
-        newTag = e["add-tag"];
+        name = e["add-tag"];
 
-    console.log(`Add tag "${newTag}" to user ${userId}.`);
-    this.props.dispatch(addNewTagToNote(userId, noteId, newTag));
+    console.log(`Add tag "${name}" to user ${userId}.`);
+    this.props.dispatch(addNewTag(userId, name));
   }
 
   render() {
@@ -37,9 +36,8 @@ class AddTag extends Component {
 
     return (
       <div className="add-tag-form-container">
-        <p>NoteId: {this.props.noteId}</p>
         <form onSubmit={this.props.handleSubmit((e) => {
-          this.handleAddTagToNoteSubmit(e);
+          this.handleAddTagSubmit(e);
         })} ref="form" className="add-tag-form">
           <Field 
             name="add-tag"
@@ -64,4 +62,5 @@ AddTag = reduxForm({
   form: 'AddTag'
 })(AddTag);
 
+// export default connect(mapStateToProps)(AddTag);
 export default RequiresLogin()(connect(mapStateToProps)(AddTag));

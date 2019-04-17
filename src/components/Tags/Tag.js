@@ -1,28 +1,36 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+// Async Actions
+import { deleteTagFromDatabase } from '../../actions/tags.actions';
+
 // CSS
 import '../css/tags/tag.css';
 
 class Tag extends Component {
-  handleDeleteFromNote = (e) => {
+  handleDeleteTag = (e) => {
     let tagId = e.target.value,
-        noteId = this.props.noteId;
-    console.log(`Delete: ${tagId}, from note ${noteId}`);
+        userId = this.props.userId;
+    console.log(`Delete: ${tagId} from database. UserId: ${userId}`);
+    this.props.dispatch(deleteTagFromDatabase(userId, tagId))
   }
 
   render() {
     return (
-      <li className="tag" key={this.props.tag._id}>
+      <li className="tag" key={this.props.tag.id}>
         <p>{this.props.tag.name}</p>
         <button
           className="tag-delete-button"
-          onClick={this.handleDeleteFromNote}
-          value={this.props.tag._id}
+          onClick={this.handleDeleteTag}
+          value={this.props.tag.id}
         >X</button>
       </li>
     )
   }
 }
 
-export default connect()(Tag);
+const mapStateToProps = state => ({
+  userId: state.auth.user.id
+})
+
+export default connect(mapStateToProps)(Tag);

@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 // Components
-import AddTag from '../Tags/AddTag';
-import Tag from '../Tags/Tag';
+// import AddTag from '../Tags/AddTag';
+// import Tag from '../Tags/Tag';
 
 // Async Actions
 import { deleteNoteById } from '../../actions/notes.actions';
@@ -30,9 +30,10 @@ class Note extends Component {
         <div className="note-information">
           <ul className="tags-container">
             <h4>Tags:</h4>
-            <AddTag noteId={id} />
+            {/* <AddTag noteId={id} /> */}
             {(tags.length > 0) 
-            ? tags.map(tag => <Tag tag={tag} noteId={id} key={tag._id}/>)
+            ? tags.map((tag, i) => <li key={i}>{tag.name}</li>)
+            // ? tags.map(tag => <Tag tag={tag} noteId={id} key={tag._id}/>)
             : <p>No tags added yet</p>}
           </ul>
           <button 

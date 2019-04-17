@@ -124,7 +124,7 @@ export const addNewNote = (newNote) => (dispatch, getState) => {
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',
       'Authorization': 'bearer ' + authToken
-    },
+    }
   }
   
   return Axios.post(url, newNote, options)
