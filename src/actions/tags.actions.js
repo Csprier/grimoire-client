@@ -105,22 +105,27 @@ export const addNewTag = (userId, name) => (dispatch, getState) => {
           }
         };
 
-  let tag = {
+  let newTag = {
     userId,
     name
   }
 
-  return Axios.post(url, tag, options)
-    .then(res => {
-      console.log('tags post response', res);
-      // dispatch(addTag(tag));
-      // dispatch(addTagSuccess());
-      // dispatch(getTags());
-    })
-    .catch(e => {
-      console.error(e);
-      dispatch(addTagError(e));
-    });
+  return Axios.post(url, newTag, options)
+  .then(res => {
+    // console.log('tags post response', res.data);
+    let tag = { 
+      name: res.data.name, 
+      id: res.data._id 
+    }
+    console.log(tag);
+    dispatch(addTag(tag));
+    dispatch(addTagSuccess());
+    dispatch(getTags());
+  })
+  .catch(e => {
+    console.error(e);
+    dispatch(addTagError(e));
+  });
 }
 
 // =======================================================
@@ -159,18 +164,8 @@ export const DELETE_TAG_ERROR = 'DELETE_TAG_ERROR',
   export const deleteTagFromDatabase = (userId, tagId) => (dispatch, getState) => {
     dispatch(deleteTagRequest());
     const authToken = getState().auth.authToken,
-          url = `${API_BASE_URL}/tags/${tagId}`;
-
-    // const options = {
-    //   method: 'DELETE',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //     'Access-Control-Allow-Origin': '*',
-    //     'Authorization': 'bearer ' + authToken
-    //   }
-    // };
-
-    let tag = { userId, id: tagId }
+          url = `${API_BASE_URL}/tags/${tagId}`,
+          tag = { userId, id: tagId }
 
     return Axios.delete(url, {
       headers: {

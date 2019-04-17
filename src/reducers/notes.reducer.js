@@ -23,6 +23,7 @@ const initialState = {
 
 export default function notesReducer(state = initialState, action) {
   switch(action.type) {
+    // GET =================================================
     case GET_NOTES_REQUEST:
       return {
         ...state,
@@ -43,6 +44,7 @@ export default function notesReducer(state = initialState, action) {
         error: action.error,
         loading: false
       }
+    // FILTER =================================================
     case FILTER_NOTES:
       return {
         ...state,
@@ -54,6 +56,7 @@ export default function notesReducer(state = initialState, action) {
         ...state,
         loading: false
       }
+    // POST =================================================
     case ADD_NOTE_REQUEST:
       return {
         loading: true
@@ -73,6 +76,7 @@ export default function notesReducer(state = initialState, action) {
         error: action.error,
         loading: false
       }
+    // DELETE =================================================
     case DELETE_NOTE_REQUEST:
       return {
         ...state,

@@ -60,6 +60,7 @@ export default function tagsReducer(state = initialState, action) {
       }
     case ADD_TAG_ERROR:
       return {
+        ...state,
         error: action.error,
         loading: false
       }

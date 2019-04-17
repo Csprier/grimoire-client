@@ -7,6 +7,7 @@ import RequiresLogin from '../requires-login';
 // Async actions
 // import { getNotes, deleteNoteById } from '../../actions/notes.actions';
 import { getNotes } from '../../actions/notes.actions';
+import { getTags } from '../../actions/tags.actions';
 
 // Components
 import Note from './Note';
@@ -16,8 +17,10 @@ import '../css/notes/notes-list.css';
 
 class NoteList extends Component {
   componentDidMount() {
-    console.log('NoteList mounted, fetching notes.');
+    console.log('NoteList mounted, fetching notes & tags.');
     this.props.dispatch(getNotes());
+    this.props.dispatch(getTags());
+    console.log('Notes and tags fetched.')
   }
 
   render() {
@@ -39,6 +42,7 @@ class NoteList extends Component {
 
 const mapStateToProps = state => ({
   notes: state.notes.data,
+  tags: state.tags.data || [],
   searchTerm: state.search.query.searchTerm,
   filtered: state.notes.filtered || []
 });

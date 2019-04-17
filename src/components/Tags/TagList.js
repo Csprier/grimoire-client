@@ -55,7 +55,7 @@ class TagList extends Component {
 
 const mapStateToProps = state => ({
   userId: state.auth.user.id,
-  tags: state.tags.data
+  tags: state.tags.data || []
 });
 
 export default RequiresLogin()(connect(mapStateToProps)(TagList));
