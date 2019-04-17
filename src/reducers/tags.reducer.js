@@ -21,6 +21,7 @@ const initialState = {
 
 export default function tagsReducer(state = initialState, action) {
   switch(action.type) {
+    // GET ================================================
     case GET_TAGS_REQUEST:
       return {
         ...state,
@@ -41,8 +42,10 @@ export default function tagsReducer(state = initialState, action) {
         error: action.error,
         loading: false
       }
+    // POST ================================================
     case ADD_TAG_REQUEST:
       return {
+        ...state,
         loading: true
       }
     case ADD_TAG:
@@ -60,14 +63,16 @@ export default function tagsReducer(state = initialState, action) {
         error: action.error,
         loading: false
       }
+    // DELETE ================================================
     case DELETE_TAG_REQUEST:
       return {
+        ...state,
         loading: true
       }
     case DELETE_TAG:
       return {
         ...state,
-        loading: false
+        loading: true
       }
     case DELETE_TAG_SUCCESS:
       return {
@@ -76,6 +81,7 @@ export default function tagsReducer(state = initialState, action) {
       }
     case DELETE_TAG_ERROR:
       return {
+        ...state,
         error: action.error,
         loading: false
       }

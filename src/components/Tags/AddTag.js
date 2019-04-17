@@ -62,5 +62,4 @@ AddTag = reduxForm({
   form: 'AddTag'
 })(AddTag);
 
-// export default connect(mapStateToProps)(AddTag);
 export default RequiresLogin()(connect(mapStateToProps)(AddTag));

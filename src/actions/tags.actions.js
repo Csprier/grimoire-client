@@ -105,15 +105,15 @@ export const addNewTag = (userId, name) => (dispatch, getState) => {
           }
         };
 
-  let newTag = {
+  let tag = {
     userId,
     name
   }
 
-  return Axios.post(url, newTag, options)
+  return Axios.post(url, tag, options)
     .then(res => {
       console.log('tags post response', res);
-      // dispatch(addTag(newTag));
+      // dispatch(addTag(tag));
       // dispatch(addTagSuccess());
       // dispatch(getTags());
     })
@@ -159,26 +159,35 @@ export const DELETE_TAG_ERROR = 'DELETE_TAG_ERROR',
   export const deleteTagFromDatabase = (userId, tagId) => (dispatch, getState) => {
     dispatch(deleteTagRequest());
     const authToken = getState().auth.authToken,
-          url = `${API_BASE_URL}/tags/${tagId}`,
-          options = {
-            method: 'DELETE',
-            headers: {
-              'Content-Type': 'application/json',
-              'Access-Control-Allow-Origin': '*',
-              'Authorization': 'bearer ' + authToken
-            }
-          },
-          tag = { userId, tagId }
-  
-    return Axios.delete(url, tag, options)
-      .then(res => {
-        console.log('delete tag response', res);
-        // dispatch(deleteTag(tagId));
-        // dispatch(deleteTagSuccess());
-      })
-      .catch(e => {
-        console.error(e);
-        dispatch(deleteTagError(e));
-      });
+          url = `${API_BASE_URL}/tags/${tagId}`;
+
+    // const options = {
+    //   method: 'DELETE',
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //     'Access-Control-Allow-Origin': '*',
+    //     'Authorization': 'bearer ' + authToken
+    //   }
+    // };
+
+    let tag = { userId, id: tagId }
+
+    return Axios.delete(url, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'Authorization': 'bearer ' + authToken
+      }
+    })
+    .then(res => {
+      console.log('delete tag response', res);
+      dispatch(deleteTag(tag));
+      dispatch(deleteTagSuccess());
+      dispatch(getTags());
+    })
+    .catch(e => {
+      console.error(e);
+      dispatch(deleteTagError(e));
+    });
   }
   

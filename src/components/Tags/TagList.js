@@ -5,10 +5,10 @@ import { connect } from 'react-redux';
 import RequiresLogin from '../requires-login';
 
 // Async Actions
-import { getTags } from '../../actions/tags.actions'
+import { getTags, deleteTagFromDatabase } from '../../actions/tags.actions'
 
 // Components
-import Tag from './Tag';
+// import Tag from './Tag';
 import AddTag from '../Tags/AddTag';
 
 
@@ -22,6 +22,13 @@ class TagList extends Component {
     this.props.history.push('/dashboard');
   }
 
+  handleDeleteTag = (e) => {
+    let tagId = e.target.value,
+        userId = this.props.userId;
+    console.log(`Delete: ${tagId} from database. UserId: ${userId}`);
+    this.props.dispatch(deleteTagFromDatabase(userId, tagId))
+  }
+
   render() {
     return (
       <div className="tag-list-container">
@@ -29,20 +36,26 @@ class TagList extends Component {
         <button onClick={this.returnToDashboard}>Back to Dashboard</button>
         <AddTag />
         { (this.props.tags !== undefined)
-          ? this.props.tags.map(tag => <Tag tag={tag} key={tag.id} />)
-          : this.props.tags.map(tag => <p>this.props.tags === undefined</p>)
-          // ? this.props.tags.map((tag, i) => <Tag tag={tag} key={i} />)
-          // : <p></p>
+          ? this.props.tags.map(tag => {
+              return (
+                <div className="tag" key={tag.id}>
+                  <p>{tag.name}</p>
+                  <button
+                    className="tag-delete-button"
+                    onClick={this.handleDeleteTag}
+                    value={tag.id}
+                  >X</button>
+                </div>)})
+          : this.props.tags.map(tag => <p>{tag.name}</p>)
         }
-        {/* {this.props.tags.map((tag, i) => <li key={i}>{tag.name}</li>)} */}
       </div>
     )
   }
 }
 
 const mapStateToProps = state => ({
+  userId: state.auth.user.id,
   tags: state.tags.data
 });
 
-// export default connect(mapStateToProps)(TagList);
 export default RequiresLogin()(connect(mapStateToProps)(TagList));
