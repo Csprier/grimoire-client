@@ -11,7 +11,10 @@ import {
   ADD_NOTE_ERROR,
   DELETE_NOTE_REQUEST,
   DELETE_NOTE_SUCCESS,
-  DELETE_NOTE_ERROR
+  DELETE_NOTE_ERROR,
+  REMOVE_TAG_FROM_NOTE_REQUEST,
+  REMOVE_TAG_FROM_NOTE_SUCCESS,
+  REMOVE_TAG_FROM_NOTE_ERROR
 } from '../actions/notes.actions';
 
 const initialState = {
@@ -91,6 +94,23 @@ export default function notesReducer(state = initialState, action) {
         loading: false
       }
     case DELETE_NOTE_ERROR:
+      return {
+        ...state,
+        error: action.error,
+        loading: false
+      }
+    // DELETE =================================================
+    case REMOVE_TAG_FROM_NOTE_REQUEST:
+      return {
+        ...state,
+        loading: true
+      }
+    case REMOVE_TAG_FROM_NOTE_SUCCESS:
+      return {
+        ...state,
+        loading: false
+      }
+    case REMOVE_TAG_FROM_NOTE_ERROR:
       return {
         ...state,
         error: action.error,

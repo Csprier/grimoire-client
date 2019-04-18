@@ -196,3 +196,68 @@ export const DELETE_NOTE_ERROR = 'DELETE_NOTE_ERROR',
         dispatch(deleteNoteError(e));
       });
   }
+
+// =======================================================
+// REMOVE TAG FROM NOTE ACTIONS
+// =======================================================
+export const REMOVE_TAG_FROM_NOTE_REQUEST = 'REMOVE_TAG_FROM_NOTE_REQUEST',
+  removeTagFromNoteRequest = () => {
+    return {
+      type: REMOVE_TAG_FROM_NOTE_REQUEST
+    }
+  }
+
+export const REMOVE_TAG_FROM_NOTE = 'REMOVE_TAG_FROM_NOTE',
+  removeTagFromNote = (tag) => {
+    return {
+      type: REMOVE_TAG_FROM_NOTE,
+      tag
+    }
+  }
+
+export const REMOVE_TAG_FROM_NOTE_SUCCESS = 'REMOVE_TAG_FROM_NOTE_SUCCESS',
+removeTagFromNoteSuccess = () => {
+  return {
+    type: REMOVE_TAG_FROM_NOTE_SUCCESS
+  }
+}
+
+export const REMOVE_TAG_FROM_NOTE_ERROR = 'REMOVE_TAG_FROM_NOTE_ERROR',
+removeTagFromNoteError = (error) => {
+  return {
+    type: REMOVE_TAG_FROM_NOTE_REQUEST,
+    error
+  }
+}
+
+export const removeTagFromNoteById = (note, tagId) => (dispatch, getState) => {
+  dispatch(removeTagFromNoteRequest());
+  const authToken = getState().auth.authToken;
+  const url = `${API_BASE_URL}/notes/${note.id}`;
+
+  const options = {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'Authorization': 'bearer ' + authToken
+    }
+  };
+
+  let updatedNote = {
+    id: note.id,
+    title: note.title,
+    content: note.content,
+    folderId: note.folderId || '',
+    tags: note.tags.filter(tag => tag._id !== tagId)
+  }
+  console.log(updatedNote);
+  return Axios.patch(url, updatedNote, options)
+    .then((res) => {
+      console.log('Note PUT response', res)
+    })
+    .catch(e => {
+      console.error(e);
+      dispatch(removeTagFromNoteError(e));
+    })
+}

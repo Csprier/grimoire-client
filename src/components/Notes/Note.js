@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 // import Tag from '../Tags/Tag';
 
 // Async Actions
-import { deleteNoteById } from '../../actions/notes.actions';
+import { deleteNoteById, removeTagFromNoteById } from '../../actions/notes.actions';
 
 // CSS
 import '../css/notes/note.css';
@@ -19,9 +19,15 @@ class Note extends Component {
     this.props.dispatch(deleteNoteById(noteId));
   }
 
-  handleDeleteNoteFromUser = (e) => {
-    let noteId = e.target.value;
-    console.log(`Delete note ${noteId} from User ${this.props.userId}`)
+  handleRemoveTagFromNote = (e) => {
+    let userId = this.props.userId,
+        tagId = e.target.value,
+        { id, title, content, tags, folderId } = this.props.note;
+
+    let note = { id, title, content, tags, folderId };
+
+    console.log(`Delete tag ${tagId} from User ${userId}`)
+    this.props.dispatch(removeTagFromNoteById(note, tagId));
   }
 
   render() {
@@ -41,8 +47,8 @@ class Note extends Component {
                 <li key={tag._id}>
                   {tag.name}
                   <button
-                    onClick={this.handleDeleteNoteFromUser}
-                    value={id}
+                    onClick={this.handleRemoveTagFromNote}
+                    value={tag._id}
                   >X</button>
                 </li>)
             })
