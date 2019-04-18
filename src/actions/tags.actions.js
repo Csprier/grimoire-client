@@ -41,6 +41,8 @@ export const getTags = () => (dispatch, getState) => {
 
   return Axios.get(url, {
     headers: {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
       'Authorization': 'bearer ' + authToken
     }
   })
@@ -112,12 +114,10 @@ export const addNewTag = (userId, name) => (dispatch, getState) => {
 
   return Axios.post(url, newTag, options)
     .then(res => {
-      console.log('tags post response', res.data);
       let tag = { 
         name: res.data.name, 
         id: res.data._id 
       }
-      console.log(tag);
       dispatch(addTag(tag));
       dispatch(addTagSuccess());
       dispatch(getTags());

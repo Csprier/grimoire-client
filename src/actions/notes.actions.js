@@ -41,6 +41,8 @@ export const getNotes = () => (dispatch, getState) => {
 
   return Axios.get(url, {
       headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
         'Authorization': 'bearer ' + authToken
       }
     })
@@ -129,7 +131,6 @@ export const addNewNote = (newNote) => (dispatch, getState) => {
   
   return Axios.post(url, newNote, options)
     .then((res) => {
-      console.log('note POST response', res)
       let note = {
         title: res.data.title,
         content: res.data.content,
@@ -141,7 +142,7 @@ export const addNewNote = (newNote) => (dispatch, getState) => {
       dispatch(getNotes());
     })
     .catch(e => { 
-      console.error('ADD NOTE ERROR', e);
+      console.error(e);
       dispatch(addNoteError(e));
     });
 }
