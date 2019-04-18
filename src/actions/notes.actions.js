@@ -236,7 +236,7 @@ export const removeTagFromNoteById = (note, tagId) => (dispatch, getState) => {
   const url = `${API_BASE_URL}/notes/${note.id}`;
 
   const options = {
-    method: 'PUT',
+    method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',
@@ -251,10 +251,9 @@ export const removeTagFromNoteById = (note, tagId) => (dispatch, getState) => {
     folderId: note.folderId || '',
     tags: note.tags.filter(tag => tag._id !== tagId)
   }
-  console.log(updatedNote);
   return Axios.patch(url, updatedNote, options)
-    .then((res) => {
-      console.log('Note PUT response', res)
+    .then(() => {
+      dispatch(getNotes());
     })
     .catch(e => {
       console.error(e);
