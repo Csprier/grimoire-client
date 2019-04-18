@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import RequiresLogin from '../requires-login';
 
 // Async actions
-// import { getNotes, deleteNoteById } from '../../actions/notes.actions';
 import { getNotes } from '../../actions/notes.actions';
 import { getTags } from '../../actions/tags.actions';
 
@@ -32,11 +31,11 @@ class NoteList extends Component {
     return (
       <div className="note-list-container">
         <h4>You have {this.props.notes.length} notes!</h4>
-        <ul className="notes-list">
+        <div className="notes-list">
           {(this.props.searchTerm.length !== 0) 
             ? filteredNotes
             : defaultNotes }
-        </ul>
+        </div>
       </div>
     )
   }

@@ -3,6 +3,8 @@
   height: 100%;
   margin: 0px;
   padding: 0px;
+  overflow: hidden;
+  background-color: lightslategray;
 }
 
 .tag-list-nav {

@@ -5,7 +5,8 @@
   width: 98%;
   margin: 0 auto;
   padding: 5px;
-  border-bottom: 1px solid lightgray;
+  background-color: lightgray;
+  border-bottom: 1px solid black;
 }
 
 .tag p {

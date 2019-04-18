@@ -19,10 +19,15 @@ class Note extends Component {
     this.props.dispatch(deleteNoteById(noteId));
   }
 
+  handleDeleteNoteFromUser = (e) => {
+    let noteId = e.target.value;
+    console.log(`Delete note ${noteId} from User ${this.props.userId}`)
+  }
+
   render() {
     const { key, title, id, content, tags } = this.props.note;
     return (
-      <li className="note" key={key}>
+      <div className="note" key={key}>
         <h4>{title}</h4>
         <p>NoteId: {id}</p>
         <p>{content}</p>
@@ -30,10 +35,17 @@ class Note extends Component {
         <div className="note-information">
           <ul className="tags-container">
             <h4>Tags:</h4>
-            {/* <AddTag noteId={id} /> */}
             {(tags.length > 0) 
-            ? tags.map((tag, i) => <li key={i}>{tag.name}</li>)
-            // ? tags.map(tag => <Tag tag={tag} noteId={id} key={tag._id}/>)
+            ? tags.map(tag => {
+              return (
+                <li key={tag._id}>
+                  {tag.name}
+                  <button
+                    onClick={this.handleDeleteNoteFromUser}
+                    value={id}
+                  >X</button>
+                </li>)
+            })
             : <p>No tags added yet</p>}
           </ul>
           <button 
@@ -42,10 +54,13 @@ class Note extends Component {
             value={id}
           >Delete Note</button>
         </div>
-
-      </li>
+      </div>
     )
   }
 }
 
-export default connect()(Note);
+const mapStateToProps = state => ({
+  userId: state.auth.user.id
+})
+
+export default connect(mapStateToProps)(Note);

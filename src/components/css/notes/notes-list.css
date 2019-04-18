@@ -1,14 +1,19 @@
 .note-list-container {
   width: 100%;
   height: auto;
-  background-color: lightslategray;
-  /* border: 1px solid black; */
+  margin: 0px;
+  padding: 0px;
+  font-family: arial;
 }
 
-.note-list {
+.notes-list {
+  position: relative;
   display: flex;
   flex-direction: column;
-  border: 1px solid black;
+  width: 100%;
+  margin: 0px;
+  padding: 0px;
+  overflow-y: hidden;
 }
 
 .note-list h4 {
