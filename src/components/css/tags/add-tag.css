@@ -1,10 +1,16 @@
 .add-tag-form-container {
-  /* border: 1px solid red; */
+  width: 100%;
+  margin: 10px 0px;
+  padding: 0px;
 }
 
 .add-tag-form {
   display: flex;
-  justify-content: row;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 60%;
+  margin: 0 auto;
+  padding: 0px;
 }
 
 .add-tag-form input {

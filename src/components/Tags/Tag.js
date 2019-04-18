@@ -17,14 +17,14 @@ class Tag extends Component {
 
   render() {
     return (
-      <li className="tag" key={this.props.tag.id}>
+      <div className="tag" key={this.props.tag.id}>
         <p>{this.props.tag.name}</p>
         <button
           className="tag-delete-button"
           onClick={this.handleDeleteTag}
           value={this.props.tag.id}
         >X</button>
-      </li>
+      </div>
     )
   }
 }
