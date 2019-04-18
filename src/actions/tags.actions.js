@@ -111,21 +111,21 @@ export const addNewTag = (userId, name) => (dispatch, getState) => {
   }
 
   return Axios.post(url, newTag, options)
-  .then(res => {
-    // console.log('tags post response', res.data);
-    let tag = { 
-      name: res.data.name, 
-      id: res.data._id 
-    }
-    console.log(tag);
-    dispatch(addTag(tag));
-    dispatch(addTagSuccess());
-    dispatch(getTags());
-  })
-  .catch(e => {
-    console.error(e);
-    dispatch(addTagError(e));
-  });
+    .then(res => {
+      console.log('tags post response', res.data);
+      let tag = { 
+        name: res.data.name, 
+        id: res.data._id 
+      }
+      console.log(tag);
+      dispatch(addTag(tag));
+      dispatch(addTagSuccess());
+      dispatch(getTags());
+    })
+    .catch(e => {
+      console.error(e);
+      dispatch(addTagError(e));
+    });
 }
 
 // =======================================================
@@ -175,7 +175,6 @@ export const DELETE_TAG_ERROR = 'DELETE_TAG_ERROR',
       }
     })
     .then(res => {
-      console.log('delete tag response', res);
       dispatch(deleteTag(tag));
       dispatch(deleteTagSuccess());
       dispatch(getTags());

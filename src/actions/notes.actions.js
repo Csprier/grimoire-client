@@ -128,12 +128,20 @@ export const addNewNote = (newNote) => (dispatch, getState) => {
   }
   
   return Axios.post(url, newNote, options)
-    .then(() => {
+    .then((res) => {
+      console.log('note POST response', res)
+      let note = {
+        title: res.data.title,
+        content: res.data.content,
+        tags: res.data.tags
+      }
+
+      dispatch(addNote(note));
       dispatch(addNoteSuccess());
       dispatch(getNotes());
     })
     .catch(e => { 
-      console.error(e);
+      console.error('ADD NOTE ERROR', e);
       dispatch(addNoteError(e));
     });
 }

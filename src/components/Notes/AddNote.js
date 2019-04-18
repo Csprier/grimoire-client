@@ -77,7 +77,7 @@ class AddNote extends Component {
 
 const mapStateToProps = state => ({
   user: state.auth.user,
-  notes: state.notes.data,
+  notes: state.notes.data || [],
   error: state.notes.error
 });
 

@@ -24,7 +24,9 @@ class NoteList extends Component {
   }
 
   render() {
-    const defaultNotes = this.props.notes.map((note, i) => <Note note={note} key={i} />);
+    const defaultNotes = (this.props.notes !== undefined) 
+      ? this.props.notes.map((note, i) => <Note note={note} key={i} />)
+      : <p>No notes in the database</p>;
     const filteredNotes = this.props.filtered.map((note, i) => <Note note={note} key={i} />);
 
     return (
@@ -41,7 +43,7 @@ class NoteList extends Component {
 };
 
 const mapStateToProps = state => ({
-  notes: state.notes.data,
+  notes: state.notes.data || [],
   tags: state.tags.data || [],
   searchTerm: state.search.query.searchTerm,
   filtered: state.notes.filtered || []

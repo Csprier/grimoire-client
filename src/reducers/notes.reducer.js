@@ -59,11 +59,14 @@ export default function notesReducer(state = initialState, action) {
     // POST =================================================
     case ADD_NOTE_REQUEST:
       return {
+        ...state,
         loading: true
       }
     case ADD_NOTE:
       return {
-        data: state.notes.data.push(action.note),
+        notes: {
+          data: state.data.push(action.note),
+        },
         loading: true
       }
     case ADD_NOTE_SUCCESS:

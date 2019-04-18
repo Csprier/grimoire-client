@@ -50,7 +50,9 @@ export default function tagsReducer(state = initialState, action) {
       }
     case ADD_TAG:
       return {
-        data: state.tags.data.push(action.tag),
+        tags: {
+          data: state.data.push(action.tag)
+        },
         loading: true
       }
     case ADD_TAG_SUCCESS:
