@@ -16,7 +16,6 @@ class Tag extends Component {
   }
 
   render() {
-    console.log('tag t.p', this.props.tag);
     return (
       <li className="tag" key={this.props.tag.id}>
         <p>{this.props.tag.name}</p>

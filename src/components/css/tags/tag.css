@@ -1,6 +1,10 @@
 .tag {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  margin: 0px;
+  padding: 5px;
 }
 
 .tag p {
