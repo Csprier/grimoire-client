@@ -253,6 +253,7 @@ export const removeTagFromNoteById = (note, tagId) => (dispatch, getState) => {
   }
   return Axios.patch(url, updatedNote, options)
     .then(() => {
+      dispatch(removeTagFromNoteSuccess());
       dispatch(getNotes());
     })
     .catch(e => {
