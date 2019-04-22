@@ -11,7 +11,7 @@ import AddFolder from './AddFolder';
 import Folder from './Folder';
 
 // CSS
-// import '../css/folders/folder-list.css';
+import '../css/folders/folder-list.css';
 
 class FolderList extends Component {
   returnToDashboard = () => {

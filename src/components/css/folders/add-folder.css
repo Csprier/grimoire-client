@@ -1,0 +1,18 @@
+.add-folder-form-container {
+  width: 100%;
+  margin: 10px 0px;
+  padding: 0px;
+}
+
+.add-folder-form {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 60%;
+  margin: 0 auto;
+  padding: 0px;
+}
+
+.add-folder-form input {
+  border: 1px solid black;
+}

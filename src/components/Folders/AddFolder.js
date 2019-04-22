@@ -13,7 +13,7 @@ import renderField from '../Field/renderField';
 import { addNewFolder } from '../../actions/folders.actions';
 
 // CSS
-// import '../css/tags/add-folder.css';
+import '../css/folders/add-folder.css';
 
 class AddFolder extends Component {
   handleAddFolderSubmit = (e) => {
