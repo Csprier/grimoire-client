@@ -60,3 +60,36 @@ export const getFolders = () => (dispatch, getState) => {
     dispatch(getFoldersError(e));
   });
 }
+
+// =======================================================
+// ADD FOLDER ACTIONS
+// =======================================================
+export const ADD_FOLDER_REQUEST = 'ADD_FOLDER_REQUEST',
+  addFolderRequest = () => {
+    return {
+      type: ADD_FOLDER_REQUEST
+    }
+  }
+
+export const ADD_FOLDER = 'ADD_FOLDER',
+  addFolder = (folder) => {
+    return {
+      type: ADD_FOLDER,
+      folder
+    }
+  }
+
+export const ADD_FOLDER_SUCCESS = 'ADD_FOLDER_SUCCESS',
+  addFolderSuccess = () => {
+    return {
+      type: ADD_FOLDER_SUCCESS
+    }
+  }
+
+export const ADD_FOLDER_ERROR = 'ADD_FOLDER_ERROR',
+  addFolderError = (error) => {
+    return {
+      type: ADD_FOLDER_ERROR,
+      error
+    }
+  }
