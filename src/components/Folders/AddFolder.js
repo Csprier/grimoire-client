@@ -10,47 +10,47 @@ import RequiresLogin from '../requires-login';
 import renderField from '../Field/renderField';
 
 // Actions
-import { addNewTag } from '../../actions/tags.actions';
+import { addNewFolder } from '../../actions/folders.actions';
 
 // CSS
-import '../css/tags/add-tag.css';
+// import '../css/tags/add-folder.css';
 
-class AddTag extends Component {
-  handleAddTagSubmit = (e) => {
+class AddFolder extends Component {
+  handleAddFolderSubmit = (e) => {
     let userId = this.props.user.id,
-        name = e["add-tag"];
+        name = e["add-folder"];
 
-    console.log(`Add tag "${name}" to user ${userId}.`);
-    this.props.dispatch(addNewTag(userId, name));
+    console.log(`Add folder "${name}" to user ${userId}.`);
+    this.props.dispatch(addNewFolder(userId, name));
   }
 
   render() {
     let { error } = this.props;
     if (error) {
       error = (
-        <div className="tag-error">
+        <div className="folder-error">
           <p>{this.props.error}</p>
         </div>
       )
     }
 
     return (
-      <div className="add-tag-form-container">
+      <div className="add-folder-form-container">
         <form onSubmit={this.props.handleSubmit((e) => {
-          this.handleAddTagSubmit(e);
-        })} ref="form" className="add-tag-form">
+          this.handleAddFolderSubmit(e);
+        })} ref="form" className="add-folder-form">
           <Field 
-            name="add-tag"
+            name="add-folder"
             component={renderField}
             value={this.props.values}
             type="text"
-            placeholder="Add a tag to the database..."
+            placeholder="Add a folder to the database..."
           />
           <button type="submit">Add</button>
         </form>
         {error}
       </div>
-    )
+    );
   }
 };
 
@@ -58,8 +58,8 @@ const mapStateToProps = state => ({
   user: state.auth.user,
 });
 
-AddTag = reduxForm({
-  form: 'AddTag'
-})(AddTag);
+AddFolder = reduxForm({
+  form: 'AddFolder'
+})(AddFolder);
 
-export default RequiresLogin()(connect(mapStateToProps)(AddTag));
+export default RequiresLogin()(connect(mapStateToProps)(AddFolder));
