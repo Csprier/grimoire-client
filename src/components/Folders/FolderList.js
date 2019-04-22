@@ -7,8 +7,10 @@ import RequiresLogin from '../requires-login';
 // Async Actions
 
 // Compontents
+import AddFolder from './AddFolder';
 
 // CSS
+// import '../css/folders/folder-list.css';
 
 class FolderList extends Component {
   returnToDashboard = () => {
@@ -22,8 +24,11 @@ class FolderList extends Component {
   render() {
     return (
       <div className="folder-list-container">
-        <h4>Your folders</h4>
-        <button onClick={this.returnToDashboard}>&#60;  Dashboard</button>
+        <div className="folder-list-nav">
+          <h4>Your folders</h4>
+          <button onClick={this.returnToDashboard}>&#60;  Dashboard</button>
+        </div>
+        <AddFolder />
         <div className="folder-list">
           { (this.props.folders !== undefined)
               ? this.props.folders.map(folder => {
