@@ -93,3 +93,39 @@ export const ADD_FOLDER_ERROR = 'ADD_FOLDER_ERROR',
       error
     }
   }
+
+  export const addNewFolder = (userId, name) => (dispatch, getState) => {
+    dispatch(addFolderRequest());
+    const authToken = getState().auth.authToken,
+          url = `${API_BASE_URL}/folders`,
+          options = {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Access-Control-Allow-Origin': '*',
+              'Authorization': 'bearer ' + authToken
+            }
+          };
+  
+    let newFolder = {
+      name,
+      userId
+    }
+  
+    return Axios.post(url, newFolder, options)
+      .then(res => {
+        let folder = { 
+          name: res.data.name, 
+          id: res.data._id,
+          userId: res.data.userId
+        }
+        dispatch(addFolder(folder));
+        dispatch(addFolderSuccess());
+        dispatch(getFolders());
+      })
+      .catch(e => {
+        console.error(e);
+        dispatch(addFolderError(e));
+      });
+  }
+  
