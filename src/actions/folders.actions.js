@@ -129,3 +129,59 @@ export const ADD_FOLDER_ERROR = 'ADD_FOLDER_ERROR',
       });
   }
   
+  // =======================================================
+// DELETE FOLDER ACTIONS
+// =======================================================
+export const DELETE_FOLDER_REQUEST = 'DELETE_FOLDER_REQUEST',
+  deleteFolderRequest = () => {
+    return {
+      type: DELETE_FOLDER_REQUEST
+    }
+  }
+
+export const DELETE_FOLDER = 'DELETE_FOLDER',
+  deleteFolder = (folder) => {
+    return {
+      type: DELETE_FOLDER,
+      folder
+    }
+  }
+
+export const DELETE_FOLDER_SUCCESS = 'DELETE_FOLDER_SUCCESS',
+  deleteFolderSuccess = () => {
+    return {
+      type: DELETE_FOLDER_SUCCESS
+    }
+  }
+
+export const DELETE_FOLDER_ERROR = 'DELETE_FOLDER_ERROR',
+  deleteFolderError = (error) => {
+    return {
+      type: DELETE_FOLDER_ERROR,
+      error
+    }
+  }
+
+export const deleteFolderFromDatabase = (userId, folderId) => (dispatch, getState) => {
+  dispatch(deleteFolderRequest());
+  const authToken = getState().auth.authToken,
+        url = `${API_BASE_URL}/folders/${folderId}`,
+        folder = { userId, id: folderId };
+
+  return Axios.delete(url, {
+    headers: {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'Authorization': 'bearer ' + authToken
+    }
+  })
+  .then(res => {
+    dispatch(deleteFolder(folder));
+    dispatch(deleteFolderSuccess());
+    dispatch(getFolders());
+  })
+  .catch(e => {
+    console.error(e);
+    dispatch(deleteFolderError(e));
+  });
+}
