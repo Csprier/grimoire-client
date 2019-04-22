@@ -15,6 +15,10 @@ class FolderList extends Component {
     this.props.history.push('/dashboard');
   }
 
+  deleteFolderFromDatabase = (e) => {
+    console.log(e.target.value);
+  }
+
   render() {
     return (
       <div className="folder-list-container">
@@ -23,12 +27,13 @@ class FolderList extends Component {
         <div className="folder-list">
           { (this.props.folders !== undefined)
               ? this.props.folders.map(folder => {
-                return (
-                  <div>
-                    <h5>{folder.name}</h5>
-                    <p>{folder.id}</p>
-                  </div>
-                )})
+                  return (
+                    <div key={folder.id}>
+                      <h5>{folder.name}</h5>
+                      <p>{folder.id}</p>
+                      <button onClick={this.deleteFolderFromDatabase} value={folder.id}>X</button>
+                    </div>
+                  )})
               : <span>No folders in the database</span>
           }
         </div>
