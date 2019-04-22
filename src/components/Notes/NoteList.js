@@ -7,6 +7,7 @@ import RequiresLogin from '../requires-login';
 // Async actions
 import { getNotes } from '../../actions/notes.actions';
 import { getTags } from '../../actions/tags.actions';
+import { getFolders } from '../../actions/folders.actions';
 
 // Components
 import Note from './Note';
@@ -16,10 +17,11 @@ import '../css/notes/notes-list.css';
 
 class NoteList extends Component {
   componentDidMount() {
-    console.log('NoteList mounted, fetching notes & tags.');
+    console.log('NoteList mounted, fetching notes, tags, and folders.');
     this.props.dispatch(getNotes());
     this.props.dispatch(getTags());
-    console.log('Notes and tags fetched.')
+    this.props.dispatch(getFolders());
+    console.log('Notes, tags, and folders fetched.')
   }
 
   render() {

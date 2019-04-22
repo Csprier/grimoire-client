@@ -17,7 +17,7 @@ const initialState = {
   data: [],
   loading: false,
   error: null
-}
+};
 
 export default function tagsReducer(state = initialState, action) {
   switch(action.type) {
