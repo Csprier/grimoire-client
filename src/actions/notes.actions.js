@@ -259,5 +259,5 @@ export const removeTagFromNoteById = (note, tagId) => (dispatch, getState) => {
     .catch(e => {
       console.error(e);
       dispatch(removeTagFromNoteError(e));
-    })
+    });
 }

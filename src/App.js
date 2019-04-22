@@ -9,6 +9,7 @@ import Dashboard from './components/Dashboard';
 import AddNote from './components/Notes/AddNote';
 import LandingPage from './components/LandingPage';
 import TagList from './components/Tags/TagList';
+import FolderList from './components/Folders/FolderList';
 
 import { refreshAuthToken } from './actions/auth.actions';
 
@@ -44,6 +45,7 @@ class App extends Component {
             <Route exact path="/dashboard" component={Dashboard} />
             <Route exact path="/addNote" component={AddNote} />
             <Route exact path="/tagList" component={TagList} />
+            <Route exact path="/folderList" component={FolderList} />
           </main>
         </div>
       </Router>
