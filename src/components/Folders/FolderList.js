@@ -8,6 +8,7 @@ import RequiresLogin from '../requires-login';
 
 // Compontents
 import AddFolder from './AddFolder';
+import Folder from './Folder';
 
 // CSS
 // import '../css/folders/folder-list.css';
@@ -15,10 +16,6 @@ import AddFolder from './AddFolder';
 class FolderList extends Component {
   returnToDashboard = () => {
     this.props.history.push('/dashboard');
-  }
-
-  deleteFolderFromDatabase = (e) => {
-    console.log(e.target.value);
   }
 
   render() {
@@ -30,16 +27,9 @@ class FolderList extends Component {
         </div>
         <AddFolder />
         <div className="folder-list">
-          { (this.props.folders !== undefined)
-              ? this.props.folders.map(folder => {
-                  return (
-                    <div key={folder.id}>
-                      <h5>{folder.name}</h5>
-                      <p>{folder.id}</p>
-                      <button onClick={this.deleteFolderFromDatabase} value={folder.id}>X</button>
-                    </div>
-                  )})
-              : <span>No folders in the database</span>
+          {(this.props.folders !== undefined)
+            ? this.props.folders.map(folder => <Folder folder={folder} key={folder.id} />)
+            : <span>No folders in the database</span>
           }
         </div>
       </div>
