@@ -6,6 +6,12 @@
   font-family: arial;
 }
 
+.note-list-container h4 {
+  font-family: arial;
+  font-weight: 100;
+  color: #92DCE5;
+}
+
 .notes-list {
   position: relative;
   display: flex;
@@ -14,8 +20,4 @@
   margin: 0px;
   padding: 0px;
   overflow-y: hidden;
-}
-
-.note-list h4 {
-  font-family: arial;
 }

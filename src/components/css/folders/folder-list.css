@@ -4,7 +4,7 @@
   margin: 0px;
   padding: 0px;
   overflow: hidden;
-  background-color: lightslategray;
+  background-color: #2B303A;
 }
 
 .folder-list-nav {
@@ -12,6 +12,9 @@
   flex-direction: row;
   justify-content: space-between;
   font-family: arial;
+  font-weight: 100;
+  background-color: #D64933;
+  color: white;
 }
 
 .folder-list {

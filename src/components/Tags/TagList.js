@@ -29,7 +29,7 @@ class TagList extends Component {
     return (
       <div className="tag-list-container">
         <div className="tag-list-nav">
-          <h2>List of Tags</h2>
+          <h4>List of Tags</h4>
           <button onClick={this.returnToDashboard}>&#60; Dashboard</button>
         </div>
         <AddTag />

@@ -4,7 +4,7 @@
   margin: 0px;
   padding: 0px;
   overflow: hidden;
-  background-color: lightslategray;
+  background-color: #2B303A;
 }
 
 .tag-list-nav {
@@ -12,6 +12,10 @@
   flex-direction: row;
   justify-content: space-between;
   font-family: arial;
+  background-color: #D64933;
+  color: white;
+  font-family: arial;
+  font-weight: 100;
 }
 
 .tag-list {

@@ -17,7 +17,6 @@ import '../css/notes/notes-list.css';
 
 class NoteList extends Component {
   componentDidMount() {
-    console.log('NoteList mounted, fetching notes, tags, and folders.');
     this.props.dispatch(getNotes());
     this.props.dispatch(getTags());
     this.props.dispatch(getFolders());
