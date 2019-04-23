@@ -17,6 +17,16 @@
   color: white;
 }
 
+.folder-list-nav button {
+  height: 35px;
+  margin: 0px;
+  padding: 0px;
+  color: white;
+  font-family: arial;
+  background-color: #D64933;
+  border: 1px solid #D64933;
+}
+
 .folder-list {
   position: relative;
   width: 98%;

@@ -31,7 +31,7 @@ class NoteList extends Component {
 
     return (
       <div className="note-list-container">
-        <h4>You have {this.props.notes.length} notes!</h4>
+        <h4 className="note-counter">You have {this.props.notes.length} notes!</h4>
         <div className="notes-list">
           {(this.props.searchTerm.length !== 0) 
             ? filteredNotes

@@ -34,7 +34,7 @@ class Note extends Component {
     const { key, title, id, content, tags } = this.props.note;
     return (
       <div className="note" key={key}>
-        <h4>{title}</h4>
+        <h4 className="note-title">{title}</h4>
         <p>NoteId: {id}</p>
         <p>{content}</p>
     

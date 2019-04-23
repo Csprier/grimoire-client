@@ -7,9 +7,9 @@
 }
 
 .note-list-container h4 {
-  font-family: arial;
-  font-weight: 100;
-  color: #92DCE5;
+  /* font-family: arial; */
+  /* font-weight: 100; */
+  /* color: #92DCE5; */
 }
 
 .notes-list {
@@ -20,4 +20,10 @@
   margin: 0px;
   padding: 0px;
   overflow-y: hidden;
+}
+
+.note-counter {
+  font-family: arial;
+  font-weight: 100;
+  color: #92DCE5;
 }

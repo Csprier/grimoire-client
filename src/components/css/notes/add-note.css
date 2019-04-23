@@ -1,12 +1,13 @@
 .add-note-container {
-
+  width: 100%;
+  height: auto;
+  margin: 0px;
+  padding: 0px;
 }
 
-.add-form-container h4 {
-  color: #EEE5E9;
+.add-note-container h4 {
   font-family: arial;
-}
-
-.add-form-container form {
-
+  font-weight: 100;
+  background-color: #D64933;
+  color: white;
 }

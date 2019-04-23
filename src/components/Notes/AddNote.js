@@ -46,7 +46,7 @@ class AddNote extends Component {
 
     return (
       <div className="add-note-container">
-        <h2>Add Note</h2>
+        <h4>Add Note</h4>
         <form onSubmit={this.props.handleSubmit((e) => {
             this.handleAddNoteSubmit(e);
           })} ref="form" className="add-note-form">

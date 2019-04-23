@@ -11,11 +11,12 @@
   border-bottom: 1px solid black;
 }
 
-.note h4 {
+.note-title {
   font-family: arial;
   width: 100%;
   margin: 0px;
   padding: 5px;
+  text-decoration: underline;
 }
 
 .note p {
