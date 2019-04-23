@@ -1,5 +1,5 @@
 .add-note-container {
-  width: 100%;
+  width: 98%;
   height: auto;
   margin: 0px;
   padding: 0px;
@@ -10,4 +10,25 @@
   font-weight: 100;
   background-color: #D64933;
   color: white;
+}
+
+.add-note-form {
+  width: 98%;
+  margin: 0 auto;
+  margin-top: 10px;
+  padding: 0px;
+  background-color: lightgray;
+  /* border: 1px solid red; */
+}
+
+.add-note-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  width: 100%;
+  margin: 0px;
+  padding: 0px;
+}
+.add-note-buttons button {
+  padding: 5px;
 }

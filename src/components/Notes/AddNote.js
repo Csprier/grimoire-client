@@ -66,8 +66,10 @@ class AddNote extends Component {
             placeholder="Content..."
             label="Content..."
           />
-          <button type="submit" label="submit">Save</button>
-          <button type="button" onClick={this.cancelNote} label="cancel">Cancel</button>
+          <div className="add-note-buttons">
+            <button type="submit" label="submit">Save</button>
+            <button type="button" onClick={this.cancelNote} label="cancel">Cancel</button>
+          </div>
         </form>
         {error}
       </div>
