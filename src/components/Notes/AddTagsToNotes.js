@@ -34,6 +34,12 @@ class AddTagsToNotes extends Component {
       }
     }
   };
+  
+  handleDelete = (tagToRemove) => {
+    this.setState({
+      selectedTags: this.state.selectedTags.filter(tag => tag !== tagToRemove)
+    });
+  }
 
   render() {
     console.log(this.state.value);
@@ -41,7 +47,18 @@ class AddTagsToNotes extends Component {
       <div className="add-tags-to-notes-container">
 
         <React.Fragment>
-          {this.state.selectedTags.map(tag => <div key={tag}>{tag}</div>)}
+          {this.state.selectedTags.map(tag => {
+            return (
+              <div key={tag}>
+                {tag}
+                <button
+                  type="button"
+                  onClick={() =>  this.handleDelete(tag)}
+                >
+                  &times;
+                </button>
+              </div>)
+          })}
           
           <input 
             name="search or add tags"
