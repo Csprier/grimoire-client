@@ -88,6 +88,7 @@ class AddTagsToNotes extends Component {
                   >{tag.name}</div>
                 )
               }
+              return null;
             })
           : null
         }

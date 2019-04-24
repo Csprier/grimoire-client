@@ -6,13 +6,14 @@
   padding: 0px;
 }
 
+/* ================================================= */
+/* CHIPS */
 .selected-tags-container {
   width: 100%;
   margin: 0px;
   margin-bottom: 10px;
   padding: 0px;
 }
-
 .tag-chip {
   display: inline-block;
   margin: 3px 3px;
@@ -37,6 +38,8 @@
   color: #000;
 }
 
+/* ================================================= */
+/* DROPDOWN */
 .dropdown-item {
   width: 98%;
   margin: 0 auto;
