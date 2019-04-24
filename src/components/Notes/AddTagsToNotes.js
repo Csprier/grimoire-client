@@ -37,16 +37,13 @@ class AddTagsToNotes extends Component {
   };
   
   handleDelete = (tagToRemove) => {
-    console.log(tagToRemove);
     this.setState({
       selectedTags: this.state.selectedTags.filter(tag => tag !== tagToRemove)
     });
   }
-  // END CHIPS ========================================
 
-  // ADD TAG
+  // ADD TAG TO CHIPS ========================================
   addToSelectedTags = (tag) => {
-    console.log(tag);
     this.setState({
       selectedTags: [ ...this.state.selectedTags, tag ],
       value: ''
@@ -68,7 +65,8 @@ class AddTagsToNotes extends Component {
                   &times;
                 </span>
               </div>)
-          })}
+            })
+          }
         </div>
           
         <input 
@@ -80,6 +78,7 @@ class AddTagsToNotes extends Component {
             this.handleChange(e);
           }}
           onKeyDown={this.handleKeyDown}
+          className="search-or-add-tag-input"
         />
       
         <div className="drop-down-container">

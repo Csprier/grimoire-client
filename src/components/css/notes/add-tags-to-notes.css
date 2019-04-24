@@ -39,6 +39,14 @@
 }
 
 /* ================================================= */
+/* INPUT */
+.search-or-add-tag-input {
+  width: 80%;
+  margin: 0 auto;
+  padding: 0px;
+}
+
+/* ================================================= */
 /* DROPDOWN */
 .drop-down-container {
   width: 100%;
@@ -47,10 +55,12 @@
 }
 
 .dropdown-item {
-  width: 98%;
+  width: 78%;
   margin: 0 auto;
   margin-top: 2px;
   padding: 0px;
+  padding-left: 3px; 
+  font-family: arial;
   background: white;
   color: black;
 }
