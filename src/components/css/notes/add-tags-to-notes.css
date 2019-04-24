@@ -4,13 +4,13 @@
   width: 100%;
   margin: 0px;
   padding: 0px;
-  border: 1px solid orange;
 }
 
-.chips-container {
-  display: flex;
-  width: 100%;
-  margin: 0px;
+.dropdown-item {
+  width: 98%;
+  margin: 0 auto;
+  margin-top: 2px;
   padding: 0px;
-  border: 1px solid blue;
+  background: white;
+  color: black;
 }

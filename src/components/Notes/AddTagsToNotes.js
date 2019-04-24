@@ -37,53 +37,59 @@ class AddTagsToNotes extends Component {
   };
   
   handleDelete = (tagToRemove) => {
+    console.log(tagToRemove);
     this.setState({
       selectedTags: this.state.selectedTags.filter(tag => tag !== tagToRemove)
     });
   }
   // END CHIPS ========================================
 
+  addToSelectedTags = (tag) => {
+    console.log(`Adding ${tag.name} to selectedTags.`);
+  }
+
   render() {
-    console.log(this.state.value);
     return (
       <div className="add-tags-to-notes-container">
-
-        <React.Fragment>
-          {this.state.selectedTags.map(tag => {
-            return (
-              <div key={tag}>
-                {tag}
-                <button
-                  type="button"
-                  onClick={() =>  this.handleDelete(tag)}
-                >
-                  &times;
-                </button>
-              </div>)
-          })}
+        {this.state.selectedTags.map(tag => {
+          console.log('selectedTags', tag);
+          return (
+            <div key={tag}>
+              {tag}
+              <button
+                type="button"
+                onClick={() => this.handleDelete(tag)}
+              >
+                &times;
+              </button>
+            </div>)
+        })}
           
-          <input 
-            name="search or add tags"
-            placeholder="Search tags/Add tags..."
-            type="text" 
-            value={this.state.value}
-            onChange={e => {
-              this.handleChange(e);
-            }}
-            onKeyDown={this.handleKeyDown}
-          />
-          {
-            (this.state.value) 
-              ? this.props.tags.map(tag => {
-                  let regex = new RegExp(`${this.state.value}`);
-                  if (tag.name.match(regex)) {
-                    return <div key={tag.id}>{tag.name}</div>
-                  }
-                })
-              : <p>Search tags...</p>
-          }
-        </React.Fragment>
-
+        <input 
+          name="search or add tags"
+          placeholder="Search tags/Add tags..."
+          type="text" 
+          value={this.state.value}
+          onChange={e => {
+            this.handleChange(e);
+          }}
+          onKeyDown={this.handleKeyDown}
+        />
+        
+        {(this.state.value) 
+          ? this.props.tags.map(tag => {
+              let regex = new RegExp(`${this.state.value}`);
+              if (tag.name.match(regex)) {
+                return (
+                  <div className="dropdown-item"
+                    key={tag.id}
+                    onClick={this.addToSelectedTags}  
+                  >{tag.name}</div>
+                )
+              }
+            })
+          : null
+        }
       </div>
     )
   }
