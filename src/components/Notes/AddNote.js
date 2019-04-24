@@ -4,7 +4,13 @@ import {
   Field, 
   reduxForm
 } from 'redux-form';
+
+// Components
+import AddTagsToNotes from './AddTagsToNotes';
+
+// HOC
 import RequiresLogin from '../requires-login';
+
 // ../Field/
 import renderField from '../Field/renderField';
 import renderTextarea from '../Field/renderTextarea';
@@ -66,6 +72,9 @@ class AddNote extends Component {
             placeholder="Content..."
             label="Content..."
           />
+
+          <AddTagsToNotes />
+
           <div className="add-note-buttons">
             <button type="submit" label="submit">Save</button>
             <button type="button" onClick={this.cancelNote} label="cancel">Cancel</button>
