@@ -45,7 +45,7 @@ class AddTagsToNotes extends Component {
   // ADD TAG TO CHIPS ========================================
   addToSelectedTags = (tag) => {
     this.setState({
-      selectedTags: [ ...this.state.selectedTags, tag ],
+      selectedTags: [ ...this.state.selectedTags, tag.name ],
       value: ''
     });
   }
@@ -55,9 +55,10 @@ class AddTagsToNotes extends Component {
       <div className="add-tags-to-notes-container">
         <div className="selected-tags-container">
           {this.state.selectedTags.map(tag => {
+            console.log('tag', tag);
             return (
-              <div key={tag.id} className="tag-chip">
-                <span className="chip-name">{tag.name}</span>
+              <div key={tag} className="tag-chip">
+                <span className="chip-name">{tag}</span>
                 <span
                   onClick={() => this.handleDelete(tag)}
                   className="chip-remove"
