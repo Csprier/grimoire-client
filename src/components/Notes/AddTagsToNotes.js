@@ -13,6 +13,7 @@ class AddTagsToNotes extends Component {
     }
   }
 
+  // CHIPS ========================================
   handleChange = (e) => {
     this.setState({
       value: e.target.value
@@ -40,6 +41,7 @@ class AddTagsToNotes extends Component {
       selectedTags: this.state.selectedTags.filter(tag => tag !== tagToRemove)
     });
   }
+  // END CHIPS ========================================
 
   render() {
     console.log(this.state.value);
@@ -70,6 +72,16 @@ class AddTagsToNotes extends Component {
             }}
             onKeyDown={this.handleKeyDown}
           />
+          {
+            (this.state.value) 
+              ? this.props.tags.map(tag => {
+                  let regex = new RegExp(`${this.state.value}`);
+                  if (tag.name.match(regex)) {
+                    return <div key={tag.id}>{tag.name}</div>
+                  }
+                })
+              : <p>Search tags...</p>
+          }
         </React.Fragment>
 
       </div>
