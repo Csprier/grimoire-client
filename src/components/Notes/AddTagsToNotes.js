@@ -51,19 +51,20 @@ class AddTagsToNotes extends Component {
   render() {
     return (
       <div className="add-tags-to-notes-container">
+      <div className="selected-tags-container">
         {this.state.selectedTags.map(tag => {
-          console.log('selectedTags', tag);
           return (
-            <div key={tag}>
-              {tag}
-              <button
-                type="button"
+            <div key={tag} className="tag-chip">
+              <span className="chip-name">{tag}</span>
+              <span
                 onClick={() => this.handleDelete(tag)}
+                className="chip-remove"
               >
                 &times;
-              </button>
+              </span>
             </div>)
         })}
+        </div>
           
         <input 
           name="search or add tags"
