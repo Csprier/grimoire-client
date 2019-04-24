@@ -51,19 +51,19 @@ class AddTagsToNotes extends Component {
   render() {
     return (
       <div className="add-tags-to-notes-container">
-      <div className="selected-tags-container">
-        {this.state.selectedTags.map(tag => {
-          return (
-            <div key={tag} className="tag-chip">
-              <span className="chip-name">{tag}</span>
-              <span
-                onClick={() => this.handleDelete(tag)}
-                className="chip-remove"
-              >
-                &times;
-              </span>
-            </div>)
-        })}
+        <div className="selected-tags-container">
+          {this.state.selectedTags.map(tag => {
+            return (
+              <div key={tag} className="tag-chip">
+                <span className="chip-name">{tag}</span>
+                <span
+                  onClick={() => this.handleDelete(tag)}
+                  className="chip-remove"
+                >
+                  &times;
+                </span>
+              </div>)
+          })}
         </div>
           
         <input 
@@ -76,22 +76,23 @@ class AddTagsToNotes extends Component {
           }}
           onKeyDown={this.handleKeyDown}
         />
-        
-        {(this.state.value) 
-          ? this.props.tags.map(tag => {
-              let regex = new RegExp(`${this.state.value}`);
-              if (tag.name.match(regex)) {
-                return (
-                  <div className="dropdown-item"
-                    key={tag.id}
-                    onClick={this.addToSelectedTags}  
-                  >{tag.name}</div>
-                )
-              }
-              return null;
-            })
-          : null
-        }
+      
+        <div className="drop-down-container">
+          { (this.state.value) 
+              ? this.props.tags.map(tag => {
+                  let regex = new RegExp(`${this.state.value}`);
+                  if (tag.name.match(regex)) {
+                    return (
+                      <div className="dropdown-item"
+                        key={tag.id}
+                        onClick={this.addToSelectedTags}  
+                      >{tag.name}</div>
+                    )
+                  }
+                return null;
+              })
+            : null }
+        </div>
       </div>
     )
   }

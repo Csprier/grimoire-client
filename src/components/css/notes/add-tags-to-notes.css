@@ -40,6 +40,12 @@
 
 /* ================================================= */
 /* DROPDOWN */
+.drop-down-container {
+  width: 100%;
+  margin: 0px;
+  padding: 0px;
+}
+
 .dropdown-item {
   width: 98%;
   margin: 0 auto;
