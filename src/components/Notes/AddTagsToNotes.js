@@ -55,7 +55,6 @@ class AddTagsToNotes extends Component {
       <div className="add-tags-to-notes-container">
         <div className="selected-tags-container">
           {this.state.selectedTags.map(tag => {
-            console.log('tag', tag);
             return (
               <div key={tag} className="tag-chip">
                 <span className="chip-name">{tag}</span>
