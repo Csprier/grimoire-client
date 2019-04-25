@@ -17,6 +17,7 @@ import renderTextarea from '../Field/renderTextarea';
 
 // Actions
 import { addNewNote } from '../../actions/notes.actions';
+import { addNewTag } from '../../actions/tags.actions';
 
 // CSS
 import '../css/notes/add-note.css';
@@ -47,16 +48,42 @@ class AddNote extends Component {
     let userId = this.props.user.id,
         title = e.title,
         content = e.content,
-        tags = this.state.tagsToBeAdded;
-        
-    let newNote = { userId, title, content, tags };
+        tags = this.state.tagsToBeAdded,
+        finalizedTags = [];
+    let existingTags = this.props.tags;
+
+    existingTags.forEach(existingTag => {
+      for (let i = 0; i < tags.length; i++) {
+        if (tags[i] === existingTag.name) { // if the tags are the same
+          finalizedTags.push(existingTag);
+        }
+
+        if (tags[i] !== existingTag.name) {
+          this.props.dispatch(addNewTag(userId, tags[i]))
+            .then(() => {
+              for (let i = 0; i < existingTags.length; i++) {
+                if (existingTags[i].name === tags[i]) {
+                  finalizedTags.push(existingTags[i]);
+                }
+              }
+            })
+        }
+      }
+    });
+
+    let newNote = { 
+      userId, 
+      title, 
+      content, 
+      tags: finalizedTags 
+    };
     console.log('nn', newNote);
+    
     // this.props.dispatch(addNewNote(newNote));
     // this.props.history.push('/dashboard');
   }
 
   render() {
-    console.log(this.state.tagsToBeAdded);
     let { error } = this.props;
     if (error) {
       error = (
@@ -105,6 +132,7 @@ class AddNote extends Component {
 const mapStateToProps = state => ({
   user: state.auth.user,
   notes: state.notes.data || [],
+  tags: state.tags.data,
   error: state.notes.error
 });
 

@@ -137,10 +137,9 @@ export const addNewNote = (newNote) => (dispatch, getState) => {
         content: res.data.content,
         tags: res.data.tags
       }
-
-      dispatch(addNote(note));
-      dispatch(addNoteSuccess());
-      dispatch(getNotes());
+      // dispatch(addNote(note));
+      // dispatch(addNoteSuccess());
+      // dispatch(getNotes());
     })
     .catch(e => { 
       console.error(e);
