@@ -22,6 +22,19 @@ import { addNewNote } from '../../actions/notes.actions';
 import '../css/notes/add-note.css';
 
 class AddNote extends Component {
+  constructor() {
+    super();
+    this.state = {
+      tagsToBeAdded: []
+    }
+  }
+
+  getSelectedTags = (tags) => {
+    this.setState({
+      tagsToBeAdded: tags
+    })
+  }
+
   cancelNote = () => {
     this.props.history.push('/dashboard');
   }
@@ -31,17 +44,19 @@ class AddNote extends Component {
 
 
   handleAddNoteSubmit = (e) => {
-    console.log('e', e);
     let userId = this.props.user.id,
         title = e.title,
         content = e.content,
-        tags = e.tags;
+        tags = this.state.tagsToBeAdded;
+        
     let newNote = { userId, title, content, tags };
-    this.props.dispatch(addNewNote(newNote));
-    this.props.history.push('/dashboard');
+    console.log('nn', newNote);
+    // this.props.dispatch(addNewNote(newNote));
+    // this.props.history.push('/dashboard');
   }
 
   render() {
+    console.log(this.state.tagsToBeAdded);
     let { error } = this.props;
     if (error) {
       error = (
@@ -74,7 +89,7 @@ class AddNote extends Component {
             label="Content..."
           />
 
-          <AddTagsToNotes />
+          <AddTagsToNotes getTagData={this.getSelectedTags} />
 
           <div className="add-note-buttons">
             <button type="submit" label="submit">Save</button>
