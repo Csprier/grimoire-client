@@ -31,10 +31,11 @@ class AddNote extends Component {
 
 
   handleAddNoteSubmit = (e) => {
+    console.log('e', e);
     let userId = this.props.user.id,
         title = e.title,
         content = e.content,
-        tags = e.tags || [];
+        tags = e.tags;
     let newNote = { userId, title, content, tags };
     this.props.dispatch(addNewNote(newNote));
     this.props.history.push('/dashboard');

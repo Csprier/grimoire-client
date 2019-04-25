@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import {
+  Field
+} from 'redux-form';
 
 // CSS
 import '../css/notes/add-tags-to-notes.css';
@@ -51,6 +54,7 @@ class AddTagsToNotes extends Component {
   }
 
   render() {
+    console.log(this.state.selectedTags);
     return (
       <div className="add-tags-to-notes-container">
         <div className="selected-tags-container">
@@ -69,7 +73,19 @@ class AddTagsToNotes extends Component {
           }
         </div>
           
-        <input 
+        <Field 
+          name="tags-for-note"
+          placeholder="Search tags/Add tags..."
+          type="text" 
+          component="input"
+          value={this.state.value}
+          onChange={e => {
+            this.handleChange(e);
+          }}
+          onKeyDown={this.handleKeyDown}
+          className="search-or-add-tag-input"
+        />
+        {/* <input 
           name="search or add tags"
           placeholder="Search tags/Add tags..."
           type="text" 
@@ -79,7 +95,7 @@ class AddTagsToNotes extends Component {
           }}
           onKeyDown={this.handleKeyDown}
           className="search-or-add-tag-input"
-        />
+        /> */}
       
         <div className="drop-down-container">
           { (this.state.value) 

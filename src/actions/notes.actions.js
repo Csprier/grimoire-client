@@ -131,6 +131,7 @@ export const addNewNote = (newNote) => (dispatch, getState) => {
   
   return Axios.post(url, newNote, options)
     .then((res) => {
+      console.log(res);
       let note = {
         title: res.data.title,
         content: res.data.content,
