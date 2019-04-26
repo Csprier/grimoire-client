@@ -17,7 +17,7 @@ import renderTextarea from '../Field/renderTextarea';
 
 // Actions
 import { addNewNote } from '../../actions/notes.actions';
-import { addNewTag } from '../../actions/tags.actions';
+import { addNewTag, getTags } from '../../actions/tags.actions';
 
 // CSS
 import '../css/notes/add-note.css';
@@ -51,26 +51,27 @@ class AddNote extends Component {
         tags = this.state.tagsToBeAdded,
         finalizedTags = [];
     let existingTags = this.props.tags;
+    
+
+    let newTags = {};
+    tags.forEach(tag => {
+      newTags[tag] = { 
+        name: tag, 
+        userId 
+      }
+    }); 
 
     existingTags.forEach(existingTag => {
-      for (let i = 0; i < tags.length; i++) {
-        if (tags[i] === existingTag.name) { // if the tags are the same
-          finalizedTags.push(existingTag);
-        }
-
-        if (tags[i] !== existingTag.name) {
-          this.props.dispatch(addNewTag(userId, tags[i]))
-            .then(() => {
-              for (let i = 0; i < existingTags.length; i++) {
-                if (existingTags[i].name === tags[i]) {
-                  finalizedTags.push(existingTags[i]);
-                }
-              }
-            })
-        }
+      if (newTags[existingTag.name]) {
+        delete newTags[existingTag.name]
       }
-    });
-
+    })
+    console.log('after', newTags);
+    
+    this.props.dispatch(addNewTag(userId, Object.keys(newTags)))
+      .then((res) => console.log(res));
+    
+    
     let newNote = { 
       userId, 
       title, 

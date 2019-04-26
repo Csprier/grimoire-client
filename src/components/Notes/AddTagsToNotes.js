@@ -25,7 +25,7 @@ class AddTagsToNotes extends Component {
   // CHIPS ========================================
   handleChange = (e) => {
     this.setState({
-      value: e.target.value
+      value: e.target.value.trim()
     });
   }
 
@@ -54,7 +54,7 @@ class AddTagsToNotes extends Component {
   // ADD TAG TO CHIPS ========================================
   addToSelectedTags = (tag) => {
     this.setState({
-      selectedTags: [ ...this.state.selectedTags, tag.name ],
+      selectedTags: [ ...this.state.selectedTags, tag ],
       value: ''
     });
   }

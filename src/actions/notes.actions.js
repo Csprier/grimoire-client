@@ -131,15 +131,15 @@ export const addNewNote = (newNote) => (dispatch, getState) => {
   
   return Axios.post(url, newNote, options)
     .then((res) => {
-      console.log(res);
       let note = {
         title: res.data.title,
         content: res.data.content,
         tags: res.data.tags
       }
-      // dispatch(addNote(note));
-      // dispatch(addNoteSuccess());
-      // dispatch(getNotes());
+      console.log('note', note);
+      dispatch(addNote(note));
+      dispatch(addNoteSuccess());
+      dispatch(getNotes());
     })
     .catch(e => { 
       console.error(e);
