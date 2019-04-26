@@ -48,12 +48,12 @@ class AddNote extends Component {
     let userId = this.props.user.id,
         title = e.title,
         content = e.content,
-        tags = this.state.tagsToBeAdded,
-        finalizedTags = [];
-    let existingTags = this.props.tags;
-    
+        tags = this.state.tagsToBeAdded;
 
+    let existingTags = this.props.tags;
     let newTags = {};
+
+    // Loop over tagsToBeAdded
     tags.forEach(tag => {
       newTags[tag] = { 
         name: tag, 
@@ -61,24 +61,26 @@ class AddNote extends Component {
       }
     }); 
 
+    // Loop over existing tags
     existingTags.forEach(existingTag => {
+      // Check if for the existence of existingTag.name 
+      // as a key in the newTags object
       if (newTags[existingTag.name]) {
         delete newTags[existingTag.name]
-      }
-    })
-    console.log('after', newTags);
+      } 
+      // THE ANSWER IS HERE SOMEWHERE, FIGGER IT OUT BITCH
+    });
     
     this.props.dispatch(addNewTag(userId, Object.keys(newTags)))
-      .then((res) => console.log(res));
-    
-    
-    let newNote = { 
-      userId, 
-      title, 
-      content, 
-      tags: finalizedTags 
-    };
-    console.log('nn', newNote);
+      .then((res) => {
+        let newNote = { 
+          userId, 
+          title, 
+          content, 
+          tags: [ ...res.newTags ] // MISSING PRE-EXISTING TAGS THAT WERE ADDED TO THE NOTE
+        };
+        console.log('nn', newNote);
+      })
     
     // this.props.dispatch(addNewNote(newNote));
     // this.props.history.push('/dashboard');
