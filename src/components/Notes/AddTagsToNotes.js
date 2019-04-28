@@ -15,11 +15,17 @@ class AddTagsToNotes extends Component {
       value: ''
     }
   }
+  componentDidUpdate = () => {
+    if (this.state.selectedTags.length !== 0) {
+      let updatedTags = this.state.selectedTags;
+      this.props.getTagData(updatedTags);
+    }
+  }
 
   // CHIPS ========================================
   handleChange = (e) => {
     this.setState({
-      value: e.target.value
+      value: e.target.value.trim()
     });
   }
 
@@ -48,13 +54,12 @@ class AddTagsToNotes extends Component {
   // ADD TAG TO CHIPS ========================================
   addToSelectedTags = (tag) => {
     this.setState({
-      selectedTags: [ ...this.state.selectedTags, tag.name ],
+      selectedTags: [ ...this.state.selectedTags, tag ],
       value: ''
     });
   }
 
   render() {
-    console.log(this.state.selectedTags);
     return (
       <div className="add-tags-to-notes-container">
         <div className="selected-tags-container">
@@ -85,17 +90,6 @@ class AddTagsToNotes extends Component {
           onKeyDown={this.handleKeyDown}
           className="search-or-add-tag-input"
         />
-        {/* <input 
-          name="search or add tags"
-          placeholder="Search tags/Add tags..."
-          type="text" 
-          value={this.state.value}
-          onChange={e => {
-            this.handleChange(e);
-          }}
-          onKeyDown={this.handleKeyDown}
-          className="search-or-add-tag-input"
-        /> */}
       
         <div className="drop-down-container">
           { (this.state.value) 
