@@ -33,8 +33,8 @@ class AddNote extends Component {
   getSelectedTags = (tags) => {
     this.setState({
       tagsToBeAdded: tags
-    })
-  }
+    });
+  };
 
   cancelNote = () => {
     this.props.history.push('/dashboard');
@@ -48,12 +48,16 @@ class AddNote extends Component {
     let userId = this.props.user.id,
         title = e.title,
         content = e.content,
+        // folderId = e.folderId || '',
         tags = this.state.tagsToBeAdded;
 
     let existingTags = this.props.tags;
     let newTags = {};
-
+    let tagArray = [];
+    
     // Loop over tagsToBeAdded
+    // create key/value pairs inside newTags where the key is the tag name, 
+    // and the key's values are objects with a name: "tag name", and userId to be passed to the async action
     tags.forEach(tag => {
       newTags[tag] = { 
         name: tag, 
@@ -63,25 +67,47 @@ class AddNote extends Component {
 
     // Loop over existing tags
     existingTags.forEach(existingTag => {
-      // Check if for the existence of existingTag.name 
-      // as a key in the newTags object
+      // Check if the existence of existingTag.name 
+      // is a key in the newTags object
       if (newTags[existingTag.name]) {
-        delete newTags[existingTag.name]
+        let temp = newTags[existingTag.name];
+
+        delete newTags[existingTag.name];
+
+        // If we find that the existingTag.name is the same as newTags[existingTag].name
+        // push it to tagArray, to be passed to the action
+        if (existingTag.name === temp.name) {
+          tagArray.push(existingTag);
+        }
       } 
-      // THE ANSWER IS HERE SOMEWHERE, FIGGER IT OUT BITCH
     });
-    
+
+    // addNewTag(userId, tagArray)
     this.props.dispatch(addNewTag(userId, Object.keys(newTags)))
       .then((res) => {
+        let updatedNewTags = res.newTags.map(tag => {
+          return {
+            name: tag.name,
+            id: tag._id
+          }
+        })
+        
+        tagArray = [ ...tagArray, ...updatedNewTags ].map(tag => {
+          return { _id: tag.id }
+        });
+
         let newNote = { 
           userId, 
           title, 
           content, 
-          tags: [ ...res.newTags ] // MISSING PRE-EXISTING TAGS THAT WERE ADDED TO THE NOTE
+          // folderId,
+          tags: tagArray
         };
         console.log('nn', newNote);
+        this.props.dispatch(addNewNote(newNote));
+        this.props.history.push('/dashboard');
       })
-    
+
     // this.props.dispatch(addNewNote(newNote));
     // this.props.history.push('/dashboard');
   }

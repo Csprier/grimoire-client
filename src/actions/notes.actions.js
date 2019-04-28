@@ -51,7 +51,7 @@ export const getNotes = () => (dispatch, getState) => {
           id: note._id,
           title: note.title,
           content: note.content,
-          folderId: note.folderId,
+          // folderId: note.folderId,
           tags: note.tags
         }));
       dispatch(getNotesData(notesData));
@@ -116,6 +116,7 @@ export const ADD_NOTE_ERROR = 'ADD_NOTE_ERROR',
   }
 
 export const addNewNote = (newNote) => (dispatch, getState) => {
+  console.log(newNote);
   dispatch(addNoteRequest());
   const authToken = getState().auth.authToken;
   const url = `${API_BASE_URL}/notes`;
@@ -131,18 +132,19 @@ export const addNewNote = (newNote) => (dispatch, getState) => {
   
   return Axios.post(url, newNote, options)
     .then((res) => {
+      console.log('Thunk POST res', res);
       let note = {
         title: res.data.title,
         content: res.data.content,
         tags: res.data.tags
       }
-      console.log('note', note);
+      console.log('Thunk POST note', note);
       dispatch(addNote(note));
-      dispatch(addNoteSuccess());
       dispatch(getNotes());
+      dispatch(addNoteSuccess());
     })
     .catch(e => { 
-      console.error(e);
+      console.error('Note POST Error', e);
       dispatch(addNoteError(e));
     });
 }
@@ -248,7 +250,7 @@ export const removeTagFromNoteById = (note, tagId) => (dispatch, getState) => {
     id: note.id,
     title: note.title,
     content: note.content,
-    folderId: note.folderId || '',
+    // folderId: note.folderId || '',
     tags: note.tags.filter(tag => tag._id !== tagId)
   }
   return Axios.patch(url, updatedNote, options)

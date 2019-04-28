@@ -81,6 +81,7 @@ export const ADD_TAG = 'ADD_TAG',
 
 export const ADD_TAG_SUCCESS = 'ADD_TAG_SUCCESS',
   addTagSuccess = (res) => {
+    // console.log('addTagSuccess', res);
     return {
       type: ADD_TAG_SUCCESS,
       newTags: res.data
@@ -96,6 +97,7 @@ export const ADD_TAG_ERROR = 'ADD_TAG_ERROR',
   }
 
 export const addNewTag = (userId, tagArray) => (dispatch, getState) => {
+  // console.log('tags.action addNewTag', tagArray);
   dispatch(addTagRequest());
   const authToken = getState().auth.authToken,
         url = `${API_BASE_URL}/tags`,
@@ -110,18 +112,18 @@ export const addNewTag = (userId, tagArray) => (dispatch, getState) => {
 
   let newTag = {
     userId,
-    tagArray
+    tags: tagArray
   }
 
   return Axios.post(url, newTag, options)
     .then(res => {
       let tag = { 
         name: res.data.tagName, 
-        id: res.data._id 
+        _id: res.data._id 
       }
       dispatch(addTag(tag));
       dispatch(getTags());
-      return dispatch(addTagSuccess(res));
+      return dispatch(addTagSuccess(res)); // return this dispatch to get a .then() available when it is dispatched in another file
     })
     .catch(e => {
       console.error(e);

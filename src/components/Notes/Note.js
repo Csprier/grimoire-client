@@ -22,9 +22,9 @@ class Note extends Component {
   handleRemoveTagFromNote = (e) => {
     let userId = this.props.userId,
         tagId = e.target.value,
-        { id, title, content, tags, folderId } = this.props.note;
+        { id, title, content, tags, /*folderId*/ } = this.props.note;
 
-    let note = { id, title, content, tags, folderId };
+    let note = { id, title, content, tags, /*folderId*/ };
 
     console.log(`Delete tag ${tagId} from User ${userId}`)
     this.props.dispatch(removeTagFromNoteById(note, tagId));
