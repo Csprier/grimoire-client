@@ -4,6 +4,9 @@ import {
   Field
 } from 'redux-form';
 
+// CSS
+import '../css/notes/add-folders-to-notes.css';
+
 class AddFoldersToNotes extends Component {
   constructor() {
     super();
@@ -68,7 +71,13 @@ class AddFoldersToNotes extends Component {
             }}
             className="search-or-add-folder-input"
           />
-          <button value={this.state.value} onClick={(e) => this.addToSelectedFolders(e)}>Add Folder</button>
+          <button 
+            value={this.state.value} 
+            onClick={(e) => this.addToSelectedFolders(e)}
+            className="add-folder-button"
+          >
+            Add Folder
+          </button>
         </div>
 
       </div>
