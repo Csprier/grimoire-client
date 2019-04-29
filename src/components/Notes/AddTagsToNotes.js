@@ -29,21 +29,21 @@ class AddTagsToNotes extends Component {
     });
   }
 
-  handleKeyDown = (e) => {
-    if (['Enter', 'Tab', ','].includes(e.key)) {
-      // Prevent default form behavior if any of the above keyboard keys were used, to remain on the current input instead of moving elsewhere
-      e.preventDefault();
-      // Get the value from our state
-      let tag = this.state.value.trim(); 
-      // if there is a tag(from the value), set the state to include the tag with es6 spread operator
-      if (tag) { 
-        this.setState({
-          selectedTags: [ ...this.state.selectedTags, tag ],
-          value: ''
-        });
-      }
-    }
-  };
+  // handleKeyDown = (e) => {
+  //   if (['Enter', 'Tab', ','].includes(e.key)) {
+  //     // Prevent default form behavior if any of the above keyboard keys were used, to remain on the current input instead of moving elsewhere
+  //     e.preventDefault();
+  //     // Get the value from our state
+  //     let tag = this.state.value.trim(); 
+  //     // if there is a tag(from the value), set the state to include the tag with es6 spread operator
+  //     if (tag) { 
+  //       this.setState({
+  //         selectedTags: [ ...this.state.selectedTags, tag ],
+  //         value: ''
+  //       });
+  //     }
+  //   }
+  // };
   
   handleDelete = (tagToRemove) => {
     this.setState({
@@ -60,13 +60,14 @@ class AddTagsToNotes extends Component {
   }
 
   render() {
+    console.log(this.state);
     return (
       <div className="add-tags-to-notes-container">
         <div className="selected-tags-container">
           {this.state.selectedTags.map(tag => {
             return (
-              <div key={tag} className="tag-chip">
-                <span className="chip-name">{tag}</span>
+              <div key={tag.id} className="tag-chip">
+                <span className="chip-name">{tag.name}</span>
                 <span
                   onClick={() => this.handleDelete(tag)}
                   className="chip-remove"
@@ -78,18 +79,27 @@ class AddTagsToNotes extends Component {
           }
         </div>
           
-        <Field 
-          name="tags-for-note"
-          placeholder="Search tags/Add tags..."
-          type="text" 
-          component="input"
-          value={this.state.value}
-          onChange={e => {
-            this.handleChange(e);
-          }}
-          onKeyDown={this.handleKeyDown}
-          className="search-or-add-tag-input"
-        />
+        <div className="add-tag-input-container">
+          <Field 
+            name="tags-for-note"
+            placeholder="Search tags/Add tags..."
+            type="text" 
+            component="input"
+            value={this.state.value}
+            onChange={e => {
+              this.handleChange(e);
+            }}
+            // onKeyDown={this.handleKeyDown}
+            className="search-or-add-tag-input"
+          />
+          <button 
+            value={this.state.value} 
+            onClick={(e) => this.addToSelectedTags(e)}
+            className="add-tag-button"
+          >
+            Add Tag
+          </button>
+        </div>
       
         <div className="drop-down-container">
           { (this.state.value) 

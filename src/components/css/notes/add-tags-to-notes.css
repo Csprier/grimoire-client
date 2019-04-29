@@ -40,9 +40,29 @@
 
 /* ================================================= */
 /* INPUT */
+.add-tag-input-container {
+  display: flex;
+  flex-direction: row;
+  width: 98%;
+  margin: 0 auto;
+  padding: 0px;
+  border: 1px solid darkgray;
+}
+
 .search-or-add-tag-input {
   width: 80%;
   margin: 0 auto;
+  padding: 0px;
+}
+
+.search-or-add-tag-input {
+  width: 75%;
+  margin: 0 auto;
+  padding: 0px;
+}
+.add-tag-button {
+  width: 25%;
+  margin: 0px;
   padding: 0px;
 }
 

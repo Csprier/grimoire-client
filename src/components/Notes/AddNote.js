@@ -158,13 +158,14 @@ class AddNote extends Component {
         tags = this.state.tagsToBeAdded;
 
     this.createTags(tags, userId)
-      .then(() => this.createFolders(folders, userId))
-      .then((res) => {
-        console.log(res);
-        let newNote = { userId, title, content, folders, tags };
-        // this.props.dispatch(addNewNote(newNote));
-        // this.props.history.push('/dashboard'); 
-      });
+      .catch(e => console.error('createTags.catch(e =>', e));
+      // .then(() => this.createFolders(folders, userId))
+      // .then((res) => {
+      //   console.log(res);
+      //   let newNote = { userId, title, content, folders, tags };
+      //   // this.props.dispatch(addNewNote(newNote));
+      //   // this.props.history.push('/dashboard'); 
+      // });
   }
 
   render() {
