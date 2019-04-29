@@ -114,6 +114,6 @@ class AddTagsToNotes extends Component {
 
 const mapStateToProps = state => ({
   tags: state.tags.data
-})
+});
 
 export default connect(mapStateToProps)(AddTagsToNotes);
