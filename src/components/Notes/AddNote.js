@@ -7,6 +7,7 @@ import {
 
 // Components
 import AddTagsToNotes from './AddTagsToNotes';
+import AddFoldersToNotes from './AddFoldersToNotes';
 
 // HOC
 import RequiresLogin from '../requires-login';
@@ -146,6 +147,8 @@ class AddNote extends Component {
           />
 
           <AddTagsToNotes getTagData={this.getSelectedTags} />
+
+          <AddFoldersToNotes />
 
           <div className="add-note-buttons">
             <button type="submit" label="submit">Save</button>
