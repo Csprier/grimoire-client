@@ -16,6 +16,13 @@ class AddFoldersToNotes extends Component {
     }
   }
 
+  componentDidUpdate = () => {
+    if (this.state.selectedFolders.length !== 0) {
+      let updatedFolders = this.state.selectedFolders;
+      this.props.getFolderData(updatedFolders);
+    }
+  }
+
   handleChange = (e) => {
     this.setState({
       value: e.target.value.trim()

@@ -27,13 +27,21 @@ class AddNote extends Component {
   constructor() {
     super();
     this.state = {
-      tagsToBeAdded: []
+      tagsToBeAdded: [],
+      foldersToBeAdded: []
     }
   }
 
+  // Get AddTagsToNotes data
   getSelectedTags = (tags) => {
     this.setState({
       tagsToBeAdded: tags
+    });
+  };
+  // Get AddFoldersToNotes data
+  getSelectedFolders = (folders) => {
+    this.setState({
+      foldersToBeAdded: folders
     });
   };
 
@@ -108,12 +116,10 @@ class AddNote extends Component {
         this.props.dispatch(addNewNote(newNote));
         this.props.history.push('/dashboard');
       })
-
-    // this.props.dispatch(addNewNote(newNote));
-    // this.props.history.push('/dashboard');
   }
 
   render() {
+    console.log(this.state);
     let { error } = this.props;
     if (error) {
       error = (
@@ -147,8 +153,7 @@ class AddNote extends Component {
           />
 
           <AddTagsToNotes getTagData={this.getSelectedTags} />
-
-          <AddFoldersToNotes />
+          <AddFoldersToNotes getFolderData={this.getSelectedFolders} />
 
           <div className="add-note-buttons">
             <button type="submit" label="submit">Save</button>
