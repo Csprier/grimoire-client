@@ -53,23 +53,11 @@ class AddNote extends Component {
     this.props.history.push('/dashboard');
   }
 
-
-  handleAddNoteSubmit = (e) => {
-    let userId = this.props.user.id,
-        title = e.title,
-        content = e.content,
-        folders = this.state.foldersToBeAdded,
-        tags = this.state.tagsToBeAdded;
-
-    // ====================================================================================================
-    // TAGS ==================================================
+  createTags = (tags, userId) => {
     let existingTags = this.props.tags;
     let newTags = {};
     let tagArray = [];
-    
-    // Loop over tagsToBeAdded
-    // create key/value pairs inside newTags where the key is the tag name, 
-    // and the key's values are objects with a name: "tag name", and userId to be passed to the async action
+
     tags.forEach(tag => {
       newTags[tag] = { 
         name: tag, 
@@ -77,7 +65,6 @@ class AddNote extends Component {
       }
     }); 
 
-    // Loop over existing tags
     existingTags.forEach(existingTag => {
       // Check if the existence of existingTag.name 
       // is a key in the newTags object
@@ -94,8 +81,29 @@ class AddNote extends Component {
       } 
     });
 
-    // ====================================================================================================
-    // FOLDERS ==================================================
+    this.props.dispatch(addNewTag(userId, Object.keys(newTags)))
+      .then((res) => {
+        console.log(res);
+        let updatedNewTags = res.newTags.map(tag => {
+          return {
+            name: tag.name,
+            id: tag._id
+          }
+        })
+      
+      // Create an array of tag objects { _id: "String" }
+      tagArray = [ ...tagArray, ...updatedNewTags ].map(tag => {
+        return { _id: tag.id }
+      });
+
+      return tagArray;
+    })
+    .catch((err) => console.error(err));
+  } // End createTags
+
+
+  // CREATE FOLDERS
+  createFolders = (folders, userId) => {
     let existingFolders = this.props.folders;
     let newFolders = {};
     let folderArray = [];
@@ -120,52 +128,43 @@ class AddNote extends Component {
       }
     });
 
-    // console.log('nf', newFolders);
-    // console.log('fa', folderArray);
-
-    // ====================================================================================================
-    // CREATE NOTE ==================================================
-    // addNewTag(userId, tagArray)
-    this.props.dispatch(addNewTag(userId, Object.keys(newTags)))
+    this.props.dispatch(addNewFolder(userId, Object.keys(newFolders)))
       .then((res) => {
-        let updatedNewTags = res.newTags.map(tag => {
+        console.log('res', res);
+        let updatedNewFolders = res.newFolders.map(folder => {
           return {
-            name: tag.name,
-            id: tag._id
+            name: folder.name,
+            id: folder._id
           }
         })
-        
-        // Create an array of tag objects { _id: "String" }
-        tagArray = [ ...tagArray, ...updatedNewTags ].map(tag => {
-          return { _id: tag.id }
+      
+        // Create an array of folder objects { _id: "String" }
+        folderArray = [ ...folderArray, ...updatedNewFolders ].map(folder => {
+          return { _id: folder.id }
         });
 
-        let newNote = { 
-          userId, 
-          title, 
-          content, 
-          folders,
-          tags: tagArray
-        };
-        console.log('New Note with updated Tags:', newNote);
-        // this.props.dispatch(addNewNote(newNote));
-        // this.props.history.push('/dashboard');
-        return newNote;
-      })
-      .then((note) => {
-        console.log('Second .then(note =>', note);
-        this.props.dispatch(addNewFolder(userId, Object.keys(newFolders)))
-      })
+      return folderArray;
+    })
+    .catch((err) => console.error(err));
+  }
+
+
+
+  handleAddNoteSubmit = (e) => {
+    let userId = this.props.user.id,
+        title = e.title,
+        content = e.content,
+        folders = this.state.foldersToBeAdded,
+        tags = this.state.tagsToBeAdded;
+
+    this.createTags(tags, userId)
+      .then(() => this.createFolders(folders, userId))
       .then((res) => {
-        console.log('Folder res', res);
-        // let updatedNewFolders = note.folders.map(folder => {
-        //   return {
-        //     name: folder.name,
-        //     id: folder._id
-        //   }
-        // })
-      })
-      .catch((err) => console.error(err));
+        console.log(res);
+        let newNote = { userId, title, content, folders, tags };
+        // this.props.dispatch(addNewNote(newNote));
+        // this.props.history.push('/dashboard'); 
+      });
   }
 
   render() {

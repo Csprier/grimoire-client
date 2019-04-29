@@ -120,7 +120,6 @@ export const ADD_FOLDER_ERROR = 'ADD_FOLDER_ERROR',
         let folder = { 
           name: res.data.name, 
           _id: res.data._id,
-          userId: res.data.userId
         }
         dispatch(addFolder(folder));
         dispatch(getFolders());
