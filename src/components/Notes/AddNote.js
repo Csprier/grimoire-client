@@ -17,7 +17,7 @@ import renderTextarea from '../Field/renderTextarea';
 
 // Actions
 import { addNewNote } from '../../actions/notes.actions';
-import { addNewTag, getTags } from '../../actions/tags.actions';
+import { addNewTag } from '../../actions/tags.actions';
 
 // CSS
 import '../css/notes/add-note.css';
