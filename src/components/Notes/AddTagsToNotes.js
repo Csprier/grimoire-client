@@ -25,25 +25,9 @@ class AddTagsToNotes extends Component {
   // CHIPS ========================================
   handleChange = (e) => {
     this.setState({
-      value: e.target.value.trim()
+      value: e.target.value
     });
   }
-
-  // handleKeyDown = (e) => {
-  //   if (['Enter', 'Tab', ','].includes(e.key)) {
-  //     // Prevent default form behavior if any of the above keyboard keys were used, to remain on the current input instead of moving elsewhere
-  //     e.preventDefault();
-  //     // Get the value from our state
-  //     let tag = this.state.value.trim(); 
-  //     // if there is a tag(from the value), set the state to include the tag with es6 spread operator
-  //     if (tag) { 
-  //       this.setState({
-  //         selectedTags: [ ...this.state.selectedTags, tag ],
-  //         value: ''
-  //       });
-  //     }
-  //   }
-  // };
   
   handleDelete = (tagToRemove) => {
     this.setState({
@@ -52,31 +36,33 @@ class AddTagsToNotes extends Component {
   }
 
   // ADD TAG TO CHIPS ========================================
-  addToSelectedTags = (tag) => {
+  addToSelectedTags = (e) => {
+    let tag = e.target.value;
     this.setState({
       selectedTags: [ ...this.state.selectedTags, tag ],
       value: ''
     });
+    console.log('selectedTags after =>', this.state.selectedTags);
   }
 
   render() {
-    console.log(this.state);
     return (
       <div className="add-tags-to-notes-container">
         <div className="selected-tags-container">
-          {this.state.selectedTags.map(tag => {
+          {/* {this.state.selectedTags.map(tag => {
             return (
               <div key={tag.id} className="tag-chip">
                 <span className="chip-name">{tag.name}</span>
                 <span
-                  onClick={() => this.handleDelete(tag)}
+                  onClick={() => this.handleDelete(tag.name)}
                   className="chip-remove"
                 >
                   &times;
                 </span>
-              </div>)
+              </div>
+              )
             })
-          }
+          } */}
         </div>
           
         <div className="add-tag-input-container">
@@ -89,11 +75,10 @@ class AddTagsToNotes extends Component {
             onChange={e => {
               this.handleChange(e);
             }}
-            // onKeyDown={this.handleKeyDown}
             className="search-or-add-tag-input"
           />
           <button 
-            value={this.state.value} 
+            // value={this.state.value} 
             onClick={(e) => this.addToSelectedTags(e)}
             className="add-tag-button"
           >
@@ -101,7 +86,7 @@ class AddTagsToNotes extends Component {
           </button>
         </div>
       
-        <div className="drop-down-container">
+        {/* <div className="drop-down-container">
           { (this.state.value) 
               ? this.props.tags.map(tag => {
                   let regex = new RegExp(`${this.state.value}`);
@@ -116,7 +101,8 @@ class AddTagsToNotes extends Component {
                 return null;
               })
             : null }
-        </div>
+        </div> */}
+
       </div>
     )
   }

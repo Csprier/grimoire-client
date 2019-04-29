@@ -84,23 +84,22 @@ class AddNote extends Component {
     this.props.dispatch(addNewTag(userId, Object.keys(newTags)))
       .then((res) => {
         console.log(res);
-        let updatedNewTags = res.newTags.map(tag => {
-          return {
-            name: tag.name,
-            id: tag._id
-          }
-        })
+        // let updatedNewTags = res.newTags.map(tag => {
+        //   return {
+        //     name: tag.name,
+        //     id: tag._id
+        //   }
+        // })
       
       // Create an array of tag objects { _id: "String" }
-      tagArray = [ ...tagArray, ...updatedNewTags ].map(tag => {
-        return { _id: tag.id }
-      });
+      // tagArray = [ ...tagArray, ...updatedNewTags ].map(tag => {
+      //   return { _id: tag.id }
+      // });
 
-      return tagArray;
+      // return tagArray;
     })
     .catch((err) => console.error(err));
   } // End createTags
-
 
   // CREATE FOLDERS
   createFolders = (folders, userId) => {
@@ -158,7 +157,6 @@ class AddNote extends Component {
         tags = this.state.tagsToBeAdded;
 
     this.createTags(tags, userId)
-      .catch(e => console.error('createTags.catch(e =>', e));
       // .then(() => this.createFolders(folders, userId))
       // .then((res) => {
       //   console.log(res);

@@ -25,7 +25,7 @@ class AddFoldersToNotes extends Component {
 
   handleChange = (e) => {
     this.setState({
-      value: e.target.value.trim()
+      value: e.target.value
     });
   }
 
