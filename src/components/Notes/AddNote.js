@@ -19,6 +19,7 @@ import renderTextarea from '../Field/renderTextarea';
 // Actions
 import { addNewNote } from '../../actions/notes.actions';
 import { addNewTag } from '../../actions/tags.actions';
+import { addNewFolder } from '../../actions/folders.actions';
 
 // CSS
 import '../css/notes/add-note.css';
@@ -57,9 +58,11 @@ class AddNote extends Component {
     let userId = this.props.user.id,
         title = e.title,
         content = e.content,
-        // folderId = e.folderId || '',
+        folders = this.state.foldersToBeAdded,
         tags = this.state.tagsToBeAdded;
 
+    // ====================================================================================================
+    // TAGS ==================================================
     let existingTags = this.props.tags;
     let newTags = {};
     let tagArray = [];
@@ -91,6 +94,37 @@ class AddNote extends Component {
       } 
     });
 
+    // ====================================================================================================
+    // FOLDERS ==================================================
+    let existingFolders = this.props.folders;
+    let newFolders = {};
+    let folderArray = [];
+
+    folders.forEach(folder => {
+      newFolders[folder] = { 
+        name: folder, 
+        userId 
+      }
+    }); 
+
+    // Loop over existing tags
+    existingFolders.forEach(existingFolder => {
+      if (newFolders[existingFolder.name]) {
+        let temp = newFolders[existingFolder.name];
+
+        delete newFolders[existingFolder.name];
+
+        if (existingFolder.name === temp.name) {
+          folderArray.push(existingFolder);
+        }
+      }
+    });
+
+    // console.log('nf', newFolders);
+    // console.log('fa', folderArray);
+
+    // ====================================================================================================
+    // CREATE NOTE ==================================================
     // addNewTag(userId, tagArray)
     this.props.dispatch(addNewTag(userId, Object.keys(newTags)))
       .then((res) => {
@@ -101,6 +135,7 @@ class AddNote extends Component {
           }
         })
         
+        // Create an array of tag objects { _id: "String" }
         tagArray = [ ...tagArray, ...updatedNewTags ].map(tag => {
           return { _id: tag.id }
         });
@@ -109,17 +144,31 @@ class AddNote extends Component {
           userId, 
           title, 
           content, 
-          // folderId,
+          folders,
           tags: tagArray
         };
-        console.log('nn', newNote);
-        this.props.dispatch(addNewNote(newNote));
-        this.props.history.push('/dashboard');
+        console.log('New Note with updated Tags:', newNote);
+        // this.props.dispatch(addNewNote(newNote));
+        // this.props.history.push('/dashboard');
+        return newNote;
       })
+      .then((note) => {
+        console.log('Second .then(note =>', note);
+        this.props.dispatch(addNewFolder(userId, Object.keys(newFolders)))
+      })
+      .then((res) => {
+        console.log('Folder res', res);
+        // let updatedNewFolders = note.folders.map(folder => {
+        //   return {
+        //     name: folder.name,
+        //     id: folder._id
+        //   }
+        // })
+      })
+      .catch((err) => console.error(err));
   }
 
   render() {
-    console.log(this.state);
     let { error } = this.props;
     if (error) {
       error = (
@@ -170,6 +219,7 @@ const mapStateToProps = state => ({
   user: state.auth.user,
   notes: state.notes.data || [],
   tags: state.tags.data,
+  folders: state.folders.data,
   error: state.notes.error
 });
 

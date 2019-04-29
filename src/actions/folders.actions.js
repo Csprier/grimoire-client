@@ -80,9 +80,11 @@ export const ADD_FOLDER = 'ADD_FOLDER',
   }
 
 export const ADD_FOLDER_SUCCESS = 'ADD_FOLDER_SUCCESS',
-  addFolderSuccess = () => {
+  addFolderSuccess = (res) => {
+    console.log('addFolderSuccess', res);
     return {
-      type: ADD_FOLDER_SUCCESS
+      type: ADD_FOLDER_SUCCESS,
+      newFolders: res.data
     }
   }
 
@@ -94,7 +96,8 @@ export const ADD_FOLDER_ERROR = 'ADD_FOLDER_ERROR',
     }
   }
 
-  export const addNewFolder = (userId, name) => (dispatch, getState) => {
+  export const addNewFolder = (userId, folderArray) => (dispatch, getState) => {
+    console.log('folders.action addNewFolder', folderArray);
     dispatch(addFolderRequest());
     const authToken = getState().auth.authToken,
           url = `${API_BASE_URL}/folders`,
@@ -108,20 +111,20 @@ export const ADD_FOLDER_ERROR = 'ADD_FOLDER_ERROR',
           };
   
     let newFolder = {
-      name,
-      userId
+      userId,
+      folders: folderArray
     }
   
     return Axios.post(url, newFolder, options)
       .then(res => {
         let folder = { 
           name: res.data.name, 
-          id: res.data._id,
+          _id: res.data._id,
           userId: res.data.userId
         }
         dispatch(addFolder(folder));
-        dispatch(addFolderSuccess());
         dispatch(getFolders());
+        return dispatch(addFolderSuccess(res)); // return this dispatch to get a .then() available when it is dispatched in another file
       })
       .catch(e => {
         console.error(e);

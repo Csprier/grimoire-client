@@ -45,8 +45,6 @@ class AddFoldersToNotes extends Component {
   }
 
   render() {
-    console.log('value: ', this.state.value);
-    console.log('Selected Folders: ', this.state.selectedFolders);
     return (
       <div className="add-folders-to-notes-container">
 
