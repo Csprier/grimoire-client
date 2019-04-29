@@ -55,8 +55,7 @@ class AddFoldersToNotes extends Component {
                   &times;
                 </span>
               </div>)
-            })
-          }
+            })}
         </div>
 
         <div className="add-folder-input-container">
