@@ -81,7 +81,7 @@ export const ADD_TAG = 'ADD_TAG',
 
 export const ADD_TAG_SUCCESS = 'ADD_TAG_SUCCESS',
   addTagSuccess = (res) => {
-    // console.log('addTagSuccess', res);
+    console.log('addTagSuccess', res);
     return {
       type: ADD_TAG_SUCCESS,
       newTags: res.data
@@ -97,7 +97,7 @@ export const ADD_TAG_ERROR = 'ADD_TAG_ERROR',
   }
 
 export const addNewTag = (userId, tagArray) => (dispatch, getState) => {
-  // console.log('tags.action addNewTag', tagArray);
+  console.log('tags.action addNewTag', tagArray);
   dispatch(addTagRequest());
   const authToken = getState().auth.authToken,
         url = `${API_BASE_URL}/tags`,

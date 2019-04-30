@@ -53,14 +53,14 @@ class AddNote extends Component {
     this.props.history.push('/dashboard');
   }
 
-  createTags = (tags, userId) => {
-    let existingTags = this.props.tags;
+  makeNewTagsMap = (tags, userId) => {
+    let existingTags = this.props.tags; // array of objects: [ { name: String, id: String, ObjectId(mongoose) } ]
     let newTags = {};
     let tagArray = [];
 
-    tags.forEach(tag => {
-      newTags[tag] = { 
-        name: tag, 
+    tags.forEach(tag => { // loop over argument
+      newTags[tag] = {    // create key/value pairs inside newTags
+        name: tag,        // "string": { name: "string", id: ObjectId }
         userId 
       }
     }); 
@@ -69,40 +69,23 @@ class AddNote extends Component {
       // Check if the existence of existingTag.name 
       // is a key in the newTags object
       if (newTags[existingTag.name]) {
-        let temp = newTags[existingTag.name];
-
+        // If the tag exists inside newTags
+        let temp = newTags[existingTag.name]; // capture the existing tag
+        // delete the existing tag from newTags
         delete newTags[existingTag.name];
 
-        // If we find that the existingTag.name is the same as newTags[existingTag].name
-        // push it to tagArray, to be passed to the action
+        // push temp to tagArray
         if (existingTag.name === temp.name) {
           tagArray.push(existingTag);
         }
-      } 
+      }
     });
-
-    this.props.dispatch(addNewTag(userId, Object.keys(newTags)))
-      .then((res) => {
-        console.log(res);
-        // let updatedNewTags = res.newTags.map(tag => {
-        //   return {
-        //     name: tag.name,
-        //     id: tag._id
-        //   }
-        // })
-      
-      // Create an array of tag objects { _id: "String" }
-      // tagArray = [ ...tagArray, ...updatedNewTags ].map(tag => {
-      //   return { _id: tag.id }
-      // });
-
-      // return tagArray;
-    })
-    .catch((err) => console.error(err));
+    return newTags
+    // return this.props.dispatch(addNewTag(userId, Object.keys(newTags)))
   } // End createTags
 
   // CREATE FOLDERS
-  createFolders = (folders, userId) => {
+  createFoldersForNote = (folders, userId) => {
     let existingFolders = this.props.folders;
     let newFolders = {};
     let folderArray = [];
@@ -153,13 +136,30 @@ class AddNote extends Component {
     let userId = this.props.user.id,
         title = e.title,
         content = e.content,
-        folders = this.state.foldersToBeAdded,
-        tags = this.state.tagsToBeAdded;
+        foldersThatNeedToBeMade = this.state.foldersToBeAdded,
+        tagsThatNeedToBeMade = this.state.tagsToBeAdded;
 
-    this.createTags(tags, userId)
+    let newTags = this.makeNewTagsMap(tagsThatNeedToBeMade, userId)
+    console.log('HANS newTags: ', newTags);
+      // .then(result => { 
+      //   console.log('result', result);
+        // let updatedNewTags = res.newTags.map(tag => {
+        //   return {
+        //     name: tag.name,
+        //     id: tag._id
+        //   }
+        // });
+        
+        // // Create an array of tag objects { _id: "String" }
+        // tagArray = [ ...tagArray, ...updatedNewTags ].map(tag => {
+        //   return { _id: tag.id }
+        // });
+      // })
+
+    // this.props.dispatch(addNewTag(userId, Object.keys(newTags)))
       // .then(() => this.createFolders(folders, userId))
       // .then((res) => {
-      //   console.log(res);
+        // console.log('res1', res);
       //   let newNote = { userId, title, content, folders, tags };
       //   // this.props.dispatch(addNewNote(newNote));
       //   // this.props.history.push('/dashboard'); 

@@ -42,19 +42,18 @@ class AddTagsToNotes extends Component {
       selectedTags: [ ...this.state.selectedTags, tag ],
       value: ''
     });
-    console.log('selectedTags after =>', this.state.selectedTags);
   }
 
   render() {
     return (
       <div className="add-tags-to-notes-container">
         <div className="selected-tags-container">
-          {/* {this.state.selectedTags.map(tag => {
+          {this.state.selectedTags.map(tag => {
             return (
-              <div key={tag.id} className="tag-chip">
-                <span className="chip-name">{tag.name}</span>
+              <div key={tag} className="tag-chip">
+                <span className="chip-name">{tag}</span>
                 <span
-                  onClick={() => this.handleDelete(tag.name)}
+                  onClick={() => this.handleDelete(tag)}
                   className="chip-remove"
                 >
                   &times;
@@ -62,7 +61,7 @@ class AddTagsToNotes extends Component {
               </div>
               )
             })
-          } */}
+          }
         </div>
           
         <div className="add-tag-input-container">
@@ -78,7 +77,7 @@ class AddTagsToNotes extends Component {
             className="search-or-add-tag-input"
           />
           <button 
-            // value={this.state.value} 
+            value={this.state.value} 
             onClick={(e) => this.addToSelectedTags(e)}
             className="add-tag-button"
           >
