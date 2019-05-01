@@ -80,12 +80,16 @@ class AddNote extends Component {
         }
       }
     });
-    return newTags
-    // return this.props.dispatch(addNewTag(userId, Object.keys(newTags)))
+
+    // return a map object { newTags: {}, tagArray: [] }
+    return {
+      newTags: newTags,
+      tagArray: tagArray
+    }
   } // End createTags
 
   // CREATE FOLDERS
-  createFoldersForNote = (folders, userId) => {
+  makeNewFolderMap = (folders, userId) => {
     let existingFolders = this.props.folders;
     let newFolders = {};
     let folderArray = [];
@@ -110,24 +114,11 @@ class AddNote extends Component {
       }
     });
 
-    this.props.dispatch(addNewFolder(userId, Object.keys(newFolders)))
-      .then((res) => {
-        console.log('res', res);
-        let updatedNewFolders = res.newFolders.map(folder => {
-          return {
-            name: folder.name,
-            id: folder._id
-          }
-        })
-      
-        // Create an array of folder objects { _id: "String" }
-        folderArray = [ ...folderArray, ...updatedNewFolders ].map(folder => {
-          return { _id: folder.id }
-        });
-
-      return folderArray;
-    })
-    .catch((err) => console.error(err));
+     // return a map object { newFolders: {}, folderArray: [] }
+     return {
+      newFolders: newFolders,
+      folderArray: folderArray
+    }
   }
 
 
@@ -137,33 +128,41 @@ class AddNote extends Component {
         title = e.title,
         content = e.content,
         foldersThatNeedToBeMade = this.state.foldersToBeAdded,
-        tagsThatNeedToBeMade = this.state.tagsToBeAdded;
+        foldersToSendWithNote = [],
+        tagsThatNeedToBeMade = this.state.tagsToBeAdded,
+        tagsToSendWithNote = [];
 
-    let newTags = this.makeNewTagsMap(tagsThatNeedToBeMade, userId)
-    console.log('HANS newTags: ', newTags);
-      // .then(result => { 
-      //   console.log('result', result);
-        // let updatedNewTags = res.newTags.map(tag => {
-        //   return {
-        //     name: tag.name,
-        //     id: tag._id
-        //   }
-        // });
-        
-        // // Create an array of tag objects { _id: "String" }
-        // tagArray = [ ...tagArray, ...updatedNewTags ].map(tag => {
+    let tagMap = this.makeNewTagsMap(tagsThatNeedToBeMade, userId)
+    let folderMap = this.makeNewFolderMap(foldersThatNeedToBeMade, userId)
+    // let newNote = this.createNoteToBeSent(userId, title, content, folders, tags)
+    console.log('Tag Map', tagMap);
+    console.log('Folder Map', folderMap);
+    // this.props.dispatch(addNewTag(userId, Object.keys(tagMap.newTags)))
+    // this.props.dispatch(addNewFolder(userId, Object.keys(folderMap.newFolders)))
+
+
+        // Create an array of tag objects { _id: "String" }
+        // tagsToSendWithNote = [ ...tagMap.tagArray, ... ].map(tag => {
         //   return { _id: tag.id }
         // });
-      // })
+        // console.log('Tags To Send With Note: ', tagsToSendWithNote);
 
-    // this.props.dispatch(addNewTag(userId, Object.keys(newTags)))
-      // .then(() => this.createFolders(folders, userId))
-      // .then((res) => {
-        // console.log('res1', res);
-      //   let newNote = { userId, title, content, folders, tags };
-      //   // this.props.dispatch(addNewNote(newNote));
-      //   // this.props.history.push('/dashboard'); 
-      // });
+        // Create an array of tag objects { _id: "String" }
+        // tagsToSendWithNote = [ ...preExistingTags, ...updatedNewTags ].map(tag => {
+        //   return { _id: tag.id }
+        // });
+
+        // console.log('Tags To Send With Note: ', tagsToSendWithNote);
+    
+    // this.props.dispatch(addNewFolder(userId, Object.keys(newFolders)))
+    //     // Create an array of folder objects { _id: "String" }
+    //     folderArray = [ ...folderArray, ...updatedNewFolders ].map(folder => {
+    //       return { _id: folder.id }
+    //     });
+
+
+    // this.props.dispatch(addNewNote(newNote));
+    // this.props.history.push('/dashboard'); 
   }
 
   render() {
