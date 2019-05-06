@@ -250,7 +250,7 @@ export const removeTagFromNoteById = (note, tagId) => (dispatch, getState) => {
     id: note.id,
     title: note.title,
     content: note.content,
-    // folderId: note.folderId || '',
+    folders: note.folders,
     tags: note.tags.filter(tag => tag._id !== tagId)
   }
   return Axios.patch(url, updatedNote, options)
@@ -261,5 +261,70 @@ export const removeTagFromNoteById = (note, tagId) => (dispatch, getState) => {
     .catch(e => {
       console.error(e);
       dispatch(removeTagFromNoteError(e));
+    });
+}
+
+// =======================================================
+// REMOVE FOLDER FROM NOTE ACTIONS
+// =======================================================
+export const REMOVE_FOLDER_FROM_NOTE_REQUEST = 'REMOVE_FOLDER_FROM_NOTE_REQUEST',
+  removeFolderFromNoteRequest = () => {
+    return {
+      type: REMOVE_FOLDER_FROM_NOTE_REQUEST
+    }
+  }
+
+export const REMOVE_FOLDER_FROM_NOTE = 'REMOVE_FOLDER_FROM_NOTE',
+  removeFolderFromNote = (folder) => {
+    return {
+      type: REMOVE_FOLDER_FROM_NOTE,
+      folder
+    }
+  }
+
+export const REMOVE_FOLDER_FROM_NOTE_SUCCESS = 'REMOVE_FOLDER_FROM_NOTE_SUCCESS',
+removeFolderFromNoteSuccess = () => {
+  return {
+    type: REMOVE_FOLDER_FROM_NOTE_SUCCESS
+  }
+}
+
+export const REMOVE_FOLDER_FROM_NOTE_ERROR = 'REMOVE_FOLDER_FROM_NOTE_ERROR',
+removeFolderFromNoteError = (error) => {
+  return {
+    type: REMOVE_FOLDER_FROM_NOTE_REQUEST,
+    error
+  }
+}
+
+export const removeFolderFromNoteById = (note, folderId) => (dispatch, getState) => {
+  dispatch(removeFolderFromNoteRequest());
+  const authToken = getState().auth.authToken;
+  const url = `${API_BASE_URL}/notes/${note.id}`;
+
+  const options = {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'Authorization': 'bearer ' + authToken
+    }
+  };
+
+  let updatedNote = {
+    id: note.id,
+    title: note.title,
+    content: note.content,
+    folders: note.folders.filter(folder => folder._id !== folderId),
+    tags: note.tags
+  }
+  return Axios.patch(url, updatedNote, options)
+    .then(() => {
+      dispatch(removeFolderFromNoteSuccess());
+      dispatch(getNotes());
+    })
+    .catch(e => {
+      console.error(e);
+      dispatch(removeFolderFromNoteError(e));
     });
 }

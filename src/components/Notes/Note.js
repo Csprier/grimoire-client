@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 // import Tag from '../Tags/Tag';
 
 // Async Actions
-import { deleteNoteById, removeTagFromNoteById } from '../../actions/notes.actions';
+import { deleteNoteById, removeTagFromNoteById, removeFolderFromNoteById } from '../../actions/notes.actions';
 
 // CSS
 import '../css/notes/note.css';
@@ -22,16 +22,28 @@ class Note extends Component {
   handleRemoveTagFromNote = (e) => {
     let userId = this.props.userId,
         tagId = e.target.value,
-        { id, title, content, tags, /*folderId*/ } = this.props.note;
+        { id, title, content, tags, folders } = this.props.note;
 
-    let note = { id, title, content, tags, /*folderId*/ };
+    let note = { id, title, content, tags, folders };
 
-    console.log(`Delete tag ${tagId} from User ${userId}`)
+    console.log(`Delete tag ${tagId} from Note ${note.id}.`)
     this.props.dispatch(removeTagFromNoteById(note, tagId));
   }
 
+  handleRemoveFolderFromNote = (e) => {
+    let userId = this.props.userId,
+        folderId = e.target.value,
+        { id, title, content, tags, folders } = this.props.note;
+
+    let note = { id, title, content, tags, folders };
+
+    console.log(`Delete folder ${folderId} from Note ${note.id}.`);
+    this.props.dispatch(removeFolderFromNoteById(note, folderId));
+  }
+
   render() {
-    const { key, title, id, content, tags } = this.props.note;
+    const { key, title, id, content, tags, folders } = this.props.note;
+    console.log(this.props.note);
     return (
       <div className="note" key={key}>
         <h4 className="note-title">{title}</h4>
@@ -56,7 +68,7 @@ class Note extends Component {
             : <p>No tags added yet</p>}
           </ul>
 
-          <ul className="folders-container">
+          {/* <ul className="folders-container">
             <h4>Folders:</h4>
             {(folders.length > 0)
               ? folders.map(folder => {
@@ -71,7 +83,7 @@ class Note extends Component {
                 )
               })
               : <p>No folders added yet</p>}
-          </ul>
+          </ul> */}
 
           <button 
             className="delete-button" 
