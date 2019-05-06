@@ -39,6 +39,7 @@ class Note extends Component {
         <p>{content}</p>
     
         <div className="note-information">
+          
           <ul className="tags-container">
             <h4>Tags:</h4>
             {(tags.length > 0) 
@@ -54,6 +55,24 @@ class Note extends Component {
             })
             : <p>No tags added yet</p>}
           </ul>
+
+          <ul className="folders-container">
+            <h4>Folders:</h4>
+            {(folders.length > 0)
+              ? folders.map(folder => {
+                return (
+                  <li key={folder._id}>
+                    {folder.name}
+                    <button
+                      onClick={this.handleRemoveFolderFromNote}
+                      value={folder._id}
+                    >X</button>
+                  </li>
+                )
+              })
+              : <p>No folders added yet</p>}
+          </ul>
+
           <button 
             className="delete-button" 
             onClick={this.handleDelete} 

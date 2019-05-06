@@ -32,6 +32,17 @@ class AddNote extends Component {
       foldersToBeAdded: []
     }
   }
+  componentDidUpdate() {
+    let userId = this.props.user.id,
+        foldersThatNeedToBeMade = this.state.foldersToBeAdded,
+        tagsThatNeedToBeMade = this.state.tagsToBeAdded;
+
+    // Create the map objects for tags and folders whenever the component updates
+    let tagMap = this.makeNewTagsMap(tagsThatNeedToBeMade, userId)
+    let folderMap = this.makeNewFolderMap(foldersThatNeedToBeMade, userId)
+    console.log('Tag Map', tagMap);
+    console.log('Folder Map', folderMap);
+  }
 
   // Get AddTagsToNotes data
   getSelectedTags = (tags) => {
@@ -132,11 +143,9 @@ class AddNote extends Component {
         tagsThatNeedToBeMade = this.state.tagsToBeAdded,
         tagsToSendWithNote = [];
 
-    let tagMap = this.makeNewTagsMap(tagsThatNeedToBeMade, userId)
-    let folderMap = this.makeNewFolderMap(foldersThatNeedToBeMade, userId)
     // let newNote = this.createNoteToBeSent(userId, title, content, folders, tags)
-    console.log('Tag Map', tagMap);
-    console.log('Folder Map', folderMap);
+    // console.log('Tag Map', tagMap);
+    // console.log('Folder Map', folderMap);
     // this.props.dispatch(addNewTag(userId, Object.keys(tagMap.newTags)))
     // this.props.dispatch(addNewFolder(userId, Object.keys(folderMap.newFolders)))
 
