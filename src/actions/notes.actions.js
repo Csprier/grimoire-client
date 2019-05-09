@@ -283,19 +283,19 @@ export const REMOVE_FOLDER_FROM_NOTE = 'REMOVE_FOLDER_FROM_NOTE',
   }
 
 export const REMOVE_FOLDER_FROM_NOTE_SUCCESS = 'REMOVE_FOLDER_FROM_NOTE_SUCCESS',
-removeFolderFromNoteSuccess = () => {
-  return {
-    type: REMOVE_FOLDER_FROM_NOTE_SUCCESS
+  removeFolderFromNoteSuccess = () => {
+    return {
+      type: REMOVE_FOLDER_FROM_NOTE_SUCCESS
+    }
   }
-}
 
 export const REMOVE_FOLDER_FROM_NOTE_ERROR = 'REMOVE_FOLDER_FROM_NOTE_ERROR',
-removeFolderFromNoteError = (error) => {
-  return {
-    type: REMOVE_FOLDER_FROM_NOTE_REQUEST,
-    error
+  removeFolderFromNoteError = (error) => {
+    return {
+      type: REMOVE_FOLDER_FROM_NOTE_REQUEST,
+      error
+    }
   }
-}
 
 export const removeFolderFromNoteById = (note, folderId) => (dispatch, getState) => {
   dispatch(removeFolderFromNoteRequest());
@@ -328,3 +328,22 @@ export const removeFolderFromNoteById = (note, folderId) => (dispatch, getState)
       dispatch(removeFolderFromNoteError(e));
     });
 }
+
+// =======================================================
+// REMOVE FOLDER FROM NOTE ACTIONS
+// =======================================================
+export const TAGS_TO_NEW_NOTE = 'TAGS_TO_NEW_NOTE',
+  tagsToNewNote = (tags) => {
+    return {
+      type: TAGS_TO_NEW_NOTE,
+      tags
+    }
+  }
+
+export const FOLDERS_TO_NEW_NOTE = 'FOLDERS_TO_NEW_NOTE',
+  foldersToNewNote = (folders) => {
+    return {
+      type: FOLDERS_TO_NEW_NOTE,
+      folders
+    }
+  }

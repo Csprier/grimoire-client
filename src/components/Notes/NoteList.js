@@ -45,6 +45,7 @@ class NoteList extends Component {
 const mapStateToProps = state => ({
   notes: state.notes.data || [],
   tags: state.tags.data || [],
+  folders: state.folders.data || [],
   searchTerm: state.search.query.searchTerm,
   filtered: state.notes.filtered || []
 });

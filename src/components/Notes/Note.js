@@ -43,7 +43,7 @@ class Note extends Component {
 
   render() {
     const { key, title, id, content, tags, folders } = this.props.note;
-    console.log(this.props.note);
+    console.log(this.props.note.folders);
     return (
       <div className="note" key={key}>
         <h4 className="note-title">{title}</h4>

@@ -17,9 +17,9 @@ import renderField from '../Field/renderField';
 import renderTextarea from '../Field/renderTextarea';
 
 // Actions
-import { addNewNote } from '../../actions/notes.actions';
-import { addNewTag } from '../../actions/tags.actions';
-import { addNewFolder } from '../../actions/folders.actions';
+import { addNewNote, tagsToNewNote, foldersToNewNote } from '../../actions/notes.actions';
+// import { addNewTag } from '../../actions/tags.actions';
+// import { addNewFolder } from '../../actions/folders.actions';
 
 // CSS
 import '../css/notes/add-note.css';
@@ -32,16 +32,21 @@ class AddNote extends Component {
       foldersToBeAdded: []
     }
   }
-  componentDidUpdate() {
+  componentDidUpdate(prevState) {
     let userId = this.props.user.id,
         foldersThatNeedToBeMade = this.state.foldersToBeAdded,
         tagsThatNeedToBeMade = this.state.tagsToBeAdded;
 
+    console.log('folders', foldersThatNeedToBeMade);
+    console.log('tags', tagsThatNeedToBeMade);
     // Create the map objects for tags and folders whenever the component updates
-    let tagMap = this.makeNewTagsMap(tagsThatNeedToBeMade, userId)
-    let folderMap = this.makeNewFolderMap(foldersThatNeedToBeMade, userId)
-    console.log('Tag Map', tagMap);
-    console.log('Folder Map', folderMap);
+    let tagArray = this.makeNewTagsArray(tagsThatNeedToBeMade, userId)
+    let folderArray = this.makeNewFolderArray(foldersThatNeedToBeMade, userId)
+    console.log('Tag Array', tagArray);
+    console.log('Folder Array', folderArray);
+
+    // this.props.dispatch(tagsToNewNote(tagArray.tagArray));  
+    // this.props.dispatch(foldersToNewNote(folderArray.folderArray));
   }
 
   // Get AddTagsToNotes data
@@ -59,12 +64,12 @@ class AddNote extends Component {
 
   cancelNote = () => {
     this.props.history.push('/dashboard');
-  }
+  };
   backToDashboard = () => {
     this.props.history.push('/dashboard');
-  }
+  };
 
-  makeNewTagsMap = (tags, userId) => {
+  makeNewTagsArray = (tags, userId) => {
     let existingTags = this.props.tags; // array of objects: [ { name: String, id: String, ObjectId(mongoose) } ]
     let newTags = {};
     let tagArray = [];
@@ -80,27 +85,23 @@ class AddNote extends Component {
       // Check if the existence of existingTag.name 
       // is a key in the newTags object
       if (newTags[existingTag.name]) {
-        // If the tag exists inside newTags
         let temp = newTags[existingTag.name]; // capture the existing tag
-        // delete the existing tag from newTags
-        delete newTags[existingTag.name];
+        delete newTags[existingTag.name]; // delete the existing tag from newTags
 
-        // push temp to tagArray
         if (existingTag.name === temp.name) {
           tagArray.push(existingTag);
         }
       }
     });
 
-    // return a map object { newTags: {}, tagArray: [] }
-    return {
-      newTags: newTags,
-      tagArray: tagArray
+    for (let key in newTags) {
+      tagArray.push(newTags[key]);
     }
-  } // End createTags
 
-  // CREATE FOLDERS
-  makeNewFolderMap = (folders, userId) => {
+    return tagArray;
+  };
+
+  makeNewFolderArray = (folders, userId) => {
     let existingFolders = this.props.folders;
     let newFolders = {};
     let folderArray = [];
@@ -112,7 +113,6 @@ class AddNote extends Component {
       }
     }); 
 
-    // Loop over existing tags
     existingFolders.forEach(existingFolder => {
       if (newFolders[existingFolder.name]) {
         let temp = newFolders[existingFolder.name];
@@ -125,54 +125,48 @@ class AddNote extends Component {
       }
     });
 
-     // return a map object { newFolders: {}, folderArray: [] }
-     return {
-      newFolders: newFolders,
-      folderArray: folderArray
+    for (let key in newFolders) {
+      folderArray.push(newFolders[key]);
     }
-  }
 
-
+    return folderArray;
+  };
 
   handleAddNoteSubmit = (e) => {
-    let userId = this.props.user.id,
-        title = e.title,
-        content = e.content,
-        foldersThatNeedToBeMade = this.state.foldersToBeAdded,
-        foldersToSendWithNote = [],
-        tagsThatNeedToBeMade = this.state.tagsToBeAdded,
-        tagsToSendWithNote = [];
-
-    // let newNote = this.createNoteToBeSent(userId, title, content, folders, tags)
-    // console.log('Tag Map', tagMap);
-    // console.log('Folder Map', folderMap);
-    // this.props.dispatch(addNewTag(userId, Object.keys(tagMap.newTags)))
-    // this.props.dispatch(addNewFolder(userId, Object.keys(folderMap.newFolders)))
-
-
-        // Create an array of tag objects { _id: "String" }
-        // tagsToSendWithNote = [ ...tagMap.tagArray, ... ].map(tag => {
-        //   return { _id: tag.id }
-        // });
-        // console.log('Tags To Send With Note: ', tagsToSendWithNote);
-
-        // Create an array of tag objects { _id: "String" }
-        // tagsToSendWithNote = [ ...preExistingTags, ...updatedNewTags ].map(tag => {
-        //   return { _id: tag.id }
-        // });
-
-        // console.log('Tags To Send With Note: ', tagsToSendWithNote);
+    // let tagMap = 
+    // let folderMap = 
     
-    // this.props.dispatch(addNewFolder(userId, Object.keys(newFolders)))
-    //     // Create an array of folder objects { _id: "String" }
-    //     folderArray = [ ...folderArray, ...updatedNewFolders ].map(folder => {
-    //       return { _id: folder.id }
-    //     });
+    // let foldersThatNeedToBeMade = folderMap.newFolders,
+    //     foldersToBeSent = [],
+    //     tagsThatNeedToBeMade = tagMap.newTags,
+    //     tagsToBeSent = [];
 
+    // if (folderMap !== undefined) {
+    //   for (let key in foldersThatNeedToBeMade) {
+    //     console.log('fk', key);
+    //     // foldersToBeSent.push(foldersThatNeedToBeMade[key]);
+    //   }
+    // }
+    // if (tagMap !== undefined) {
+    //   for (let key in tagsThatNeedToBeMade) {
+    //     console.log('tk', key);
+    //     // tagsToBeSent.push(tagsThatNeedToBeMade[key]);
+    //   }
+    // }
 
+    // console.log('T', tagsToBeSent);
+    // console.log('F', foldersToBeSent);
+    // let newNote = {
+    //   userId: this.props.user.id,
+    //   title: e.title,
+    //   content: e.content,
+    //   folders: 
+    //   tags: 
+    // };
+    // console.log('Note to be made: ', newNote);
     // this.props.dispatch(addNewNote(newNote));
     // this.props.history.push('/dashboard'); 
-  }
+  };
 
   render() {
     let { error } = this.props;

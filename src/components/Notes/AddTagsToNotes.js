@@ -36,6 +36,10 @@ class AddTagsToNotes extends Component {
   }
 
   // ADD TAG TO CHIPS ========================================
+  /**
+   * @description Adds selectedTags to state and resets state.value to an empty string
+   * @param {event} e - 
+   */
   addToSelectedTags = (e) => {
     let tag = e.target.value;
     this.setState({

@@ -14,13 +14,22 @@ import {
   DELETE_NOTE_ERROR,
   REMOVE_TAG_FROM_NOTE_REQUEST,
   REMOVE_TAG_FROM_NOTE_SUCCESS,
-  REMOVE_TAG_FROM_NOTE_ERROR
+  REMOVE_TAG_FROM_NOTE_ERROR,
+  REMOVE_FOLDER_FROM_NOTE_REQUEST,
+  REMOVE_FOLDER_FROM_NOTE_SUCCESS,
+  REMOVE_FOLDER_FROM_NOTE_ERROR,
+  TAGS_TO_NEW_NOTE,
+  FOLDERS_TO_NEW_NOTE
 } from '../actions/notes.actions';
 
 const initialState = {
   data: [],
   loading: false,
   filtered: [],
+  newNoteFoldersAndTags: {
+    folders: [],
+    tags: []
+  },
   error: null
 }
 
@@ -99,7 +108,7 @@ export default function notesReducer(state = initialState, action) {
         error: action.error,
         loading: false
       }
-    // DELETE =================================================
+    // DELETE TAG =================================================
     case REMOVE_TAG_FROM_NOTE_REQUEST:
       return {
         ...state,
@@ -115,6 +124,40 @@ export default function notesReducer(state = initialState, action) {
         ...state,
         error: action.error,
         loading: false
+      }
+    // DELETE FOLDER =================================================
+    case REMOVE_FOLDER_FROM_NOTE_REQUEST:
+      return {
+        ...state,
+        loading: true
+      }
+    case REMOVE_FOLDER_FROM_NOTE_SUCCESS:
+      return {
+        ...state,
+        loading: false
+      }
+    case REMOVE_FOLDER_FROM_NOTE_ERROR:
+      return {
+        ...state,
+        error: action.error,
+        loading: false
+      }
+    //===========================================
+    case TAGS_TO_NEW_NOTE:
+      return {
+        ...state,
+        newNoteFoldersAndTags: {
+          tags: action.tags
+        },
+        loading: true
+      }
+    case FOLDERS_TO_NEW_NOTE:
+      return {
+        ...state,
+        newNoteFoldersAndTags: {
+          folders: action.folders
+        },
+        loading: true
       }
     default:
       return state;
