@@ -65,7 +65,7 @@ class AddFoldersToNotes extends Component {
 
         <div className="add-folder-input-container">
           <Field 
-            name="folders-for-note"
+            name="foldersForNote"
             placeholder="Search folders/Add folders..."
             type="text" 
             component="input"

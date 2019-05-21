@@ -15,12 +15,6 @@ class AddTagsToNotes extends Component {
       value: ''
     }
   }
-  componentDidUpdate = () => {
-    if (this.state.selectedTags.length !== 0) {
-      let updatedTags = this.state.selectedTags;
-      this.props.getTagData(updatedTags);
-    }
-  }
 
   // CHIPS ========================================
   handleChange = (e) => {
@@ -46,6 +40,8 @@ class AddTagsToNotes extends Component {
       selectedTags: [ ...this.state.selectedTags, tag ],
       value: ''
     });
+    let updatedTags = this.state.selectedTags;
+    this.props.getTagData(updatedTags);
   }
 
   render() {
@@ -70,7 +66,7 @@ class AddTagsToNotes extends Component {
           
         <div className="add-tag-input-container">
           <Field 
-            name="tags-for-note"
+            name="tagsForNote"
             placeholder="Search tags/Add tags..."
             type="text" 
             component="input"
@@ -82,7 +78,9 @@ class AddTagsToNotes extends Component {
           />
           <button 
             value={this.state.value} 
-            onClick={(e) => this.addToSelectedTags(e)}
+            onClick={(e) => {
+              this.addToSelectedTags(e)
+            }}
             className="add-tag-button"
           >
             Add Tag

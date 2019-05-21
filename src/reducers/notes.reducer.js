@@ -26,9 +26,9 @@ const initialState = {
   data: [],
   loading: false,
   filtered: [],
-  newNoteFoldersAndTags: {
-    folders: [],
-    tags: []
+  newNote: {
+    tags: [],
+    folders: []
   },
   error: null
 }
@@ -43,6 +43,7 @@ export default function notesReducer(state = initialState, action) {
       }
     case GET_NOTES_DATA:
       return {
+        ...state,
         data: action.data,
         loading: false
       }
@@ -53,6 +54,7 @@ export default function notesReducer(state = initialState, action) {
       }
     case GET_NOTES_ERROR:
       return {
+        ...state,
         error: action.error,
         loading: false
       }
@@ -76,6 +78,7 @@ export default function notesReducer(state = initialState, action) {
       }
     case ADD_NOTE:
       return {
+        ...state,
         notes: {
           data: state.data.push(action.note),
         },
@@ -88,6 +91,7 @@ export default function notesReducer(state = initialState, action) {
       }
     case ADD_NOTE_ERROR:
       return {
+        ...state,
         error: action.error,
         loading: false
       }
@@ -146,18 +150,18 @@ export default function notesReducer(state = initialState, action) {
     case TAGS_TO_NEW_NOTE:
       return {
         ...state,
-        newNoteFoldersAndTags: {
-          tags: action.tags
-        },
-        loading: true
+        newNote: {
+          tags: [ ...state.newNote.tags, action.tags ],
+          folders: state.newNote.folders
+        }
       }
     case FOLDERS_TO_NEW_NOTE:
       return {
         ...state,
-        newNoteFoldersAndTags: {
-          folders: action.folders
-        },
-        loading: true
+        newNote: {
+          tags: state.newNote.tags,
+          folders: [ ...state.newNote.folders, action.folders ]
+        }
       }
     default:
       return state;

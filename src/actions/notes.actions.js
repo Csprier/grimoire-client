@@ -334,6 +334,7 @@ export const removeFolderFromNoteById = (note, folderId) => (dispatch, getState)
 // =======================================================
 export const TAGS_TO_NEW_NOTE = 'TAGS_TO_NEW_NOTE',
   tagsToNewNote = (tags) => {
+    console.log('TagsToNewNote', tags);
     return {
       type: TAGS_TO_NEW_NOTE,
       tags
@@ -342,6 +343,7 @@ export const TAGS_TO_NEW_NOTE = 'TAGS_TO_NEW_NOTE',
 
 export const FOLDERS_TO_NEW_NOTE = 'FOLDERS_TO_NEW_NOTE',
   foldersToNewNote = (folders) => {
+    console.log('FoldersToNewNote', folders);
     return {
       type: FOLDERS_TO_NEW_NOTE,
       folders
