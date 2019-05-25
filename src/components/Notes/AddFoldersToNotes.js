@@ -4,7 +4,7 @@ import {
   Field
 } from 'redux-form';
 
-import { addFolderToNewNote } from '../../actions/createNote.actions';
+import { addFolderToNewNote, removeFolderFromNewNote } from '../../actions/createNote.actions';
 
 // CSS
 import '../css/notes/add-folders-to-notes.css';
@@ -53,7 +53,10 @@ class AddFoldersToNotes extends Component {
               <div key={folder} className="folder-chip">
                 <span className="chip-name">{folder}</span>
                 <span
-                  onClick={() => this.handleDelete(folder)}
+                  onClick={() => {
+                    this.handleDelete(folder)
+                    this.props.dispatch(removeFolderFromNewNote(folder))
+                  }}
                   className="chip-remove"
                 >
                   &times;

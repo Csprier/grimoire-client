@@ -4,7 +4,7 @@ import {
   Field
 } from 'redux-form';
 
-import { addTagToNewNote } from '../../actions/createNote.actions';
+import { addTagToNewNote, removeTagFromNewNote } from '../../actions/createNote.actions';
 
 // CSS
 import '../css/notes/add-tags-to-notes.css';
@@ -52,7 +52,10 @@ class AddTagsToNotes extends Component {
               <div key={tag} className="tag-chip">
                 <span className="chip-name">{tag}</span>
                 <span
-                  onClick={() => this.handleDelete(tag)}
+                  onClick={() => {
+                    this.handleDelete(tag);
+                    this.props.dispatch(removeTagFromNewNote(tag));
+                  }}
                   className="chip-remove"
                 >
                   &times;
