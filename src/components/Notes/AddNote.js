@@ -17,9 +17,7 @@ import renderField from '../Field/renderField';
 import renderTextarea from '../Field/renderTextarea';
 
 // Actions
-import { addNewNote, tagsToNewNote, foldersToNewNote } from '../../actions/notes.actions';
-// import { addNewTag } from '../../actions/tags.actions';
-// import { addNewFolder } from '../../actions/folders.actions';
+import { addNewNote } from '../../actions/notes.actions';
 
 // CSS
 import '../css/notes/add-note.css';
@@ -32,33 +30,6 @@ class AddNote extends Component {
       foldersToBeAdded: []
     }
   }
-  // componentDidUpdate() {
-  //   let userId = this.props.user.id,
-  //       foldersThatNeedToBeMade = this.state.foldersToBeAdded,
-  //       tagsThatNeedToBeMade = this.state.tagsToBeAdded;
-
-  //   // Create the map objects for tags and folders whenever the component updates
-  //   let tagArray = this.makeNewTagsArray(tagsThatNeedToBeMade, userId)
-  //   let folderArray = this.makeNewFolderArray(foldersThatNeedToBeMade, userId)
-  //   console.log('Tag Array', tagArray);
-  //   console.log('Folder Array', folderArray);
-
-  //   this.props.dispatch(tagsToNewNote(tagArray));
-  //   this.props.dispatch(foldersToNewNote(folderArray));
-  // }
-
-  // Get AddTagsToNotes data
-  getSelectedTags = (tags) => {
-    this.setState({
-      tagsToBeAdded: tags
-    });
-  };
-  // Get AddFoldersToNotes data
-  getSelectedFolders = (folders) => {
-    this.setState({
-      foldersToBeAdded: folders
-    });
-  };
 
   cancelNote = () => {
     this.props.history.push('/dashboard');
@@ -67,18 +38,32 @@ class AddNote extends Component {
     this.props.history.push('/dashboard');
   };
 
-  makeNewTagsArray = (tag, userId) => {
+  makeNewTagsArray = (tags, userId) => {
     let existingTags = this.props.tags; // array of objects: [ { name: String, id: String, ObjectId(mongoose) } ]
-    let newTag = {
-      name: tag,
-      userId
-    };
+    let newTags = {};
     let tagArray = [];
 
-    existingTags.filter(existingTag => existingTag.name === newTag.name);
+    tags.forEach(tag => {
+      newTags[tag] = {
+        name: tag,
+        userId
+      }
+    });
 
-    for (let key in newTag) {
-      tagArray.push(newTag[key]);
+    existingTags.forEach(existingTag => {
+      if (newTags[existingTag.name]) {
+        let temp = newTags[existingTag.name];
+
+        delete newTags[existingTag.name];
+
+        if (existingTag.name === temp.name) {
+          tagArray.push(existingTag);
+        }
+      }
+    });
+
+    for (let key in newTags) {
+      tagArray.push(newTags[key]);
     }
 
     return tagArray;
@@ -116,28 +101,16 @@ class AddNote extends Component {
   };
 
   handleAddNoteSubmit = (input) => {
-    console.log(input.tagsForNote);
-    // let userId = this.props.user.id,
-    //     foldersThatNeedToBeMade = this.state.foldersToBeAdded,
-    //     tagsThatNeedToBeMade = this.state.tagsToBeAdded;
-
-    // Create the map objects for tags and folders whenever the component updates
-    // let tagArray = this.makeNewTagsArray(tagsThatNeedToBeMade, userId)
-    // let folderArray = this.makeNewFolderArray(foldersThatNeedToBeMade, userId)
-    // console.log('Tag Array', tagArray);
-    // console.log('Folder Array', folderArray);
-
-    // this.props.dispatch(tagsToNewNote(tagArray));
-    // this.props.dispatch(foldersToNewNote(folderArray));
-
-    // let newNote = {
-    //   userId: this.props.user.id,
-    //   title: e.title,
-    //   content: e.content,
-    //   folders: 
-    //   tags: 
-    // };
-    // console.log('Note to be made: ', newNote);
+    let userId = this.props.user.id;
+    let tagsForNote = this.makeNewTagsArray(this.props.createNote.tags, userId);
+    let foldersForNote = this.makeNewFolderArray(this.props.createNote.folders, userId);
+    let newNote = {
+      title: input.title,
+      content: input.content,
+      tags: tagsForNote,
+      folders: foldersForNote
+    }
+    console.log(newNote);
     // this.props.dispatch(addNewNote(newNote));
     // this.props.history.push('/dashboard'); 
   };
@@ -175,8 +148,8 @@ class AddNote extends Component {
             label="Content..."
           />
 
-          <AddTagsToNotes getTagData={this.getSelectedTags} />
-          <AddFoldersToNotes getFolderData={this.getSelectedFolders} />
+          <AddTagsToNotes />
+          <AddFoldersToNotes />
 
           <div className="add-note-buttons">
             <button type="submit" label="submit">Save</button>
@@ -194,6 +167,7 @@ const mapStateToProps = state => ({
   notes: state.notes.data || [],
   tags: state.tags.data,
   folders: state.folders.data,
+  createNote: state.createNote,
   error: state.notes.error
 });
 
