@@ -4,6 +4,8 @@ import {
   Field
 } from 'redux-form';
 
+import { addFolderToNewNote } from '../../actions/createNote.actions';
+
 // CSS
 import '../css/notes/add-folders-to-notes.css';
 
@@ -16,13 +18,7 @@ class AddFoldersToNotes extends Component {
     }
   }
 
-  componentDidUpdate = () => {
-    if (this.state.selectedFolders.length !== 0) {
-      let updatedFolders = this.state.selectedFolders;
-      this.props.getFolderData(updatedFolders);
-    }
-  }
-
+  // CHIPS ========================================
   handleChange = (e) => {
     this.setState({
       value: e.target.value
@@ -35,8 +31,11 @@ class AddFoldersToNotes extends Component {
     });
   }
 
+  /**
+   * @description Adds selectedFolderss to state and resets state.value to an empty string
+   * @param {event} e - 
+   */
   addToSelectedFolders = (e) => {
-    e.preventDefault();
     let folder = e.target.value;
     this.setState({
       selectedFolders: [ ...this.state.selectedFolders, folder ],
@@ -77,7 +76,7 @@ class AddFoldersToNotes extends Component {
           />
           <button 
             value={this.state.value} 
-            onClick={(e) => this.addToSelectedFolders(e)}
+            onClick={(e) => this.props.dispatch(addFolderToNewNote(e.target.value))}
             className="add-folder-button"
           >
             Add Folder

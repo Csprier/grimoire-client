@@ -7,6 +7,7 @@ import { loadAuthToken } from './local-storage';
 
 // Reducers
 import authReducer from './reducers/auth.reducer';
+import createNoteReducer from './reducers/createNote.reducer';
 import searchReducer from './reducers/search.reducer';
 import notesReducer from './reducers/notes.reducer';
 import tagsReducer from './reducers/tags.reducer';
@@ -17,6 +18,7 @@ import { setAuthToken, refreshAuthToken } from './actions/auth.actions';
 
 const rootReducer = combineReducers({
   auth: authReducer,
+  createNote: createNoteReducer,
   form: formReducer,
   notes: notesReducer,
   tags: tagsReducer,

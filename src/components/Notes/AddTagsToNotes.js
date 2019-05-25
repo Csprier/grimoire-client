@@ -4,6 +4,8 @@ import {
   Field
 } from 'redux-form';
 
+import { addTagToNewNote } from '../../actions/createNote.actions';
+
 // CSS
 import '../css/notes/add-tags-to-notes.css';
 
@@ -29,7 +31,6 @@ class AddTagsToNotes extends Component {
     });
   }
 
-  // ADD TAG TO CHIPS ========================================
   /**
    * @description Adds selectedTags to state and resets state.value to an empty string
    * @param {event} e - 
@@ -40,8 +41,6 @@ class AddTagsToNotes extends Component {
       selectedTags: [ ...this.state.selectedTags, tag ],
       value: ''
     });
-    let updatedTags = this.state.selectedTags;
-    this.props.getTagData(updatedTags);
   }
 
   render() {
@@ -78,32 +77,12 @@ class AddTagsToNotes extends Component {
           />
           <button 
             value={this.state.value} 
-            onClick={(e) => {
-              this.addToSelectedTags(e)
-            }}
+            onClick={(e) => this.props.dispatch(addTagToNewNote(e.target.value))}
             className="add-tag-button"
           >
             Add Tag
           </button>
         </div>
-      
-        {/* <div className="drop-down-container">
-          { (this.state.value) 
-              ? this.props.tags.map(tag => {
-                  let regex = new RegExp(`${this.state.value}`);
-                  if (tag.name.match(regex)) {
-                    return (
-                      <div className="dropdown-item"
-                        key={tag.id}
-                        onClick={() => this.addToSelectedTags(tag)}  
-                      >{tag.name}</div>
-                    )
-                  }
-                return null;
-              })
-            : null }
-        </div> */}
-
       </div>
     )
   }
