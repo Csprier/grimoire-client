@@ -76,7 +76,10 @@ class AddFoldersToNotes extends Component {
           />
           <button 
             value={this.state.value} 
-            onClick={(e) => this.props.dispatch(addFolderToNewNote(e.target.value))}
+            onClick={(e) => {
+              this.addToSelectedFolders(e);
+              this.props.dispatch(addFolderToNewNote(e.target.value))
+            }}
             className="add-folder-button"
           >
             Add Folder

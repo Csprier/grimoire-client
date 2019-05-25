@@ -77,7 +77,10 @@ class AddTagsToNotes extends Component {
           />
           <button 
             value={this.state.value} 
-            onClick={(e) => this.props.dispatch(addTagToNewNote(e.target.value))}
+            onClick={(e) => {
+              this.addToSelectedTags(e);
+              this.props.dispatch(addTagToNewNote(e.target.value))
+            }}
             className="add-tag-button"
           >
             Add Tag
