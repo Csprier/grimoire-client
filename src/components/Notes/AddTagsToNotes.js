@@ -13,33 +13,13 @@ class AddTagsToNotes extends Component {
   constructor() {
     super();
     this.state = {
-      selectedTags: [],
       value: ''
     }
   }
 
-  // CHIPS ========================================
   handleChange = (e) => {
     this.setState({
       value: e.target.value
-    });
-  }
-  
-  handleDelete = (tagToRemove) => {
-    this.setState({
-      selectedTags: this.state.selectedTags.filter(tag => tag !== tagToRemove)
-    });
-  }
-
-  /**
-   * @description Adds selectedTags to state and resets state.value to an empty string
-   * @param {event} e - 
-   */
-  addToSelectedTags = (e) => {
-    let tag = e.target.value;
-    this.setState({
-      selectedTags: [ ...this.state.selectedTags, tag ],
-      value: ''
     });
   }
 
@@ -47,13 +27,12 @@ class AddTagsToNotes extends Component {
     return (
       <div className="add-tags-to-notes-container">
         <div className="selected-tags-container">
-          {this.state.selectedTags.map(tag => {
+          {this.props.tagsForNote.map(tag => {
             return (
               <div key={tag} className="tag-chip">
-                <span className="chip-name">{tag}</span>
+                <span>{tag}</span>
                 <span
                   onClick={() => {
-                    this.handleDelete(tag);
                     this.props.dispatch(removeTagFromNewNote(tag));
                   }}
                   className="chip-remove"
@@ -61,9 +40,8 @@ class AddTagsToNotes extends Component {
                   &times;
                 </span>
               </div>
-              )
-            })
-          }
+            )
+          })}
         </div>
           
         <div className="add-tag-input-container">
@@ -81,7 +59,7 @@ class AddTagsToNotes extends Component {
           <button 
             value={this.state.value} 
             onClick={(e) => {
-              this.addToSelectedTags(e);
+              e.preventDefault();
               this.props.dispatch(addTagToNewNote(e.target.value))
             }}
             className="add-tag-button"
@@ -95,7 +73,8 @@ class AddTagsToNotes extends Component {
 }
 
 const mapStateToProps = state => ({
-  tags: state.tags.data
+  tags: state.tags.data,
+  tagsForNote: state.createNote.tags
 });
 
 export default connect(mapStateToProps)(AddTagsToNotes);

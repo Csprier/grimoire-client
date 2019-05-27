@@ -65,7 +65,7 @@ class AddNote extends Component {
     for (let key in newTags) {
       tagArray.push(newTags[key]);
     }
-
+    console.log('Make tagArray', tagArray);
     return tagArray;
   };
 
@@ -111,7 +111,7 @@ class AddNote extends Component {
       folders: foldersForNote
     }
     console.log(newNote);
-    // this.props.dispatch(addNewNote(newNote));
+    this.props.dispatch(addNewNote(newNote));
     // this.props.history.push('/dashboard'); 
   };
 

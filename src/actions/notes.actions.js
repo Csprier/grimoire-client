@@ -136,7 +136,8 @@ export const addNewNote = (newNote) => (dispatch, getState) => {
       let note = {
         title: res.data.title,
         content: res.data.content,
-        tags: res.data.tags
+        tags: res.data.tags,
+        folders: res.data.folders
       }
       console.log('Thunk POST note', note);
       dispatch(addNote(note));
