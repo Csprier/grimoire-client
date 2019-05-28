@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-// Components
-// import AddTag from '../Tags/AddTag';
-// import Tag from '../Tags/Tag';
-
 // Async Actions
 import { deleteNoteById, removeTagFromNoteById, removeFolderFromNoteById } from '../../actions/notes.actions';
 
@@ -20,8 +16,7 @@ class Note extends Component {
   }
 
   handleRemoveTagFromNote = (e) => {
-    let userId = this.props.userId,
-        tagId = e.target.value,
+    let tagId = e.target.value,
         { id, title, content, tags, folders } = this.props.note;
 
     let note = { id, title, content, tags, folders };
@@ -31,8 +26,7 @@ class Note extends Component {
   }
 
   handleRemoveFolderFromNote = (e) => {
-    let userId = this.props.userId,
-        folderId = e.target.value,
+    let folderId = e.target.value,
         { id, title, content, tags, folders } = this.props.note;
 
     let note = { id, title, content, tags, folders };
@@ -43,7 +37,7 @@ class Note extends Component {
 
   render() {
     const { key, title, id, content, tags, folders } = this.props.note;
-    // console.log(this.props.note.folders);
+    console.log(this.props);
     return (
       <div className="note" key={key}>
         <h4 className="note-title">{title}</h4>
@@ -55,17 +49,17 @@ class Note extends Component {
           <ul className="tags-container">
             <h4>Tags:</h4>
             {(tags.length > 0) 
-            ? tags.map(tag => {
-              return (
-                <li key={tag._id}>
-                  {tag.name}
-                  <button
-                    onClick={this.handleRemoveTagFromNote}
-                    value={tag._id}
-                  >X</button>
-                </li>)
-            })
-            : <p>No tags added yet</p>}
+              ? tags.map(tag => {
+                return (
+                  <li>
+                    {tag.name}
+                    <button
+                      onClick={this.handleRemoveTagFromNote}
+                      value={tag._id}
+                    >X</button>
+                  </li>)
+              })
+              : <p>No tags added yet</p>}
           </ul>
 
           {/* <ul className="folders-container">
@@ -73,7 +67,7 @@ class Note extends Component {
             {(folders.length > 0)
               ? folders.map(folder => {
                 return (
-                  <li key={folder._id}>
+                  <li>
                     {folder.name}
                     <button
                       onClick={this.handleRemoveFolderFromNote}

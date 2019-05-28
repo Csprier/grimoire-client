@@ -110,7 +110,6 @@ class AddNoteForm extends Component {
         return tag;
       }
     });
-    console.log('Finalized Tags:', finalizedTags);
     return finalizedTags;
   };
 
@@ -142,7 +141,18 @@ class AddNoteForm extends Component {
       folderArray.push(newFolders[key]);
     }
 
-    return folderArray;
+    let finalizedFolders = folderArray.map((folder) => {
+      if (folder.id) {
+        let formattedFolder = {
+          _id: folder.id,
+          name: folder.name
+        }
+        return formattedFolder;
+      } else {
+        return folder;
+      }
+    });
+    return finalizedFolders;
   };
 
   handleSubmit = (e) => {
@@ -159,7 +169,7 @@ class AddNoteForm extends Component {
     }
     console.log(newNote);
     this.props.dispatch(addNewNote(newNote));
-    // this.props.history.push('/dashboard'); 
+    this.props.history.push('/dashboard'); 
   }
 
   render() {
