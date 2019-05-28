@@ -17,19 +17,13 @@ import {
   REMOVE_TAG_FROM_NOTE_ERROR,
   REMOVE_FOLDER_FROM_NOTE_REQUEST,
   REMOVE_FOLDER_FROM_NOTE_SUCCESS,
-  REMOVE_FOLDER_FROM_NOTE_ERROR,
-  TAGS_TO_NEW_NOTE,
-  FOLDERS_TO_NEW_NOTE
+  REMOVE_FOLDER_FROM_NOTE_ERROR
 } from '../actions/notes.actions';
 
 const initialState = {
   data: [],
   loading: false,
   filtered: [],
-  newNote: {
-    tags: [],
-    folders: []
-  },
   error: null
 }
 
@@ -145,23 +139,6 @@ export default function notesReducer(state = initialState, action) {
         ...state,
         error: action.error,
         loading: false
-      }
-    //===========================================
-    case TAGS_TO_NEW_NOTE:
-      return {
-        ...state,
-        newNote: {
-          tags: [ ...state.newNote.tags, action.tags ],
-          folders: state.newNote.folders
-        }
-      }
-    case FOLDERS_TO_NEW_NOTE:
-      return {
-        ...state,
-        newNote: {
-          tags: state.newNote.tags,
-          folders: [ ...state.newNote.folders, action.folders ]
-        }
       }
     default:
       return state;

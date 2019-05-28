@@ -47,13 +47,13 @@ export const getNotes = () => (dispatch, getState) => {
       }
     })
     .then((res) => {
-      console.log('GET notes res', res);
+      // console.log('GET notes res', res);
       const notesData = res.data.map(note => ({
           id: note._id,
           title: note.title,
           content: note.content,
-          folders: note.folders,
-          tags: note.tags
+          tags: note.tags,
+          folders: note.folders
         }));
       dispatch(getNotesData(notesData));
       dispatch(getNotesSuccess());
@@ -117,7 +117,7 @@ export const ADD_NOTE_ERROR = 'ADD_NOTE_ERROR',
   }
 
 export const addNewNote = (newNote) => (dispatch, getState) => {
-  console.log(newNote);
+  // console.log(newNote);
   dispatch(addNoteRequest());
   const authToken = getState().auth.authToken;
   const url = `${API_BASE_URL}/notes`;
@@ -133,14 +133,14 @@ export const addNewNote = (newNote) => (dispatch, getState) => {
   
   return Axios.post(url, newNote, options)
     .then((res) => {
-      console.log('Thunk POST res', res);
+      // console.log('Thunk POST res', res);
       let note = {
         title: res.data.title,
         content: res.data.content,
         tags: res.data.tags,
         folders: res.data.folders
       }
-      console.log('Thunk POST note', note);
+      // console.log('Thunk POST note', note);
       dispatch(addNote(note));
       dispatch(getNotes());
       dispatch(addNoteSuccess());
