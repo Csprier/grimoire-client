@@ -13,6 +13,10 @@ import {
   removeFolderFromNewNote 
 } from '../../actions/createNote.actions';
 
+// CSS
+import '../css/notes/add-note.css';
+import '../css/notes/add-tags-to-notes.css';
+import '../css/notes/add-folders-to-notes.css';
 
 class AddNoteForm extends Component {
   constructor() {
@@ -146,15 +150,25 @@ class AddNoteForm extends Component {
   }
 
   render() {
-    return (
-      <div>
-        <form onSubmit={this.handleSubmit}>
+    let { error } = this.props;
+    if (error) {
+      error = (
+        <div className="note-error">
+          <p>{this.props.error}</p>
+        </div>
+      )
+    }
 
+    return (
+      <div className="add-note-container">
+        <h4>Create a new note</h4>
+        <form className="add-note-form" onSubmit={this.handleSubmit}>
+          {/**Title */}
           <label>
             Title:
             <input type="text" onChange={this.handleTitleChange} />
           </label>
-
+          {/**Content */}
           <label>
             Content:
             <textarea 
@@ -165,7 +179,8 @@ class AddNoteForm extends Component {
             />
           </label>
 
-          <div>
+          {/**Tags & tag-chips */}
+          <div className="add-tags-to-notes-container">
             <div className="tag-chips-container">
               {this.props.createNote.tags.map(tag => {
                 return (
@@ -190,6 +205,7 @@ class AddNoteForm extends Component {
                 type="text"
                 placeholder="Add a tag..."
                 onChange={this.handleTagChange}
+                className="add-tag-input"
               />
             </label>
             <button
@@ -199,10 +215,12 @@ class AddNoteForm extends Component {
                 this.props.dispatch(addTagToNewNote(e.target.value))
                 document.getElementById('tagsForNote').value = "";
               }}
+              className="add-tag-button"
             >Add Tag</button>
           </div>
-
-          <div>
+          
+          {/**Folders & folder-chips */}
+          <div className="add-folders-to-notes-container">
             <div className="folder-chips-container">
               {this.props.createNote.folders.map(folder => {
                 return (
@@ -227,6 +245,7 @@ class AddNoteForm extends Component {
                   type="text"
                   placeholder="Add a folder..."
                   onChange={this.handleFolderChange}
+                  className="add-folder-input"
                 />
               </label>
               <button
@@ -236,14 +255,18 @@ class AddNoteForm extends Component {
                   this.props.dispatch(addFolderToNewNote(e.target.value))
                   document.getElementById('folderssForNote').value = "";
                 }}
+                className="add-folder-button"
               >Add Folder</button>
           </div>
 
-          <div>
+          {/**Submit & Cancel buttons */}
+          <div className="add-note-buttons">
             <button type="submit">Save</button>
-            <button type="button" onClick={this.cancelNote}></button>
+            <button onClick={this.cancelNote}>Cancel</button>
           </div>
         </form>
+        {/**Error message */}
+        {error}
       </div>
     );
   }

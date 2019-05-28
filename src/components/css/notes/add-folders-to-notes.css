@@ -8,7 +8,7 @@
 
 /* ================================================= */
 /* CHIPS */
-.selected-folders-container {
+.folder-chips-container {
   width: 100%;
   margin: 0px;
   margin-bottom: 10px;
@@ -49,7 +49,7 @@
   border: 1px solid darkgray;
 }
 
-.search-or-add-folder-input {
+.add-folder-input {
   width: 75%;
   margin: 0 auto;
   padding: 0px;
@@ -58,23 +58,4 @@
   width: 25%;
   margin: 0px;
   padding: 0px;
-}
-
-/* ================================================= */
-/* DROPDOWN */
-.drop-down-container {
-  width: 100%;
-  margin: 0px;
-  padding: 0px;
-}
-
-.dropdown-item {
-  width: 78%;
-  margin: 0 auto;
-  margin-top: 2px;
-  padding: 0px;
-  padding-left: 3px; 
-  font-family: arial;
-  background: white;
-  color: black;
 }
