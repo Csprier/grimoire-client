@@ -51,7 +51,7 @@ export const getNotes = () => (dispatch, getState) => {
           id: note._id,
           title: note.title,
           content: note.content,
-          // folderId: note.folderId,
+          folders: note.folders,
           tags: note.tags
         }));
       dispatch(getNotesData(notesData));

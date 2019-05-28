@@ -37,7 +37,6 @@ class Note extends Component {
 
   render() {
     const { key, title, id, content, tags, folders } = this.props.note;
-    console.log(this.props);
     return (
       <div className="note" key={key}>
         <h4 className="note-title">{title}</h4>
@@ -51,7 +50,7 @@ class Note extends Component {
             {(tags.length > 0) 
               ? tags.map(tag => {
                 return (
-                  <li>
+                  <li key={tag._id}>
                     {tag.name}
                     <button
                       onClick={this.handleRemoveTagFromNote}
@@ -62,22 +61,22 @@ class Note extends Component {
               : <p>No tags added yet</p>}
           </ul>
 
-          {/* <ul className="folders-container">
+          <ul className="folders-container">
             <h4>Folders:</h4>
             {(folders.length > 0)
               ? folders.map(folder => {
-                return (
-                  <li>
-                    {folder.name}
-                    <button
-                      onClick={this.handleRemoveFolderFromNote}
-                      value={folder._id}
-                    >X</button>
-                  </li>
-                )
-              })
+                  return (
+                    <li key={folder}>
+                      {folder.name}
+                      <button
+                        onClick={this.handleRemoveFolderFromNote}
+                        value={folder._id}
+                      >X</button>
+                    </li>
+                  )
+                })
               : <p>No folders added yet</p>}
-          </ul> */}
+          </ul>
 
           <button 
             className="delete-button" 
