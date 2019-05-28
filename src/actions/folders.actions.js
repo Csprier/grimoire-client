@@ -48,9 +48,8 @@ export const getFolders = () => (dispatch, getState) => {
   })
   .then((res) => {
     const foldersData = res.data.map(folder => ({
-      id: folder._id,
+      _id: folder._id,
       name: folder.name,
-      userId: folder.userId
     }));
     dispatch(getFoldersData(foldersData));
     dispatch(getFoldersSuccess());

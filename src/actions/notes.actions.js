@@ -47,6 +47,7 @@ export const getNotes = () => (dispatch, getState) => {
       }
     })
     .then((res) => {
+      console.log('GET notes res', res);
       const notesData = res.data.map(note => ({
           id: note._id,
           title: note.title,

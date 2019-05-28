@@ -50,7 +50,7 @@ class Note extends Component {
             {(tags.length > 0) 
               ? tags.map(tag => {
                 return (
-                  <li key={tag._id}>
+                  <li key={tag}>
                     {tag.name}
                     <button
                       onClick={this.handleRemoveTagFromNote}

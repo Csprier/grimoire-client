@@ -48,8 +48,8 @@ export const getTags = () => (dispatch, getState) => {
   })
   .then((res) => {
     const tagsData = res.data.map(tag => ({
-      name: tag.name,
-      id: tag._id
+      _id: tag._id,
+      name: tag.name
     }));
     dispatch(getTagsData(tagsData));
     dispatch(getTagsSuccess());
