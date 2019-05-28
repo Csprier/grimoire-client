@@ -3,7 +3,15 @@ import { connect } from 'react-redux';
 
 // HOC
 import RequiresLogin from '../requires-login';
-import { addTagToNewNote, addFolderToNewNote } from '../../actions/createNote.actions';
+
+// Actions
+import { addNewNote } from '../../actions/notes.actions';
+import { 
+  addTagToNewNote, 
+  removeTagFromNewNote, 
+  addFolderToNewNote, 
+  removeFolderFromNewNote 
+} from '../../actions/createNote.actions';
 
 
 class AddNoteForm extends Component {
@@ -20,9 +28,18 @@ class AddNoteForm extends Component {
     this.handleContentChange = this.handleContentChange.bind(this);
     this.handleTagChange = this.handleTagChange.bind(this);
     this.handleFolderChange = this.handleFolderChange.bind(this);
+    this.makeNewTagsArray = this.makeNewTagsArray.bind(this);
+    this.makeNewFolderArray = this.makeNewFolderArray.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   cancelNote = () => {
+    this.setState({
+      titleValue: '',
+      contentValue: '',
+      tagValue: '',
+      folderValue: ''
+    });
     this.props.history.push('/dashboard');
   };
 
@@ -30,34 +47,102 @@ class AddNoteForm extends Component {
     this.setState({
       titleValue: e.target.value
     });
-    console.log('Title value:', this.state.titleValue);
   }
 
   handleContentChange = e => {
     this.setState({
       contentValue: e.target.value
     });
-    console.log('Content value:', this.state.contentValue);
   }
 
   handleTagChange = e => {
     this.setState({
       tagValue: e.target.value
     });
-    console.log('Tag value:', this.state.tagValue);
   }
 
   handleFolderChange = e => {
     this.setState({
       folderValue: e.target.value
     });
-    console.log('Folder value:', this.state.folderValue);
   }
 
+  makeNewTagsArray = (tags, userId) => {
+    let existingTags = this.props.tags; // array of objects: [ { name: String, id: String, ObjectId(mongoose) } ]
+    let newTags = {};
+    let tagArray = [];
 
-  handleSubmit = event => {
-    event.preventDefault();
-    console.log('handleSubmit', event);
+    tags.forEach(tag => {
+      newTags[tag] = {
+        name: tag,
+        userId
+      }
+    });
+
+    existingTags.forEach(existingTag => {
+      if (newTags[existingTag.name]) {
+        let temp = newTags[existingTag.name];
+
+        delete newTags[existingTag.name];
+
+        if (existingTag.name === temp.name) {
+          tagArray.push(existingTag);
+        }
+      }
+    });
+
+    for (let key in newTags) {
+      tagArray.push(newTags[key]);
+    }
+    console.log('Make tagArray', tagArray);
+    return tagArray;
+  };
+
+  makeNewFolderArray = (folders, userId) => {
+    let existingFolders = this.props.folders;
+    let newFolders = {};
+    let folderArray = [];
+
+    folders.forEach(folder => {
+      newFolders[folder] = { 
+        name: folder, 
+        userId 
+      }
+    }); 
+
+    existingFolders.forEach(existingFolder => {
+      if (newFolders[existingFolder.name]) {
+        let temp = newFolders[existingFolder.name];
+
+        delete newFolders[existingFolder.name];
+
+        if (existingFolder.name === temp.name) {
+          folderArray.push(existingFolder);
+        }
+      }
+    });
+
+    for (let key in newFolders) {
+      folderArray.push(newFolders[key]);
+    }
+
+    return folderArray;
+  };
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+    let userId = this.props.user.id;
+    let tagsForNote = this.makeNewTagsArray(this.props.createNote.tags, userId);
+    let foldersForNote = this.makeNewFolderArray(this.props.createNote.folders, userId);
+    let newNote = {
+      title: this.state.titleValue,
+      content: this.state.contentValue,
+      tags: tagsForNote,
+      folders: foldersForNote
+    }
+    console.log(newNote);
+    this.props.dispatch(addNewNote(newNote));
+    this.props.history.push('/dashboard'); 
   }
 
   render() {
@@ -81,6 +166,23 @@ class AddNoteForm extends Component {
           </label>
 
           <div>
+            <div className="tag-chips-container">
+              {this.props.createNote.tags.map(tag => {
+                return (
+                  <div key={tag} className="tag-chip">
+                    <span>{tag}</span>
+                    <span
+                      onClick={() => {
+                        this.props.dispatch(removeTagFromNewNote(tag));
+                      }}
+                      className="chip-remove"
+                    >
+                      &times;
+                    </span>
+                  </div>
+                )
+              })}
+            </div>
             <label>
               Add a Tag:
               <input 
@@ -101,6 +203,23 @@ class AddNoteForm extends Component {
           </div>
 
           <div>
+            <div className="folder-chips-container">
+              {this.props.createNote.folders.map(folder => {
+                return (
+                  <div key={folder} className="folder-chip">
+                    <span>{folder}</span>
+                    <span
+                      onClick={() => {
+                        this.props.dispatch(removeFolderFromNewNote(folder));
+                      }}
+                      className="chip-remove"
+                    >
+                      &times;
+                    </span>
+                  </div>
+                )
+              })}
+            </div>
             <label>
                 Add a Folder:
                 <input 
@@ -120,7 +239,10 @@ class AddNoteForm extends Component {
               >Add Folder</button>
           </div>
 
-
+          <div>
+            <button type="submit">Save</button>
+            <button type="button" onClick={this.cancelNote}></button>
+          </div>
         </form>
       </div>
     );
