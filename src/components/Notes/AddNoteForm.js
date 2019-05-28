@@ -98,8 +98,20 @@ class AddNoteForm extends Component {
     for (let key in newTags) {
       tagArray.push(newTags[key]);
     }
-    console.log('Make tagArray', tagArray);
-    return tagArray;
+
+    let finalizedTags = tagArray.map((tag) => {
+      if (tag.id) {
+        let formattedTag = {
+          _id: tag.id,
+          name: tag.name
+        }
+        return formattedTag;
+      } else {
+        return tag;
+      }
+    });
+    console.log('Finalized Tags:', finalizedTags);
+    return finalizedTags;
   };
 
   makeNewFolderArray = (folders, userId) => {
@@ -138,6 +150,7 @@ class AddNoteForm extends Component {
     let userId = this.props.user.id;
     let tagsForNote = this.makeNewTagsArray(this.props.createNote.tags, userId);
     let foldersForNote = this.makeNewFolderArray(this.props.createNote.folders, userId);
+  
     let newNote = {
       title: this.state.titleValue,
       content: this.state.contentValue,
@@ -146,7 +159,7 @@ class AddNoteForm extends Component {
     }
     console.log(newNote);
     this.props.dispatch(addNewNote(newNote));
-    this.props.history.push('/dashboard'); 
+    // this.props.history.push('/dashboard'); 
   }
 
   render() {
@@ -163,12 +176,10 @@ class AddNoteForm extends Component {
       <div className="add-note-container">
         <h4>Create a new note</h4>
         <form className="add-note-form" onSubmit={this.handleSubmit}>
-          {/**Title */}
           <label>
             Title:
             <input type="text" onChange={this.handleTitleChange} />
           </label>
-          {/**Content */}
           <label>
             Content:
             <textarea 
@@ -179,7 +190,6 @@ class AddNoteForm extends Component {
             />
           </label>
 
-          {/**Tags & tag-chips */}
           <div className="add-tags-to-notes-container">
             <div className="tag-chips-container">
               {this.props.createNote.tags.map(tag => {
@@ -219,7 +229,6 @@ class AddNoteForm extends Component {
             >Add Tag</button>
           </div>
           
-          {/**Folders & folder-chips */}
           <div className="add-folders-to-notes-container">
             <div className="folder-chips-container">
               {this.props.createNote.folders.map(folder => {
@@ -259,13 +268,11 @@ class AddNoteForm extends Component {
               >Add Folder</button>
           </div>
 
-          {/**Submit & Cancel buttons */}
           <div className="add-note-buttons">
             <button type="submit">Save</button>
             <button onClick={this.cancelNote}>Cancel</button>
           </div>
         </form>
-        {/**Error message */}
         {error}
       </div>
     );
