@@ -130,7 +130,7 @@ class AddNote extends Component {
         <h4>Add Note</h4>
         <form onSubmit={this.props.handleSubmit((e) => {
             this.handleAddNoteSubmit(e);
-          })} ref="form" className="add-note-form">
+          })} ref="noteForm" className="add-note-form">
           <Field 
             name="title"
             component={renderField}

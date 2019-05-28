@@ -15,7 +15,12 @@ class AddTagsToNotes extends Component {
     this.state = {
       value: ''
     }
+    // this.clearText = this.clearText.bind(this);
   }
+
+  // componentDidUpdate() {
+  //   console.log(document.getElementById('tagsForNote'));
+  // }
 
   handleChange = (e) => {
     this.setState({
@@ -23,7 +28,19 @@ class AddTagsToNotes extends Component {
     });
   }
 
+  // clearText = () => {
+  //   console.log('clearText', document.getElementById('tagsForNote'));
+  //   console.log(this.state);
+  //   document.getElementById('tagsForNote').value = "";
+  //   this.setState({
+  //     value: ''
+  //   });
+  //   console.log(this.state);
+  // }
+
   render() {
+    console.log('State.value:', this.state.value);
+    // console.log('tags and shit', this.props.tagsForNote);
     return (
       <div className="add-tags-to-notes-container">
         <div className="selected-tags-container">
@@ -46,11 +63,12 @@ class AddTagsToNotes extends Component {
           
         <div className="add-tag-input-container">
           <Field 
+            id="tagsForNote"
             name="tagsForNote"
-            placeholder="Search tags/Add tags..."
             type="text" 
             component="input"
-            value={this.state.value}
+            ref="tag"
+            placeholder="Add a tag..."
             onChange={e => {
               this.handleChange(e);
             }}
@@ -60,7 +78,13 @@ class AddTagsToNotes extends Component {
             value={this.state.value} 
             onClick={(e) => {
               e.preventDefault();
-              this.props.dispatch(addTagToNewNote(e.target.value))
+              this.props.dispatch(addTagToNewNote(e.target.value));
+              setTimeout(() => {
+                this.setState({
+                  value: ''
+                })
+                document.getElementById('tagsForNote').value = "";
+              }, 0);
             }}
             className="add-tag-button"
           >
