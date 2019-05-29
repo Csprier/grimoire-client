@@ -25,9 +25,9 @@ class NoteList extends Component {
 
   render() {
     const defaultNotes = (this.props.notes !== undefined) 
-                          ? this.props.notes.map((note, i) => <Note note={note} key={i} />)
+                          ? this.props.notes.map((note, i) => <Note note={note} />)
                           : <p>No notes in the database</p>;
-    const filteredNotes = this.props.filtered.map((note, i) => <Note note={note} key={i} />);
+    const filteredNotes = this.props.filtered.map((note, i) => <Note note={note} />);
 
     return (
       <div className="note-list-container">

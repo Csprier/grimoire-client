@@ -116,9 +116,9 @@ export const ADD_FOLDER_ERROR = 'ADD_FOLDER_ERROR',
   
     return Axios.post(url, newFolder, options)
       .then(res => {
-        let folder = { 
-          name: res.data.name, 
+        let folder = {
           _id: res.data._id,
+          name: res.data.name
         }
         dispatch(addFolder(folder));
         dispatch(getFolders());

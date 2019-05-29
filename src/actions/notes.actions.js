@@ -13,6 +13,7 @@ export const GET_NOTES_REQUEST = 'GET_NOTES_REQUEST',
 
 export const GET_NOTES_DATA = 'GET_NOTES_DATA',
   getNotesData = (data) => {
+    // console.log('GET_NOTES_DATA:', data);
     return {
       type: GET_NOTES_DATA,
       data
@@ -47,7 +48,7 @@ export const getNotes = () => (dispatch, getState) => {
       }
     })
     .then((res) => {
-      // console.log('GET notes res', res);
+      console.log('GET notes res', res);
       const notesData = res.data.map(note => ({
           id: note._id,
           title: note.title,

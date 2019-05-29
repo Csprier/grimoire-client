@@ -6,8 +6,6 @@ import {
 } from '../actions/createNote.actions';
 
 const initialState = {
-  title: '',
-  content: '',
   tags: [],
   folders: [],
   error: null

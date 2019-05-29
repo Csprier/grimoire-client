@@ -50,7 +50,7 @@ class Note extends Component {
             {(tags.length > 0) 
               ? tags.map(tag => {
                 return (
-                  <li key={tag}>
+                  <li key={tag.name}>
                     {tag.name}
                     <button
                       onClick={this.handleRemoveTagFromNote}
@@ -66,7 +66,7 @@ class Note extends Component {
             {(folders.length > 0)
               ? folders.map(folder => {
                   return (
-                    <li key={folder}>
+                    <li key={folder.name}>
                       {folder.name}
                       <button
                         onClick={this.handleRemoveFolderFromNote}
