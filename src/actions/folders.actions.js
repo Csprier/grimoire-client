@@ -80,7 +80,6 @@ export const ADD_FOLDER = 'ADD_FOLDER',
 
 export const ADD_FOLDER_SUCCESS = 'ADD_FOLDER_SUCCESS',
   addFolderSuccess = (res) => {
-    console.log('addFolderSuccess', res);
     return {
       type: ADD_FOLDER_SUCCESS,
       newFolders: res.data
@@ -96,7 +95,6 @@ export const ADD_FOLDER_ERROR = 'ADD_FOLDER_ERROR',
   }
 
   export const addNewFolder = (userId, folderArray) => (dispatch, getState) => {
-    console.log('folders.action addNewFolder', folderArray);
     dispatch(addFolderRequest());
     const authToken = getState().auth.authToken,
           url = `${API_BASE_URL}/folders`,
