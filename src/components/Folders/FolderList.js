@@ -28,7 +28,7 @@ class FolderList extends Component {
         <AddFolder />
         <div className="folder-list">
           {(this.props.folders !== undefined)
-            ? this.props.folders.map(folder => <Folder folder={folder} key={folder.id} />)
+            ? this.props.folders.map((folder, i) => <Folder folder={folder} key={i} />)
             : <span>No folders in the database</span>
           }
         </div>
