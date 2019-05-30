@@ -4,6 +4,9 @@ import { connect } from 'react-redux';
 // HOC
 import RequiresLogin from '../requires-login';
 
+// Actions
+import { addNewTag } from '../../actions/tags.actions';
+
 class AddTagInput extends Component {
   constructor() {
     super();
@@ -25,7 +28,6 @@ class AddTagInput extends Component {
   }
 
   makeNewTagsArray = (tags, userId) => {
-    let existingTags = this.props.tags; // array of objects: [ { name: String, id: String, ObjectId(mongoose) } ]
     let newTags = {};
     let tagArray = [];
 
@@ -33,18 +35,6 @@ class AddTagInput extends Component {
       newTags[tag] = {
         name: tag,
         userId
-      }
-    });
-
-    existingTags.forEach(existingTag => {
-      if (newTags[existingTag.name]) {
-        let temp = newTags[existingTag.name];
-
-        delete newTags[existingTag.name];
-
-        if (existingTag.name === temp.name) {
-          tagArray.push(existingTag);
-        }
       }
     });
 
@@ -67,9 +57,11 @@ class AddTagInput extends Component {
   };
 
   handleClick = e => {
-    console.log('HandleClick e', e);
+    let tagToAdd = e.target.value;
+    console.log('Add Tag to component state:', tagToAdd);
     this.setState({
-      tagsToAddToDatabase: [ ...this.state.tagsToAddToDatabase, e.target.value ]
+      tagValue: '',
+      tagsToAddToDatabase: [ ...this.state.tagsToAddToDatabase, tagToAdd ]
     });
   }
 
@@ -83,7 +75,10 @@ class AddTagInput extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log('e', e)
+    let userId = this.props.user.id;
+    let tagsToBeSubmitted = this.makeNewTagsArray(this.state.tagsToAddToDatabase, userId);
+    console.log('Tags To Be Submitted', tagsToBeSubmitted);
+    this.props.dispatch(addNewTag(userId, tagsToBeSubmitted));
   }
 
   render() {
@@ -106,6 +101,7 @@ class AddTagInput extends Component {
               onClick={(e) => {
                 e.preventDefault();
                 this.handleClick(e);
+                document.getElementById('createATagInput').value = "";
               }}
             >Add Chip</button>
             <button
@@ -136,4 +132,9 @@ class AddTagInput extends Component {
   }
 }
 
-export default RequiresLogin()(connect()(AddTagInput));
+const mapStateToProps = state => ({
+  user: state.auth.user,
+  error: state.tags.error
+})
+
+export default RequiresLogin()(connect(mapStateToProps)(AddTagInput));
