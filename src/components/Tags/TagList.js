@@ -35,7 +35,7 @@ class TagList extends Component {
         <AddTag />
         <div className="tag-list">
           { (this.props.tags !== undefined)
-            ? this.props.tags.map(tag => <Tag tag={tag} key={tag.id} />)
+            ? this.props.tags.map((tag, i) => <Tag tag={tag} key={i} />)
             : <span>No tags in the database</span>
           }
         </div>
