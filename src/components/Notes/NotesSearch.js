@@ -32,7 +32,6 @@ class NotesSearch extends Component {
             type="text"
             placeholder="Search notes..."
           />
-          {/* <button type="submit" className="search-button" label="submit">&#x26B2;</button> */}
         </form>
       </div>
     )
