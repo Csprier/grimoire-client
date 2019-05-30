@@ -72,7 +72,7 @@ class Note extends Component {
               ? folders.map(folder => {
                   if (folder !== null) {
                     return (
-                      <li key={folder._id}>
+                      <li key={folder.name}>
                         {folder.name}
                         <button
                           onClick={this.handleRemoveFolderFromNote}
