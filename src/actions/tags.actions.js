@@ -108,12 +108,12 @@ export const addNewTag = (userId, tagArray) => (dispatch, getState) => {
             'Authorization': 'bearer ' + authToken
           }
         };
-
+  console.log('TA', tagArray);
   let newTag = {
     userId,
     tags: tagArray
   }
-
+  console.log('NT', newTag);
   return Axios.post(url, newTag, options)
     .then(res => {
       let tag = { 
