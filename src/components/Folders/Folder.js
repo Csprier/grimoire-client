@@ -17,12 +17,12 @@ class Folder extends Component {
 
   render() {
     return (
-      <div className="folder" key={this.props.folder.id}>
+      <div className="folder" key={this.props.folder._id}>
         <p>{this.props.folder.name}</p>
         <button
           className="folder-delete-button"
           onClick={this.handleDeleteFolder}
-          value={this.props.folder.id}
+          value={this.props.folder._id}
         >X</button>
       </div>
     )
