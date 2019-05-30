@@ -49,15 +49,20 @@ class Note extends Component {
             <h4>Tags:</h4>
             {(tags.length > 0) 
               ? tags.map(tag => {
-                return (
-                  <li key={tag.name}>
-                    {tag.name}
-                    <button
-                      onClick={this.handleRemoveTagFromNote}
-                      value={tag._id}
-                    >X</button>
-                  </li>)
-              })
+                  if (tag !== null) {
+                    return (
+                      <li key={tag._id}>
+                        {tag.name}
+                        <button
+                          onClick={this.handleRemoveTagFromNote}
+                          value={tag._id}
+                        >X</button>
+                      </li>
+                    )
+                  } else {
+                    return <p>No tags added yet</p>;
+                  }
+                })
               : <p>No tags added yet</p>}
           </ul>
 
