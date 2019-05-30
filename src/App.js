@@ -6,7 +6,8 @@ import { Router, Route, withRouter } from 'react-router-dom';
 import UserCreationForm from './components/Register';
 import UserLoginForm from './components/Login';
 import Dashboard from './components/Dashboard';
-import AddNote from './components/Notes/AddNote';
+// import AddNote from './components/Notes/AddNote';
+import AddNoteForm from './components/Notes/AddNoteForm';
 import LandingPage from './components/LandingPage';
 import TagList from './components/Tags/TagList';
 import FolderList from './components/Folders/FolderList';
@@ -43,7 +44,7 @@ class App extends Component {
             <Route exact path="/" component={UserLoginForm} />
             <Route exact path="/register" component={UserCreationForm} />
             <Route exact path="/dashboard" component={Dashboard} />
-            <Route exact path="/addNote" component={AddNote} />
+            <Route exact path="/addNote" component={AddNoteForm} />
             <Route exact path="/tagList" component={TagList} />
             <Route exact path="/folderList" component={FolderList} />
           </main>

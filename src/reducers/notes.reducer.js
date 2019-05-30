@@ -14,7 +14,10 @@ import {
   DELETE_NOTE_ERROR,
   REMOVE_TAG_FROM_NOTE_REQUEST,
   REMOVE_TAG_FROM_NOTE_SUCCESS,
-  REMOVE_TAG_FROM_NOTE_ERROR
+  REMOVE_TAG_FROM_NOTE_ERROR,
+  REMOVE_FOLDER_FROM_NOTE_REQUEST,
+  REMOVE_FOLDER_FROM_NOTE_SUCCESS,
+  REMOVE_FOLDER_FROM_NOTE_ERROR
 } from '../actions/notes.actions';
 
 const initialState = {
@@ -34,6 +37,7 @@ export default function notesReducer(state = initialState, action) {
       }
     case GET_NOTES_DATA:
       return {
+        ...state,
         data: action.data,
         loading: false
       }
@@ -44,6 +48,7 @@ export default function notesReducer(state = initialState, action) {
       }
     case GET_NOTES_ERROR:
       return {
+        ...state,
         error: action.error,
         loading: false
       }
@@ -67,6 +72,7 @@ export default function notesReducer(state = initialState, action) {
       }
     case ADD_NOTE:
       return {
+        ...state,
         notes: {
           data: state.data.push(action.note),
         },
@@ -79,6 +85,7 @@ export default function notesReducer(state = initialState, action) {
       }
     case ADD_NOTE_ERROR:
       return {
+        ...state,
         error: action.error,
         loading: false
       }
@@ -99,7 +106,7 @@ export default function notesReducer(state = initialState, action) {
         error: action.error,
         loading: false
       }
-    // DELETE =================================================
+    // DELETE TAG =================================================
     case REMOVE_TAG_FROM_NOTE_REQUEST:
       return {
         ...state,
@@ -111,6 +118,23 @@ export default function notesReducer(state = initialState, action) {
         loading: false
       }
     case REMOVE_TAG_FROM_NOTE_ERROR:
+      return {
+        ...state,
+        error: action.error,
+        loading: false
+      }
+    // DELETE FOLDER =================================================
+    case REMOVE_FOLDER_FROM_NOTE_REQUEST:
+      return {
+        ...state,
+        loading: true
+      }
+    case REMOVE_FOLDER_FROM_NOTE_SUCCESS:
+      return {
+        ...state,
+        loading: false
+      }
+    case REMOVE_FOLDER_FROM_NOTE_ERROR:
       return {
         ...state,
         error: action.error,

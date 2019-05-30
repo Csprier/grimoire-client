@@ -13,6 +13,7 @@ export const GET_NOTES_REQUEST = 'GET_NOTES_REQUEST',
 
 export const GET_NOTES_DATA = 'GET_NOTES_DATA',
   getNotesData = (data) => {
+    // console.log('GET_NOTES_DATA:', data);
     return {
       type: GET_NOTES_DATA,
       data
@@ -47,12 +48,13 @@ export const getNotes = () => (dispatch, getState) => {
       }
     })
     .then((res) => {
+      console.log('GET notes res', res);
       const notesData = res.data.map(note => ({
           id: note._id,
           title: note.title,
           content: note.content,
-          // folderId: note.folderId,
-          tags: note.tags
+          tags: note.tags,
+          folders: note.folders
         }));
       dispatch(getNotesData(notesData));
       dispatch(getNotesSuccess());
@@ -116,7 +118,7 @@ export const ADD_NOTE_ERROR = 'ADD_NOTE_ERROR',
   }
 
 export const addNewNote = (newNote) => (dispatch, getState) => {
-  console.log(newNote);
+  // console.log(newNote);
   dispatch(addNoteRequest());
   const authToken = getState().auth.authToken;
   const url = `${API_BASE_URL}/notes`;
@@ -132,13 +134,14 @@ export const addNewNote = (newNote) => (dispatch, getState) => {
   
   return Axios.post(url, newNote, options)
     .then((res) => {
-      console.log('Thunk POST res', res);
+      // console.log('Thunk POST res', res);
       let note = {
         title: res.data.title,
         content: res.data.content,
-        tags: res.data.tags
+        tags: res.data.tags,
+        folders: res.data.folders
       }
-      console.log('Thunk POST note', note);
+      // console.log('Thunk POST note', note);
       dispatch(addNote(note));
       dispatch(getNotes());
       dispatch(addNoteSuccess());
@@ -250,7 +253,7 @@ export const removeTagFromNoteById = (note, tagId) => (dispatch, getState) => {
     id: note.id,
     title: note.title,
     content: note.content,
-    // folderId: note.folderId || '',
+    folders: note.folders,
     tags: note.tags.filter(tag => tag._id !== tagId)
   }
   return Axios.patch(url, updatedNote, options)
@@ -263,3 +266,89 @@ export const removeTagFromNoteById = (note, tagId) => (dispatch, getState) => {
       dispatch(removeTagFromNoteError(e));
     });
 }
+
+// =======================================================
+// REMOVE FOLDER FROM NOTE ACTIONS
+// =======================================================
+export const REMOVE_FOLDER_FROM_NOTE_REQUEST = 'REMOVE_FOLDER_FROM_NOTE_REQUEST',
+  removeFolderFromNoteRequest = () => {
+    return {
+      type: REMOVE_FOLDER_FROM_NOTE_REQUEST
+    }
+  }
+
+export const REMOVE_FOLDER_FROM_NOTE = 'REMOVE_FOLDER_FROM_NOTE',
+  removeFolderFromNote = (folder) => {
+    return {
+      type: REMOVE_FOLDER_FROM_NOTE,
+      folder
+    }
+  }
+
+export const REMOVE_FOLDER_FROM_NOTE_SUCCESS = 'REMOVE_FOLDER_FROM_NOTE_SUCCESS',
+  removeFolderFromNoteSuccess = () => {
+    return {
+      type: REMOVE_FOLDER_FROM_NOTE_SUCCESS
+    }
+  }
+
+export const REMOVE_FOLDER_FROM_NOTE_ERROR = 'REMOVE_FOLDER_FROM_NOTE_ERROR',
+  removeFolderFromNoteError = (error) => {
+    return {
+      type: REMOVE_FOLDER_FROM_NOTE_REQUEST,
+      error
+    }
+  }
+
+export const removeFolderFromNoteById = (note, folderId) => (dispatch, getState) => {
+  dispatch(removeFolderFromNoteRequest());
+  const authToken = getState().auth.authToken;
+  const url = `${API_BASE_URL}/notes/${note.id}`;
+
+  const options = {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'Authorization': 'bearer ' + authToken
+    }
+  };
+
+  let updatedNote = {
+    id: note.id,
+    title: note.title,
+    content: note.content,
+    folders: note.folders.filter(folder => folder._id !== folderId),
+    tags: note.tags
+  }
+  return Axios.patch(url, updatedNote, options)
+    .then(() => {
+      dispatch(removeFolderFromNoteSuccess());
+      dispatch(getNotes());
+    })
+    .catch(e => {
+      console.error(e);
+      dispatch(removeFolderFromNoteError(e));
+    });
+}
+
+// =======================================================
+// REMOVE FOLDER FROM NOTE ACTIONS
+// =======================================================
+export const TAGS_TO_NEW_NOTE = 'TAGS_TO_NEW_NOTE',
+  tagsToNewNote = (tags) => {
+    console.log('TagsToNewNote', tags);
+    return {
+      type: TAGS_TO_NEW_NOTE,
+      tags
+    }
+  }
+
+export const FOLDERS_TO_NEW_NOTE = 'FOLDERS_TO_NEW_NOTE',
+  foldersToNewNote = (folders) => {
+    console.log('FoldersToNewNote', folders);
+    return {
+      type: FOLDERS_TO_NEW_NOTE,
+      folders
+    }
+  }

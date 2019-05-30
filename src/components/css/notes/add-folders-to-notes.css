@@ -1,4 +1,4 @@
-.add-tags-to-notes-container {
+.add-folders-to-notes-container {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -8,13 +8,13 @@
 
 /* ================================================= */
 /* CHIPS */
-.tag-chips-container {
+.folder-chips-container {
   width: 100%;
   margin: 0px;
   margin-bottom: 10px;
   padding: 0px;
 }
-.tag-chip {
+.folder-chip {
   display: inline-block;
   margin: 3px 3px;
   padding: 5px;
@@ -40,7 +40,7 @@
 
 /* ================================================= */
 /* INPUT */
-.add-tag-input-container {
+.add-folder-input-container {
   display: flex;
   flex-direction: row;
   width: 98%;
@@ -49,12 +49,12 @@
   border: 1px solid darkgray;
 }
 
-.add-tag-input {
+.add-folder-input {
   width: 75%;
   margin: 0 auto;
   padding: 0px;
 }
-.add-tag-button {
+.add-folder-button {
   width: 25%;
   margin: 0px;
   padding: 0px;
