@@ -167,7 +167,6 @@ class AddNoteForm extends Component {
       tags: tagsForNote,
       folders: foldersForNote
     }
-    console.log(newNote);
     this.props.dispatch(addNewNote(newNote));
     this.props.history.push('/dashboard'); 
   }
