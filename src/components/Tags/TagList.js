@@ -9,7 +9,8 @@ import { getTags } from '../../actions/tags.actions'
 
 // Components
 import Tag from './Tag';
-import AddTag from '../Tags/AddTag';
+// import AddTag from '../Tags/AddTag';
+import AddTagInput from '../Tags/AddTagInput';
 
 // CSS
 import '../css/tags/tag-list.css';
@@ -32,7 +33,8 @@ class TagList extends Component {
           <h4>List of Tags</h4>
           <button onClick={this.returnToDashboard}>&#60; Dashboard</button>
         </div>
-        <AddTag />
+        {/* <AddTag /> */}
+        <AddTagInput />
         <div className="tag-list">
           { (this.props.tags !== undefined)
             ? this.props.tags.map((tag, i) => <Tag tag={tag} key={i} />)
