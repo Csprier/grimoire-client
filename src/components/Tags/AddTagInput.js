@@ -14,6 +14,7 @@ class AddTagInput extends Component {
     this.handleTagValueChange = this.handleTagValueChange.bind(this);
     this.makeNewTagsArray = this.makeNewTagsArray.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.removeChip = this.removeChip.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -72,6 +73,14 @@ class AddTagInput extends Component {
     });
   }
 
+  removeChip = tag => {
+    console.log('Remove tag: ', tag);
+    let tagToRemove = tag;
+    this.setState({
+      tagsToAddToDatabase: this.state.tagsToAddToDatabase.filter(tag => tag !== tagToRemove)
+    });
+  }
+
   handleSubmit = (e) => {
     e.preventDefault();
     console.log('e', e)
@@ -112,9 +121,7 @@ class AddTagInput extends Component {
                 <span>{tag}</span>
                 <span
                   onClick={() => {
-                    this.setState({
-                      tagsToAddToDatabase: this.state.tagsToAddToDatabase.filter(tag => tag)
-                    })
+                    this.removeChip(tag)
                   }}
                   className="chip-remove"
                 >
