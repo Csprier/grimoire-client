@@ -60,7 +60,7 @@ class Note extends Component {
                       </li>
                     )
                   } else {
-                    return <p>No tags added yet</p>;
+                    return <p key="noTagsAddedYet">No tags added yet</p>;
                   }
                 })
               : <p>No tags added yet</p>}
@@ -70,15 +70,19 @@ class Note extends Component {
             <h4>Folders:</h4>
             {(folders.length > 0)
               ? folders.map(folder => {
-                  return (
-                    <li key={folder.name}>
-                      {folder.name}
-                      <button
-                        onClick={this.handleRemoveFolderFromNote}
-                        value={folder._id}
-                      >X</button>
-                    </li>
-                  )
+                  if (folder !== null) {
+                    return (
+                      <li key={folder._id}>
+                        {folder.name}
+                        <button
+                          onClick={this.handleRemoveFolderFromNote}
+                          value={folder._id}
+                        >X</button>
+                      </li>
+                    )
+                  } else {
+                    return <p key="NoFoldersAddedYet">No folders added yet</p>;
+                  }
                 })
               : <p>No folders added yet</p>}
           </ul>
