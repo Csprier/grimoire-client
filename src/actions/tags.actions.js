@@ -109,20 +109,23 @@ export const addNewTag = (userId, tagArray) => (dispatch, getState) => {
           }
         };
   console.log('TA', tagArray);
-  let newTag = {
-    userId,
-    tags: tagArray
-  }
-  console.log('NT', newTag);
-  return Axios.post(url, newTag, options)
+ 
+  // const tagCreation = (tags) => {
+  //   return tags.forEach(tag => Axios.post(url, tag, options))
+  // }
+
+  return Axios.all([
+    Axios.post(url, tagArray, options)
+    // tagCreation(tagArray)
+    // tagArray.forEach(tag => Axios.post(url, tag, options))
+  ])
     .then(res => {
-      let tag = { 
-        name: res.data.tagName, 
-        _id: res.data._id 
-      }
-      dispatch(addTag(tag));
+      console.log('Axios POST res', res);
+      let newTags = res[0].data;
+      newTags.forEach(tag => addTagSuccess(tag));
+      // dispatch(addTag(tag));
       dispatch(getTags());
-      return dispatch(addTagSuccess(res)); // return this dispatch to get a .then() available when it is dispatched in another file
+      // return dispatch(addTagSuccess(res)); // return this dispatch to get a .then() available when it is dispatched in another file
     })
     .catch(e => {
       console.error(e);
