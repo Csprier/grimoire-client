@@ -4,11 +4,14 @@ import { connect } from 'react-redux';
 // HOC
 import RequiresLogin from '../requires-login';
 
+// Actions
+import { addNewFolder } from '../../actions/folders.actions';
+
 class AddFolderInput extends Component {
   constructor() {
     super();
     this.state = {
-      folderValue = '',
+      folderValue: '',
       foldersToAddToDatabase: []
     }
     this.handeFolderValueChange = this.handeFolderValueChange.bind(this);
@@ -64,9 +67,9 @@ class AddFolderInput extends Component {
 
   removeChip = folder => {
     console.log('Remove folder chip', folder);
-    let folderToRemove = tag;
+    let folderToRemove = folder;
     this.setState({
-      foldersToAddToDatabase: this.state.foldersToAddToDatabase.filter(folder => folder !== folderToRemove);
+      foldersToAddToDatabase: this.state.foldersToAddToDatabase.filter(folder => folder !== folderToRemove)
     });
   }
   
@@ -79,7 +82,7 @@ class AddFolderInput extends Component {
       .then(() => {
         this.setState({
           folderValue: '',
-          foldersToAddToDatabase: [];
+          foldersToAddToDatabase: []
         });
       })
       .catch(e => console.error('HANDLE SUBMIT ERROR', e));
@@ -135,10 +138,10 @@ class AddFolderInput extends Component {
       </div>
     )
   }
-}//end
+}
 
 const mapStateToProps = state => ({
-  user: state.auth.user,
+  userId: state.auth.user,
   error: state.folders.error
 });
 

@@ -7,7 +7,7 @@ import RequiresLogin from '../requires-login';
 // Async Actions
 
 // Compontents
-import AddFolder from './AddFolder';
+import AddFolderInput from './AddFolderInput';
 import Folder from './Folder';
 
 // CSS
@@ -25,7 +25,7 @@ class FolderList extends Component {
           <h4>Your folders</h4>
           <button onClick={this.returnToDashboard}>&#60;  Dashboard</button>
         </div>
-        <AddFolder />
+        <AddFolderInput />
         <div className="folder-list">
           {(this.props.folders !== undefined)
             ? this.props.folders.map((folder, i) => <Folder folder={folder} key={i} />)
