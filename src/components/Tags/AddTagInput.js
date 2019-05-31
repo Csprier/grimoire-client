@@ -78,7 +78,14 @@ class AddTagInput extends Component {
     let userId = this.props.user.id;
     let tagsToBeSubmitted = this.makeNewTagsArray(this.state.tagsToAddToDatabase, userId);
     console.log('Tags To Be Submitted', tagsToBeSubmitted);
-    this.props.dispatch(addNewTag(userId, tagsToBeSubmitted));
+    this.props.dispatch(addNewTag(tagsToBeSubmitted))
+      .then(() => {
+        this.setState({
+          tagValue: '',
+          tagsToAddToDatabase: []
+        })
+      })
+      .catch(e => console.error('HANDLE SUBMIT ERROR', e));
   }
 
   render() {

@@ -96,7 +96,7 @@ export const ADD_TAG_ERROR = 'ADD_TAG_ERROR',
     }
   }
 
-export const addNewTag = (userId, tagArray) => (dispatch, getState) => {
+export const addNewTag = (tagArray) => (dispatch, getState) => {
   dispatch(addTagRequest());
   const authToken = getState().auth.authToken,
         url = `${API_BASE_URL}/tags`,
