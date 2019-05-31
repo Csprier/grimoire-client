@@ -141,7 +141,7 @@ class AddFolderInput extends Component {
 }
 
 const mapStateToProps = state => ({
-  userId: state.auth.user,
+  userId: state.auth.user.id,
   error: state.folders.error
 });
 

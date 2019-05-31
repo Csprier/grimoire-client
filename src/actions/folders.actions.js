@@ -107,25 +107,18 @@ export const ADD_FOLDER_ERROR = 'ADD_FOLDER_ERROR',
             }
           };
   
-    let newFolder = {
-      userId,
-      folders: folderArray
-    }
-  
-    return Axios.post(url, newFolder, options)
-      .then(res => {
-        let folder = {
-          _id: res.data._id,
-          name: res.data.name
-        }
-        dispatch(addFolder(folder));
-        dispatch(getFolders());
-        return dispatch(addFolderSuccess(res)); // return this dispatch to get a .then() available when it is dispatched in another file
-      })
-      .catch(e => {
-        console.error(e);
-        dispatch(addFolderError(e));
-      });
+    return Axios.all([
+      Axios.post(url, folderArray, options)
+    ])
+    .then(res => {
+      let newFolders = res[0].data;
+      newFolders.forEach(folder => addFolderSuccess(folder));
+      dispatch(getFolders());
+    })
+    .catch(e => {
+      console.error(e);
+      dispatch(addFolderError(e));
+    });
   }
   
   // =======================================================
