@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router';
 import { connect } from 'react-redux';
 
 // Async Actions
@@ -9,6 +10,20 @@ import '../css/notes/note.css';
 
 
 class Note extends Component {
+  constructor() {
+    super();
+    this.state = {
+      editMode: false
+    }
+    this.redirectToEditNoteForm = this.redirectToEditNoteForm.bind(this);
+  }
+
+  redirectToEditNoteForm = () => {
+    this.setState({
+      editMode: true
+    });
+  }
+
   handleDelete = (e) => {
     let noteId = e.target.value;
     console.log(`Deleting: ${noteId}`);
@@ -37,6 +52,9 @@ class Note extends Component {
 
   render() {
     const { key, title, id, content, tags, folders } = this.props.note;
+    if (this.state.editMode === true) {
+      return <Redirect to="/editNote" />
+    }
     return (
       <div className="note" key={key}>
         <h4 className="note-title">{title}</h4>
@@ -87,11 +105,16 @@ class Note extends Component {
               : <p>No folders added yet</p>}
           </ul>
 
+          <button
+            onClick={this.redirectToEditNoteForm}
+            value={this.props.note}
+          >Edit</button>
           <button 
             className="delete-button" 
             onClick={this.handleDelete} 
             value={id}
           >Delete Note</button>
+
         </div>
       </div>
     )

@@ -45,7 +45,7 @@ class App extends Component {
             <Route exact path="/register" component={UserCreationForm} />
             <Route exact path="/dashboard" component={Dashboard} />
             <Route exact path="/addNote" component={AddNoteForm} />
-            <Route exact path="/edit" component={EditNoteForm} />
+            <Route exact path="/editNote" component={EditNoteForm} />
             <Route exact path="/tagList" component={TagList} />
             <Route exact path="/folderList" component={FolderList} />
           </main>
