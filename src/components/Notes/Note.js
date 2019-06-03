@@ -8,6 +8,7 @@ import { deleteNoteById, removeTagFromNoteById, removeFolderFromNoteById } from 
 // CSS
 import '../css/notes/note.css';
 
+import EditNoteForm from './EditNoteForm';
 
 class Note extends Component {
   constructor() {
@@ -52,9 +53,16 @@ class Note extends Component {
 
   render() {
     const { key, title, id, content, tags, folders } = this.props.note;
+    
     if (this.state.editMode === true) {
-      return <Redirect to="/editNote" />
+      return <EditNoteForm {...this.props.note} />;
+      // return <Redirect to={{
+      //   path: "/editNote",
+      //   search: `/n=${id}`,
+      //   state: { note: this.props.note }
+      // }} />;
     }
+
     return (
       <div className="note" key={key}>
         <h4 className="note-title">{title}</h4>
@@ -104,17 +112,17 @@ class Note extends Component {
                 })
               : <p>No folders added yet</p>}
           </ul>
-
-          <button
-            onClick={this.redirectToEditNoteForm}
-            value={this.props.note}
-          >Edit</button>
-          <button 
-            className="delete-button" 
-            onClick={this.handleDelete} 
-            value={id}
-          >Delete Note</button>
-
+          <div>
+            <button
+              onClick={this.redirectToEditNoteForm}
+              value={this.props.note}
+            >Edit</button>
+            <button 
+              className="delete-button" 
+              onClick={this.handleDelete} 
+              value={id}
+            >Delete Note</button>
+          </div>
         </div>
       </div>
     )
