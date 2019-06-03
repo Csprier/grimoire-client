@@ -18,13 +18,15 @@ import {
   REMOVE_FOLDER_FROM_NOTE_REQUEST,
   REMOVE_FOLDER_FROM_NOTE_SUCCESS,
   REMOVE_FOLDER_FROM_NOTE_ERROR,
-  TOGGLE_EDIT_MODE
+  TOGGLE_EDIT_MODE,
+  NOTE_TO_EDIT
 } from '../actions/notes.actions';
 
 const initialState = {
   data: [],
   loading: false,
   filtered: [],
+  noteToEdit: '',
   editMode: false,
   error: null
 }
@@ -147,6 +149,11 @@ export default function notesReducer(state = initialState, action) {
         ...state,
         editMode: !state.editMode
       }
+    case NOTE_TO_EDIT:
+        return {
+          ...state,
+          noteToEdit: action.noteId
+        }
     default:
       return state;
   }

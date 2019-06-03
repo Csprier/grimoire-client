@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 // Async Actions
 import { deleteNoteById, removeTagFromNoteById, removeFolderFromNoteById } from '../../actions/notes.actions';
-import { toggleEditMode } from '../../actions/notes.actions';
+import { toggleEditMode, noteToEdit } from '../../actions/notes.actions';
 
 // CSS
 import '../css/notes/note.css';
@@ -19,7 +19,9 @@ class Note extends Component {
 
   redirectToEditNoteForm = (e) => {
     e.preventDefault();
-    console.log(e.target.value);
+    let noteId = e.target.value;
+    console.log('Note to edit id:', noteId)
+    this.props.dispatch(noteToEdit(noteId));
     this.props.dispatch(toggleEditMode());
   }
 
@@ -52,8 +54,9 @@ class Note extends Component {
   render() {
     const { key, title, id, content, tags, folders } = this.props.note;
     
-    if (this.props.editMode === true) {
-      return <EditNoteForm {...this.props.note} />;
+    if (this.props.editMode === true && this.props.noteToEdit !== '') {
+      // return <EditNoteForm {...this.props.note} />;
+      return <Redirect to="/editNote" />
     }
 
     return (
@@ -124,7 +127,9 @@ class Note extends Component {
 
 const mapStateToProps = state => ({
   userId: state.auth.user.id,
-  editMode: state.notes.editMode
+  notes: state.notes,
+  editMode: state.notes.editMode,
+  noteToEdit: state.notes.noteToEdit
 })
 
 export default connect(mapStateToProps)(Note);

@@ -356,3 +356,12 @@ export const TOGGLE_EDIT_MODE = 'TOGGLE_EDIT_MODE',
       type: TOGGLE_EDIT_MODE
     }
   }
+
+export const NOTE_TO_EDIT = 'NOTE_TO_EDIT',
+  noteToEdit = (noteId) => {
+    console.log('Note To Edit Action:', noteId)
+    return {
+      type: NOTE_TO_EDIT,
+      noteId
+    }
+  }
