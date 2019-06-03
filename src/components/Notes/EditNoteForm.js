@@ -104,7 +104,7 @@ class EditNoteForm extends Component {
           </label>
           <ul>
             {(this.state.editNote.tags.length > 0) 
-              ? this.state.editNote.tags.map(tag => <li key={tag}>{tag}</li>) 
+              ? this.state.editNote.tags.map(tag => <li key={tag._id}>{tag.name}</li>) 
               : <p>No tags to edit</p>}
           </ul>
           <ul>
