@@ -51,15 +51,24 @@ class EditNoteForm extends Component {
   handleTitleValueChange = (e) => {
     e.preventDefault();
     this.setState = ({
-      titleValue: e.target.value
+      editNote: {
+        title: e.target.value
+      }
     });
   }
 
   handleContentValueChange = (e) => {
     e.preventDefault();
     this.setState = ({
-      contentValue: e.target.value
+      editNote: {
+        content: e.target.value
+      }
     });
+  }
+
+  handleEditSubmit = (e) => {
+    e.preventDefault();
+    console.log(e.target.value)
   }
 
   cancelEdit = e => {
@@ -68,7 +77,7 @@ class EditNoteForm extends Component {
   }
 
   render() {
-    // console.log('ENFs', this.state.editNote);
+    console.log('ENFs', this.state.editNote);
 
     if (this.props.editMode === false) {
       return <Redirect to="/dashboard" />
@@ -77,7 +86,7 @@ class EditNoteForm extends Component {
     return(
       <div>
         <h4>Edit Note</h4>
-        <form>
+        <form onSubmit={this.handleEditSubmit}>
           <label>Title
             <input 
               placeholder={this.state.editNote.title}
@@ -89,7 +98,7 @@ class EditNoteForm extends Component {
             Content
             <textarea 
               placeholder={this.state.editNote.content}
-              value={this.state.content}
+              value={this.state.editNote.content}
               onChange={(e) => this.handleContentValueChange(e)}
             />  
           </label>
@@ -103,9 +112,9 @@ class EditNoteForm extends Component {
               ? this.state.editNote.folders.map(folder => <li key={folder}>{folder}</li>) 
               : <p>No folders to edit</p>}
           </ul>
+          <button type="submit">Save Changes</button>
+          <button onClick={this.cancelEdit}>Cancel</button>
         </form>
-        <button type="submit">Save Changes</button>
-        <button onClick={this.cancelEdit}>Cancel</button>
       </div>
     )
   }
