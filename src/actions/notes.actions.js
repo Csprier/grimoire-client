@@ -348,3 +348,11 @@ export const FOLDERS_TO_NEW_NOTE = 'FOLDERS_TO_NEW_NOTE',
       folders
     }
   }
+
+// TOGGLE EDIT MODE IN REDUCER INITIAL STATE FOR EDITING SINGLE NOTES
+export const TOGGLE_EDIT_MODE = 'TOGGLE_EDIT_MODE',
+  toggleEditMode = () => {
+    return {
+      type: TOGGLE_EDIT_MODE
+    }
+  }
