@@ -9,7 +9,7 @@ import { toggleEditMode, noteToEdit } from '../../actions/notes.actions';
 // CSS
 import '../css/notes/note.css';
 
-import EditNoteForm from './EditNoteForm';
+// import EditNoteForm from './EditNoteForm';
 
 class Note extends Component {
   constructor() {

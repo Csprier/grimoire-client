@@ -34,7 +34,7 @@ class EditNoteForm extends Component {
       }
     })
       .then(res => {
-        console.log(res.data);
+        // console.log(res.data);
         this.setState({
           editNote: {
             id: res.data._id,
@@ -77,7 +77,7 @@ class EditNoteForm extends Component {
   }
 
   render() {
-    console.log('ENFs', this.state.editNote);
+    // console.log('ENFs', this.state.editNote);
 
     if (this.props.editMode === false) {
       return <Redirect to="/dashboard" />
@@ -109,7 +109,7 @@ class EditNoteForm extends Component {
           </ul>
           <ul>
             {(this.state.editNote.folders.length > 0) 
-              ? this.state.editNote.folders.map(folder => <li key={folder}>{folder}</li>) 
+              ? this.state.editNote.folders.map(folder => <li key={folder._id}>{folder.name}</li>) 
               : <p>No folders to edit</p>}
           </ul>
           <button type="submit">Save Changes</button>
