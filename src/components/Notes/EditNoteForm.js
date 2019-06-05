@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { API_BASE_URL } from '../../config';
-import Axios from 'axios';
 import { Redirect } from 'react-router-dom';
 
 // Actions
-import { toggleEditMode } from '../../actions/notes.actions';
+import { toggleEditMode, getNoteByIdToEdit } from '../../actions/notes.actions';
 
 class EditNoteForm extends Component {
   constructor() {
@@ -17,6 +15,12 @@ class EditNoteForm extends Component {
         content: '',
         tags: [],
         folders: []
+      },
+      editedValues: {
+        title: '',
+        content: '',
+        tags: [],
+        folders: []
       }
     }
     this.handleTitleValueChange = this.handleTitleValueChange.bind(this);
@@ -24,34 +28,50 @@ class EditNoteForm extends Component {
   }
 
   componentDidMount() {
-    let url = `${API_BASE_URL}/notes/${this.props.noteToEdit}`;
-    const authToken = this.props.auth.authToken;
-    Axios.get(url, {
-      headers: {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
-        'Authorization': 'bearer ' + authToken
-      }
-    })
-      .then(res => {
-        // console.log(res.data);
+    this.props.dispatch(getNoteByIdToEdit(this.props.noteToEdit))
+    .then((res) => {
+      if (res) {
         this.setState({
           editNote: {
-            id: res.data._id,
-            title: res.data.title,
-            content: res.data.content,
-            tags: res.data.tags,
-            folders: res.data.folders
+            id: res._id,
+            title: res.title,
+            content: res.content,
+            tags: res.tags,
+            folders: res.folders
           }
         });
-      })
-      .catch(e => console.error(e));
+      } else {
+        return;
+      }
+    });
+    // let url = `${API_BASE_URL}/notes/${this.props.noteToEdit}`;
+    // const authToken = this.props.auth.authToken;
+    // Axios.get(url, {
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //     'Access-Control-Allow-Origin': '*',
+    //     'Authorization': 'bearer ' + authToken
+    //   }
+    // })
+    //   .then(res => {
+    //     // console.log(res.data);
+    //     this.setState({
+    //       editNote: {
+    //         id: res.data._id,
+    //         title: res.data.title,
+    //         content: res.data.content,
+    //         tags: res.data.tags,
+    //         folders: res.data.folders
+    //       }
+    //     });
+    //   })
+    //   .catch(e => console.error(e));
   }
 
   handleTitleValueChange = (e) => {
     e.preventDefault();
     this.setState = ({
-      editNote: {
+      editedValues: {
         title: e.target.value
       }
     });
@@ -60,7 +80,7 @@ class EditNoteForm extends Component {
   handleContentValueChange = (e) => {
     e.preventDefault();
     this.setState = ({
-      editNote: {
+      editedValues: {
         content: e.target.value
       }
     });
@@ -77,8 +97,8 @@ class EditNoteForm extends Component {
   }
 
   render() {
-    // console.log('ENFs', this.state.editNote);
-
+    console.log('ENFs', this.state.editNote);
+    console.log('ENF', this.state.editedValues);
     if (this.props.editMode === false) {
       return <Redirect to="/dashboard" />
     }
@@ -90,7 +110,8 @@ class EditNoteForm extends Component {
           <label>Title
             <input 
               placeholder={this.state.editNote.title}
-              value={this.state.editNote.title}
+              defaultValue={this.state.editNote.title}
+              type="text"
               onChange={(e) => this.handleTitleValueChange(e)}
             />
           </label>
@@ -98,7 +119,8 @@ class EditNoteForm extends Component {
             Content
             <textarea 
               placeholder={this.state.editNote.content}
-              value={this.state.editNote.content}
+              defaultValue={this.state.editNote.content}
+              type="text"
               onChange={(e) => this.handleContentValueChange(e)}
             />  
           </label>

@@ -365,3 +365,22 @@ export const NOTE_TO_EDIT = 'NOTE_TO_EDIT',
       noteId
     }
   }
+
+export const GET_NOTE_BY_ID_TO_EDIT = 'GET_NOTE_BY_ID_TO_EDIT',
+  getNoteByIdToEdit = (id) => (dispatch, getState) => {
+    let url = `${API_BASE_URL}/notes/${id}`;
+    const authToken = getState().auth.authToken;
+    return Axios.get(url, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'Authorization': 'bearer ' + authToken
+      }
+    })
+    .then(res => {
+      let noteToEdit = res.data;
+      console.log('NoteToEdit', noteToEdit);
+      return noteToEdit;
+    })
+    .catch(e => console.error(e));
+  }
