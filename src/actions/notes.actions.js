@@ -379,7 +379,6 @@ export const GET_NOTE_BY_ID_TO_EDIT = 'GET_NOTE_BY_ID_TO_EDIT',
     })
     .then(res => {
       let noteToEdit = res.data;
-      console.log('NoteToEdit', noteToEdit);
       return noteToEdit;
     })
     .catch(e => console.error(e));
