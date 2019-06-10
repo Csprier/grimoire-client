@@ -111,7 +111,7 @@ class EditNoteForm extends Component {
             <textarea 
               name="editContent"
               // placeholder={this.state.editNote.content}
-              defaultValue={this.state.editNote.content}
+              value={this.state.editNote.content}
               type="text"
               rows="4" cols="50"
               onChange={(e) => this.handleContentValueChange(e)}
