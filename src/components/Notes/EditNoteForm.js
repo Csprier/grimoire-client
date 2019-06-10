@@ -25,6 +25,8 @@ class EditNoteForm extends Component {
     }
     this.handleTitleValueChange = this.handleTitleValueChange.bind(this);
     this.handleContentValueChange = this.handleContentValueChange.bind(this);
+    this.handleEditSubmit = this.handleEditSubmit.bind(this);
+    this.cancelEdit = this.cancelEdit.bind(this);
   }
 
   componentDidMount() {
@@ -44,28 +46,6 @@ class EditNoteForm extends Component {
         return;
       }
     });
-    // let url = `${API_BASE_URL}/notes/${this.props.noteToEdit}`;
-    // const authToken = this.props.auth.authToken;
-    // Axios.get(url, {
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //     'Access-Control-Allow-Origin': '*',
-    //     'Authorization': 'bearer ' + authToken
-    //   }
-    // })
-    //   .then(res => {
-    //     // console.log(res.data);
-    //     this.setState({
-    //       editNote: {
-    //         id: res.data._id,
-    //         title: res.data.title,
-    //         content: res.data.content,
-    //         tags: res.data.tags,
-    //         folders: res.data.folders
-    //       }
-    //     });
-    //   })
-    //   .catch(e => console.error(e));
   }
 
   handleTitleValueChange = (e) => {
@@ -88,7 +68,17 @@ class EditNoteForm extends Component {
 
   handleEditSubmit = (e) => {
     e.preventDefault();
-    console.log(e.target.value)
+    console.log(e.target.elements);
+    let id = this.state.editNote.id,
+        title = e.target.elements.editTitle.value,
+        content = e.target.elements.editContent.value;
+
+    let form = {
+      id,
+      title,
+      content
+    }
+    console.log(form);
   }
 
   cancelEdit = e => {
@@ -97,8 +87,8 @@ class EditNoteForm extends Component {
   }
 
   render() {
-    console.log('ENFs', this.state.editNote);
-    console.log('ENF', this.state.editedValues);
+    // console.log('ENFs', this.state.editNote);
+    // console.log('ENF', this.state.editedValues);
     if (this.props.editMode === false) {
       return <Redirect to="/dashboard" />
     }
@@ -108,8 +98,9 @@ class EditNoteForm extends Component {
         <h4>Edit Note</h4>
         <form onSubmit={this.handleEditSubmit}>
           <label>Title
-            <input 
-              placeholder={this.state.editNote.title}
+            <input
+              name="editTitle"
+              // placeholder={this.state.editNote.title}
               defaultValue={this.state.editNote.title}
               type="text"
               onChange={(e) => this.handleTitleValueChange(e)}
@@ -118,9 +109,11 @@ class EditNoteForm extends Component {
           <label>
             Content
             <textarea 
-              placeholder={this.state.editNote.content}
+              name="editContent"
+              // placeholder={this.state.editNote.content}
               defaultValue={this.state.editNote.content}
               type="text"
+              rows="4" cols="50"
               onChange={(e) => this.handleContentValueChange(e)}
             />  
           </label>
