@@ -25,6 +25,8 @@ class EditNoteForm extends Component {
     }
     this.handleTitleValueChange = this.handleTitleValueChange.bind(this);
     this.handleContentValueChange = this.handleContentValueChange.bind(this);
+    this.removeTag = this.removeTag.bind(this);
+    this.removeFolder = this.removeFolder.bind(this);
     this.handleEditSubmit = this.handleEditSubmit.bind(this);
     this.cancelEdit = this.cancelEdit.bind(this);
   }
@@ -66,6 +68,15 @@ class EditNoteForm extends Component {
     });
   }
 
+  removeTag = (e) => {
+    e.preventDefault();
+    console.log(e.target.value);
+  }
+  removeFolder = (e) => {
+    e.preventDefault();
+    console.log(e.target.value);
+  } 
+
   handleEditSubmit = (e) => {
     e.preventDefault();
     console.log(e.target.elements);
@@ -100,7 +111,6 @@ class EditNoteForm extends Component {
           <label>Title
             <input
               name="editTitle"
-              // placeholder={this.state.editNote.title}
               defaultValue={this.state.editNote.title}
               type="text"
               onChange={(e) => this.handleTitleValueChange(e)}
@@ -110,7 +120,6 @@ class EditNoteForm extends Component {
             Content
             <textarea 
               name="editContent"
-              // placeholder={this.state.editNote.content}
               value={this.state.editNote.content}
               type="text"
               rows="4" cols="50"
@@ -119,12 +128,28 @@ class EditNoteForm extends Component {
           </label>
           <ul>
             {(this.state.editNote.tags.length > 0) 
-              ? this.state.editNote.tags.map(tag => <li key={tag._id}>{tag.name}</li>) 
+              ? this.state.editNote.tags.map(tag => {
+                  return <li key={tag._id}>
+                            {tag.name}
+                            <button 
+                              onClick={this.removeTag}
+                              value={tag._id}
+                            >&times;</button>
+                          </li>
+                        }) 
               : <p>No tags to edit</p>}
           </ul>
           <ul>
             {(this.state.editNote.folders.length > 0) 
-              ? this.state.editNote.folders.map(folder => <li key={folder._id}>{folder.name}</li>) 
+              ? this.state.editNote.folders.map(folder => {
+                  return <li key={folder._id}>
+                          {folder.name}
+                          <button 
+                            onClick={this.removeFolder}
+                            value={folder._id}
+                          >&times;</button>
+                        </li>
+                      }) 
               : <p>No folders to edit</p>}
           </ul>
           <button type="submit">Save Changes</button>
