@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
+// Utility functions
+import { utility } from '../utility';
+
 // Actions
 import { toggleEditMode, getNoteByIdToEdit } from '../../actions/notes.actions';
 
@@ -44,21 +47,25 @@ class EditNoteForm extends Component {
 
   componentDidMount() {
     this.props.dispatch(getNoteByIdToEdit(this.props.noteToEdit))
-    .then((res) => {
-      if (res) {
-        this.setState({
-          editNote: {
-            id: res._id,
-            title: res.title,
-            content: res.content,
-            tags: res.tags,
-            folders: res.folders
-          }
-        });
-      } else {
-        return;
-      }
-    });
+      .then((res) => {
+        if (res) {
+          this.setState({
+            editNote: {
+              id: res._id,
+              title: res.title,
+              content: res.content,
+              tags: res.tags,
+              folders: res.folders
+            },
+            editedValues: {
+              tags: res.tags,
+              folders: res.folders
+            }
+          });
+        } else {
+          return;
+        }
+      });
   }
 
   handleTitleValueChange = (e) => {
@@ -105,13 +112,19 @@ class EditNoteForm extends Component {
     let tag = e.target.value;
     this.setState({
       editedValues: {
-        tags: [ ...this.state.editNote.tags, tag ]
+        tags: [ ...this.state.editedValues.tags, tag ]
       },
       renderTagInput: false,
       newTagValue: ''
     });
   }
 
+  handleAddFolder = (e) => {
+    e.preventDefault();
+    this.setState({
+      newFolderValue: e.target.value
+    });
+  }
   addFolder = (e) => {
     e.preventDefault();
     console.log(e.target.value);
@@ -130,15 +143,20 @@ class EditNoteForm extends Component {
   // Submit
   handleEditSubmit = (e) => {
     e.preventDefault();
-    console.log(e.target.elements);
-    let id = this.state.editNote.id,
+    // console.log(e.target.elements);
+    let userId = this.state.editNote.id,
         title = e.target.elements.editTitle.value,
         content = e.target.elements.editContent.value;
 
+    let formattedTags = utility.makeNewTagsArray(this.state.editedValues.tags, this.props.tags, userId),
+        formattedFolders = utility.makeNewFolderArray(this.state.editedValues.folders, this.props.folders, userId);
+
     let form = {
-      id,
+      userId,
       title,
-      content
+      content,
+      tags: formattedTags,
+      folders: formattedFolders
     }
     console.log(form);
   }
@@ -186,7 +204,7 @@ class EditNoteForm extends Component {
             {(this.state.renderTagInput === false)
               ? <ul>
                 {(this.state.editNote.tags.length > 0) 
-                  ? this.state.editNote.tags.map(tag => {
+                  ? this.state.editedNote.tags.map(tag => {
                       return <li key={tag._id}>
                                 {tag.name}
                                 <button 
@@ -215,8 +233,8 @@ class EditNoteForm extends Component {
           <div className="edit-folders-container"> 
             <button name="add-folders" onClick={this.renderFolderInput}>Add folders</button>
             {/* <ul>
-              {(this.state.editNote.folders.length > 0) 
-                ? this.state.editNote.folders.map(folder => {
+              {(this.state.editedValues.folders.length > 0) 
+                ? this.state.editedValues.folders.map(folder => {
                     return <li key={folder._id}>
                             {folder.name}
                             <button 
@@ -240,7 +258,9 @@ const mapStateToProps = state => ({
   user: state.auth.user,
   auth: state.auth,
   editMode: state.notes.editMode,
-  noteToEdit: state.notes.noteToEdit
+  noteToEdit: state.notes.noteToEdit,
+  tags: state.tags.data,
+  folders: state.folders.data
 });
 
 export default connect(mapStateToProps)(EditNoteForm);
