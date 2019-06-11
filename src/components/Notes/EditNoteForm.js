@@ -26,12 +26,16 @@ class EditNoteForm extends Component {
         folders: []
       },
       renderTagInput: false,
-      renderFolderInput: false
+      renderFolderInput: false,
+      newTagValue: '',
+      newFolderValue: ''
     }
     this.handleTitleValueChange = this.handleTitleValueChange.bind(this);
     this.handleContentValueChange = this.handleContentValueChange.bind(this);
     this.renderTagInput = this.renderTagInput.bind(this);
     this.renderFolderInput = this.renderFolderInput.bind(this);
+    this.addTag = this.addTag.bind(this);
+    this.addFolder = this.addFolder.bind(this);
     this.removeTag = this.removeTag.bind(this);
     this.removeFolder = this.removeFolder.bind(this);
     this.handleEditSubmit = this.handleEditSubmit.bind(this);
@@ -89,6 +93,30 @@ class EditNoteForm extends Component {
     });
   }
 
+  // Add chips
+  handleAddTag = (e) => {
+    e.preventDefault();
+    this.setState({
+      newTagValue: e.target.value
+    });
+  }
+  addTag = (e) => {
+    e.preventDefault();
+    let tag = e.target.value;
+    this.setState({
+      editedValues: {
+        tags: [ ...this.state.editNote.tags, tag ]
+      },
+      renderTagInput: false,
+      newTagValue: ''
+    });
+  }
+
+  addFolder = (e) => {
+    e.preventDefault();
+    console.log(e.target.value);
+  }
+
   // Remove chips
   removeTag = (e) => {
     e.preventDefault();
@@ -131,7 +159,8 @@ class EditNoteForm extends Component {
       <div>
         <h4>Edit Note</h4>
         <form onSubmit={this.handleEditSubmit}>
-          <label>Title
+          <label>
+            Title:
             <input
               name="editTitle"
               defaultValue={this.state.editNote.title}
@@ -140,7 +169,7 @@ class EditNoteForm extends Component {
             />
           </label>
           <label>
-            Content
+            Content:
             <textarea 
               name="editContent"
               value={this.state.editNote.content}
@@ -150,8 +179,10 @@ class EditNoteForm extends Component {
             />  
           </label>
 
-          <div className="tags-container">
-            <button name="add-tags" onClick={this.renderTagInput}>Add tags</button>
+          <div className="edit-tags-container">
+            {(this.state.renderTagInput === true) 
+              ? null 
+              : <button name="add-tags" onClick={this.renderTagInput}>Add tags</button>}
             {(this.state.renderTagInput === false)
               ? <ul>
                 {(this.state.editNote.tags.length > 0) 
@@ -166,18 +197,22 @@ class EditNoteForm extends Component {
                             }) 
                   : <p>No tags to edit</p>}
                 </ul>
-              : <div>
+              : <div className="add-tag-input-container">
+                  <label>Add tags:</label>
                   <input 
                     id="add-tag"
                     type="text"
                     placeholder="Add a tag..."
                     onChange={this.handleAddTag}
                   />
-                  <button onClick={this.addTag}>Add</button>
+                  <button 
+                    onClick={this.addTag} 
+                    value={this.state.newTagValue}
+                  >Add</button>
                 </div>}
           </div>
 
-          <div className="folders-container"> 
+          <div className="edit-folders-container"> 
             <button name="add-folders" onClick={this.renderFolderInput}>Add folders</button>
             {/* <ul>
               {(this.state.editNote.folders.length > 0) 
