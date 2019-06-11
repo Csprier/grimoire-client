@@ -5,6 +5,9 @@ import { Redirect } from 'react-router-dom';
 // Actions
 import { toggleEditMode, getNoteByIdToEdit } from '../../actions/notes.actions';
 
+// CSS 
+import '../css/notes/edit-note.css';
+
 class EditNoteForm extends Component {
   constructor() {
     super();
@@ -21,10 +24,14 @@ class EditNoteForm extends Component {
         content: '',
         tags: [],
         folders: []
-      }
+      },
+      renderTagInput: false,
+      renderFolderInput: false
     }
     this.handleTitleValueChange = this.handleTitleValueChange.bind(this);
     this.handleContentValueChange = this.handleContentValueChange.bind(this);
+    this.renderTagInput = this.renderTagInput.bind(this);
+    this.renderFolderInput = this.renderFolderInput.bind(this);
     this.removeTag = this.removeTag.bind(this);
     this.removeFolder = this.removeFolder.bind(this);
     this.handleEditSubmit = this.handleEditSubmit.bind(this);
@@ -68,6 +75,21 @@ class EditNoteForm extends Component {
     });
   }
 
+  renderTagInput = (e) => {
+    e.preventDefault();
+    this.setState({
+      renderTagInput: !this.state.renderTagInput
+    });
+  }
+
+  renderFolderInput = (e) => {
+    e.preventDefault();
+    this.setState({
+      renderFolderInput: !this.state.renderFolderInput
+    });
+  }
+
+  // Remove chips
   removeTag = (e) => {
     e.preventDefault();
     console.log(e.target.value);
@@ -77,6 +99,7 @@ class EditNoteForm extends Component {
     console.log(e.target.value);
   } 
 
+  // Submit
   handleEditSubmit = (e) => {
     e.preventDefault();
     console.log(e.target.elements);
@@ -92,14 +115,14 @@ class EditNoteForm extends Component {
     console.log(form);
   }
 
+  // Redirect/cancel, move back to dashboard/notelist
   cancelEdit = e => {
     e.preventDefault();
     this.props.dispatch(toggleEditMode());
   }
 
   render() {
-    // console.log('ENFs', this.state.editNote);
-    // console.log('ENF', this.state.editedValues);
+    console.log('ENFs:', this.state);
     if (this.props.editMode === false) {
       return <Redirect to="/dashboard" />
     }
@@ -126,32 +149,50 @@ class EditNoteForm extends Component {
               onChange={(e) => this.handleContentValueChange(e)}
             />  
           </label>
-          <ul>
-            {(this.state.editNote.tags.length > 0) 
-              ? this.state.editNote.tags.map(tag => {
-                  return <li key={tag._id}>
-                            {tag.name}
+
+          <div className="tags-container">
+            <button name="add-tags" onClick={this.renderTagInput}>Add tags</button>
+            {(this.state.renderTagInput === false)
+              ? <ul>
+                {(this.state.editNote.tags.length > 0) 
+                  ? this.state.editNote.tags.map(tag => {
+                      return <li key={tag._id}>
+                                {tag.name}
+                                <button 
+                                  onClick={this.removeTag}
+                                  value={tag._id}
+                                >&times;</button>
+                              </li>
+                            }) 
+                  : <p>No tags to edit</p>}
+                </ul>
+              : <div>
+                  <input 
+                    id="add-tag"
+                    type="text"
+                    placeholder="Add a tag..."
+                    onChange={this.handleAddTag}
+                  />
+                  <button onClick={this.addTag}>Add</button>
+                </div>}
+          </div>
+
+          <div className="folders-container"> 
+            <button name="add-folders" onClick={this.renderFolderInput}>Add folders</button>
+            {/* <ul>
+              {(this.state.editNote.folders.length > 0) 
+                ? this.state.editNote.folders.map(folder => {
+                    return <li key={folder._id}>
+                            {folder.name}
                             <button 
-                              onClick={this.removeTag}
-                              value={tag._id}
+                              onClick={this.removeFolder}
+                              value={folder._id}
                             >&times;</button>
                           </li>
                         }) 
-              : <p>No tags to edit</p>}
-          </ul>
-          <ul>
-            {(this.state.editNote.folders.length > 0) 
-              ? this.state.editNote.folders.map(folder => {
-                  return <li key={folder._id}>
-                          {folder.name}
-                          <button 
-                            onClick={this.removeFolder}
-                            value={folder._id}
-                          >&times;</button>
-                        </li>
-                      }) 
-              : <p>No folders to edit</p>}
-          </ul>
+                : <p>No folders to edit</p>}
+            </ul> */}
+          </div>
           <button type="submit">Save Changes</button>
           <button onClick={this.cancelEdit}>Cancel</button>
         </form>
