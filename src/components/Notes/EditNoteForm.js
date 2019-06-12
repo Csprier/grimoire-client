@@ -133,7 +133,10 @@ class EditNoteForm extends Component {
   // Remove chips
   removeTag = (e) => {
     e.preventDefault();
-    console.log(e.target.value);
+    let tagToRemove = e.target.value;
+    this.setState({
+      editedValues: this.state.editedValues.tags.filter(tag => tag !== tagToRemove)
+    });
   }
   removeFolder = (e) => {
     e.preventDefault();
@@ -174,10 +177,9 @@ class EditNoteForm extends Component {
     }
 
     const tagChips = <ul>
-                      {(this.state.editedValues.tags.length > 0) 
+                      {(this.state.editedValues.tags) 
                         ? this.state.editedValues.tags.map(tag => {
                             return (<li key={tag}>
-                                      {/* {tagsToNewNote} */}
                                       {tag}
                                       <button 
                                         onClick={this.removeTag}
