@@ -378,7 +378,15 @@ export const GET_NOTE_BY_ID_TO_EDIT = 'GET_NOTE_BY_ID_TO_EDIT',
       }
     })
     .then(res => {
-      let noteToEdit = res.data;
+      // let noteToEdit = res.data;
+      let noteToEdit = {
+        id: res.data._id,
+        title: res.data.title,
+        content: res.data.content,
+        tags: (res.data.tags === undefined) ? [] : res.data.tags.map(tag => tag.name),
+        folders: (res.data.folders === undefined) ? [] : res.data.folders.map(folder => folder.name)
+      }
+      console.log('Note To Edit in Actions', noteToEdit);
       return noteToEdit;
     })
     .catch(e => console.error(e));

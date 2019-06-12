@@ -9,8 +9,6 @@ import { toggleEditMode, noteToEdit } from '../../actions/notes.actions';
 // CSS
 import '../css/notes/note.css';
 
-// import EditNoteForm from './EditNoteForm';
-
 class Note extends Component {
   constructor() {
     super();
@@ -55,7 +53,6 @@ class Note extends Component {
     const { key, title, id, content, tags, folders } = this.props.note;
     
     if (this.props.editMode === true && this.props.noteToEdit !== '') {
-      // return <EditNoteForm {...this.props.note} />;
       return <Redirect to="/editNote" />
     }
 

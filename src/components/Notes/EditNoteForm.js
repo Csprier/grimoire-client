@@ -6,7 +6,7 @@ import { Redirect } from 'react-router-dom';
 import { utility } from '../utility';
 
 // Actions
-import { toggleEditMode, getNoteByIdToEdit, tagsToNewNote } from '../../actions/notes.actions';
+import { toggleEditMode, getNoteByIdToEdit } from '../../actions/notes.actions';
 
 // CSS 
 import '../css/notes/edit-note.css';
@@ -33,6 +33,7 @@ class EditNoteForm extends Component {
       newTagValue: '',
       newFolderValue: ''
     }
+    this.updateNoteValuesInComponentState = this.updateNoteValuesInComponentState.bind(this);
     this.handleTitleValueChange = this.handleTitleValueChange.bind(this);
     this.handleContentValueChange = this.handleContentValueChange.bind(this);
     this.renderTagInput = this.renderTagInput.bind(this);
@@ -48,24 +49,25 @@ class EditNoteForm extends Component {
   componentDidMount() {
     this.props.dispatch(getNoteByIdToEdit(this.props.noteToEdit))
       .then((res) => {
-        if (res) {
-          this.setState({
-            editNote: {
-              id: res._id,
-              title: res.title,
-              content: res.content,
-              tags: res.tags,
-              folders: res.folders
-            },
-            editedValues: {
-              tags: res.tags,
-              folders: res.folders
-            }
-          });
-        } else {
-          return;
-        }
+        let noteValues = res;
+        this.updateNoteValuesInComponentState(noteValues);
       });
+  }
+
+  updateNoteValuesInComponentState = (note) => {
+    this.setState({
+      editNote: {
+        id: note._id,
+        title: note.title,
+        content: note.content,
+        tags: note.tags,
+        folders: note.folders
+      },
+      editedValues: {
+        tags: note.tags,
+        folders: note.folders
+      }
+    })
   }
 
   handleTitleValueChange = (e) => {
@@ -112,8 +114,8 @@ class EditNoteForm extends Component {
     let tag = e.target.value;
     this.setState({
       editedValues: {
-        tags: [ ...this.state.editedValues.tags, tag ]
-      },
+        tags: (this.state.editedValues.tags !== []) ? [ ...this.state.editedValues.tags, tag ] : this.state.editedValues.push(tag)
+       },
       renderTagInput: false,
       newTagValue: ''
     });
@@ -127,7 +129,14 @@ class EditNoteForm extends Component {
   }
   addFolder = (e) => {
     e.preventDefault();
-    console.log(e.target.value);
+    let folder = e.target.value;
+    this.setState({
+      editedValues: {
+        folders: (this.state.editedValues.folders !== []) ? [ ...this.state.editedValues.folders, folder ] : this.state.editedValues.folders.push(folder)
+      },
+      renderFolderInput: false,
+      newFolderValue: ''
+    });
   }
 
   // Remove chips
@@ -135,18 +144,24 @@ class EditNoteForm extends Component {
     e.preventDefault();
     let tagToRemove = e.target.value;
     this.setState({
-      editedValues: this.state.editedValues.tags.filter(tag => tag !== tagToRemove)
+      editedValues: {
+        tags: this.state.editedValues.tags.filter(tag => tag !== tagToRemove)
+      }
     });
   }
   removeFolder = (e) => {
     e.preventDefault();
-    console.log(e.target.value);
+    let folderToRemove = e.target.value;
+    this.setState({
+      editedValues: {
+        folders: this.state.editedValues.folders.filter(folder => folder !== folderToRemove)
+      }
+    });
   } 
 
   // Submit
   handleEditSubmit = (e) => {
     e.preventDefault();
-    // console.log(e.target.elements);
     let userId = this.state.editNote.id,
         title = e.target.elements.editTitle.value,
         content = e.target.elements.editContent.value;
@@ -171,7 +186,7 @@ class EditNoteForm extends Component {
   }
 
   render() {
-    console.log('ENFs:', this.state);
+    // console.log('ENFs:', this.state);
     if (this.props.editMode === false) {
       return <Redirect to="/dashboard" />
     }
@@ -202,6 +217,33 @@ class EditNoteForm extends Component {
                             value={this.state.newTagValue}
                           >Add</button>
                         </div>
+    const folderChips = <ul>
+                        {(this.state.editedValues.folders) 
+                          ? this.state.editedValues.folders.map(folder => {
+                              return (<li key={folder}>
+                                      {folder}
+                                      <button 
+                                        onClick={this.removeFolder}
+                                        value={folder}
+                                      >&times;</button>
+                                    </li>
+                                  )}) 
+                          : <p>No folders to edit</p>}
+                      </ul> 
+    const addFolderInput = <div className="add-folder-input-container">
+      <label>Add folders:</label>
+      <input 
+        id="add-folder"
+        type="text"
+        placeholder="Add a folder..."
+        onChange={this.handleAddFolder}
+      />
+      <button
+        onClick={this.addFolder}
+        value={this.state.newFolderValue}
+      >Add</button>
+    </div>
+
 
     return(
       <div className="edit-note-form-container">
@@ -237,20 +279,12 @@ class EditNoteForm extends Component {
           </div>
 
           <div className="edit-folders-container"> 
-            <button name="add-folders" onClick={this.renderFolderInput}>Add folders</button>
-            {/* <ul>
-              {(this.state.editedValues.folders.length > 0) 
-                ? this.state.editedValues.folders.map(folder => {
-                    return <li key={folder._id}>
-                            {folder.name}
-                            <button 
-                              onClick={this.removeFolder}
-                              value={folder._id}
-                            >&times;</button>
-                          </li>
-                        }) 
-                : <p>No folders to edit</p>}
-            </ul> */}
+            {(this.state.renderFolderInput)
+              ? null 
+              : <button name="add-folders" onClick={this.renderFolderInput}>Add folders</button>}
+            {(!this.state.renderFolderInput)
+              ? folderChips
+              : addFolderInput}
           </div>
           <button type="submit">Save Changes</button>
           <button onClick={this.cancelEdit}>Cancel</button>
