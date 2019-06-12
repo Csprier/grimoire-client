@@ -1,3 +1,11 @@
+.edit-note-form-container {
+  border: 1px solid white;
+}
+.edit-note-form-container form {
+  display: flex;
+  flex-direction: column;
+}
+
 .edit-tags-container {
   border: 1px solid white;
 }

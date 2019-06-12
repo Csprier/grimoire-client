@@ -6,7 +6,7 @@ import { Redirect } from 'react-router-dom';
 import { utility } from '../utility';
 
 // Actions
-import { toggleEditMode, getNoteByIdToEdit } from '../../actions/notes.actions';
+import { toggleEditMode, getNoteByIdToEdit, tagsToNewNote } from '../../actions/notes.actions';
 
 // CSS 
 import '../css/notes/edit-note.css';
@@ -173,8 +173,36 @@ class EditNoteForm extends Component {
       return <Redirect to="/dashboard" />
     }
 
+    const tagChips = <ul>
+                      {(this.state.editedValues.tags.length > 0) 
+                        ? this.state.editedValues.tags.map(tag => {
+                            return (<li key={tag}>
+                                      {/* {tagsToNewNote} */}
+                                      {tag}
+                                      <button 
+                                        onClick={this.removeTag}
+                                        value={tag}
+                                      >&times;</button>
+                                    </li>
+                                  )}) 
+                        : <p>No tags to edit</p>}
+                    </ul>
+    const addTagInput = <div className="add-tag-input-container">
+                          <label>Add tags:</label>
+                          <input 
+                            id="add-tag"
+                            type="text"
+                            placeholder="Add a tag..."
+                            onChange={this.handleAddTag}
+                          />
+                          <button 
+                            onClick={this.addTag} 
+                            value={this.state.newTagValue}
+                          >Add</button>
+                        </div>
+
     return(
-      <div>
+      <div className="edit-note-form-container">
         <h4>Edit Note</h4>
         <form onSubmit={this.handleEditSubmit}>
           <label>
@@ -198,36 +226,12 @@ class EditNoteForm extends Component {
           </label>
 
           <div className="edit-tags-container">
-            {(this.state.renderTagInput === true) 
+            {(this.state.renderTagInput) 
               ? null 
               : <button name="add-tags" onClick={this.renderTagInput}>Add tags</button>}
-            {(this.state.renderTagInput === false)
-              ? <ul>
-                {(this.state.editNote.tags.length > 0) 
-                  ? this.state.editedNote.tags.map(tag => {
-                      return <li key={tag._id}>
-                                {tag.name}
-                                <button 
-                                  onClick={this.removeTag}
-                                  value={tag._id}
-                                >&times;</button>
-                              </li>
-                            }) 
-                  : <p>No tags to edit</p>}
-                </ul>
-              : <div className="add-tag-input-container">
-                  <label>Add tags:</label>
-                  <input 
-                    id="add-tag"
-                    type="text"
-                    placeholder="Add a tag..."
-                    onChange={this.handleAddTag}
-                  />
-                  <button 
-                    onClick={this.addTag} 
-                    value={this.state.newTagValue}
-                  >Add</button>
-                </div>}
+            {(!this.state.renderTagInput)
+              ? tagChips
+              : addTagInput}
           </div>
 
           <div className="edit-folders-container"> 
