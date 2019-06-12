@@ -114,7 +114,10 @@ class EditNoteForm extends Component {
     let tag = e.target.value;
     this.setState({
       editedValues: {
-        tags: (this.state.editedValues.tags !== []) ? [ ...this.state.editedValues.tags, tag ] : this.state.editedValues.push(tag)
+        tags: (this.state.editedValues.tags !== []) 
+          ? [ ...this.state.editedValues.tags, tag ] 
+          : this.state.editedValues.push(tag),
+        folders: [ ...this.state.editedValues.folders ]
        },
       renderTagInput: false,
       newTagValue: ''
@@ -132,7 +135,10 @@ class EditNoteForm extends Component {
     let folder = e.target.value;
     this.setState({
       editedValues: {
-        folders: (this.state.editedValues.folders !== []) ? [ ...this.state.editedValues.folders, folder ] : this.state.editedValues.folders.push(folder)
+        tags: [ ...this.state.editedValues.tags ],
+        folders: (this.state.editedValues.folders !== []) 
+          ? [ ...this.state.editedValues.folders, folder ] 
+          : this.state.editedValues.folders.push(folder)
       },
       renderFolderInput: false,
       newFolderValue: ''
@@ -145,7 +151,8 @@ class EditNoteForm extends Component {
     let tagToRemove = e.target.value;
     this.setState({
       editedValues: {
-        tags: this.state.editedValues.tags.filter(tag => tag !== tagToRemove)
+        tags: this.state.editedValues.tags.filter(tag => tag !== tagToRemove),
+        folders: [ ...this.state.editedValues.folders ]
       }
     });
   }
@@ -154,6 +161,7 @@ class EditNoteForm extends Component {
     let folderToRemove = e.target.value;
     this.setState({
       editedValues: {
+        tags: [ ...this.state.editedValues.tags ],
         folders: this.state.editedValues.folders.filter(folder => folder !== folderToRemove)
       }
     });
@@ -162,7 +170,7 @@ class EditNoteForm extends Component {
   // Submit
   handleEditSubmit = (e) => {
     e.preventDefault();
-    let userId = this.state.editNote.id,
+    let userId = this.props.user.id,
         title = e.target.elements.editTitle.value,
         content = e.target.elements.editContent.value;
 
@@ -186,7 +194,7 @@ class EditNoteForm extends Component {
   }
 
   render() {
-    // console.log('ENFs:', this.state);
+    console.log('ENFs:', this.state);
     if (this.props.editMode === false) {
       return <Redirect to="/dashboard" />
     }
@@ -202,7 +210,7 @@ class EditNoteForm extends Component {
                                       >&times;</button>
                                     </li>
                                   )}) 
-                        : <p>No tags to edit</p>}
+                        : null}
                     </ul>
     const addTagInput = <div className="add-tag-input-container">
                           <label>Add tags:</label>
@@ -228,21 +236,21 @@ class EditNoteForm extends Component {
                                       >&times;</button>
                                     </li>
                                   )}) 
-                          : <p>No folders to edit</p>}
+                          : null}
                       </ul> 
     const addFolderInput = <div className="add-folder-input-container">
-      <label>Add folders:</label>
-      <input 
-        id="add-folder"
-        type="text"
-        placeholder="Add a folder..."
-        onChange={this.handleAddFolder}
-      />
-      <button
-        onClick={this.addFolder}
-        value={this.state.newFolderValue}
-      >Add</button>
-    </div>
+                            <label>Add folders:</label>
+                            <input 
+                              id="add-folder"
+                              type="text"
+                              placeholder="Add a folder..."
+                              onChange={this.handleAddFolder}
+                            />
+                            <button
+                              onClick={this.addFolder}
+                              value={this.state.newFolderValue}
+                            >Add</button>
+                          </div>
 
 
     return(
