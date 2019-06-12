@@ -30,6 +30,7 @@ class EditNoteForm extends Component {
       },
       renderTagInput: false,
       renderFolderInput: false,
+      newContentValue: '',
       newTagValue: '',
       newFolderValue: ''
     }
@@ -46,6 +47,7 @@ class EditNoteForm extends Component {
     this.cancelEdit = this.cancelEdit.bind(this);
   }
 
+  // When EditNoteForm mounts, dispatch an async action to get the note's property values
   componentDidMount() {
     this.props.dispatch(getNoteByIdToEdit(this.props.noteToEdit))
       .then((res) => {
@@ -54,6 +56,7 @@ class EditNoteForm extends Component {
       });
   }
 
+  // Update values in state to represent what goes into the note to be edited
   updateNoteValuesInComponentState = (note) => {
     this.setState({
       editNote: {
@@ -64,12 +67,15 @@ class EditNoteForm extends Component {
         folders: note.folders
       },
       editedValues: {
+        title: note.title,
+        content: note.content,
         tags: note.tags,
         folders: note.folders
       }
     })
   }
 
+  // update values in state onchange
   handleTitleValueChange = (e) => {
     e.preventDefault();
     this.setState = ({
@@ -78,27 +84,23 @@ class EditNoteForm extends Component {
       }
     });
   }
-
   handleContentValueChange = (e) => {
     e.preventDefault();
     this.setState = ({
-      editedValues: {
-        content: e.target.value
-      }
+      newContentValue: e.target.value
     });
   }
 
-  renderTagInput = (e) => {
-    e.preventDefault();
+  // set state values to conditionally render input elements to add tags/folders
+  renderTagInput = () => {
+    // e.preventDefault();
     this.setState({
-      renderTagInput: !this.state.renderTagInput
+      renderTagInput: true
     });
   }
-
-  renderFolderInput = (e) => {
-    e.preventDefault();
+  renderFolderInput = () => {
     this.setState({
-      renderFolderInput: !this.state.renderFolderInput
+      renderFolderInput: true
     });
   }
 
@@ -147,7 +149,6 @@ class EditNoteForm extends Component {
 
   // Remove chips
   removeTag = (e) => {
-    e.preventDefault();
     let tagToRemove = e.target.value;
     this.setState({
       editedValues: {
@@ -157,7 +158,6 @@ class EditNoteForm extends Component {
     });
   }
   removeFolder = (e) => {
-    e.preventDefault();
     let folderToRemove = e.target.value;
     this.setState({
       editedValues: {
@@ -194,7 +194,7 @@ class EditNoteForm extends Component {
   }
 
   render() {
-    console.log('ENFs:', this.state);
+    // console.log('ENFs:', this.state);
     if (this.props.editMode === false) {
       return <Redirect to="/dashboard" />
     }
@@ -270,13 +270,13 @@ class EditNoteForm extends Component {
             Content:
             <textarea 
               name="editContent"
-              value={this.state.editNote.content}
+              defaultValue={this.state.editedValues.content}
+              placeholder={this.state.editedValues.content}
               type="text"
               rows="4" cols="50"
-              onChange={(e) => this.handleContentValueChange(e)}
+              onChange={e => this.setState({ newContentValue: e.target.value })}
             />  
           </label>
-
           <div className="edit-tags-container">
             {(this.state.renderTagInput) 
               ? null 
