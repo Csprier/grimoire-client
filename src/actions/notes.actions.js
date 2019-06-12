@@ -198,6 +198,8 @@ export const DELETE_NOTE_ERROR = 'DELETE_NOTE_ERROR',
       });
   }
 
+
+/* ******
 // =======================================================
 // REMOVE TAG FROM NOTE ACTIONS
 // =======================================================
@@ -348,6 +350,7 @@ export const FOLDERS_TO_NEW_NOTE = 'FOLDERS_TO_NEW_NOTE',
       folders
     }
   }
+***** */
 
 // TOGGLE EDIT MODE IN REDUCER INITIAL STATE FOR EDITING SINGLE NOTES
 export const TOGGLE_EDIT_MODE = 'TOGGLE_EDIT_MODE',
@@ -379,6 +382,7 @@ export const GET_NOTE_BY_ID_TO_EDIT = 'GET_NOTE_BY_ID_TO_EDIT',
     })
     .then(res => {
       // let noteToEdit = res.data;
+      console.log(res);
       let noteToEdit = {
         id: res.data._id,
         title: res.data.title,
@@ -390,4 +394,22 @@ export const GET_NOTE_BY_ID_TO_EDIT = 'GET_NOTE_BY_ID_TO_EDIT',
       return noteToEdit;
     })
     .catch(e => console.error(e));
+  }
+
+// ========================================================
+// PUT REQUEST TO EDIT A NOTE BY ID
+// ========================================================
+export const EDIT_NOTE_PUT_REQUEST = 'EDIT_NOTE_PUT_REQUEST',
+  editNotePutRequest = (id, note) => (dispatch, getState) => {
+    let url = `${API_BASE_URL}/notes/${id}`;
+    const authToken = getState().auth.authToken;
+    return Axios.put(url, note, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'Authorization': 'bearer ' + authToken
+      }
+    })
+    .then(res => console.log('PUT RESPONSE', res))
+    .catch((err) => console.error(err));
   }

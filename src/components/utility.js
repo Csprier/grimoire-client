@@ -44,9 +44,6 @@ export const utility = {
     }
   },
   makeNewFolderArray: (folders, existingFolders, userId) => {
-    console.log('folders', folders);
-    console.log('existingFolders', existingFolders);
-    console.log('userId', userId);
     if (folders !== undefined) {
       let newFolders = {};
       let folderArray = [];

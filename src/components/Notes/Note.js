@@ -3,7 +3,7 @@ import { Redirect } from 'react-router';
 import { connect } from 'react-redux';
 
 // Async Actions
-import { deleteNoteById, removeTagFromNoteById, removeFolderFromNoteById } from '../../actions/notes.actions';
+import { deleteNoteById } from '../../actions/notes.actions';
 import { toggleEditMode, noteToEdit } from '../../actions/notes.actions';
 
 // CSS
@@ -29,25 +29,25 @@ class Note extends Component {
     this.props.dispatch(deleteNoteById(noteId));
   }
 
-  handleRemoveTagFromNote = (e) => {
-    let tagId = e.target.value,
-        { id, title, content, tags, folders } = this.props.note;
+  // handleRemoveTagFromNote = (e) => {
+  //   let tagId = e.target.value,
+  //       { id, title, content, tags, folders } = this.props.note;
 
-    let note = { id, title, content, tags, folders };
+  //   let note = { id, title, content, tags, folders };
 
-    console.log(`Delete tag ${tagId} from Note ${note.id}.`)
-    this.props.dispatch(removeTagFromNoteById(note, tagId));
-  }
+  //   console.log(`Delete tag ${tagId} from Note ${note.id}.`)
+  //   this.props.dispatch(removeTagFromNoteById(note, tagId));
+  // }
 
-  handleRemoveFolderFromNote = (e) => {
-    let folderId = e.target.value,
-        { id, title, content, tags, folders } = this.props.note;
+  // handleRemoveFolderFromNote = (e) => {
+  //   let folderId = e.target.value,
+  //       { id, title, content, tags, folders } = this.props.note;
 
-    let note = { id, title, content, tags, folders };
+  //   let note = { id, title, content, tags, folders };
 
-    console.log(`Delete folder ${folderId} from Note ${note.id}.`);
-    this.props.dispatch(removeFolderFromNoteById(note, folderId));
-  }
+  //   console.log(`Delete folder ${folderId} from Note ${note.id}.`);
+  //   this.props.dispatch(removeFolderFromNoteById(note, folderId));
+  // }
 
   render() {
     const { key, title, id, content, tags, folders } = this.props.note;
@@ -72,10 +72,6 @@ class Note extends Component {
                     return (
                       <li key={tag.name}>
                         {tag.name}
-                        <button
-                          onClick={this.handleRemoveTagFromNote}
-                          value={tag._id}
-                        >X</button>
                       </li>
                     )
                   } else {
@@ -93,10 +89,6 @@ class Note extends Component {
                     return (
                       <li key={folder.name}>
                         {folder.name}
-                        <button
-                          onClick={this.handleRemoveFolderFromNote}
-                          value={folder._id}
-                        >X</button>
                       </li>
                     )
                   } else {

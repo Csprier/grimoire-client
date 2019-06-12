@@ -6,7 +6,7 @@ import { Redirect } from 'react-router-dom';
 import { utility } from '../utility';
 
 // Actions
-import { toggleEditMode, getNoteByIdToEdit } from '../../actions/notes.actions';
+import { toggleEditMode, getNoteByIdToEdit, editNotePutRequest } from '../../actions/notes.actions';
 
 // CSS 
 import '../css/notes/edit-note.css';
@@ -60,7 +60,7 @@ class EditNoteForm extends Component {
   updateNoteValuesInComponentState = (note) => {
     this.setState({
       editNote: {
-        id: note._id,
+        id: note.id,
         title: note.title,
         content: note.content,
         tags: note.tags,
@@ -92,21 +92,22 @@ class EditNoteForm extends Component {
   }
 
   // set state values to conditionally render input elements to add tags/folders
-  renderTagInput = () => {
-    // e.preventDefault();
+  renderTagInput = (e) => {
+    e.preventDefault();
     this.setState({
-      renderTagInput: true
+      renderTagInput: !this.state.renderTagInput
     });
   }
-  renderFolderInput = () => {
+  renderFolderInput = (e) => {
+    e.preventDefault();
     this.setState({
-      renderFolderInput: true
+      renderFolderInput: !this.state.renderFolderInput
     });
   }
 
   // Add chips
   handleAddTag = (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     this.setState({
       newTagValue: e.target.value
     });
@@ -149,6 +150,7 @@ class EditNoteForm extends Component {
 
   // Remove chips
   removeTag = (e) => {
+    e.preventDefault();
     let tagToRemove = e.target.value;
     this.setState({
       editedValues: {
@@ -158,6 +160,7 @@ class EditNoteForm extends Component {
     });
   }
   removeFolder = (e) => {
+    e.preventDefault();
     let folderToRemove = e.target.value;
     this.setState({
       editedValues: {
@@ -171,24 +174,27 @@ class EditNoteForm extends Component {
   handleEditSubmit = (e) => {
     e.preventDefault();
     let userId = this.props.user.id,
+        id = this.state.editNote.id,
         title = e.target.elements.editTitle.value,
         content = e.target.elements.editContent.value;
 
     let formattedTags = utility.makeNewTagsArray(this.state.editedValues.tags, this.props.tags, userId),
         formattedFolders = utility.makeNewFolderArray(this.state.editedValues.folders, this.props.folders, userId);
 
-    let form = {
+    let updatedNote = {
       userId,
+      id,
       title,
       content,
       tags: formattedTags,
       folders: formattedFolders
     }
-    console.log(form);
+    console.log('Sending updated note to the server: ', updatedNote)
+    this.props.dispatch(editNotePutRequest(id, updatedNote))
   }
 
   // Redirect/cancel, move back to dashboard/notelist
-  cancelEdit = e => {
+  cancelEdit = (e) => {
     e.preventDefault();
     this.props.dispatch(toggleEditMode());
   }
@@ -205,7 +211,7 @@ class EditNoteForm extends Component {
                             return (<li key={tag}>
                                       {tag}
                                       <button 
-                                        onClick={this.removeTag}
+                                        onClick={(e) => this.removeTag(e)}
                                         value={tag}
                                       >&times;</button>
                                     </li>
@@ -231,7 +237,7 @@ class EditNoteForm extends Component {
                               return (<li key={folder}>
                                       {folder}
                                       <button 
-                                        onClick={this.removeFolder}
+                                        onClick={(e) => this.removeFolder(e)}
                                         value={folder}
                                       >&times;</button>
                                     </li>
@@ -274,7 +280,7 @@ class EditNoteForm extends Component {
               placeholder={this.state.editedValues.content}
               type="text"
               rows="4" cols="50"
-              onChange={e => this.setState({ newContentValue: e.target.value })}
+              onChange={e => this.handleContentValueChange(e)}
             />  
           </label>
           <div className="edit-tags-container">
