@@ -190,7 +190,8 @@ class EditNoteForm extends Component {
       folders: formattedFolders
     }
     console.log('Sending updated note to the server: ', updatedNote)
-    this.props.dispatch(editNotePutRequest(id, updatedNote))
+    this.props.dispatch(editNotePutRequest(id, updatedNote));
+    this.props.dispatch(toggleEditMode());
   }
 
   // Redirect/cancel, move back to dashboard/notelist
