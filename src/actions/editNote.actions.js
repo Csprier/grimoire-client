@@ -1,5 +1,6 @@
 import Axios from 'axios';
 import { API_BASE_URL } from '../config';
+import { getNotes } from './notes.actions';
 
 // ================================================
 // MODIFY(ADD/REMOVE) LIST OF NOTES AND FOLDERS 
@@ -121,6 +122,7 @@ editNotePutRequest = (id, note) => (dispatch, getState) => {
   })
   .then(res => {
     console.log('PUT RESPONSE', res)
+    dispatch(getNotes());
   })
   .catch((err) => console.error(err));
 }

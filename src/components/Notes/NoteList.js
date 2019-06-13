@@ -22,11 +22,12 @@ class NoteList extends Component {
     this.props.dispatch(getFolders());
     console.log('Notes, tags, and folders fetched.')
   }
-  componentDidUpdate(prevProps) {
-    if (this.props.notes !== prevProps.notes) {
-      this.props.dispatch(getNotes());
-    }
-  }
+  // componentDidUpdate(prevProps) {
+  //   if (this.props.notes !== prevProps.notes) {
+  //     this.props.dispatch(getNotes());
+  //     return;
+  //   }
+  // }
 
   render() {
     const defaultNotes = (this.props.notes !== undefined) 
