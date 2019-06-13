@@ -16,7 +16,11 @@ import {
   addNotesPreExistingFolders,
   editNotePutRequest, 
   renderTagInputAction,
-  renderFolderInputAction
+  renderFolderInputAction,
+  editNewTitleValue,
+  editNewContentValue,
+  editNewTagValue,
+  editNewFolderValue
 } from '../../actions/editNote.actions';
 
 // CSS 
@@ -97,17 +101,19 @@ class EditNoteForm extends Component {
   // update values in state onchange
   handleTitleValueChange = (e) => {
     e.preventDefault();
-    this.setState = ({
-      editedValues: {
-        title: e.target.value
-      }
-    });
+    this.props.dispatch(editNewTitleValue(e.target.value));
+    // this.setState = ({
+    //   editedValues: {
+    //     title: e.target.value
+    //   }
+    // });
   }
   handleContentValueChange = (e) => {
     e.preventDefault();
-    this.setState = ({
-      newContentValue: e.target.value
-    });
+    this.props.dispatch(editNewContentValue(e.target.value));
+    // this.setState = ({
+    //   newContentValue: e.target.value
+    // });
   }
 
   // set state values to conditionally render input elements to add tags/folders
@@ -123,9 +129,10 @@ class EditNoteForm extends Component {
   // Add Tag chips
   handleAddTag = (e) => {
     e.preventDefault();
-    this.setState({
-      newTagValue: e.target.value
-    });
+    this.props.dispatch(editNewTagValue(e.target.value));
+    // this.setState({
+    //   newTagValue: e.target.value
+    // });
   }
   addTag = (e) => {
     e.preventDefault();
@@ -139,9 +146,10 @@ class EditNoteForm extends Component {
   // Add Folder chips
   handleAddFolder = (e) => {
     e.preventDefault();
-    this.setState({
-      newFolderValue: e.target.value
-    });
+    this.props.dispatch(editNewFolderValue(e.target.value));
+    // this.setState({
+    //   newFolderValue: e.target.value
+    // });
   }
   addFolder = (e) => {
     e.preventDefault();
