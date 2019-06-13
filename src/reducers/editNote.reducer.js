@@ -4,12 +4,16 @@ import {
   REMOVE_TAG_FOR_EDIT_NOTE,
   REMOVE_FOLDER_FOR_EDIT_NOTE,
   ADD_NOTES_PRE_EXISTING_TAGS,
-  ADD_NOTES_PRE_EXISTING_FOLDERS
+  ADD_NOTES_PRE_EXISTING_FOLDERS,
+  TOGGLE_RENDER_TAG_INPUT,
+  TOGGLE_RENDER_FOLDER_INPUT
 } from '../actions/editNote.actions';
 
 const initialState = {
   tags: [],
   folders: [],
+  renderTagInput: false,
+  renderFolderInput: false,
   error: null
 }
 
@@ -44,6 +48,16 @@ export default function editNoteReducer(state = initialState, action) {
       return {
         ...state,
         folders: action.folders
+      }
+    case TOGGLE_RENDER_TAG_INPUT:
+      return {
+        ...state,
+        renderTagInput: !state.renderTagInput
+      }
+    case TOGGLE_RENDER_FOLDER_INPUT:
+      return {
+        ...state,
+        renderFolderInput: !state.renderFolderInput
       }
     default:
       return state;

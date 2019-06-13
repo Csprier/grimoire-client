@@ -48,6 +48,19 @@ export const ADD_NOTES_PRE_EXISTING_FOLDERS = 'ADD_NOTES_PRE_EXISTING_FOLDERS',
     }
   }
 
+export const TOGGLE_RENDER_TAG_INPUT = 'TOGGLE_RENDER_TAG_INPUT',
+  renderTagInputAction = () => {
+    return {
+      type: TOGGLE_RENDER_TAG_INPUT
+    }
+  }
+  export const TOGGLE_RENDER_FOLDER_INPUT = 'TOGGLE_RENDER_FOLDER_INPUT',
+  renderFolderInputAction = () => {
+    return {
+      type: TOGGLE_RENDER_FOLDER_INPUT
+    }
+  }
+
 // ========================================================
 // PUT REQUEST TO EDIT A NOTE BY ID
 // ========================================================

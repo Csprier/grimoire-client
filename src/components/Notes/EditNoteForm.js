@@ -14,7 +14,9 @@ import {
   removeFolderForEditNote, 
   addNotesPreExistingTags,
   addNotesPreExistingFolders,
-  editNotePutRequest 
+  editNotePutRequest, 
+  renderTagInputAction,
+  renderFolderInputAction
 } from '../../actions/editNote.actions';
 
 // CSS 
@@ -38,8 +40,8 @@ class EditNoteForm extends Component {
         tags: [],
         folders: []
       },
-      renderTagInput: false,
-      renderFolderInput: false,
+      // renderTagInput: false,
+      // renderFolderInput: false,
       newContentValue: '',
       newTagValue: '',
       newFolderValue: ''
@@ -112,15 +114,17 @@ class EditNoteForm extends Component {
   // set state values to conditionally render input elements to add tags/folders
   renderTagInput = (e) => {
     e.preventDefault();
-    this.setState({
-      renderTagInput: true
-    });
+    this.props.dispatch(renderTagInputAction());
+    // this.setState({
+    //   renderTagInput: true
+    // });
   }
   renderFolderInput = (e) => {
     e.preventDefault();
-    this.setState({
-      renderFolderInput: true
-    });
+    this.props.dispatch(renderFolderInputAction());
+    // this.setState({
+    //   renderFolderInput: true
+    // });
   }
 
   // Add chips
@@ -134,8 +138,8 @@ class EditNoteForm extends Component {
     e.preventDefault();
     let tag = e.target.value;
     this.props.dispatch(addTagForEditNote(tag));
+    this.props.dispatch(renderTagInputAction());
     this.setState({
-      renderTagInput: false,
       newTagValue: ''
     });
   }
@@ -150,8 +154,8 @@ class EditNoteForm extends Component {
     e.preventDefault();
     let folder = e.target.value;
     this.props.dispatch(addFolderForEditNote(folder));
+    this.props.dispatch(renderFolderInputAction());
     this.setState({
-      renderFolderInput: false,
       newFolderValue: ''
     });
   }
@@ -314,19 +318,19 @@ class EditNoteForm extends Component {
             />  
           </label>
           <div className="edit-tags-container">
-            {(this.state.renderTagInput) 
+            {(this.props.renderTagInput) 
               ? null 
               : <button name="add-tags" onClick={this.renderTagInput}>Add tags</button>}
-            {(!this.state.renderTagInput)
+            {(!this.props.renderTagInput)
               ? tagChips
               : addTagInput}
           </div>
 
           <div className="edit-folders-container"> 
-            {(this.state.renderFolderInput)
+            {(this.props.renderFolderInput)
               ? null 
               : <button name="add-folders" onClick={this.renderFolderInput}>Add folders</button>}
-            {(!this.state.renderFolderInput)
+            {(!this.props.renderFolderInput)
               ? folderChips
               : addFolderInput}
           </div>
@@ -346,7 +350,9 @@ const mapStateToProps = state => ({
   tags: state.tags.data,
   folders: state.folders.data,
   reduxTags: state.editNote.tags,
-  reduxFolders: state.editNote.folders
+  reduxFolders: state.editNote.folders,
+  renderTagInput: state.editNote.renderTagInput,
+  renderFolderInput: state.editNote.renderFolderInput,
 });
 
 export default connect(mapStateToProps)(EditNoteForm);
