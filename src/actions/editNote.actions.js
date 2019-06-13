@@ -121,7 +121,7 @@ editNotePutRequest = (id, note) => (dispatch, getState) => {
     }
   })
   .then(res => {
-    console.log('PUT RESPONSE', res)
+    // console.log('PUT RESPONSE', res);
     dispatch(getNotes());
   })
   .catch((err) => console.error(err));

@@ -236,7 +236,7 @@ export const GET_NOTE_BY_ID_TO_EDIT = 'GET_NOTE_BY_ID_TO_EDIT',
         tags: (res.data.tags === undefined) ? [] : res.data.tags.map(tag => tag.name),
         folders: (res.data.folders === undefined) ? [] : res.data.folders.map(folder => folder.name)
       }
-      console.log('Note To Edit in Actions', noteToEdit);
+      // console.log('Note To Edit in Actions', noteToEdit);
       return noteToEdit;
     })
     .catch(e => console.error(e));

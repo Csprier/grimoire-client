@@ -18,7 +18,7 @@ class Note extends Component {
   redirectToEditNoteForm = (e) => {
     e.preventDefault();
     let noteId = e.target.value;
-    console.log('Note to edit id:', noteId)
+    // console.log('Note to edit id:', noteId)
     this.props.dispatch(noteToEdit(noteId));
     this.props.dispatch(toggleEditMode());
   }
@@ -28,26 +28,6 @@ class Note extends Component {
     console.log(`Deleting: ${noteId}`);
     this.props.dispatch(deleteNoteById(noteId));
   }
-
-  // handleRemoveTagFromNote = (e) => {
-  //   let tagId = e.target.value,
-  //       { id, title, content, tags, folders } = this.props.note;
-
-  //   let note = { id, title, content, tags, folders };
-
-  //   console.log(`Delete tag ${tagId} from Note ${note.id}.`)
-  //   this.props.dispatch(removeTagFromNoteById(note, tagId));
-  // }
-
-  // handleRemoveFolderFromNote = (e) => {
-  //   let folderId = e.target.value,
-  //       { id, title, content, tags, folders } = this.props.note;
-
-  //   let note = { id, title, content, tags, folders };
-
-  //   console.log(`Delete folder ${folderId} from Note ${note.id}.`);
-  //   this.props.dispatch(removeFolderFromNoteById(note, folderId));
-  // }
 
   render() {
     const { key, title, id, content, tags, folders } = this.props.note;
