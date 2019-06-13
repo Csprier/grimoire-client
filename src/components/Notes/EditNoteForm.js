@@ -217,6 +217,8 @@ class EditNoteForm extends Component {
 
   render() {
     // console.log('ENFs:', this.state);
+    console.log(this.props.reduxTags);
+    console.log(this.props.reduxFolders);
     if (this.props.editMode === false) {
       return <Redirect to="/dashboard" />
     }
@@ -330,7 +332,9 @@ const mapStateToProps = state => ({
   editMode: state.notes.editMode,
   noteToEdit: state.notes.noteToEdit,
   tags: state.tags.data,
-  folders: state.folders.data
+  folders: state.folders.data,
+  reduxTags: state.editNote.tags,
+  reduxFolders: state.editNote.folders
 });
 
 export default connect(mapStateToProps)(EditNoteForm);
