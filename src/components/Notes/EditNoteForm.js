@@ -44,10 +44,10 @@ class EditNoteForm extends Component {
         tags: [],
         folders: []
       },
-      newTitleValue: '',
-      newContentValue: '',
-      newTagValue: '',
-      newFolderValue: ''
+    tnewTitleValue: '',
+      cwContentValue: '',
+      tagValue: '',
+      folderValue: ''
     }
     this.updateNoteValuesInComponentState = this.updateNoteValuesInComponentState.bind(this);
     this.handleTitleValueChange = this.handleTitleValueChange.bind(this);
@@ -78,7 +78,7 @@ class EditNoteForm extends Component {
 
   // Update values in state to represent what goes into the note to be edited
   updateNoteValuesInComponentState = (note) => {
-    console.log('updateNoteValuesInComponentState', note);
+    // console.log('updateNoteValuesInComponentState', note);
     this.setState({
       editNote: {
         id: note.id,
@@ -102,18 +102,10 @@ class EditNoteForm extends Component {
   handleTitleValueChange = (e) => {
     e.preventDefault();
     this.props.dispatch(editNewTitleValue(e.target.value));
-    // this.setState = ({
-    //   editedValues: {
-    //     title: e.target.value
-    //   }
-    // });
   }
   handleContentValueChange = (e) => {
     e.preventDefault();
     this.props.dispatch(editNewContentValue(e.target.value));
-    // this.setState = ({
-    //   newContentValue: e.target.value
-    // });
   }
 
   // set state values to conditionally render input elements to add tags/folders
@@ -130,9 +122,6 @@ class EditNoteForm extends Component {
   handleAddTag = (e) => {
     e.preventDefault();
     this.props.dispatch(editNewTagValue(e.target.value));
-    // this.setState({
-    //   newTagValue: e.target.value
-    // });
   }
   addTag = (e) => {
     e.preventDefault();
@@ -147,9 +136,6 @@ class EditNoteForm extends Component {
   handleAddFolder = (e) => {
     e.preventDefault();
     this.props.dispatch(editNewFolderValue(e.target.value));
-    // this.setState({
-    //   newFolderValue: e.target.value
-    // });
   }
   addFolder = (e) => {
     e.preventDefault();
@@ -188,10 +174,14 @@ class EditNoteForm extends Component {
   // Submit
   handleEditSubmit = (e) => {
     e.preventDefault();
-    let userId = this.props.user.id,
-        id = this.state.editNote.id,
-        title = e.target.elements.editTitle.value,
-        content = (e.target.elements.editContent.value === '') ? e.target.elements.editContent.value : this.state.editNote.content;
+    let userId = this.props.user.id;
+    let id = this.state.editNote.id;
+    let title = (this.props.titleValue === '') 
+                  ? this.state.editNote.title 
+                  : this.props.titleValue,
+        content = (this.props.contentValue === '') 
+                    ? this.state.editNote.content
+                    : this.props.contentValue;
 
     let formattedTags = utility.makeNewTagsArray(this.props.reduxTags, this.props.tags, userId),
         formattedFolders = utility.makeNewFolderArray(this.props.reduxFolders, this.props.folders, userId);
@@ -263,7 +253,7 @@ class EditNoteForm extends Component {
                           />
                           <button 
                             onClick={this.addTag} 
-                            value={this.state.newTagValue}
+                            value={this.props.tagValue}
                           >Add</button>
                         </div>
     const folderChips = <ul>
@@ -289,7 +279,7 @@ class EditNoteForm extends Component {
                             />
                             <button
                               onClick={this.addFolder}
-                              value={this.state.newFolderValue}
+                              value={this.props.folderValue}
                             >Add</button>
                           </div>
 
@@ -354,6 +344,10 @@ const mapStateToProps = state => ({
   reduxFolders: state.editNote.folders,
   renderTagInput: state.editNote.renderTagInput,
   renderFolderInput: state.editNote.renderFolderInput,
+  titleValue: state.editNote.titleValue,
+  contentValue: state.editNote.contentValue,
+  tagValue: state.editNote.tagValue,
+  folderValue: state.editNote.folderValue
 });
 
 export default connect(mapStateToProps)(EditNoteForm);

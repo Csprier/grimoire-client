@@ -6,7 +6,11 @@ import {
   ADD_NOTES_PRE_EXISTING_TAGS,
   ADD_NOTES_PRE_EXISTING_FOLDERS,
   TOGGLE_RENDER_TAG_INPUT,
-  TOGGLE_RENDER_FOLDER_INPUT
+  TOGGLE_RENDER_FOLDER_INPUT,
+  EDIT_NEW_TITLE_VALUE,
+  EDIT_NEW_CONTENT_VALUE,
+  EDIT_NEW_TAG_VALUE,
+  EDIT_NEW_FOLDER_VALUE
 } from '../actions/editNote.actions';
 
 const initialState = {
@@ -43,6 +47,7 @@ export default function editNoteReducer(state = initialState, action) {
         ...state,
         folders: state.folders.filter(folder => folder !== action.folder)
       }
+    // LOAD TAGS AND FOLDERS THAT NOTE ALREADY HAS
     case ADD_NOTES_PRE_EXISTING_TAGS:
       return {
         ...state,
@@ -53,6 +58,7 @@ export default function editNoteReducer(state = initialState, action) {
         ...state,
         folders: action.folders
       }
+    // TOGGLE RENDERING INPUTS
     case TOGGLE_RENDER_TAG_INPUT:
       return {
         ...state,
@@ -62,6 +68,27 @@ export default function editNoteReducer(state = initialState, action) {
       return {
         ...state,
         renderFolderInput: !state.renderFolderInput
+      }
+    // EDITED VALUES
+    case EDIT_NEW_TITLE_VALUE:
+      return {
+        ...state,
+        titleValue: action.value
+      }
+    case EDIT_NEW_CONTENT_VALUE:
+      return {
+        ...state,
+        contentValue: action.value
+      }
+    case EDIT_NEW_TAG_VALUE:
+      return {
+        ...state,
+        tagValue: action.value
+      }
+    case EDIT_NEW_FOLDER_VALUE:
+      return {
+        ...state,
+        folderValue: action.value
       }
     default:
       return state;
