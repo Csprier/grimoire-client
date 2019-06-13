@@ -10,6 +10,10 @@ import {
 } from '../actions/editNote.actions';
 
 const initialState = {
+  titleValue: '',
+  contentValue: '',
+  tagValue: '',
+  folderValue: '',
   tags: [],
   folders: [],
   renderTagInput: false,

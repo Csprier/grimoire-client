@@ -40,8 +40,7 @@ class EditNoteForm extends Component {
         tags: [],
         folders: []
       },
-      // renderTagInput: false,
-      // renderFolderInput: false,
+      newTitleValue: '',
       newContentValue: '',
       newTagValue: '',
       newFolderValue: ''
@@ -115,21 +114,15 @@ class EditNoteForm extends Component {
   renderTagInput = (e) => {
     e.preventDefault();
     this.props.dispatch(renderTagInputAction());
-    // this.setState({
-    //   renderTagInput: true
-    // });
   }
   renderFolderInput = (e) => {
     e.preventDefault();
     this.props.dispatch(renderFolderInputAction());
-    // this.setState({
-    //   renderFolderInput: true
-    // });
   }
 
-  // Add chips
+  // Add Tag chips
   handleAddTag = (e) => {
-    // e.preventDefault();
+    e.preventDefault();
     this.setState({
       newTagValue: e.target.value
     });
@@ -143,7 +136,7 @@ class EditNoteForm extends Component {
       newTagValue: ''
     });
   }
-
+  // Add Folder chips
   handleAddFolder = (e) => {
     e.preventDefault();
     this.setState({
