@@ -53,6 +53,7 @@ export const ADD_NOTES_PRE_EXISTING_FOLDERS = 'ADD_NOTES_PRE_EXISTING_FOLDERS',
 // ========================================================
 export const EDIT_NOTE_PUT_REQUEST = 'EDIT_NOTE_PUT_REQUEST',
 editNotePutRequest = (id, note) => (dispatch, getState) => {
+  console.log(`editNotePutRequest(${id})`);
   let url = `${API_BASE_URL}/notes/${id}`;
   const authToken = getState().auth.authToken;
   return Axios.put(url, note, {
@@ -62,6 +63,8 @@ editNotePutRequest = (id, note) => (dispatch, getState) => {
       'Authorization': 'bearer ' + authToken
     }
   })
-  .then(res => console.log('PUT RESPONSE', res))
+  .then(res => {
+    console.log('PUT RESPONSE', res)
+  })
   .catch((err) => console.error(err));
 }

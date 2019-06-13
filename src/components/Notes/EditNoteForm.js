@@ -21,6 +21,7 @@ import {
 import '../css/notes/edit-note.css';
 
 class EditNoteForm extends Component {
+  _isMounted = false;
   constructor() {
     super();
     this.state = {
@@ -58,15 +59,21 @@ class EditNoteForm extends Component {
 
   // When EditNoteForm mounts, dispatch an async action to get the note's property values
   componentDidMount() {
+    this._isMounted = true;
     this.props.dispatch(getNoteByIdToEdit(this.props.noteToEdit))
       .then((res) => {
+        console.log('ENFCDMres', res);
         let noteValues = res;
         this.updateNoteValuesInComponentState(noteValues);
       });
   }
+  componentWillUnmount() {
+    this._isMounted = false;
+  }
 
   // Update values in state to represent what goes into the note to be edited
   updateNoteValuesInComponentState = (note) => {
+    console.log('updateNoteValuesInComponentState', note);
     this.setState({
       editNote: {
         id: note.id,
@@ -106,13 +113,13 @@ class EditNoteForm extends Component {
   renderTagInput = (e) => {
     e.preventDefault();
     this.setState({
-      renderTagInput: !this.state.renderTagInput
+      renderTagInput: true
     });
   }
   renderFolderInput = (e) => {
     e.preventDefault();
     this.setState({
-      renderFolderInput: !this.state.renderFolderInput
+      renderFolderInput: true
     });
   }
 
@@ -127,16 +134,10 @@ class EditNoteForm extends Component {
     e.preventDefault();
     let tag = e.target.value;
     this.props.dispatch(addTagForEditNote(tag));
-    // this.setState({
-    //   editedValues: {
-    //     tags: (this.state.editedValues.tags !== []) 
-    //       ? [ ...this.state.editedValues.tags, tag ] 
-    //       : this.state.editedValues.push(tag),
-    //     folders: [ ...this.state.editedValues.folders ]
-    //    },
-    //   renderTagInput: false,
-    //   newTagValue: ''
-    // });
+    this.setState({
+      renderTagInput: false,
+      newTagValue: ''
+    });
   }
 
   handleAddFolder = (e) => {
@@ -149,16 +150,10 @@ class EditNoteForm extends Component {
     e.preventDefault();
     let folder = e.target.value;
     this.props.dispatch(addFolderForEditNote(folder));
-    // this.setState({
-    //   editedValues: {
-    //     tags: [ ...this.state.editedValues.tags ],
-    //     folders: (this.state.editedValues.folders !== []) 
-    //       ? [ ...this.state.editedValues.folders, folder ] 
-    //       : this.state.editedValues.folders.push(folder)
-    //   },
-    //   renderFolderInput: false,
-    //   newFolderValue: ''
-    // });
+    this.setState({
+      renderFolderInput: false,
+      newFolderValue: ''
+    });
   }
 
   // Remove chips
@@ -191,10 +186,10 @@ class EditNoteForm extends Component {
     let userId = this.props.user.id,
         id = this.state.editNote.id,
         title = e.target.elements.editTitle.value,
-        content = e.target.elements.editContent.value;
+        content = (e.target.elements.editContent.value === '') ? e.target.elements.editContent.value : this.state.editNote.content;
 
-    let formattedTags = utility.makeNewTagsArray(this.state.editedValues.tags, this.props.tags, userId),
-        formattedFolders = utility.makeNewFolderArray(this.state.editedValues.folders, this.props.folders, userId);
+    let formattedTags = utility.makeNewTagsArray(this.props.reduxTags, this.props.tags, userId),
+        formattedFolders = utility.makeNewFolderArray(this.props.reduxFolders, this.props.folders, userId);
 
     let updatedNote = {
       userId,
@@ -212,20 +207,37 @@ class EditNoteForm extends Component {
   // Redirect/cancel, move back to dashboard/notelist
   cancelEdit = (e) => {
     e.preventDefault();
+    this.setState({
+      editNote: {
+        id: '',
+        title: '',
+        content: '',
+        tags: [],
+        folders: []
+      },
+      editedValues: {
+        title: '',
+        content: '',
+        tags: [],
+        folders: []
+      },
+      renderTagInput: false,
+      renderFolderInput: false,
+      newContentValue: '',
+      newTagValue: '',
+      newFolderValue: ''
+    });
     this.props.dispatch(toggleEditMode());
   }
 
   render() {
-    // console.log('ENFs:', this.state);
-    console.log(this.props.reduxTags);
-    console.log(this.props.reduxFolders);
     if (this.props.editMode === false) {
       return <Redirect to="/dashboard" />
     }
 
     const tagChips = <ul>
-                      {(this.state.editedValues.tags) 
-                        ? this.state.editedValues.tags.map(tag => {
+                      {(this.props.reduxTags) 
+                        ? this.props.reduxTags.map(tag => {
                             return (<li key={tag}>
                                       {tag}
                                       <button 
@@ -250,8 +262,8 @@ class EditNoteForm extends Component {
                           >Add</button>
                         </div>
     const folderChips = <ul>
-                        {(this.state.editedValues.folders) 
-                          ? this.state.editedValues.folders.map(folder => {
+                        {(this.props.reduxFolders) 
+                          ? this.props.reduxFolders.map(folder => {
                               return (<li key={folder}>
                                       {folder}
                                       <button 

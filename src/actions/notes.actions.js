@@ -228,7 +228,7 @@ export const GET_NOTE_BY_ID_TO_EDIT = 'GET_NOTE_BY_ID_TO_EDIT',
     })
     .then(res => {
       // let noteToEdit = res.data;
-      console.log(res);
+      // console.log(res.data);
       let noteToEdit = {
         id: res.data._id,
         title: res.data.title,
