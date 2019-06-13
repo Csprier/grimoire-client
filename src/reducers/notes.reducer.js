@@ -12,12 +12,6 @@ import {
   DELETE_NOTE_REQUEST,
   DELETE_NOTE_SUCCESS,
   DELETE_NOTE_ERROR,
-  // REMOVE_TAG_FROM_NOTE_REQUEST,
-  // REMOVE_TAG_FROM_NOTE_SUCCESS,
-  // REMOVE_TAG_FROM_NOTE_ERROR,
-  // REMOVE_FOLDER_FROM_NOTE_REQUEST,
-  // REMOVE_FOLDER_FROM_NOTE_SUCCESS,
-  // REMOVE_FOLDER_FROM_NOTE_ERROR,
   TOGGLE_EDIT_MODE,
   NOTE_TO_EDIT
 } from '../actions/notes.actions';
@@ -110,40 +104,7 @@ export default function notesReducer(state = initialState, action) {
         error: action.error,
         loading: false
       }
-    // // DELETE TAG =================================================
-    // case REMOVE_TAG_FROM_NOTE_REQUEST:
-    //   return {
-    //     ...state,
-    //     loading: true
-    //   }
-    // case REMOVE_TAG_FROM_NOTE_SUCCESS:
-    //   return {
-    //     ...state,
-    //     loading: false
-    //   }
-    // case REMOVE_TAG_FROM_NOTE_ERROR:
-    //   return {
-    //     ...state,
-    //     error: action.error,
-    //     loading: false
-    //   }
-    // // DELETE FOLDER =================================================
-    // case REMOVE_FOLDER_FROM_NOTE_REQUEST:
-    //   return {
-    //     ...state,
-    //     loading: true
-    //   }
-    // case REMOVE_FOLDER_FROM_NOTE_SUCCESS:
-    //   return {
-    //     ...state,
-    //     loading: false
-    //   }
-    // case REMOVE_FOLDER_FROM_NOTE_ERROR:
-    //   return {
-    //     ...state,
-    //     error: action.error,
-    //     loading: false
-    //   }
+    // TOGGLE EDIT MODE AND NOTE TO EDIT
     case TOGGLE_EDIT_MODE:
       return {
         ...state,

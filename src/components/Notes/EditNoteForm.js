@@ -6,7 +6,16 @@ import { Redirect } from 'react-router-dom';
 import { utility } from '../utility';
 
 // Actions
-import { toggleEditMode, getNoteByIdToEdit, editNotePutRequest } from '../../actions/notes.actions';
+import { toggleEditMode, getNoteByIdToEdit } from '../../actions/notes.actions';
+import { 
+  addTagForEditNote, 
+  addFolderForEditNote, 
+  removeTagForEditNote, 
+  removeFolderForEditNote, 
+  addNotesPreExistingTags,
+  addNotesPreExistingFolders,
+  editNotePutRequest 
+} from '../../actions/editNote.actions';
 
 // CSS 
 import '../css/notes/edit-note.css';
@@ -73,6 +82,8 @@ class EditNoteForm extends Component {
         folders: note.folders
       }
     })
+    this.props.dispatch(addNotesPreExistingTags(note.tags));
+    this.props.dispatch(addNotesPreExistingFolders(note.folders));
   }
 
   // update values in state onchange
@@ -115,16 +126,17 @@ class EditNoteForm extends Component {
   addTag = (e) => {
     e.preventDefault();
     let tag = e.target.value;
-    this.setState({
-      editedValues: {
-        tags: (this.state.editedValues.tags !== []) 
-          ? [ ...this.state.editedValues.tags, tag ] 
-          : this.state.editedValues.push(tag),
-        folders: [ ...this.state.editedValues.folders ]
-       },
-      renderTagInput: false,
-      newTagValue: ''
-    });
+    this.props.dispatch(addTagForEditNote(tag));
+    // this.setState({
+    //   editedValues: {
+    //     tags: (this.state.editedValues.tags !== []) 
+    //       ? [ ...this.state.editedValues.tags, tag ] 
+    //       : this.state.editedValues.push(tag),
+    //     folders: [ ...this.state.editedValues.folders ]
+    //    },
+    //   renderTagInput: false,
+    //   newTagValue: ''
+    // });
   }
 
   handleAddFolder = (e) => {
@@ -136,38 +148,41 @@ class EditNoteForm extends Component {
   addFolder = (e) => {
     e.preventDefault();
     let folder = e.target.value;
-    this.setState({
-      editedValues: {
-        tags: [ ...this.state.editedValues.tags ],
-        folders: (this.state.editedValues.folders !== []) 
-          ? [ ...this.state.editedValues.folders, folder ] 
-          : this.state.editedValues.folders.push(folder)
-      },
-      renderFolderInput: false,
-      newFolderValue: ''
-    });
+    this.props.dispatch(addFolderForEditNote(folder));
+    // this.setState({
+    //   editedValues: {
+    //     tags: [ ...this.state.editedValues.tags ],
+    //     folders: (this.state.editedValues.folders !== []) 
+    //       ? [ ...this.state.editedValues.folders, folder ] 
+    //       : this.state.editedValues.folders.push(folder)
+    //   },
+    //   renderFolderInput: false,
+    //   newFolderValue: ''
+    // });
   }
 
   // Remove chips
   removeTag = (e) => {
     e.preventDefault();
     let tagToRemove = e.target.value;
-    this.setState({
-      editedValues: {
-        tags: this.state.editedValues.tags.filter(tag => tag !== tagToRemove),
-        folders: [ ...this.state.editedValues.folders ]
-      }
-    });
+    this.props.dispatch(removeTagForEditNote(tagToRemove));
+    // this.setState({
+    //   editedValues: {
+    //     tags: this.state.editedValues.tags.filter(tag => tag !== tagToRemove),
+    //     folders: [ ...this.state.editedValues.folders ]
+    //   }
+    // });
   }
   removeFolder = (e) => {
     e.preventDefault();
     let folderToRemove = e.target.value;
-    this.setState({
-      editedValues: {
-        tags: [ ...this.state.editedValues.tags ],
-        folders: this.state.editedValues.folders.filter(folder => folder !== folderToRemove)
-      }
-    });
+    this.props.dispatch(removeFolderForEditNote(folderToRemove));
+    // this.setState({
+    //   editedValues: {
+    //     tags: [ ...this.state.editedValues.tags ],
+    //     folders: this.state.editedValues.folders.filter(folder => folder !== folderToRemove)
+    //   }
+    // });
   } 
 
   // Submit

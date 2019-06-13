@@ -10,6 +10,7 @@ import authReducer from './reducers/auth.reducer';
 import createNoteReducer from './reducers/createNote.reducer';
 import searchReducer from './reducers/search.reducer';
 import notesReducer from './reducers/notes.reducer';
+import editNoteReducer from './reducers/editNote.reducer';
 import tagsReducer from './reducers/tags.reducer';
 import foldersReducer from './reducers/folders.reducer';
 
@@ -19,6 +20,7 @@ import { setAuthToken, refreshAuthToken } from './actions/auth.actions';
 const rootReducer = combineReducers({
   auth: authReducer,
   createNote: createNoteReducer,
+  editNote: editNoteReducer,
   form: formReducer,
   notes: notesReducer,
   tags: tagsReducer,
