@@ -95,7 +95,13 @@ export const EDIT_NEW_FOLDER_VALUE = 'EDIT_NEW_FOLDER_VALUE',
     }
   } 
 
-
+// RESET STATE
+export const RESET_EDIT_NOTE_REDUX_STATE_VALUES = 'RESET_EDIT_NOTE_REDUX_STATE_VALUES',
+  resetEditNoteReduxStateValues = () => {
+    return {
+      type: RESET_EDIT_NOTE_REDUX_STATE_VALUES
+    }
+  }
 
 
 // ========================================================

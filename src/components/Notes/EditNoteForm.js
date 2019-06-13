@@ -20,7 +20,8 @@ import {
   editNewTitleValue,
   editNewContentValue,
   editNewTagValue,
-  editNewFolderValue
+  editNewFolderValue,
+  resetEditNoteReduxStateValues
 } from '../../actions/editNote.actions';
 
 // CSS 
@@ -44,10 +45,6 @@ class EditNoteForm extends Component {
         tags: [],
         folders: []
       },
-    tnewTitleValue: '',
-      cwContentValue: '',
-      tagValue: '',
-      folderValue: ''
     }
     this.updateNoteValuesInComponentState = this.updateNoteValuesInComponentState.bind(this);
     this.handleTitleValueChange = this.handleTitleValueChange.bind(this);
@@ -74,6 +71,7 @@ class EditNoteForm extends Component {
   }
   componentWillUnmount() {
     this._isMounted = false;
+    this.props.dispatch(resetEditNoteReduxStateValues());
   }
 
   // Update values in state to represent what goes into the note to be edited
@@ -178,13 +176,17 @@ class EditNoteForm extends Component {
     let id = this.state.editNote.id;
     let title = (this.props.titleValue === '') 
                   ? this.state.editNote.title 
-                  : this.props.titleValue,
-        content = (this.props.contentValue === '') 
+                  : this.props.titleValue;
+    let content = (this.props.contentValue === '') 
                     ? this.state.editNote.content
                     : this.props.contentValue;
 
-    let formattedTags = utility.makeNewTagsArray(this.props.reduxTags, this.props.tags, userId),
-        formattedFolders = utility.makeNewFolderArray(this.props.reduxFolders, this.props.folders, userId);
+    let formattedTags = (this.props.reduxTags === []) 
+                          ? [] 
+                          : utility.makeNewTagsArray(this.props.reduxTags, this.props.tags, userId);
+    let formattedFolders = (this.props.reduxFolders === []) 
+                              ? [] 
+                              : utility.makeNewFolderArray(this.props.reduxFolders, this.props.folders, userId);
 
     let updatedNote = {
       userId,
@@ -194,7 +196,7 @@ class EditNoteForm extends Component {
       tags: formattedTags,
       folders: formattedFolders
     }
-    console.log('Sending updated note to the server: ', updatedNote)
+    console.log('Sending updated note to the server: ', updatedNote);
     this.props.dispatch(editNotePutRequest(id, updatedNote));
     this.props.dispatch(toggleEditMode());
   }

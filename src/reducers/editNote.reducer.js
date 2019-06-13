@@ -10,7 +10,8 @@ import {
   EDIT_NEW_TITLE_VALUE,
   EDIT_NEW_CONTENT_VALUE,
   EDIT_NEW_TAG_VALUE,
-  EDIT_NEW_FOLDER_VALUE
+  EDIT_NEW_FOLDER_VALUE,
+  RESET_EDIT_NOTE_REDUX_STATE_VALUES
 } from '../actions/editNote.actions';
 
 const initialState = {
@@ -89,6 +90,16 @@ export default function editNoteReducer(state = initialState, action) {
       return {
         ...state,
         folderValue: action.value
+      }
+    case RESET_EDIT_NOTE_REDUX_STATE_VALUES:
+      return {
+        titleValue: '',
+        contentValue: '',
+        tagValue: '',
+        folderValue: '',
+        tags: [],
+        folders: [],
+        error: null
       }
     default:
       return state;
