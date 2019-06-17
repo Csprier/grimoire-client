@@ -38,42 +38,44 @@ class Note extends Component {
 
     return (
       <div className="note" key={key}>
-        <h4 className="note-title">{title}</h4>
-        <p>{content}</p>
-    
-        <div className="note-information">
-          <ul className="tags-container">
-            <h4>Tags:</h4>
-            {(tags.length > 0) 
-              ? tags.map(tag => {
-                  if (tag !== null) {
-                    return (
-                      <li key={tag.name}>
-                        {tag.name}
-                      </li>
-                    )
-                  } else {
-                    return <p key="noTagsAddedYet">No tags added yet</p>;
-                  }
-                })
-              : <p>No tags added yet</p>}
-          </ul>
-          <ul className="folders-container">
-            <h4>Folders:</h4>
-            {(folders.length > 0)
-              ? folders.map(folder => {
-                  if (folder !== null) {
-                    return (
-                      <li key={folder.name}>
-                        {folder.name}
-                      </li>
-                    )
-                  } else {
-                    return <p key="NoFoldersAddedYet">No folders added yet</p>;
-                  }
-                })
-              : <p>No folders added yet</p>}
-          </ul>
+        <div className="note-data-container">
+          <h4 className="note-title">{title}</h4>
+          <p>{content}</p>
+      
+          <div className="note-information">
+            <ul className="tags-container">
+              <h4>Tags:</h4>
+              {(tags.length > 0) 
+                ? tags.map(tag => {
+                    if (tag !== null) {
+                      return (
+                        <li key={tag.name}>
+                          {tag.name}
+                        </li>
+                      )
+                    } else {
+                      return <p key="noTagsAddedYet">No tags added yet</p>;
+                    }
+                  })
+                : <p>No tags added yet</p>}
+            </ul>
+            <ul className="folders-container">
+              <h4>Folders:</h4>
+              {(folders.length > 0)
+                ? folders.map(folder => {
+                    if (folder !== null) {
+                      return (
+                        <li key={folder.name}>
+                          {folder.name}
+                        </li>
+                      )
+                    } else {
+                      return <p key="NoFoldersAddedYet">No folders added yet</p>;
+                    }
+                  })
+                : <p>No folders added yet</p>}
+            </ul>
+          </div>
         </div>
         <div className="button-container">
             <button
