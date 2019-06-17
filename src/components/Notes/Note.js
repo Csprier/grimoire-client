@@ -39,11 +39,9 @@ class Note extends Component {
     return (
       <div className="note" key={key}>
         <h4 className="note-title">{title}</h4>
-        <p>NoteId: {id}</p>
         <p>{content}</p>
     
         <div className="note-information">
-          
           <ul className="tags-container">
             <h4>Tags:</h4>
             {(tags.length > 0) 
@@ -60,7 +58,6 @@ class Note extends Component {
                 })
               : <p>No tags added yet</p>}
           </ul>
-
           <ul className="folders-container">
             <h4>Folders:</h4>
             {(folders.length > 0)
@@ -77,8 +74,10 @@ class Note extends Component {
                 })
               : <p>No folders added yet</p>}
           </ul>
-          <div>
+        </div>
+        <div className="button-container">
             <button
+              className="edit-button"
               onClick={this.redirectToEditNoteForm}
               value={this.props.note.id}
             >Edit</button>
@@ -88,7 +87,6 @@ class Note extends Component {
               value={id}
             >Delete Note</button>
           </div>
-        </div>
       </div>
     )
   }
