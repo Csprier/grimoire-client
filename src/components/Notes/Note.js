@@ -12,7 +12,17 @@ import '../css/notes/note.css';
 class Note extends Component {
   constructor() {
     super();
-    this.redirectToEditNoteForm = this.redirectToEditNoteForm.bind(this);
+    this.state = {
+      show: false
+    }
+  }
+
+  toggleView = (e, id) => {
+    e.preventDefault();
+    console.log(id);
+    this.setState({
+      show: !this.state.show
+    });
   }
 
   redirectToEditNoteForm = (e) => {
@@ -38,8 +48,18 @@ class Note extends Component {
 
     return (
       <div className="note" key={key}>
-        <div className="note-data-container">
+        <div className="note-title-and-toggle-container">
           <h4 className="note-title">{title}</h4>
+          <button
+            value={id}
+            onClick={(e) => this.toggleView(e, id)}
+          >
+            {(this.state.show) 
+              ? <span className="arrow-icon">&#10548;</span> 
+              : <span className="arrow-icon">&#10549;</span>}
+          </button>
+        </div>
+        <div className="note-data-container">
           <p>{content}</p>
       
           <div className="note-information">
@@ -76,8 +96,8 @@ class Note extends Component {
                 : <p>No folders added yet</p>}
             </ul>
           </div>
-        </div>
-        <div className="button-container">
+
+          <div className="button-container">
             <button
               className="edit-button"
               onClick={this.redirectToEditNoteForm}
@@ -89,6 +109,7 @@ class Note extends Component {
               value={id}
             >Delete Note</button>
           </div>
+        </div>
       </div>
     )
   }

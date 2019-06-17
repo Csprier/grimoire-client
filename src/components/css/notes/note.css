@@ -1,10 +1,34 @@
+/* UTILITY */
+.hidden {
+  display: none;
+}
+
+.show {
+  display: block;
+}
+
+.arrow-icon {
+  padding: 0px;
+  margin: 0px;
+  font-size: 20px;
+}
+
 .note {
   padding: 0px;
   margin: 0 auto;
   margin-bottom: 20px;
   width: 100%;
   background-color: white;
-  border: 1px solid black;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+}
+
+.note-title-and-toggle-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  margin: 0px;
+  padding: 0px;
 }
 
 .note-data-container {
