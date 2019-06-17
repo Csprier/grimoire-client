@@ -57,8 +57,8 @@ class Note extends Component {
             onClick={(e) => this.toggleView(e, id)}
           >
             {(this.state.show) 
-              ? <span className="arrow-icon">&#10548;</span> 
-              : <span className="arrow-icon">&#10549;</span>}
+              ? <span className="arrow-icon">&#10581;</span> 
+              : <span className="arrow-icon">&#10584;</span>}
           </button>
         </div>
         <div className={(this.state.show && (this.state.noteToView === id))? "note-data-container show" : "note-data-container hidden"}>
