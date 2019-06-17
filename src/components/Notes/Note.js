@@ -13,14 +13,15 @@ class Note extends Component {
   constructor() {
     super();
     this.state = {
+      noteToView: '',
       show: false
     }
   }
 
   toggleView = (e, id) => {
     e.preventDefault();
-    console.log(id);
     this.setState({
+      noteToView: id,
       show: !this.state.show
     });
   }
@@ -38,8 +39,9 @@ class Note extends Component {
     console.log(`Deleting: ${noteId}`);
     this.props.dispatch(deleteNoteById(noteId));
   }
-
+  
   render() {
+    console.log('Show: ', this.state.show);
     const { key, title, id, content, tags, folders } = this.props.note;
     
     if (this.props.editMode === true && this.props.noteToEdit !== '') {
@@ -59,7 +61,7 @@ class Note extends Component {
               : <span className="arrow-icon">&#10549;</span>}
           </button>
         </div>
-        <div className="note-data-container">
+        <div className={(this.state.show && (this.state.noteToView === id))? "note-data-container show" : "note-data-container hidden"}>
           <p>{content}</p>
       
           <div className="note-information">
