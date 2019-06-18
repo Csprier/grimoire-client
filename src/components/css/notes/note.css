@@ -1,23 +1,36 @@
 /* UTILITY */
 .show {
   display: block;
+  border-bottom: 1px solid black;
 }
 
 .hidden {
   display: none;
 }
 
+/* === ELEMENT STYLES ============================== */
+.toggle-button {
+  margin: 0px;
+  padding: 0px;
+  width: 10%;
+  height: 100%;
+  background-color: white;
+  border: 1px solid lightgray;
+  border-radius: 50%;
+}
 .arrow-icon {
-  width: 15%;
-  padding: 10px;
+  width: 100%;
+  padding: 0px;
   margin: 0px;
   font-size: 20px;
+  background-color: white;
 }
 
 .note {
   width: 100%;
-  padding: 0px;
+  padding: 10px;
   margin: 0 auto;
+  margin-bottom: 10px;
   background-color: white;
   /* border-top: 1px solid black; */
   /* border-bottom: 1px solid black; */
@@ -39,9 +52,10 @@
 }
 
 .note-title {
-  padding: 0px 0px 0px 0px;
+  padding: 5px;
   margin: 0px;
-  border-bottom: 1px solid black;
+  width: 90%;
+  /* border-bottom: 1px solid black; */
 }
 
 .note p {

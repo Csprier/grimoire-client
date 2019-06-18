@@ -41,7 +41,6 @@ class Note extends Component {
   }
   
   render() {
-    console.log('Show: ', this.state.show);
     const { key, title, id, content, tags, folders } = this.props.note;
     
     if (this.props.editMode === true && this.props.noteToEdit !== '') {
@@ -53,6 +52,7 @@ class Note extends Component {
         <div className="note-title-and-toggle-container">
           <h4 className="note-title">{title}</h4>
           <button
+            className="toggle-button"
             value={id}
             onClick={(e) => this.toggleView(e, id)}
           >
