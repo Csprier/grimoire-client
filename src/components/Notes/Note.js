@@ -50,7 +50,7 @@ class Note extends Component {
     return (
       <div className="note" key={key}>
         <div className="note-title-and-toggle-container">
-          <h4 className="note-title">{title}</h4>
+          <h4 className="note-title">&#8640; {title}</h4>
           <button
             className="toggle-button"
             value={id}
