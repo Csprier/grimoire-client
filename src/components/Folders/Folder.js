@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
 // Async Actions
-// import { deleteFolderFromDatabase } from '../../actions/folders.actions';
+import { deleteFolderFromDatabase } from '../../actions/folders.actions';
 
 // CSS
 import '../css/folders/folder.css';
@@ -16,12 +16,12 @@ class Folder extends Component {
     this.props.history.push(`/folder${id}`)
   }
 
-  // handleDeleteFolder = (e) => {
-  //   let folderId = e.target.value,
-  //       userId = this.props.userId;
-  //   console.log(`Delete: ${folderId} from database. UserId: ${userId}`);
-  //   this.props.dispatch(deleteFolderFromDatabase(userId, folderId))
-  // }
+  handleDeleteFolder = (e) => {
+    let folderId = e.target.value,
+        userId = this.props.userId;
+    console.log(`Delete: ${folderId} from database. UserId: ${userId}`);
+    this.props.dispatch(deleteFolderFromDatabase(userId, folderId))
+  }
 
   render() {
     return (
@@ -33,6 +33,7 @@ class Folder extends Component {
           value={this.props.folder._id}
         >X</button> */}
         <button
+          className="folder-redirect-button"
           value={this.props.folder._id}
           onClick={this.redirectToFolder}
         >&#187;</button>

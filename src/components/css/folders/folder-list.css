@@ -9,13 +9,15 @@
 .folder-list-nav {
   margin: 0px;
   padding: 0px;
-  font-family: arial;
-  font-weight: 100;
 }
 .folder-list-nav h4 {
-  margin: 0px;
+  width: 98%;
+  margin: 0 auto;
   padding: 5px;
+  font-family: arial;
+  font-weight: 100;
   font-size: 20px;
+  border-bottom: 1px solid black;
 }
 
 /* .folder-list-nav button {
