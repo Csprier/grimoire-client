@@ -63,6 +63,13 @@ export const getFolders = () => (dispatch, getState) => {
 // =======================================================
 // ADD FOLDER ACTIONS
 // =======================================================
+export const TOGGLE_ADD_FOLDER_INPUT_RENDER = 'TOGGLE_ADD_FOLDER_INPUT_RENDER',
+  toggleAddFolderInputRender = () => {
+    return {
+      type: TOGGLE_ADD_FOLDER_INPUT_RENDER
+    }
+  }
+
 export const ADD_FOLDER_REQUEST = 'ADD_FOLDER_REQUEST',
   addFolderRequest = () => {
     return {

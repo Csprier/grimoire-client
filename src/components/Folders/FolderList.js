@@ -5,10 +5,10 @@ import { connect } from 'react-redux';
 import RequiresLogin from '../requires-login';
 
 // Async Actions
-import { getFolders } from '../../actions/folders.actions';
+import { getFolders, toggleAddFolderInputRender } from '../../actions/folders.actions';
 
 // Compontents
-// import AddFolderInput from './AddFolderInput';
+import AddFolderInput from './AddFolderInput';
 import Folder from './Folder';
 
 // CSS
@@ -17,6 +17,10 @@ import '../css/folders/folder-list.css';
 class FolderList extends Component {
   componentDidMount() {
     this.props.dispatch(getFolders());
+  }
+
+  toggleRenderFolderInput = () => {
+    this.props.dispatch(toggleAddFolderInputRender());
   }
 
   // returnToDashboard = () => {
@@ -37,13 +41,24 @@ class FolderList extends Component {
             : <span>No folders in the database</span>
           }
         </div>
+        <div className="new-folder-button-container">
+          {/* <button
+            onClick={() => console.log('Create a new folder')}            
+          >+ New Folder</button> */}
+          {(this.props.renderAddFolderInput)
+            ? <AddFolderInput />
+            : <button
+                onClick={this.toggleRenderFolderInput}            
+              >+ New Folder</button>}
+        </div>
       </div>
     )
   }
 }
 
 const mapStateToProps = state => ({
-  folders: state.folders.data
+  folders: state.folders.data,
+  renderAddFolderInput: state.folders.renderAddFolderInput
 })
 
 export default RequiresLogin()(connect(mapStateToProps)(FolderList));

@@ -3,6 +3,7 @@ import {
   GET_FOLDERS_DATA,
   GET_FOLDERS_SUCCESS,
   GET_FOLDERS_ERROR,
+  TOGGLE_ADD_FOLDER_INPUT_RENDER,
   ADD_FOLDER_REQUEST,
   ADD_FOLDER,
   ADD_FOLDER_SUCCESS,
@@ -11,12 +12,12 @@ import {
   DELETE_FOLDER,
   DELETE_FOLDER_SUCCESS,
   DELETE_FOLDER_ERROR
-
 } from '../actions/folders.actions';
 
 const initialState = {
   data: [],
   loading: false,
+  renderAddFolderInput: false,
   error: null
 };
 
@@ -44,6 +45,11 @@ export default function foldersReducer(state = initialState, action) {
         loading: false
       }
     // POST ================================================
+    case TOGGLE_ADD_FOLDER_INPUT_RENDER:
+      return {
+        ...state,
+        renderAddFolderInput: !state.renderAddFolderInput
+      }
     case ADD_FOLDER_REQUEST:
       return {
         ...state,

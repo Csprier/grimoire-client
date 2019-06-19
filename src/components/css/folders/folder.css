@@ -12,3 +12,18 @@
 .folder-delete-button {
   
 }
+
+.new-folder-button-container {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  margin: 0px;
+  padding: 0px;
+  border: 1px solid red;
+}
+
+.new-folder-button-container button {
+  float: right;
+  margin: 0px;
+  padding: 10px;
+}

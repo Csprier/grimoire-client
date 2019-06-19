@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import RequiresLogin from '../requires-login';
 
 // Actions
-import { addNewFolder } from '../../actions/folders.actions';
+import { addNewFolder, toggleAddFolderInputRender } from '../../actions/folders.actions';
 
 class AddFolderInput extends Component {
   constructor() {
@@ -84,6 +84,7 @@ class AddFolderInput extends Component {
           folderValue: '',
           foldersToAddToDatabase: []
         });
+        this.props.dispatch(toggleAddFolderInputRender());
       })
       .catch(e => console.error('HANDLE SUBMIT ERROR', e));
   }
