@@ -144,7 +144,14 @@ class AddFolderInput extends Component {
               >Add Folders</button>
               <button
                 className="af-btn"
-                onClick={this.toggleAddFolderInputRender}
+                onClick={(e) => {
+                  e.preventDefault();
+                  this.setState({
+                    folderValue: '',
+                    foldersToAddToDatabase: []
+                  });
+                  this.props.dispatch(toggleAddFolderInputRender());
+                }}
               >Cancel</button>
             </div>
           </form>
