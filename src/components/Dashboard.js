@@ -9,8 +9,9 @@ import RequiresLogin from './requires-login';
 import { logout } from '../actions/auth.actions';
 
 // Components
-import NoteList from './Notes/NoteList';
-import NotesSearch from './Notes/NotesSearch';
+// import NoteList from './Notes/NoteList';
+// import NotesSearch from './Notes/NotesSearch';
+import FolderList from './Folders/FolderList';
 
 // logout image
 import LOImage from '../images/logout.png';
@@ -56,8 +57,9 @@ class Dashboard extends Component {
         </header>
 
         <div className="dashboard">
-          <NotesSearch />
-          <NoteList />
+          {/* <NotesSearch />
+          <NoteList /> */}
+          <FolderList />
         </div>
 
       </div>

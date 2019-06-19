@@ -19,11 +19,12 @@ class Folder extends Component {
     return (
       <div className="folder" key={this.props.folder._id}>
         <p>{this.props.folder.name}</p>
-        <button
+        {/* <button
           className="folder-delete-button"
           onClick={this.handleDeleteFolder}
           value={this.props.folder._id}
-        >X</button>
+        >X</button> */}
+        <button>&#187;</button>
       </div>
     )
   }
