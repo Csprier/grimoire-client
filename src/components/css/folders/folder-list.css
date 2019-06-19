@@ -7,11 +7,18 @@
 }
 
 .folder-list-nav {
+  margin: 0px;
+  padding: 0px;
   font-family: arial;
   font-weight: 100;
 }
+.folder-list-nav h4 {
+  margin: 0px;
+  padding: 5px;
+  font-size: 20px;
+}
 
-.folder-list-nav button {
+/* .folder-list-nav button {
   height: 35px;
   margin: 0px;
   padding: 0px;
@@ -19,7 +26,7 @@
   font-family: arial;
   background-color: #D64933;
   border: 1px solid #D64933;
-}
+} */
 
 .folder-list {
   position: relative;
@@ -27,4 +34,24 @@
   height: 100%;
   margin: 0 auto;
   padding: 0px; 
+}
+
+.new-folder-button-container {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  margin: 0px;
+  padding: 0px;
+}
+
+.render-add-folder-input-button {
+  float: right;
+  width: 40%;
+  margin: 0px;
+  padding: 0px;
+  padding-bottom: 10px;
+  font-weight: bold;
+  font-size: 15px;
+  font-family: arial;
+  color: goldenrod;
 }

@@ -34,7 +34,6 @@ class FolderList extends Component {
           <h4>Folders</h4>
           {/* <button onClick={this.returnToDashboard}>&#60;  Dashboard</button> */}
         </div>
-        {/* <AddFolderInput /> */}
         <div className="folder-list">
           {(this.props.folders !== undefined)
             ? this.props.folders.map((folder, i) => <Folder folder={folder} key={i} />)
@@ -42,12 +41,10 @@ class FolderList extends Component {
           }
         </div>
         <div className="new-folder-button-container">
-          {/* <button
-            onClick={() => console.log('Create a new folder')}            
-          >+ New Folder</button> */}
           {(this.props.renderAddFolderInput)
             ? <AddFolderInput />
             : <button
+                className="render-add-folder-input-button"
                 onClick={this.toggleRenderFolderInput}            
               >+ New Folder</button>}
         </div>

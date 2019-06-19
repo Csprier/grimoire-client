@@ -7,6 +7,9 @@ import RequiresLogin from '../requires-login';
 // Actions
 import { addNewFolder, toggleAddFolderInputRender } from '../../actions/folders.actions';
 
+// CSS
+import '../css/folders/add-folder.css';
+
 class AddFolderInput extends Component {
   constructor() {
     super();
@@ -92,19 +95,39 @@ class AddFolderInput extends Component {
 
   render() {
     return (
-      <div>
-          <div>
-            <form onSubmit={this.handleSubmit}>
-              <label>
-                Add a Folder:
-                <input 
-                  id="createAFolderInput"
-                  type="text"
-                  placeholder="Add a folder"
-                  onChange={this.handeFolderValueChange}
-                  value={this.state.folderValue}
-                />
-              </label>
+      <div className="add-folder-input-component-container">
+        <div className="add-folder-form-container">
+          <form 
+            className="add-folder-form"
+            onSubmit={this.handleSubmit}
+          >
+            {/* <label>Add a Folder:</label> */}
+            <input 
+              id="createAFolderInput"
+              type="text"
+              placeholder="Add a folder"
+              onChange={this.handeFolderValueChange}
+              value={this.state.folderValue}
+              className="add-folder-form-input"
+            />
+            <div className="add-folder-chip-container">
+              {this.state.foldersToAddToDatabase.map(folder => {
+                return (
+                  <div key={folder} className="add-folder-form-chip">
+                    <span>{folder}</span>
+                    <span
+                      onClick={() => {
+                        this.removeChip(folder);
+                      }}
+                      className="folder-chip-remove-button"
+                    >
+                      &times;
+                    </span>
+                  </div>
+                )
+              })}
+            </div>
+            <div className="add-folder-button-container">
               <button
                 value={this.state.folderValue}
                 onClick={(e) => {
@@ -112,30 +135,20 @@ class AddFolderInput extends Component {
                   this.handleClick(e);
                   document.getElementById('createAFolderInput').value = "";
                 }}
+                className="af-btn"
               >Add Chip</button>
               <button
                 id="addFolderInputSubmit"
                 type="submit"
+                className="af-btn"
               >Add Folders</button>
-            </form>
-          </div>
-          <div>
-            {this.state.foldersToAddToDatabase.map(folder => {
-              return (
-                <div key={folder} className="add-folder-chip">
-                  <span>{folder}</span>
-                  <span
-                    onClick={() => {
-                      this.removeChip(folder);
-                    }}
-                    className="chip-remove"
-                  >
-                    &times;
-                  </span>
-                </div>
-              )
-            })}
-          </div>
+              <button
+                className="af-btn"
+                onClick={this.toggleAddFolderInputRender}
+              >Cancel</button>
+            </div>
+          </form>
+        </div>
       </div>
     )
   }
