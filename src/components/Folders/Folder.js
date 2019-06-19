@@ -1,19 +1,27 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
 // Async Actions
-import { deleteFolderFromDatabase } from '../../actions/folders.actions';
+// import { deleteFolderFromDatabase } from '../../actions/folders.actions';
 
 // CSS
 import '../css/folders/folder.css';
 
 class Folder extends Component {
-  handleDeleteFolder = (e) => {
-    let folderId = e.target.value,
-        userId = this.props.userId;
-    console.log(`Delete: ${folderId} from database. UserId: ${userId}`);
-    this.props.dispatch(deleteFolderFromDatabase(userId, folderId))
+  redirectToFolder = (e) => {
+    e.preventDefault();
+    let id = e.target.value;
+    console.log('Redirecting to Folder:', id);
+    this.props.history.push(`/folder${id}`)
   }
+
+  // handleDeleteFolder = (e) => {
+  //   let folderId = e.target.value,
+  //       userId = this.props.userId;
+  //   console.log(`Delete: ${folderId} from database. UserId: ${userId}`);
+  //   this.props.dispatch(deleteFolderFromDatabase(userId, folderId))
+  // }
 
   render() {
     return (
@@ -24,7 +32,10 @@ class Folder extends Component {
           onClick={this.handleDeleteFolder}
           value={this.props.folder._id}
         >X</button> */}
-        <button>&#187;</button>
+        <button
+          value={this.props.folder._id}
+          onClick={this.redirectToFolder}
+        >&#187;</button>
       </div>
     )
   }
@@ -34,4 +45,4 @@ const mapStateToProps = state => ({
   userId: state.auth.user.id
 })
 
-export default connect(mapStateToProps)(Folder);
+export default withRouter(connect(mapStateToProps)(Folder));
