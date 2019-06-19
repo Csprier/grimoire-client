@@ -13,7 +13,7 @@ class Folder extends Component {
     e.preventDefault();
     let id = e.target.value;
     console.log('Redirecting to Folder:', id);
-    this.props.history.push(`/folder${id}`)
+    this.props.history.push(`/folder/${id}`)
   }
 
   handleDeleteFolder = (e) => {

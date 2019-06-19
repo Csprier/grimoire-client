@@ -11,6 +11,7 @@ import EditNoteForm from './components/Notes/EditNoteForm';
 import LandingPage from './components/LandingPage';
 import TagList from './components/Tags/TagList';
 import FolderList from './components/Folders/FolderList';
+import FolderNoteList from './components/Folders/FolderNoteList';
 
 import { refreshAuthToken } from './actions/auth.actions';
 
@@ -48,6 +49,7 @@ class App extends Component {
             <Route exact path="/editNote" component={EditNoteForm} />
             <Route exact path="/tagList" component={TagList} />
             <Route exact path="/folderList" component={FolderList} />
+            <Route exact path="/folder/:id" component={FolderNoteList} />
           </main>
         </div>
       </Router>

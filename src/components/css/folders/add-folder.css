@@ -29,11 +29,6 @@
 
 /* ===== CHIPS ======================== */
 .add-folder-chip-container {
-  /* display: flex;
-  flex-direction: column;
-  width: 100%;
-  margin: 0px;
-  padding: 0px; */
   display: grid;
   grid-template-columns: fit-content(100px) fit-content(100px) 1fr;
   grid-gap: 5px;
@@ -82,4 +77,8 @@
   font-family: arial;
   font-size: 12px;
   font-weight: 100;
+}
+.af-submit {
+  font-size: 30px;
+  color: goldenrod;
 }

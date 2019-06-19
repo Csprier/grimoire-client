@@ -140,7 +140,7 @@ class AddFolderInput extends Component {
               <button
                 id="addFolderInputSubmit"
                 type="submit"
-                className="af-btn"
+                className="af-btn af-submit"
               >&#43;</button>
               <button
                 className="af-btn"
