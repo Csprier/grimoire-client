@@ -1,4 +1,4 @@
-.logout-button {
+/* .logout-button {
   margin: 5px;
   padding: 0px;
   width: 25px;
@@ -10,19 +10,32 @@
   padding: 0px;
   width: 25px;
   height: 25px;
-}
+} */
 
 .header-elements {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
-  background-color: #D64933;
-  border-bottom: 1px solid black;
+  justify-content: space-between;
+  margin: 0px;
+  padding: 5px;
+  background-color: black;
 }
 
 .header-elements button {
-  color: white;
+  width: 75px;
+  height: 40px;
+  margin: 0px;
+  padding: 0px;
   font-family: arial;
-  background-color: #D64933;
-  border: 1px solid #D64933;
+  color: goldenrod;
+}
+
+.pencil-icon {
+  font-size: 30px;
+}
+.tag-icon {
+  font-size: 30px;
+}
+.logout-button {
+  font-size: 30px;
 }

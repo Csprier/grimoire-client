@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 // HOC
 import RequiresLogin from './requires-login';
@@ -14,7 +14,7 @@ import { logout } from '../actions/auth.actions';
 import FolderList from './Folders/FolderList';
 
 // logout image
-import LOImage from '../images/logout.png';
+// import LOImage from '../images/logout.png';
 
 // css
 import './css/dashboard.css';
@@ -47,12 +47,18 @@ class Dashboard extends Component {
 
         <header>
           <div className="header-elements">
-            <button onClick={this.moveToAddNote}>Add Note</button>
-            <button onClick={this.moveToTagList}>View Tags</button>
-            <button onClick={this.moveToFolderList}>View Folders</button>
-            <Link to="/" onClick={this.onClickLogout} className="logout-button">
-              <img src={LOImage} alt="logout icon" />
-            </Link>
+            <button 
+              className="pencil-icon"
+              onClick={this.moveToAddNote}
+            >&#9998;</button>
+            <button
+              className="tag-icon"
+              onClick={this.moveToTagList}
+            >&#9744;</button>
+            <button
+              onClick={this.onClickLogout}
+              className="logout-button"
+            >&#10097;</button>
           </div>
         </header>
 

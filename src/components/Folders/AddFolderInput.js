@@ -141,7 +141,7 @@ class AddFolderInput extends Component {
                 id="addFolderInputSubmit"
                 type="submit"
                 className="af-btn"
-              >Add Folders</button>
+              >&#43;</button>
               <button
                 className="af-btn"
                 onClick={(e) => {
