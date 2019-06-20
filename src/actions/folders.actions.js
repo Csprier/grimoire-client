@@ -61,6 +61,23 @@ export const getFolders = () => (dispatch, getState) => {
 }
 
 // =======================================================
+// FOLDER ID FOR VIEWING THE NOTES IN A SPECIFIC FOLDER
+// =======================================================
+export const FOLDER_ID_TO_VIEW = 'FOLDER_ID_TO_VIEW',
+  folderIdToView = (id) => {
+    return {
+      type: FOLDER_ID_TO_VIEW,
+      id
+    }
+  }
+
+export const CLEAR_FOLDER_ID_TO_VIEW = 'CLEAR_FOLDER_ID_TO_VIEW',
+  clearFolderIdToView = () => {
+    return {
+      type: CLEAR_FOLDER_ID_TO_VIEW
+    }
+  }
+// =======================================================
 // ADD FOLDER ACTIONS
 // =======================================================
 export const TOGGLE_ADD_FOLDER_INPUT_RENDER = 'TOGGLE_ADD_FOLDER_INPUT_RENDER',

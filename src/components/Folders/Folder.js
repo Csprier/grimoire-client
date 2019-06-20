@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
 // Async Actions
-import { deleteFolderFromDatabase } from '../../actions/folders.actions';
+import { folderIdToView, deleteFolderFromDatabase } from '../../actions/folders.actions';
 
 // CSS
 import '../css/folders/folder.css';
@@ -13,6 +13,7 @@ class Folder extends Component {
     e.preventDefault();
     let id = e.target.value;
     console.log('Redirecting to Folder:', id);
+    this.props.dispatch(folderIdToView(id));
     this.props.history.push(`/folder/${id}`)
   }
 

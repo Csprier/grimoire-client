@@ -3,6 +3,8 @@ import {
   GET_FOLDERS_DATA,
   GET_FOLDERS_SUCCESS,
   GET_FOLDERS_ERROR,
+  FOLDER_ID_TO_VIEW,
+  CLEAR_FOLDER_ID_TO_VIEW,
   TOGGLE_ADD_FOLDER_INPUT_RENDER,
   ADD_FOLDER_REQUEST,
   ADD_FOLDER,
@@ -18,6 +20,7 @@ const initialState = {
   data: [],
   loading: false,
   renderAddFolderInput: false,
+  folderIdForViewing: '',
   error: null
 };
 
@@ -43,6 +46,17 @@ export default function foldersReducer(state = initialState, action) {
       return {
         error: action.error,
         loading: false
+      }
+    // FOR REDIRECT FOLDER NOTE LIST 
+    case FOLDER_ID_TO_VIEW:
+      return {
+        ...state,
+        folderIdForViewing: action.id
+      }
+    case CLEAR_FOLDER_ID_TO_VIEW:
+      return {
+        ...state,
+        folderIdForViewing: ''
       }
     // POST ================================================
     case TOGGLE_ADD_FOLDER_INPUT_RENDER:

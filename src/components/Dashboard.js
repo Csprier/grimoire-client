@@ -9,7 +9,7 @@ import RequiresLogin from './requires-login';
 import { logout } from '../actions/auth.actions';
 
 // Components
-// import NoteList from './Notes/NoteList';
+import NoteList from './Notes/NoteList';
 // import NotesSearch from './Notes/NotesSearch';
 import FolderList from './Folders/FolderList';
 
@@ -66,6 +66,7 @@ class Dashboard extends Component {
           {/* <NotesSearch />
           <NoteList /> */}
           <FolderList />
+          <NoteList />
         </div>
 
       </div>
