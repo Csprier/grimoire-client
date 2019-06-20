@@ -4,9 +4,13 @@ import { connect } from 'react-redux';
 // Components
 import Note from '../Notes/Note';
 import NotesSearch from '../Notes/NotesSearch';
+import NavigationBar from '../NavigationBar';
 
 // Async Actions
 import { getNotes } from '../../actions/notes.actions';
+
+// CSS
+import '../css/folders/folder-note-list.css';
 
 class FolderNoteList extends Component {
   componentDidMount() {
@@ -18,6 +22,7 @@ class FolderNoteList extends Component {
   }
 
   render() {
+    const folderName = this.props.folders.filter(folder => folder._id === this.props.currentFolderId).map(item => item.name)[0];
     let notesInTheFolder = [];
     for (let i = 0; i < this.props.notes.length; i++) {
       if (this.props.notes[i].folders.length > 0) {
@@ -36,8 +41,13 @@ class FolderNoteList extends Component {
 
     return (
       <div className="folder-note-list-component-container">
-        <h4>Folder</h4>
-        <button onClick={this.returnToDashboard}>&#60;  Dashboard</button>
+        <header>
+          <NavigationBar />
+        </header>
+        <div className="folder-note-list-under-nav">
+          <h4>{folderName}</h4>
+          <button onClick={this.returnToDashboard}>&#60;  Dashboard</button>
+        </div>
         <div>
           <NotesSearch />
           {(this.props.searchTerm.length !== 0) 
@@ -52,6 +62,7 @@ class FolderNoteList extends Component {
 const mapStateToProps = state => ({
   user: state.auth.user,
   notes: state.notes.data,
+  folders: state.folders.data,
   currentFolderId: state.folders.folderIdForViewing,
   searchTerm: state.search.query.searchTerm,
   filtered: state.notes.filtered || []

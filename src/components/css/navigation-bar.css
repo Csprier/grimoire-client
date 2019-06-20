@@ -1,0 +1,29 @@
+.header-elements {
+  top: 0px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  margin: 0px 0px 0px 0px;
+  padding: 5px;
+  background-color: black;
+}
+
+.header-elements button {
+  width: 75px;
+  height: 40px;
+  margin: 0px;
+  padding: 0px;
+  font-family: arial;
+  color: goldenrod;
+}
+
+.pencil-icon {
+  font-size: 30px;
+}
+.tag-icon {
+  font-size: 30px;
+}
+.logout-button {
+  font-size: 30px;
+}

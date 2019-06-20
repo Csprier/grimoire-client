@@ -1,34 +1,10 @@
-.header-elements {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  margin: 0px;
-  padding: 5px;
-  background-color: black;
-}
-
-.header-elements button {
-  width: 75px;
-  height: 40px;
-  margin: 0px;
-  padding: 0px;
-  font-family: arial;
-  color: goldenrod;
-}
-
-.pencil-icon {
-  font-size: 30px;
-}
-.tag-icon {
-  font-size: 30px;
-}
-.logout-button {
-  font-size: 30px;
-}
-
 .dashboard {
   display: flex;
   flex-direction: column;
+  margin: 0px;
+  padding: 0px;
+  width: 100%;
+  height: 100%;
 }
 
 /* WILL BE REMOVED, THIS IS HERE FOR UTILITY */

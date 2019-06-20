@@ -6,7 +6,7 @@ import { withRouter } from 'react-router-dom';
 import { logout } from '../actions/auth.actions';
 
 // CSS
-import './css/dashboard.css';
+import './css/navigation-bar.css';
 
 class NavigationBar extends Component {
   onClickLogout = () => {

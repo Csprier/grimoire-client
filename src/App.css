@@ -1,15 +1,6 @@
 .App {
-  /* background-color: #2B303A; */
-}
-
-.App-logo {
-
-}
-
-.App-header {
-
-}
-
-.App-link {
-
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
 }

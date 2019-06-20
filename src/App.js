@@ -41,15 +41,17 @@ class App extends Component {
       <Router history={history}>
         <div className="App">
           <main>
-            <Route exact path ="/" component={LandingPage} />
-            <Route exact path="/" component={UserLoginForm} />
-            <Route exact path="/register" component={UserCreationForm} />
-            <Route exact path="/dashboard" component={Dashboard} />
-            <Route exact path="/addNote" component={AddNoteForm} />
-            <Route exact path="/editNote" component={EditNoteForm} />
-            <Route exact path="/tagList" component={TagList} />
-            <Route exact path="/folderList" component={FolderList} />
-            <Route exact path="/folder/:id" component={FolderNoteList} />
+            <div className="component-container">
+              <Route exact path ="/" component={LandingPage} />
+              <Route exact path="/" component={UserLoginForm} />
+              <Route exact path="/register" component={UserCreationForm} />
+              <Route exact path="/dashboard" component={Dashboard} />
+              <Route exact path="/addNote" component={AddNoteForm} />
+              <Route exact path="/editNote" component={EditNoteForm} />
+              <Route exact path="/tagList" component={TagList} />
+              <Route exact path="/folderList" component={FolderList} />
+              <Route exact path="/folder/:id" component={FolderNoteList} />
+            </div>
           </main>
         </div>
       </Router>
