@@ -45,11 +45,14 @@ class FolderNoteList extends Component {
           <NavigationBar />
         </header>
         <div className="folder-note-list-under-nav">
-          <h4>{folderName}</h4>
-          <button onClick={this.returnToDashboard}>&#60;  Dashboard</button>
+          <div className="under-nav-title-and-redirect">
+            <h4>{folderName}</h4>
+            <button onClick={this.returnToDashboard}>&#60;  Dashboard</button>
+          </div>
+          <NotesSearch />
         </div>
         <div>
-          <NotesSearch />
+          {/* <NotesSearch /> */}
           {(this.props.searchTerm.length !== 0) 
             ? filteredNotes
             : defaultNotes }

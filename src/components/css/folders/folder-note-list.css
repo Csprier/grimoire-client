@@ -6,7 +6,7 @@
 
 .folder-note-list-under-nav {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
   font-family: arial;
   margin: 0 auto;
@@ -23,6 +23,8 @@
   padding: 5px;
 }
 
-..folder-note-list-under-nav button {
-
+.under-nav-title-and-redirect {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
