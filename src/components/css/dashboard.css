@@ -39,3 +39,15 @@
 .logout-button {
   font-size: 30px;
 }
+
+.dashboard {
+  display: flex;
+  flex-direction: column;
+}
+
+/* WILL BE REMOVED, THIS IS HERE FOR UTILITY */
+.note-list-display {
+  margin: 0px;
+  padding: 0px;
+  border: 1px solid black;
+}

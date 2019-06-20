@@ -10,7 +10,7 @@ import { logout } from '../actions/auth.actions';
 
 // Components
 import NoteList from './Notes/NoteList';
-// import NotesSearch from './Notes/NotesSearch';
+import NotesSearch from './Notes/NotesSearch';
 import FolderList from './Folders/FolderList';
 
 // logout image
@@ -63,10 +63,11 @@ class Dashboard extends Component {
         </header>
 
         <div className="dashboard">
-          {/* <NotesSearch />
-          <NoteList /> */}
           <FolderList />
-          <NoteList />
+          {/* <div className="note-list-display">
+            <NotesSearch />
+            <NoteList />
+          </div> */}
         </div>
 
       </div>
