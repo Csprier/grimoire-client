@@ -18,7 +18,6 @@ class FolderNoteList extends Component {
   }
 
   render() {
-    console.log(this.props.searchTerm)
     let notesInTheFolder = [];
     for (let i = 0; i < this.props.notes.length; i++) {
       if (this.props.notes[i].folders.length > 0) {
@@ -44,7 +43,6 @@ class FolderNoteList extends Component {
           {(this.props.searchTerm.length !== 0) 
             ? filteredNotes
             : defaultNotes }
-          {/* {notesInTheFolder.map((note, i) => <Note note={note} key={i} />)} */}
         </div>
       </div>
     )

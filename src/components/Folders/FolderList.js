@@ -23,16 +23,11 @@ class FolderList extends Component {
     this.props.dispatch(toggleAddFolderInputRender());
   }
 
-  // returnToDashboard = () => {
-  //   this.props.history.push('/dashboard');
-  // }
-
   render() {
     return (
       <div className="folder-list-container">
         <div className="folder-list-nav">
           <h4>Folders</h4>
-          {/* <button onClick={this.returnToDashboard}>&#60;  Dashboard</button> */}
         </div>
         <div className="folder-list">
           {(this.props.folders !== undefined)

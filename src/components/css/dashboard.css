@@ -1,17 +1,3 @@
-/* .logout-button {
-  margin: 5px;
-  padding: 0px;
-  width: 25px;
-  height: 25px;
-}
-
-.logout-button img {
-  margin: 0px;
-  padding: 0px;
-  width: 25px;
-  height: 25px;
-} */
-
 .header-elements {
   display: flex;
   flex-direction: row;
