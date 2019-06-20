@@ -9,9 +9,10 @@ import RequiresLogin from './requires-login';
 import { logout } from '../actions/auth.actions';
 
 // Components
-import NoteList from './Notes/NoteList';
-import NotesSearch from './Notes/NotesSearch';
+// import NoteList from './Notes/NoteList';
+// import NotesSearch from './Notes/NotesSearch';
 import FolderList from './Folders/FolderList';
+import NavigationBar from './NavigationBar';
 
 // logout image
 // import LOImage from '../images/logout.png';
@@ -46,7 +47,8 @@ class Dashboard extends Component {
       <div className="dashboard-container">
 
         <header>
-          <div className="header-elements">
+          <NavigationBar />
+          {/* <div className="header-elements">
             <button 
               className="pencil-icon"
               onClick={this.moveToAddNote}
@@ -59,7 +61,7 @@ class Dashboard extends Component {
               onClick={this.onClickLogout}
               className="logout-button"
             >&#10097;</button>
-          </div>
+          </div> */}
         </header>
 
         <div className="dashboard">
