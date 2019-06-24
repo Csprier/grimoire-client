@@ -291,7 +291,7 @@ class EditNoteForm extends Component {
                               placeholder="Add a folder..."
                               onChange={this.handleAddFolder}
                             />
-                            <div className="add-">
+                            <div className="add-folder-input-buttons">
                               <button
                                 onClick={this.addFolder}
                                 className="add-chip"
@@ -308,7 +308,7 @@ class EditNoteForm extends Component {
 
     return(
       <div className="edit-note-form-container">
-        <h4>Edit Note</h4>
+        {/* <h4>Edit Note</h4> */}
         <form onSubmit={this.handleEditSubmit}>
           <label>
             Title:
