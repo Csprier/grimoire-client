@@ -1,15 +1,103 @@
 .edit-note-form-container {
+  font-family: arial;
   border: 1px solid white;
 }
 .edit-note-form-container form {
   display: flex;
   flex-direction: column;
 }
-
-.edit-tags-container {
+.edit-note-form-container input, textarea {
+  width: 100%;
+  padding: 5px;
+  background-color: lightgray;
   border: 1px solid white;
 }
+.toggle-tag-input-button {
+  font-weight: bold;
+  font-size: 15px;
+  font-family: arial;
+  color: goldenrod
+}
 
-.edit-folders-container {
+/* TAGS */
+.edit-tags-container {
+  width: 100%;
+  margin: 0px 0px 0px 0px;
+  padding: 5px;
+  border: 1px solid lightgray;
+}
+.tag-chips-ul {
+  width: 100%;
+  margin: 0px 0px 0px 0px;
+  padding: 5px;
+  /* border: 1px solid lightgray; */
+}
+.tag-chips-li {
+  display: inline-block;
+  margin: 3px 3px;
+  padding: 5px;
+  font-weight: 100;
+  font-family: arial;
+  border-radius: 25px;
+  background-color: #f1f1f1;
+  list-style-type: none;
+}
+.tag-chip-remove {
+  padding-left: 10px;
+  padding-right: 5px;
+  color: #888;
+  font-weight: bold;
+  float: right;
+  cursor: pointer;
+}
+.add-tag-input-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  margin: 0px;
+  padding: 0px;
+}
+.atic-edit-notes-tags-input {  
+  display: flex;
+  flex-direction: row;
+  width: 60%;
+  margin: 0px;
+  padding: 0px;
+}
+.add-tag-input-buttons {
+  display: flex;
+  flex-direction: row;
+  width: 40%;
+  margin: 0px;
+  padding: 0px;
+  font-size: 10px;
+}
+.add-chip {
+  display: flex;
+  text-align: center;
+  width: 50%;
+  height: 100%;
+  margin: 0px;
+  padding: 2px 5px;
+  color: white;
+  background-color: #4CAF50;
   border: 1px solid white;
+}
+.cancel-chip {
+  display: flex;
+  text-align: center;
+  width: 50%;
+  height: 100%;
+  margin: 0px;
+  padding: 2px 5px;
+  color: white;
+  background-color: #f44336;
+  border: 1px solid white;
+}
+/* FOLDERS */
+.edit-folders-container {
+  width: 100%;
+  margin: 5px 0px 0px 0px;
+  padding: 5px;
+  border: 1px solid lightgray;
 }

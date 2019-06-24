@@ -232,13 +232,14 @@ class EditNoteForm extends Component {
       return <Redirect to="/dashboard" />
     }
 
-    const tagChips = <ul>
+    const tagChips = <ul className="tag-chips-ul">
                       {(this.props.reduxTags) 
                         ? this.props.reduxTags.map(tag => {
-                            return (<li key={tag}>
+                            return (<li key={tag} className="tag-chips-li">
                                       {tag}
                                       <button 
                                         onClick={(e) => this.removeTag(e)}
+                                        className="tag-chip-remove"
                                         value={tag}
                                       >&times;</button>
                                     </li>
@@ -246,17 +247,26 @@ class EditNoteForm extends Component {
                         : null}
                     </ul>
     const addTagInput = <div className="add-tag-input-container">
-                          <label>Add tags:</label>
+                          {/* <label>Add tags:</label> */}
                           <input 
                             id="add-tag"
+                            className="atic-edit-notes-tags-input"
                             type="text"
                             placeholder="Add a tag..."
                             onChange={this.handleAddTag}
                           />
-                          <button 
-                            onClick={this.addTag} 
-                            value={this.props.tagValue}
-                          >Add</button>
+                          <div className="add-tag-input-buttons">
+                            <button 
+                              className="add-chip"
+                              onClick={this.addTag} 
+                              value={this.props.tagValue}
+                            >Add</button>
+                            <button
+                              id="add-tag-cancel"
+                              className="cancel-chip"
+                              onClick={this.renderTagInput}
+                            >&times;</button>
+                          </div>
                         </div>
     const folderChips = <ul>
                         {(this.props.reduxFolders) 
@@ -313,7 +323,7 @@ class EditNoteForm extends Component {
           <div className="edit-tags-container">
             {(this.props.renderTagInput) 
               ? null 
-              : <button name="add-tags" onClick={this.renderTagInput}>Add tags</button>}
+              : <button name="add-tags" onClick={this.renderTagInput} className="toggle-tag-input-button">+ Add tags</button>}
             {(!this.props.renderTagInput)
               ? tagChips
               : addTagInput}
