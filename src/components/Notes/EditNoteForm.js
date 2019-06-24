@@ -268,13 +268,14 @@ class EditNoteForm extends Component {
                             >&times;</button>
                           </div>
                         </div>
-    const folderChips = <ul>
+    const folderChips = <ul className="folder-chips-ul">
                         {(this.props.reduxFolders) 
                           ? this.props.reduxFolders.map(folder => {
-                              return (<li key={folder}>
+                              return (<li key={folder} className="folder-chips-li">
                                       {folder}
                                       <button 
                                         onClick={(e) => this.removeFolder(e)}
+                                        className="folder-chip-remove"
                                         value={folder}
                                       >&times;</button>
                                     </li>
@@ -282,17 +283,26 @@ class EditNoteForm extends Component {
                           : null}
                       </ul> 
     const addFolderInput = <div className="add-folder-input-container">
-                            <label>Add folders:</label>
+                            {/* <label>Add folders:</label> */}
                             <input 
                               id="add-folder"
+                              className="atic-edit-notes-folders-input"
                               type="text"
                               placeholder="Add a folder..."
                               onChange={this.handleAddFolder}
                             />
-                            <button
-                              onClick={this.addFolder}
-                              value={this.props.folderValue}
-                            >Add</button>
+                            <div className="add-">
+                              <button
+                                onClick={this.addFolder}
+                                className="add-chip"
+                                value={this.props.folderValue}
+                              >Add</button>
+                              <button
+                              id="add-folder-cancel"
+                              className="cancel-chip"
+                              onClick={this.renderFolderInput}
+                            >&times;</button>
+                            </div>
                           </div>
 
 
@@ -316,7 +326,7 @@ class EditNoteForm extends Component {
               defaultValue={this.state.editedValues.content}
               placeholder={this.state.editedValues.content}
               type="text"
-              rows="4" cols="50"
+              rows="16" cols="50"
               onChange={e => this.handleContentValueChange(e)}
             />  
           </label>
@@ -332,13 +342,15 @@ class EditNoteForm extends Component {
           <div className="edit-folders-container"> 
             {(this.props.renderFolderInput)
               ? null 
-              : <button name="add-folders" onClick={this.renderFolderInput}>Add folders</button>}
+              : <button name="add-folders" onClick={this.renderFolderInput} className="toggle-folder-input-button">+ Add folders</button>}
             {(!this.props.renderFolderInput)
               ? folderChips
               : addFolderInput}
           </div>
-          <button type="submit">Save Changes</button>
-          <button onClick={this.cancelEdit}>Cancel</button>
+          <div className="edit-note-form-buttons-container">
+            <button type="submit" className="sc">Save Changes</button>
+            <button onClick={this.cancelEdit} className="cancel">Cancel</button>
+          </div>
         </form>
       </div>
     )

@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import RequiresLogin from './requires-login';
 
 // Components
-// import NoteList from './Notes/NoteList';
+import NoteList from './Notes/NoteList';
 // import NotesSearch from './Notes/NotesSearch';
 import FolderList from './Folders/FolderList';
 import NavigationBar from './NavigationBar';
@@ -27,6 +27,7 @@ class Dashboard extends Component {
         </header>
         <div className="dashboard">
           <FolderList />
+          <NoteList />
           {/* <div className="note-list-display">
             <NotesSearch />
             <NoteList />
