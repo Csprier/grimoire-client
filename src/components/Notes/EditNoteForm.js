@@ -246,7 +246,7 @@ class EditNoteForm extends Component {
                                   )}) 
                         : null}
                     </ul>
-    const addTagInput = <div className="add-tag-input-container">
+    const addTagInput = <div className="edit-add-tag-input-container">
                           {/* <label>Add tags:</label> */}
                           <input 
                             id="add-tag"
@@ -282,7 +282,7 @@ class EditNoteForm extends Component {
                                   )}) 
                           : null}
                       </ul> 
-    const addFolderInput = <div className="add-folder-input-container">
+    const addFolderInput = <div className="edit-add-folder-input-container">
                             {/* <label>Add folders:</label> */}
                             <input 
                               id="add-folder"
