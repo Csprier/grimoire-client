@@ -47,25 +47,25 @@ class AddNoteForm extends Component {
     this.props.history.push('/dashboard');
   };
 
-  handleTitleChange = e => {
+  handleTitleChange = (e) => {
     this.setState({
       titleValue: e.target.value
     });
   }
 
-  handleContentChange = e => {
+  handleContentChange = (e) => {
     this.setState({
       contentValue: e.target.value
     });
   }
 
-  handleTagChange = e => {
+  handleTagChange = (e) => {
     this.setState({
       tagValue: e.target.value
     });
   }
 
-  handleFolderChange = e => {
+  handleFolderChange = (e) => {
     this.setState({
       folderValue: e.target.value
     });
@@ -183,11 +183,16 @@ class AddNoteForm extends Component {
 
     return (
       <div className="add-note-container">
-        <h4>Create a new note</h4>
+        {/* <h4>Create a new note</h4> */}
         <form className="add-note-form" onSubmit={this.handleSubmit}>
           <label>
             Title:
-            <input type="text" onChange={this.handleTitleChange} />
+            <input 
+              type="text" 
+              className="an-input"
+              placeholder="Title..."
+              onChange={this.handleTitleChange} 
+            />
           </label>
           <label>
             Content:
@@ -200,6 +205,24 @@ class AddNoteForm extends Component {
           </label>
 
           <div className="add-tags-to-notes-container">
+            <div className="an-add-tag-input-container">
+              <input 
+                id="tagsForNote"
+                type="text"
+                placeholder="Add a tag..."
+                onChange={this.handleTagChange}
+                className="an-input"
+              />
+              <button
+                value={this.state.tagValue}
+                onClick={(e) => {
+                  e.preventDefault();
+                  this.props.dispatch(addTagToNewNote(e.target.value))
+                  document.getElementById('tagsForNote').value = "";
+                }}
+                className="an-add-tag-button"
+              >+ Add Tag</button>
+            </div>
             <div className="tag-chips-container">
               {this.props.createNote.tags.map(tag => {
                 return (
@@ -217,28 +240,27 @@ class AddNoteForm extends Component {
                 )
               })}
             </div>
-            <label>
-              Add a Tag:
-              <input 
-                id="tagsForNote"
-                type="text"
-                placeholder="Add a tag..."
-                onChange={this.handleTagChange}
-                className="add-tag-input"
-              />
-            </label>
-            <button
-              value={this.state.tagValue}
-              onClick={(e) => {
-                e.preventDefault();
-                this.props.dispatch(addTagToNewNote(e.target.value))
-                document.getElementById('tagsForNote').value = "";
-              }}
-              className="add-tag-button"
-            >Add Tag</button>
           </div>
           
           <div className="add-folders-to-notes-container">
+            <div className="an-add-folder-input-container">
+              <input 
+                id="folderssForNote"
+                type="text"
+                placeholder="Add a folder..."
+                onChange={this.handleFolderChange}
+                className="an-input"
+              />
+              <button
+                value={this.state.folderValue}
+                onClick={(e) => {
+                  e.preventDefault();
+                  this.props.dispatch(addFolderToNewNote(e.target.value))
+                  document.getElementById('folderssForNote').value = "";
+                }}
+                className="an-add-folder-button"
+              >+ Add Folder</button>
+            </div>
             <div className="folder-chips-container">
               {this.props.createNote.folders.map(folder => {
                 return (
@@ -256,30 +278,11 @@ class AddNoteForm extends Component {
                 )
               })}
             </div>
-            <label>
-                Add a Folder:
-                <input 
-                  id="folderssForNote"
-                  type="text"
-                  placeholder="Add a folder..."
-                  onChange={this.handleFolderChange}
-                  className="add-folder-input"
-                />
-              </label>
-              <button
-                value={this.state.folderValue}
-                onClick={(e) => {
-                  e.preventDefault();
-                  this.props.dispatch(addFolderToNewNote(e.target.value))
-                  document.getElementById('folderssForNote').value = "";
-                }}
-                className="add-folder-button"
-              >Add Folder</button>
           </div>
 
           <div className="add-note-buttons">
-            <button type="submit">Save</button>
-            <button onClick={this.cancelNote}>Cancel</button>
+            <button type="submit" className="an-sc">Save</button>
+            <button onClick={this.cancelNote} className="an-cancel">Cancel</button>
           </div>
         </form>
         {error}

@@ -1,34 +1,91 @@
 .add-note-container {
-  width: 98%;
+  width: 100%;
   height: auto;
   margin: 0px;
   padding: 0px;
-}
-
-.add-note-container h4 {
   font-family: arial;
-  font-weight: 100;
-  background-color: #D64933;
-  color: white;
+  border: 1px solid white;
 }
 
 .add-note-form {
-  width: 98%;
-  margin: 0 auto;
-  margin-top: 10px;
-  padding: 0px;
-  background-color: lightgray;
-  /* border: 1px solid red; */
-}
-
-.add-note-buttons {
   display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
+  flex-direction: column;
+  justify-content: space-around;
   width: 100%;
   margin: 0px;
   padding: 0px;
 }
-.add-note-buttons button {
+
+.an-input, ta {
+  width: 100%;
   padding: 5px;
+  background-color: lightgray;
+  border: 1px solid white;
+}
+
+.an-add-tag-input-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  margin: 0px;
+  padding: 0px;
+}
+.an-add-tag-input-container input {
+  width: 60%;
+}
+.an-add-tag-button {
+  width: 40%;
+  margin: 0px;
+  padding: 0px;
+  font-weight: bold;
+  font-size: 15px;
+  font-family: arial;
+  color: goldenrod
+}
+.an-add-folder-input-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  margin: 0px;
+  padding: 0px;
+}
+.an-add-folder-input-container input {
+  width: 60%;
+}
+.an-add-folder-button {
+  width: 40%;
+  margin: 0px;
+  padding: 0px;
+  font-weight: bold;
+  font-size: 15px;
+  font-family: arial;
+  color: goldenrod
+}
+
+/* SUBMIT/CANCEL BUTTONS */
+.add-note-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  position: fixed;
+  bottom: 0px;
+  margin: 0px;
+  padding: 0px;
+  width: 100%;
+}
+.add-note-buttons button {
+  margin: 0px;
+  padding: 10px 0px;
+}
+.an-sc {
+  font-weight: bold;
+  font-size: 15px;
+  font-family: arial;
+  color: goldenrod;
+}
+.an-cancel {
+  font-weight: bold;
+  font-size: 15px;
+  font-family: arial;
+  color: red;
 }
