@@ -11,8 +11,7 @@ import renderField from './Field/renderField';
 import { login } from '../actions/auth.actions';
 
 // CSS
-// import '../css/user-component-styles/user-login.css'
-// import './forms.css';
+import './css/login.css';
 
 class UserLoginForm extends Component {
   moveToDashboard() {

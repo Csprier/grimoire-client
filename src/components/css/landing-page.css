@@ -1,0 +1,17 @@
+.landing-page {
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+  font-family: arial;
+}
+
+.landing-page-info {
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+  padding: 0px; 
+}
+.landing-page-info h1 {
+  text-align: center;
+}

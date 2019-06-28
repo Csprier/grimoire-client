@@ -1,0 +1,34 @@
+.user-login-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+  font-family: arial;
+}
+.user-login-form h2 {
+  margin: 0px;
+  padding: 5px;
+}
+
+.login-button {
+  margin: 0px;
+  padding: 0px;
+  color: goldenrod;
+  font-weight: bold;
+}
+
+.sign-up-link {
+  display: block;
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
+  margin: 0px;
+  padding: 0px 0px 10px 0px;
+  text-align: center;
+}
+.sign-up-link a {
+  padding: 0px 5px;
+  margin: 0px;
+}
