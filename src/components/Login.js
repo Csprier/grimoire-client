@@ -59,13 +59,12 @@ class UserLoginForm extends Component {
             validate={[ validators.required, validators.nonEmpty ]}
             placeholder="Password..."
           />
-          <button className="login-button" name="submit-login" type="submit">LOG IN</button>
+          <div className="login-buttons">
+            <Link to="/">Back</Link>
+            <button className="login-button" name="submit-login" type="submit">LOG IN</button>
+          </div>
           {error}
         </form>
-        <p className="sign-up-link">
-          Don't have an account?
-          <Link to="/register">Sign Up</Link>
-        </p>
       </div>
     );
   }

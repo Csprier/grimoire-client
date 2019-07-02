@@ -43,7 +43,7 @@ class App extends Component {
           <main>
             <div className="component-container">
               <Route exact path ="/" component={LandingPage} />
-              <Route exact path="/" component={UserLoginForm} />
+              <Route exact path="/login" component={UserLoginForm} />
               <Route exact path="/register" component={UserCreationForm} />
               <Route exact path="/dashboard" component={Dashboard} />
               <Route exact path="/addNote" component={AddNoteForm} />
