@@ -35,26 +35,28 @@ class UserLoginForm extends Component {
 
     return (
       <div className="user-login-form">
-        <h2>Login</h2>
+        {/* <h2>Login</h2> */}
         <form onSubmit={this.props.handleSubmit(values =>
           this.handleLoginSubmit(values)
         )} className="login-form">
-          <label htmlFor="username">Username</label>
           <Field 
+            label="Username"
             aria-label="username"
             name="username"
             id="loginusername" 
+            containerClassName="login-input-container"
             className="login-input"
             type="text" 
             component={renderField}
             validate={[ validators.required, validators.nonEmpty, validators.isTrimmed ]}
             placeholder="Username..."
             />
-          <label htmlFor="password">Password</label>
           <Field 
+            label="Password"
             aria-label="password"
             name="password" 
             id="loginpassword" 
+            containerClassName="login-input-container"
             className="login-input"
             type="password" 
             component={renderField}
@@ -62,8 +64,8 @@ class UserLoginForm extends Component {
             placeholder="Password..."
           />
           <div className="login-buttons">
-            <Link to="/">Back</Link>
             <button className="login-button" name="submit-login" type="submit">LOG IN</button>
+            <Link to="/">Back</Link>
           </div>
           {error}
         </form>
