@@ -12,7 +12,7 @@ import { createUser } from '../actions/user.actions';
 import { loginError } from '../actions/auth.actions';
 
 // CSS
-// import '../css/user-component-styles/user-creation.css';
+import './css/register.css';
 
 // Password validation
 const passwordLength = validators.length({ min: 8, max: 72 });
@@ -41,16 +41,18 @@ class UserCreationForm extends Component {
     return (
       <div className="user-creation-form-container">
         <div className="user-creation-form">
-            <h2>Create an Account</h2>
+            {/* <h2>Create an Account</h2> */}
             <form onSubmit={this.props.handleSubmit(values =>
               this.handleRegisterSubmit(values)
-            )}>
+            )} className="register-form">
               <Field 
                 aria-label="createusername"
                 label="Username"
                 name="username" 
                 id="username" 
                 type="text" 
+                containerClassName="register-input-container"
+                className="register-input"
                 component={renderField}
                 validate={[ 
                   validators.required, 
@@ -66,6 +68,8 @@ class UserCreationForm extends Component {
                 name="email" 
                 id="email" 
                 type="text" 
+                containerClassName="register-input-container"
+                className="register-input"
                 component={renderField}
                 validate={[ 
                   validators.required, 
@@ -82,6 +86,8 @@ class UserCreationForm extends Component {
                 name="password" 
                 id="password" 
                 type="password" 
+                containerClassName="register-input-container"
+                className="register-input"
                 component={renderField} 
                 validate={[ 
                   validators.required, 
@@ -98,6 +104,8 @@ class UserCreationForm extends Component {
                 name="confirmpassword" 
                 id="confirmpassword" 
                 type="password" 
+                containerClassName="register-input-container"
+                className="register-input"
                 component={renderField} 
                 validate={[ 
                   validators.required, 
@@ -108,14 +116,16 @@ class UserCreationForm extends Component {
                 autoComplete="off"
                 placeholder="Confirm Password..."
               />
-              <button 
-                className="creation-button" 
-                name="submit-create-account" 
-                type="submit"
-              >CREATE ACCOUNT</button>
+              <div className="register-buttons">
+                <button 
+                  className="creation-button" 
+                  name="submit-create-account" 
+                  type="submit"
+                >CREATE ACCOUNT</button>
+                <Link to="/" className="go-back">Go back</Link>
+              </div>
               {error}
             </form>
-            <p><Link to="/" className="go-back">Go back</Link></p>
         </div>
       </div>
     );
