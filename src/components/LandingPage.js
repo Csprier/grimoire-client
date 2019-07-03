@@ -15,7 +15,7 @@ class LandingPage extends Component {
     return (
       <div className="landing-page">
         <div className="landing-page-info">
-          <h1>GRIMOIRE</h1>
+          <h1 className="title"><span className="fancy-g">G</span>rimoire</h1>
           <p>
             <span>By definition, a Grimoire is a book of spells and invocations. </span>
             <br />
