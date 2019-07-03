@@ -17,9 +17,13 @@ class LandingPage extends Component {
         <div className="landing-page-info">
           <h1 className="title"><span className="fancy-g">G</span>rimoire</h1>
           <p>
-            <span>By definition, a Grimoire is a book of spells and invocations. </span>
+            <span className="word">gri·moire</span>
             <br />
-            <span>A place a spellcaster would keep meaningful ideas and important concepts that weren't meant for ordinary eyes.</span>
+            <span>/ɡrimˈwär/</span>
+            <br />
+            <span className="italic">noun</span>
+            <br />
+            a book of spells and invocations.
           </p>
           <div className="landing-page-buttons">
             <Link to="/login">Login</Link>

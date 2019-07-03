@@ -10,8 +10,8 @@
   /* background-color: black; */
   color: goldenrod;
   background: linear-gradient(
-                     rgba(20,20,20, .5), 
-                     rgba(20,20,20, .5)),
+                     rgba(20,20,20, .8), 
+                     rgba(20,20,20, .8)),
                       url(../../images/arcaneCirclesGold.jpg) no-repeat;
 }
 .user-login-form h2 {
