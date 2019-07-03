@@ -38,12 +38,13 @@ class UserLoginForm extends Component {
         <h2>Login</h2>
         <form onSubmit={this.props.handleSubmit(values =>
           this.handleLoginSubmit(values)
-        )}>
+        )} className="login-form">
           <label htmlFor="username">Username</label>
           <Field 
             aria-label="username"
             name="username"
             id="loginusername" 
+            className="login-input"
             type="text" 
             component={renderField}
             validate={[ validators.required, validators.nonEmpty, validators.isTrimmed ]}
@@ -54,6 +55,7 @@ class UserLoginForm extends Component {
             aria-label="password"
             name="password" 
             id="loginpassword" 
+            className="login-input"
             type="password" 
             component={renderField}
             validate={[ validators.required, validators.nonEmpty ]}

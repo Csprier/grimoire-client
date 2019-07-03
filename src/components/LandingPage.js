@@ -21,8 +21,10 @@ class LandingPage extends Component {
             <br />
             <span>A place a spellcaster would keep meaningful ideas and important concepts that weren't meant for ordinary eyes.</span>
           </p>
-          <Link to="/login">Login</Link>
-          <Link to="/register">Sign up</Link>
+          <div className="landing-page-buttons">
+            <Link to="/login">Login</Link>
+            <Link to="/register">Sign up</Link>
+          </div>
         </div>
       </div>
     )
