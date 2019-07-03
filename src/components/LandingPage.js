@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 
 // CSS
 import './css/landing-page.css';
+import G from '../images/G.png';
 
 class LandingPage extends Component {
   render() {
@@ -15,7 +16,12 @@ class LandingPage extends Component {
     return (
       <div className="landing-page">
         <div className="landing-page-info">
-          <h1 className="title"><span className="fancy-g">G</span>rimoire</h1>
+          <h1 className="title">
+            Grimoire
+            {/* <span className="fancy-g">G</span> */}
+            {/* <span><img src={G} alt="fancy-g" className="G" /></span> */}
+            {/* <span>rimoire</span> */}
+          </h1>
           <p>
             <span className="word">gri·moire</span>
             <br />
