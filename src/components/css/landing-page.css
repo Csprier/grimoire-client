@@ -6,7 +6,10 @@
   font-family: arial;
   color: white;
   background-color: black;
-  background: url(../../images/arcaneCirclesGold.jpg) no-repeat;
+  background: linear-gradient(
+                     rgba(20,20,20, .5), 
+                     rgba(20,20,20, .5)),
+                      url(../../images/arcaneCirclesGold.jpg) no-repeat;
 }
 
 .landing-page-info {
