@@ -9,7 +9,6 @@ import { getTags, toggleAddTagInputRender } from '../../actions/tags.actions'
 
 // Components
 import Tag from './Tag';
-// import AddTag from '../Tags/AddTag';
 import AddTagInput from '../Tags/AddTagInput';
 
 // CSS
@@ -34,7 +33,7 @@ class TagList extends Component {
     return (
       <div className="tag-list-container">
         <div className="tag-list-nav">
-          <h4>List of Tags</h4>
+          <h4>Tags</h4>
           <button 
             onClick={this.returnToDashboard}
           >&#60; Dashboard</button>

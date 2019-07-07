@@ -52,10 +52,12 @@ class FolderManager extends Component {
             onClick={this.returnToDashboard}
           >&#60; Dashboard</button>
         </div>
-        {(this.props.folders !== undefined)
-          ? manageableFolders
-          : <span>No folders in the database</span>
-        }
+        <div className="folder-list">
+          {(this.props.folders !== undefined)
+            ? manageableFolders
+            : <span>No folders in the database</span>
+          }
+        </div>
         <div className="fm-input-container">
           {(this.props.renderAddFolderInput)
             ? <AddFolderInput />
