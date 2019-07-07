@@ -2,7 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 // Async actions
-import { getFolders, deleteFolderFromDatabase } from '../../actions/folders.actions';
+import { getFolders, deleteFolderFromDatabase, toggleAddFolderInputRender } from '../../actions/folders.actions';
+
+// Components
+import AddFolderInput from './AddFolderInput';
 
 // CSS
 // import './css/folder-manager.css';
@@ -10,6 +13,10 @@ import { getFolders, deleteFolderFromDatabase } from '../../actions/folders.acti
 class FolderManager extends Component {
   componentDidMount() {
     this.props.dispatch(getFolders());
+  }
+
+  toggleRenderFolderInput = () => {
+    this.props.dispatch(toggleAddFolderInputRender());
   }
 
   handleDeleteFolder = (e) => {
@@ -22,26 +29,41 @@ class FolderManager extends Component {
   render() {
     const manageableFolders = this.props.folders.map(folder => {
       return (
-        <div>
+        <div key={folder.name}>
           <p>{folder.name}</p>
           <button
             value={folder._id}
             onClick={this.handleDeleteFolder}
-          >&#187;</button>
+          >X</button>
         </div>
       )
     });
 
     return (
-      <div>
-        {manageableFolders}
+      <div className="folder-manager-container">
+        <div className="folder-managernav">
+          <h4>Folders</h4>
+        </div>
+        <div>
+          {(this.props.renderAddFolderInput)
+            ? <AddFolderInput />
+            : <button
+                className="render-add-folder-input-button"
+                onClick={this.toggleRenderFolderInput}            
+              >+ New Folder</button>}
+        </div>
+        {(this.props.folders !== undefined)
+          ? manageableFolders
+          : <span>No folders in the database</span>
+        }
       </div>
     )
   }
 }
 
 const mapStateToProps = state => ({
-  folders: state.folders.data
+  folders: state.folders.data,
+  renderAddFolderInput: state.folders.renderAddFolderInput
 });
 
 export default connect(mapStateToProps)(FolderManager);

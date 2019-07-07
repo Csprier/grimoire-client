@@ -22,8 +22,8 @@ class NavigationBar extends Component {
     this.props.history.push('/tagList');
   }
 
-  moveToFolderList = () => {
-    this.props.history.push('/folderList');
+  moveToFolderManager = () => {
+    this.props.history.push('/folderManager');
   }
 
 
@@ -38,6 +38,10 @@ class NavigationBar extends Component {
           className="tag-icon"
           onClick={this.moveToTagList}
         >&#9744;</button>
+        <button
+          className="folder-icon"
+          onClick={this.moveToFolderManager}
+        >&#10063;</button>
         <button
           onClick={this.onClickLogout}
           className="logout-button"
