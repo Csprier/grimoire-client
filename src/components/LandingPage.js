@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 // CSS
 import './css/landing-page.css';
-import G from '../images/G.png';
+// import G from '../images/G.png';
 
 class LandingPage extends Component {
   render() {

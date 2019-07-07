@@ -9,9 +9,9 @@ import { folderIdToView, deleteFolderFromDatabase } from '../../actions/folders.
 import '../css/folders/folder.css';
 
 class Folder extends Component {
-  redirectToFolder = (e) => {
+  redirectToFolder = (e, id) => {
     e.preventDefault();
-    let id = e.target.value;
+    id = id || e.target.value;
     console.log('Redirecting to Folder:', id);
     this.props.dispatch(folderIdToView(id));
     this.props.history.push(`/folder/${id}`)
@@ -25,8 +25,13 @@ class Folder extends Component {
   }
 
   render() {
+    const folderId = this.props.folder._id;
     return (
-      <div className="folder" key={this.props.folder._id}>
+      <div 
+        className="folder" 
+        key={this.props.folder._id} 
+        onClick={(e) => this.redirectToFolder(e, folderId)}
+      >
         <p>{this.props.folder.name}</p>
         {/* <button
           className="folder-delete-button"
