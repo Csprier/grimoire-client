@@ -56,7 +56,6 @@ class AddTagInput extends Component {
 
   handleClick = e => {
     let tagToAdd = e.target.value;
-    console.log('Add Tag to component state:', tagToAdd);
     this.setState({
       tagValue: '',
       tagsToAddToDatabase: [ ...this.state.tagsToAddToDatabase, tagToAdd ]
@@ -64,7 +63,6 @@ class AddTagInput extends Component {
   }
 
   removeChip = tag => {
-    console.log('Remove tag: ', tag);
     let tagToRemove = tag;
     this.setState({
       tagsToAddToDatabase: this.state.tagsToAddToDatabase.filter(tag => tag !== tagToRemove)
@@ -75,7 +73,6 @@ class AddTagInput extends Component {
     e.preventDefault();
     let userId = this.props.user.id;
     let tagsToBeSubmitted = this.makeNewTagsArray(this.state.tagsToAddToDatabase, userId);
-    console.log('Tags To Be Submitted', tagsToBeSubmitted);
     this.props.dispatch(addNewTag(tagsToBeSubmitted))
       .then(() => {
         this.setState({

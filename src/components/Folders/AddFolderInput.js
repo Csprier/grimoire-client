@@ -56,7 +56,6 @@ class AddFolderInput extends Component {
 
   handleClick = e => {
     let folderToAdd = e.target.value;
-    console.log('Add Folder to component state', folderToAdd);
     this.setState({
       folderValue: '',
       foldersToAddToDatabase: [ ...this.state.foldersToAddToDatabase, folderToAdd ]
@@ -64,7 +63,6 @@ class AddFolderInput extends Component {
   }
 
   removeChip = folder => {
-    console.log('Remove folder chip', folder);
     let folderToRemove = folder;
     this.setState({
       foldersToAddToDatabase: this.state.foldersToAddToDatabase.filter(folder => folder !== folderToRemove)
@@ -75,7 +73,6 @@ class AddFolderInput extends Component {
     e.preventDefault();
     let userId = this.props.userId;
     let foldersToBeSubmitted = this.makeNewFolderArray(this.state.foldersToAddToDatabase, userId);
-    console.log('Folders To Be Submitted', foldersToBeSubmitted);
     this.props.dispatch(addNewFolder(foldersToBeSubmitted))
       .then(() => {
         this.setState({

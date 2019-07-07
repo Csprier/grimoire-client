@@ -20,7 +20,6 @@ class NoteList extends Component {
     this.props.dispatch(getNotes());
     this.props.dispatch(getTags());
     this.props.dispatch(getFolders());
-    console.log('Notes, tags, and folders fetched.')
   }
 
   render() {

@@ -12,7 +12,6 @@ class Folder extends Component {
   redirectToFolder = (e, id) => {
     e.preventDefault();
     id = id || e.target.value;
-    console.log('Redirecting to Folder:', id);
     this.props.dispatch(folderIdToView(id));
     this.props.history.push(`/folder/${id}`)
   }
@@ -20,7 +19,6 @@ class Folder extends Component {
   handleDeleteFolder = (e) => {
     let folderId = e.target.value,
         userId = this.props.userId;
-    console.log(`Delete: ${folderId} from database. UserId: ${userId}`);
     this.props.dispatch(deleteFolderFromDatabase(userId, folderId))
   }
 

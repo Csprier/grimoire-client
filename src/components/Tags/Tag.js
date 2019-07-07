@@ -11,7 +11,6 @@ class Tag extends Component {
   handleDeleteTag = (e) => {
     let tagId = e.target.value,
         userId = this.props.userId;
-    console.log(`Delete: ${tagId} from database. UserId: ${userId}`);
     this.props.dispatch(deleteTagFromDatabase(userId, tagId))
   }
 

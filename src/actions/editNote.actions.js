@@ -110,7 +110,6 @@ export const RESET_EDIT_NOTE_REDUX_STATE_VALUES = 'RESET_EDIT_NOTE_REDUX_STATE_V
 // ========================================================
 export const EDIT_NOTE_PUT_REQUEST = 'EDIT_NOTE_PUT_REQUEST',
 editNotePutRequest = (id, note) => (dispatch, getState) => {
-  console.log(`editNotePutRequest(${id})`);
   let url = `${API_BASE_URL}/notes/${id}`;
   const authToken = getState().auth.authToken;
   return Axios.put(url, note, {
@@ -121,7 +120,6 @@ editNotePutRequest = (id, note) => (dispatch, getState) => {
     }
   })
   .then(res => {
-    // console.log('PUT RESPONSE', res);
     dispatch(getNotes());
   })
   .catch((err) => console.error(err));

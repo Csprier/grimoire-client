@@ -53,7 +53,6 @@ class EditNoteForm extends Component {
     this._isMounted = true;
     this.props.dispatch(getNoteByIdToEdit(this.props.noteToEdit))
       .then((res) => {
-        // console.log('ENFCDMres', res);
         let noteValues = res;
         this.updateNoteValuesInComponentState(noteValues);
       });
@@ -65,7 +64,6 @@ class EditNoteForm extends Component {
 
   // Update values in state to represent what goes into the note to be edited
   updateNoteValuesInComponentState = (note) => {
-    // console.log('updateNoteValuesInComponentState', note);
     this.setState({
       editNote: {
         id: note.id,
@@ -185,7 +183,6 @@ class EditNoteForm extends Component {
       tags: formattedTags,
       folders: formattedFolders
     }
-    // console.log('Sending updated note to the server: ', updatedNote);
     this.props.dispatch(editNotePutRequest(id, updatedNote));
     this.props.dispatch(toggleEditMode());
   }

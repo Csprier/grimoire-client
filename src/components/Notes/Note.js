@@ -29,14 +29,12 @@ class Note extends Component {
   redirectToEditNoteForm = (e) => {
     e.preventDefault();
     let noteId = e.target.value;
-    // console.log('Note to edit id:', noteId)
     this.props.dispatch(noteToEdit(noteId));
     this.props.dispatch(toggleEditMode());
   }
 
   handleDelete = (e) => {
     let noteId = e.target.value;
-    console.log(`Deleting: ${noteId}`);
     this.props.dispatch(deleteNoteById(noteId));
   }
   

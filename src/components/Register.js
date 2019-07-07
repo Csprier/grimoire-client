@@ -143,7 +143,6 @@ UserCreationForm = reduxForm({
   forceUnregisterOnUnmount: true, // unregister fields on unmount
   onSubmitFail: (submitError, dispatch) => {
     dispatch(loginError(submitError))
-    console.log('onSubmitFail submitError:', submitError);
   }
 })(UserCreationForm);
 

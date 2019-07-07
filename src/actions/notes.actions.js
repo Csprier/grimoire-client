@@ -13,7 +13,6 @@ export const GET_NOTES_REQUEST = 'GET_NOTES_REQUEST',
 
 export const GET_NOTES_DATA = 'GET_NOTES_DATA',
   getNotesData = (data) => {
-    // console.log('GET_NOTES_DATA:', data);
     return {
       type: GET_NOTES_DATA,
       data
@@ -208,7 +207,6 @@ export const TOGGLE_EDIT_MODE = 'TOGGLE_EDIT_MODE',
 
 export const NOTE_TO_EDIT = 'NOTE_TO_EDIT',
   noteToEdit = (noteId) => {
-    // console.log('Note To Edit Action:', noteId)
     return {
       type: NOTE_TO_EDIT,
       noteId
@@ -227,8 +225,6 @@ export const GET_NOTE_BY_ID_TO_EDIT = 'GET_NOTE_BY_ID_TO_EDIT',
       }
     })
     .then(res => {
-      // let noteToEdit = res.data;
-      // console.log(res.data);
       let noteToEdit = {
         id: res.data._id,
         title: res.data.title,
@@ -236,7 +232,6 @@ export const GET_NOTE_BY_ID_TO_EDIT = 'GET_NOTE_BY_ID_TO_EDIT',
         tags: (res.data.tags === undefined) ? [] : res.data.tags.map(tag => tag.name),
         folders: (res.data.folders === undefined) ? [] : res.data.folders.map(folder => folder.name)
       }
-      // console.log('Note To Edit in Actions', noteToEdit);
       return noteToEdit;
     })
     .catch(e => console.error(e));
