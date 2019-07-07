@@ -1,4 +1,27 @@
+.add-tag-input-component-container {
+  width: 98%;
+  margin: 0 auto;
+  margin-bottom: 5px;
+  padding: 0px;
+  border: 1px solid lightgray;
+}
+
 .add-tag-form-container {
+  width: 100%;
+  margin: 10px 0px;
+  padding: 0px;
+}
+
+.add-tag-chip-container {
+
+}
+
+.add-tag-button-container {
+  
+}
+
+
+/* .add-tag-form-container {
   width: 100%;
   margin: 10px 0px;
   padding: 0px;
@@ -15,4 +38,4 @@
 
 .add-tag-form input {
   border: 1px solid black;
-}
+} */

@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import RequiresLogin from '../requires-login';
 
 // Async Actions
-import { getTags } from '../../actions/tags.actions'
+import { getTags, toggleAddTagInputRender } from '../../actions/tags.actions'
 
 // Components
 import Tag from './Tag';
@@ -24,6 +24,10 @@ class TagList extends Component {
 
   returnToDashboard = () => {
     this.props.history.push('/dashboard');
+  }
+
+  toggleRenderTagInput = () => {
+    this.props.dispatch(toggleAddTagInputRender());
   }
 
   render() {
@@ -50,7 +54,6 @@ class TagList extends Component {
               >+ New Tag</button>
           }
         </div>
-        <AddTagInput />
       </div>
     )
   }

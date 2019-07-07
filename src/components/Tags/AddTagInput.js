@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import RequiresLogin from '../requires-login';
 
 // Actions
-import { addNewTag } from '../../actions/tags.actions';
+import { addNewTag, toggleAddTagInputRender } from '../../actions/tags.actions';
 
 class AddTagInput extends Component {
   constructor() {
@@ -90,49 +90,62 @@ class AddTagInput extends Component {
 
   render() {
     return (
-      <div>
-        <div>
-          <form onSubmit={this.handleSubmit}>
-            <label>
-              Add a Tag:
-              <input 
-                id="createATagInput"
-                type="text"
-                placeholder="Add a tag"
-                onChange={this.handleTagValueChange}
-                value={this.state.tagValue}
-              />
-            </label>
-            <button
+      <div className="add-tag-input-component-container">
+        <div className="add-tag-form-container">
+          <form 
+            className="add-tag-form"
+            onSubmit={this.handleSubmit}
+          >
+            <input 
+              id="createATagInput"
+              type="text"
+              placeholder="Add a tag"
+              onChange={this.handleTagValueChange}
               value={this.state.tagValue}
-              onClick={(e) => {
-                e.preventDefault();
-                this.handleClick(e);
-                document.getElementById('createATagInput').value = "";
-              }}
-            >Add Chip</button>
-            <button
-              id="addTagInputSubmit"
-              type="submit"
-            >Add Tags</button>
+            />
+            <div className="add-tag-chip-container">
+              {this.state.tagsToAddToDatabase.map(tag => {
+                return (
+                  <div key={tag} className="add-tag-chip">
+                    <span>{tag}</span>
+                    <span
+                      onClick={() => {
+                        this.removeChip(tag)
+                      }}
+                      className="chip-remove"
+                    >
+                      &times;
+                    </span>
+                  </div>
+                )
+              })}
+            </div>
+            <div className="add-tag-button-container">
+              <button
+                value={this.state.tagValue}
+                onClick={(e) => {
+                  e.preventDefault();
+                  this.handleClick(e);
+                  document.getElementById('createATagInput').value = "";
+                }}
+              >Add Chip</button>
+              <button
+                id="addTagInputSubmit"
+                type="submit"
+              >&#43;</button>
+              <button
+                className="af-btn"
+                onClick={(e) => {
+                  e.preventDefault();
+                  this.setState({
+                    tagValue: '',
+                    tagsToAddToDatabase: []
+                  });
+                  this.props.dispatch(toggleAddTagInputRender());
+                }}
+              >Cancel</button>
+            </div>
           </form>
-        </div>
-        <div>
-          {this.state.tagsToAddToDatabase.map(tag => {
-            return (
-              <div key={tag} className="add-tag-chip">
-                <span>{tag}</span>
-                <span
-                  onClick={() => {
-                    this.removeChip(tag)
-                  }}
-                  className="chip-remove"
-                >
-                  &times;
-                </span>
-              </div>
-            )
-          })}
         </div>
       </div>
     )

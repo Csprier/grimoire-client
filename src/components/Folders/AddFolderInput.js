@@ -101,7 +101,6 @@ class AddFolderInput extends Component {
             className="add-folder-form"
             onSubmit={this.handleSubmit}
           >
-            {/* <label>Add a Folder:</label> */}
             <input 
               id="createAFolderInput"
               type="text"

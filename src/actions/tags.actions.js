@@ -64,6 +64,13 @@ export const getTags = () => (dispatch, getState) => {
 // =======================================================
 // ADD TAG ACTIONS
 // =======================================================
+export const TOGGLE_ADD_TAG_INPUT_RENDER = 'TOGGLE_ADD_TAG_INPUT_RENDER',
+  toggleAddTagInputRender = () => {
+    return {
+      type: TOGGLE_ADD_TAG_INPUT_RENDER
+    }
+  }
+  
 export const ADD_TAG_REQUEST = 'ADD_TAG_REQUEST',
   addTagRequest = () => {
     return {

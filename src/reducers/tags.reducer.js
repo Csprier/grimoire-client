@@ -4,6 +4,7 @@ import {
   GET_TAGS_SUCCESS,
   GET_TAGS_ERROR,
   ADD_TAG_REQUEST,
+  TOGGLE_ADD_TAG_INPUT_RENDER,
   ADD_TAG,
   ADD_TAG_SUCCESS,
   ADD_TAG_ERROR,
@@ -16,6 +17,7 @@ import {
 const initialState = {
   data: [],
   loading: false,
+  renderAddTagInput: false,
   error: null
 };
 
@@ -43,6 +45,11 @@ export default function tagsReducer(state = initialState, action) {
         loading: false
       }
     // POST ================================================
+    case TOGGLE_ADD_TAG_INPUT_RENDER:
+      return {
+        ...state,
+        renderAddTagInput: !state.renderAddTagInput
+      }
     case ADD_TAG_REQUEST:
       return {
         ...state,
