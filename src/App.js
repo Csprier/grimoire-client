@@ -12,6 +12,7 @@ import LandingPage from './components/LandingPage';
 import TagList from './components/Tags/TagList';
 import FolderList from './components/Folders/FolderList';
 import FolderNoteList from './components/Folders/FolderNoteList';
+import FolderManager from './components/Folders/FolderManager';
 
 import { refreshAuthToken } from './actions/auth.actions';
 
@@ -51,6 +52,7 @@ class App extends Component {
               <Route exact path="/tagList" component={TagList} />
               <Route exact path="/folderList" component={FolderList} />
               <Route exact path="/folder/:id" component={FolderNoteList} />
+              <Route exact path="/folderManager" component={FolderManager} />
             </div>
           </main>
         </div>

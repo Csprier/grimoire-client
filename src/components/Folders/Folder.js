@@ -33,11 +33,6 @@ class Folder extends Component {
         onClick={(e) => this.redirectToFolder(e, folderId)}
       >
         <p>{this.props.folder.name}</p>
-        {/* <button
-          className="folder-delete-button"
-          onClick={this.handleDeleteFolder}
-          value={this.props.folder._id}
-        >X</button> */}
         <button
           className="folder-redirect-button"
           value={this.props.folder._id}
