@@ -17,11 +17,6 @@ class AddFolderInput extends Component {
       folderValue: '',
       foldersToAddToDatabase: []
     }
-    this.handeFolderValueChange = this.handeFolderValueChange.bind(this);
-    this.makeNewFolderArray = this.makeNewFolderArray.bind(this);
-    this.handleClick = this.handleClick.bind(this);
-    this.removeChip = this.removeChip.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handeFolderValueChange = e => {

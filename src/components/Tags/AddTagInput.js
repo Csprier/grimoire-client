@@ -17,11 +17,6 @@ class AddTagInput extends Component {
       tagValue: '',
       tagsToAddToDatabase: []
     }
-    this.handleTagValueChange = this.handleTagValueChange.bind(this);
-    this.makeNewTagsArray = this.makeNewTagsArray.bind(this);
-    this.handleClick = this.handleClick.bind(this);
-    this.removeChip = this.removeChip.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleTagValueChange = e => {

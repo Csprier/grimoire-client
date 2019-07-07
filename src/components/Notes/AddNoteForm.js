@@ -27,14 +27,6 @@ class AddNoteForm extends Component {
       tagValue: '',
       folderValue: ''
     }
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleTitleChange = this.handleTitleChange.bind(this);
-    this.handleContentChange = this.handleContentChange.bind(this);
-    this.handleTagChange = this.handleTagChange.bind(this);
-    this.handleFolderChange = this.handleFolderChange.bind(this);
-    this.makeNewTagsArray = this.makeNewTagsArray.bind(this);
-    this.makeNewFolderArray = this.makeNewFolderArray.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   cancelNote = () => {

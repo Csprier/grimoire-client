@@ -46,17 +46,6 @@ class EditNoteForm extends Component {
         folders: []
       },
     }
-    this.updateNoteValuesInComponentState = this.updateNoteValuesInComponentState.bind(this);
-    this.handleTitleValueChange = this.handleTitleValueChange.bind(this);
-    this.handleContentValueChange = this.handleContentValueChange.bind(this);
-    this.renderTagInput = this.renderTagInput.bind(this);
-    this.renderFolderInput = this.renderFolderInput.bind(this);
-    this.addTag = this.addTag.bind(this);
-    this.addFolder = this.addFolder.bind(this);
-    this.removeTag = this.removeTag.bind(this);
-    this.removeFolder = this.removeFolder.bind(this);
-    this.handleEditSubmit = this.handleEditSubmit.bind(this);
-    this.cancelEdit = this.cancelEdit.bind(this);
   }
 
   // When EditNoteForm mounts, dispatch an async action to get the note's property values
