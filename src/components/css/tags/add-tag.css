@@ -12,30 +12,73 @@
   padding: 0px;
 }
 
-.add-tag-chip-container {
-
-}
-
-.add-tag-button-container {
-  
-}
-
-
-/* .add-tag-form-container {
-  width: 100%;
-  margin: 10px 0px;
-  padding: 0px;
-}
-
 .add-tag-form {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  width: 60%;
+  flex-direction: column;
+  width: 98%;
   margin: 0 auto;
   padding: 0px;
 }
 
-.add-tag-form input {
-  border: 1px solid black;
-} */
+.add-tag-form-input {
+  width: 100%;
+  padding: 5px;
+  background-color: lightgray;
+  border: 1px solid white;
+}
+
+/* ===== CHIPS ======================== */
+.add-tag-chip-container {
+  display: grid;
+  grid-template-columns: fit-content(100px) fit-content(100px) 1fr;
+  grid-gap: 5px;
+  box-sizing: border-box;
+  width: 100%;
+  height: auto;
+  padding: 5px;
+}
+.add-tag-form-chip {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin: 0px;
+  padding: 0px;
+  font-weight: 100;
+  font-family: arial;
+  border-radius: 25px;
+  background-color: #f1f1f1;
+}
+.add-tag-form-chip span {
+  margin: 0px;
+  padding: 5px;
+}
+.tag-chip-remove-button {
+  margin: 0px 0px 0px 0px;
+  padding: 0px 3px 0px 3px;
+  color: #888;
+  font-weight: bold;
+  float: right;
+  cursor: pointer;
+}
+
+/* ======== BUTTONS ======================= */
+.add-tag-button-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin: 0px;
+  padding: 0px;
+  width: 100%;
+}
+
+.at-btn {
+  margin: 0px;
+  padding: 5px;
+  font-family: arial;
+  font-size: 12px;
+  font-weight: 100;
+}
+.at-submit {
+  font-size: 30px;
+  color: goldenrod;
+}

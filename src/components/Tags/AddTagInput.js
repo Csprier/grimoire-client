@@ -7,6 +7,9 @@ import RequiresLogin from '../requires-login';
 // Actions
 import { addNewTag, toggleAddTagInputRender } from '../../actions/tags.actions';
 
+// CSS
+import '../css/tags/add-tag.css';
+
 class AddTagInput extends Component {
   constructor() {
     super();
@@ -102,6 +105,7 @@ class AddTagInput extends Component {
               placeholder="Add a tag"
               onChange={this.handleTagValueChange}
               value={this.state.tagValue}
+              className="add-tag-form-input"
             />
             <div className="add-tag-chip-container">
               {this.state.tagsToAddToDatabase.map(tag => {
@@ -130,11 +134,12 @@ class AddTagInput extends Component {
                 }}
               >Add Chip</button>
               <button
+                className="at-submit"
                 id="addTagInputSubmit"
                 type="submit"
               >&#43;</button>
               <button
-                className="af-btn"
+                className="at-btn"
                 onClick={(e) => {
                   e.preventDefault();
                   this.setState({
