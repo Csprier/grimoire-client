@@ -15,6 +15,10 @@ class FolderManager extends Component {
     this.props.dispatch(getFolders());
   }
 
+  returnToDashboard = () => {
+    this.props.history.push('/dashboard');
+  }
+
   toggleRenderFolderInput = () => {
     this.props.dispatch(toggleAddFolderInputRender());
   }
@@ -43,6 +47,7 @@ class FolderManager extends Component {
       <div className="folder-manager-container">
         <div className="folder-managernav">
           <h4>Folders</h4>
+          <button onClick={this.returnToDashboard}>&#60; Dashboard</button>
         </div>
         <div>
           {(this.props.renderAddFolderInput)
