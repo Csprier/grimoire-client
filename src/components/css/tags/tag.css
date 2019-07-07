@@ -4,15 +4,19 @@
   justify-content: space-between;
   width: 98%;
   margin: 0 auto;
-  padding: 5px;
-  background-color: lightgray;
-  border-bottom: 1px solid black;
+  margin-top: 5px;
+  padding: 10px 5px;
+  font-family: arial;
+  border-bottom: 1px solid lightgray;
 }
 
 .tag p {
-  display: flex;
+  margin: 0px;
+  padding: 5px;
 }
 
 .tag-delete-button {
-  display: flex;
+  margin: 0px;
+  padding: 5px;
+  font-size: 15px;
 }

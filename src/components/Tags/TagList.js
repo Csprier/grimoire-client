@@ -31,16 +31,26 @@ class TagList extends Component {
       <div className="tag-list-container">
         <div className="tag-list-nav">
           <h4>List of Tags</h4>
-          <button onClick={this.returnToDashboard}>&#60; Dashboard</button>
+          <button 
+            onClick={this.returnToDashboard}
+          >&#60; Dashboard</button>
         </div>
-        {/* <AddTag /> */}
-        <AddTagInput />
         <div className="tag-list">
           { (this.props.tags !== undefined)
             ? this.props.tags.map((tag, i) => <Tag tag={tag} key={i} />)
             : <span>No tags in the database</span>
           }
         </div>
+        <div className="tag-list-input-container">
+          {(this.props.renderAddTagInput)
+            ? <AddTagInput />
+            : <button
+                className="render-add-tag-input-button"
+                onClick={this.toggleRenderTagInput}
+              >+ New Tag</button>
+          }
+        </div>
+        <AddTagInput />
       </div>
     )
   }
@@ -48,7 +58,8 @@ class TagList extends Component {
 
 const mapStateToProps = state => ({
   userId: state.auth.user.id,
-  tags: state.tags.data || []
+  tags: state.tags.data || [],
+  renderAddTagInput: state.tags.renderAddTagInput
 });
 
 export default RequiresLogin()(connect(mapStateToProps)(TagList));
