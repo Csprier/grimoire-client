@@ -19,10 +19,12 @@ class NotesSearch extends Component {
     return (
       <div className="notes-form-container">
         <form ref="form">
-          <label htmlFor="NotesSearch"></label>
+          {/* <label htmlFor="NotesSearch"></label> */}
           <Field 
             name="searchTerm"
             component={renderField}
+            containerClassName="search-input-container"
+            className="search-input"
             onChange={(event) => {
               this.props.dispatch(updateSearchTerm(event.target.value));
               this.props.dispatch(updateSearchTermSuccess());
