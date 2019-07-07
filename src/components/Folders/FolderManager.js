@@ -8,7 +8,7 @@ import { getFolders, deleteFolderFromDatabase, toggleAddFolderInputRender } from
 import AddFolderInput from './AddFolderInput';
 
 // CSS
-// import './css/folder-manager.css';
+import '../css/folders/folder-manager.css';
 
 class FolderManager extends Component {
   componentDidMount() {
@@ -33,9 +33,10 @@ class FolderManager extends Component {
   render() {
     const manageableFolders = this.props.folders.map(folder => {
       return (
-        <div key={folder.name}>
+        <div key={folder.name} className="fm-folder">
           <p>{folder.name}</p>
           <button
+            className="fm-folder-delete-button"
             value={folder._id}
             onClick={this.handleDeleteFolder}
           >X</button>
@@ -45,11 +46,17 @@ class FolderManager extends Component {
 
     return (
       <div className="folder-manager-container">
-        <div className="folder-managernav">
+        <div className="folder-manager-nav">
           <h4>Folders</h4>
-          <button onClick={this.returnToDashboard}>&#60; Dashboard</button>
+          <button 
+            onClick={this.returnToDashboard}
+          >&#60; Dashboard</button>
         </div>
-        <div>
+        {(this.props.folders !== undefined)
+          ? manageableFolders
+          : <span>No folders in the database</span>
+        }
+        <div className="fm-input-container">
           {(this.props.renderAddFolderInput)
             ? <AddFolderInput />
             : <button
@@ -57,10 +64,6 @@ class FolderManager extends Component {
                 onClick={this.toggleRenderFolderInput}            
               >+ New Folder</button>}
         </div>
-        {(this.props.folders !== undefined)
-          ? manageableFolders
-          : <span>No folders in the database</span>
-        }
       </div>
     )
   }
