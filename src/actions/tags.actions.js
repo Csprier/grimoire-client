@@ -88,7 +88,6 @@ export const ADD_TAG = 'ADD_TAG',
 
 export const ADD_TAG_SUCCESS = 'ADD_TAG_SUCCESS',
   addTagSuccess = (res) => {
-    console.log('addTagSuccess', res);
     return {
       type: ADD_TAG_SUCCESS,
       newTags: res.data

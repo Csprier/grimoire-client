@@ -17,7 +17,6 @@ import '../css/tags/tag-list.css';
 
 class TagList extends Component {
   componentDidMount() {
-    console.log('TagList mounted, fetching tags.');
     this.props.dispatch(getTags());
   }
 
