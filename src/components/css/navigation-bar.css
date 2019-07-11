@@ -1,32 +1,79 @@
-.header-elements {
-  top: 0px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  width: 100%;
-  margin: 0px;
-  padding: 0px;
-  background-color: black;
+/* MOBILE DIMENSION */
+@media only screen and (max-width: 600px) {
+  .header-elements {
+    top: 0px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+    background-color: black;
+  }
+  
+  .header-elements button {
+    width: 75px;
+    height: 40px;
+    margin: 0px;
+    padding: 0px;
+    font-family: arial;
+    color: goldenrod;
+  }
+  
+  .pencil-icon {
+    font-size: 30px;
+  }
+  .tag-icon {
+    font-size: 30px;
+  }
+  .folder-icon{
+    font-size: 30px;
+  }
+  .logout-button {
+    font-size: 30px;
+  }
 }
 
-.header-elements button {
-  width: 75px;
-  height: 40px;
-  margin: 0px;
-  padding: 0px;
-  font-family: arial;
-  color: goldenrod;
-}
-
-.pencil-icon {
-  font-size: 30px;
-}
-.tag-icon {
-  font-size: 30px;
-}
-.folder-icon{
-  font-size: 30px;
-}
-.logout-button {
-  font-size: 30px;
+/* LARGER THAN MOBILE DIMENSION */
+@media only screen and (min-width: 601px) {
+  .header-elements {
+    top: 0px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+    background-color: black;
+  }
+  
+  .header-elements button {
+    width: 75px;
+    height: 40px;
+    margin: 0px;
+    padding: 0px;
+    font-family: arial;
+    color: goldenrod;
+  }
+  
+  .pencil-icon {
+    font-size: 30px;
+    background-color: black;
+    border: 1px solid black;
+  }
+  .tag-icon {
+    font-size: 30px;
+    background-color: black;
+    border: 1px solid black;
+  }
+  .folder-icon{
+    font-size: 30px;
+    background-color: black;
+    border: 1px solid black;
+  }
+  .logout-button {
+    font-size: 30px;
+    background-color: black;
+    border: 1px solid black;
+  } 
 }
