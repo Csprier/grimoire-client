@@ -29,19 +29,21 @@ class FolderList extends Component {
         <div className="folder-list-nav">
           <h4>Folders</h4>
         </div>
-        <div className="folder-list">
-          {(this.props.folders !== undefined)
-            ? this.props.folders.map((folder, i) => <Folder folder={folder} key={i} />)
-            : <span>No folders in the database</span>
-          }
-        </div>
-        <div className="new-folder-button-container">
-          {(this.props.renderAddFolderInput)
-            ? <AddFolderInput />
-            : <button
-                className="render-add-folder-input-button"
-                onClick={this.toggleRenderFolderInput}            
-              >+ New Folder</button>}
+        <div className="fl-main">
+          <div className="folder-list">
+            {(this.props.folders !== undefined)
+              ? this.props.folders.map((folder, i) => <Folder folder={folder} key={i} />)
+              : <span>No folders in the database</span>
+            }
+          </div>
+          <div className="new-folder-button-container">
+            {(this.props.renderAddFolderInput)
+              ? <AddFolderInput />
+              : <button
+                  className="render-add-folder-input-button"
+                  onClick={this.toggleRenderFolderInput}            
+                >+ New Folder</button>}
+          </div>
         </div>
       </div>
     )
