@@ -123,9 +123,12 @@
   .an-add-tag-input-container {
     display: flex;
     flex-direction: row;
-    width: 100%;
+    justify-content: space-around;
+    position: fixed;
+    bottom: 0px;
     margin: 0px;
     padding: 0px;
+    width: 100%;
   }
   .an-add-tag-input-container input {
     width: 60%;
