@@ -1,91 +1,198 @@
-.add-note-container {
-  width: 100%;
-  height: auto;
-  margin: 0px;
-  padding: 0px;
-  font-family: arial;
-  border: 1px solid white;
+/* MOBILE DIMENSIONS */
+@media only screen and (max-width: 600px) {
+  .add-note-container {
+    width: 100%;
+    height: auto;
+    margin: 0px;
+    padding: 0px;
+    font-family: arial;
+    border: 1px solid white;
+  }
+
+  .add-note-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+  }
+
+  .an-input, ta {
+    width: 100%;
+    padding: 5px;
+    background-color: lightgray;
+    border: 1px solid white;
+  }
+
+  .an-add-tag-input-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+  }
+  .an-add-tag-input-container input {
+    width: 60%;
+  }
+  .an-add-tag-button {
+    width: 40%;
+    margin: 0px;
+    padding: 0px;
+    font-weight: bold;
+    font-size: 15px;
+    font-family: arial;
+    color: goldenrod
+  }
+  .an-add-folder-input-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+  }
+  .an-add-folder-input-container input {
+    width: 60%;
+  }
+  .an-add-folder-button {
+    width: 40%;
+    margin: 0px;
+    padding: 0px;
+    font-weight: bold;
+    font-size: 15px;
+    font-family: arial;
+    color: goldenrod
+  }
+
+  /* SUBMIT/CANCEL BUTTONS */
+  .add-note-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    position: fixed;
+    bottom: 0px;
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+  }
+  .add-note-buttons button {
+    margin: 0px;
+    padding: 10px 0px;
+  }
+  .an-sc {
+    font-weight: bold;
+    font-size: 15px;
+    font-family: arial;
+    color: goldenrod;
+  }
+  .an-cancel {
+    font-weight: bold;
+    font-size: 15px;
+    font-family: arial;
+    color: red;
+  }
 }
 
-.add-note-form {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  width: 100%;
-  margin: 0px;
-  padding: 0px;
-}
+/* LARGER THAN MOBILE DIMENSIONS */
+@media only screen and (min-width: 601px) {
+  .add-note-container {
+    width: 100%;
+    height: auto;
+    margin: 0px;
+    padding: 0px;
+    font-family: arial;
+    border: 1px solid white;
+  }
 
-.an-input, ta {
-  width: 100%;
-  padding: 5px;
-  background-color: lightgray;
-  border: 1px solid white;
-}
+  .add-note-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 50%;
+    margin: 0 auto;
+    padding: 0px;
+  }
 
-.an-add-tag-input-container {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  margin: 0px;
-  padding: 0px;
-}
-.an-add-tag-input-container input {
-  width: 60%;
-}
-.an-add-tag-button {
-  width: 40%;
-  margin: 0px;
-  padding: 0px;
-  font-weight: bold;
-  font-size: 15px;
-  font-family: arial;
-  color: goldenrod
-}
-.an-add-folder-input-container {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  margin: 0px;
-  padding: 0px;
-}
-.an-add-folder-input-container input {
-  width: 60%;
-}
-.an-add-folder-button {
-  width: 40%;
-  margin: 0px;
-  padding: 0px;
-  font-weight: bold;
-  font-size: 15px;
-  font-family: arial;
-  color: goldenrod
-}
+  .an-input, ta {
+    width: 100%;
+    padding: 5px;
+    background-color: lightgray;
+    border: 1px solid white;
+  }
 
-/* SUBMIT/CANCEL BUTTONS */
-.add-note-buttons {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  position: fixed;
-  bottom: 0px;
-  margin: 0px;
-  padding: 0px;
-  width: 100%;
-}
-.add-note-buttons button {
-  margin: 0px;
-  padding: 10px 0px;
-}
-.an-sc {
-  font-weight: bold;
-  font-size: 15px;
-  font-family: arial;
-  color: goldenrod;
-}
-.an-cancel {
-  font-weight: bold;
-  font-size: 15px;
-  font-family: arial;
-  color: red;
+  .an-add-tag-input-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+  }
+  .an-add-tag-input-container input {
+    width: 60%;
+  }
+  .an-add-tag-button {
+    width: 40%;
+    margin: 0px;
+    padding: 0px;
+    font-weight: bold;
+    font-size: 15px;
+    font-family: arial;
+    color: goldenrod;
+    background-color: white;
+    border: 1px solid white;
+  }
+  .an-add-folder-input-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+  }
+  .an-add-folder-input-container input {
+    width: 60%;
+  }
+  .an-add-folder-button {
+    width: 40%;
+    margin: 0px;
+    padding: 0px;
+    font-weight: bold;
+    font-size: 15px;
+    font-family: arial;
+    color: goldenrod;
+    background-color: white;
+    border: 1px solid white;
+  }
+
+  /* SUBMIT/CANCEL BUTTONS */
+  .add-note-buttons {
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    position: fixed;
+    bottom: 0px;
+    margin: 0 auto;
+    padding: 0px;
+  }
+  .add-note-buttons button {
+    margin: 0px;
+    padding: 10px 0px;
+  }
+  .an-sc {
+    font-weight: bold;
+    font-size: 15px;
+    font-family: arial;
+    color: goldenrod;
+    background-color: white;
+    border: 1px solid white;
+  }
+  .an-cancel {
+    font-weight: bold;
+    font-size: 15px;
+    font-family: arial;
+    color: red;
+    background-color: white;
+    border: 1px solid white;
+  } 
 }

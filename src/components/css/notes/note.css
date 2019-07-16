@@ -9,133 +9,271 @@
   display: none;
 }
 
-/* === ELEMENT STYLES ============================== */
-.toggle-button {
-  margin: 0px;
-  padding: 0px;
-  width: 10%;
-  height: 100%;
-  /* background-color: goldenrod;
-  border: 1px solid lightgray; */
-  /* border-radius: 50%; */
-}
-.arrow-icon {
-  width: 100%;
-  padding: 0px;
-  margin: 0px;
-  font-size: 20px;
-  /* background-color: goldenrod;
-  color: white; */
+/* MOBILE DIMENSIONS */
+@media only screen and (max-width: 600px) {
+  /* === ELEMENT STYLES ============================== */
+  .toggle-button {
+    margin: 0px;
+    padding: 0px;
+    width: 10%;
+    height: 100%;
+    /* background-color: goldenrod;
+    border: 1px solid lightgray; */
+    /* border-radius: 50%; */
+  }
+  .arrow-icon {
+    width: 100%;
+    padding: 0px;
+    margin: 0px;
+    font-size: 20px;
+    /* background-color: goldenrod;
+    color: white; */
+  }
+
+  .note {
+    width: 98%;
+    padding: 10px;
+    margin: 0 auto;
+    margin-top: 5px;
+    font-family: arial;
+    background-color: white;
+    border-bottom: 1px solid lightgray;
+  }
+
+  .note-title-and-toggle-container {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+  }
+
+  .note-data-container {
+    width: 98;
+    padding: 5px;
+    margin: 0 auto;
+  }
+
+  .note-title {
+    padding: 0px;
+    margin: 0px;
+    width: 90%;
+    font-family: arial;
+    font-weight: 500;
+    /* border-bottom: 1px solid black; */
+  }
+
+  .note p {
+    padding: 0px 0px 0px 0px;
+    margin: 0px;
+    margin-bottom: 20px;
+    font-size: 12px;
+  }
+
+  /* ================= NOTE INFORMATION ================= */
+  .note-information {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    padding: 0px;
+    margin: 0px;
+  }
+
+  /* ================= TAGS ================= */
+  .tags-container {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    padding: 0px;
+    margin: 0px;
+    /* border: 1px solid blue; */
+  }
+  .tags-container h4 {
+    font-size: 14px;
+    padding: 0px;
+    margin: 0px;
+  }
+  .tags-container li {
+    font-size: 12px;
+    padding: 0px;
+    margin: 0px;
+    list-style-type: none;
+  }
+
+  /* ================= FOLDERS ================= */
+  .folders-container {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    padding: 0px;
+    margin: 0px;
+    /* border: 1px solid blue; */
+  }
+  .folders-container h4 {
+    font-size: 14px;
+    padding: 0px;
+    margin: 0px;
+  }
+  .folders-container li {
+    font-size: 12px;
+    padding: 0px;
+    margin: 0px;
+    list-style-type: none;
+  }
+
+  /* ================= BUTTONS ================= */
+  .button-container {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    padding: 0px;
+    margin: 0px; 
+  }
+
+  .edit-button {
+    padding: 5px;
+    margin: 0px; 
+  }
+
+  .delete-button {
+    padding: 5px;
+    margin: 0px; 
+  }
 }
 
-.note {
-  width: 98%;
-  padding: 10px;
-  margin: 0 auto;
-  margin-top: 5px;
-  font-family: arial;
-  background-color: white;
-  border-bottom: 1px solid lightgray;
-}
+/* LARGER THAN MOBILE DIMENSIONS */
+@media only screen and (min-width: 601px) {
+  /* === ELEMENT STYLES ============================== */
+  .toggle-button {
+    margin: 0px;
+    padding: 0px;
+    width: 10%;
+    height: 100%;
+    background-color: white;
+    border: 1px solid white;
+    /* border-radius: 50%; */
+  }
+  .arrow-icon {
+    width: 100%;
+    padding: 0px;
+    margin: 0px;
+    font-size: 20px;
+    /* background-color: goldenrod;
+    color: white; */
+  }
 
-.note-title-and-toggle-container {
-  display: flex;
-  justify-content: space-between;
-  flex-direction: row;
-  width: 100%;
-  margin: 0px;
-  padding: 0px;
-}
+  .note {
+    width: 98%;
+    padding: 10px;
+    margin: 0 auto;
+    margin-top: 5px;
+    font-family: arial;
+    background-color: white;
+    border-bottom: 1px solid lightgray;
+  }
 
-.note-data-container {
-  width: 98;
-  padding: 5px;
-  margin: 0 auto;
-}
+  .note-title-and-toggle-container {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+  }
 
-.note-title {
-  padding: 0px;
-  margin: 0px;
-  width: 90%;
-  font-family: arial;
-  font-weight: 500;
-  /* border-bottom: 1px solid black; */
-}
+  .note-data-container {
+    width: 98;
+    padding: 5px;
+    margin: 0 auto;
+  }
 
-.note p {
-  padding: 0px 0px 0px 0px;
-  margin: 0px;
-  margin-bottom: 20px;
-  font-size: 12px;
-}
+  .note-title {
+    padding: 0px;
+    margin: 0px;
+    width: 90%;
+    font-family: arial;
+    font-weight: 500;
+    /* border-bottom: 1px solid black; */
+  }
 
-/* ================= NOTE INFORMATION ================= */
-.note-information {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  padding: 0px;
-  margin: 0px;
-}
+  .note p {
+    padding: 0px 0px 0px 0px;
+    margin: 0px;
+    margin-bottom: 20px;
+    font-size: 12px;
+  }
 
-/* ================= TAGS ================= */
-.tags-container {
-  display: flex;
-  flex-direction: column;
-  width: 50%;
-  padding: 0px;
-  margin: 0px;
-  /* border: 1px solid blue; */
-}
-.tags-container h4 {
-  font-size: 14px;
-  padding: 0px;
-  margin: 0px;
-}
-.tags-container li {
-  font-size: 12px;
-  padding: 0px;
-  margin: 0px;
-  list-style-type: none;
-}
+  /* ================= NOTE INFORMATION ================= */
+  .note-information {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    padding: 0px;
+    margin: 0px;
+  }
 
-/* ================= FOLDERS ================= */
-.folders-container {
-  display: flex;
-  flex-direction: column;
-  width: 50%;
-  padding: 0px;
-  margin: 0px;
-  /* border: 1px solid blue; */
- }
-.folders-container h4 {
-  font-size: 14px;
-  padding: 0px;
-  margin: 0px;
- }
-.folders-container li {
-  font-size: 12px;
-  padding: 0px;
-  margin: 0px;
-  list-style-type: none;
- }
+  /* ================= TAGS ================= */
+  .tags-container {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    padding: 0px;
+    margin: 0px;
+  }
+  .tags-container h4 {
+    font-size: 14px;
+    padding: 0px;
+    margin: 0px;
+  }
+  .tags-container li {
+    font-size: 12px;
+    padding: 0px;
+    margin: 0px;
+    list-style-type: none;
+  }
 
- /* ================= BUTTONS ================= */
-.button-container {
-  display: flex;
-  justify-content: space-around;
-  width: 100%;
-  padding: 0px;
-  margin: 0px; 
+  /* ================= FOLDERS ================= */
+  .folders-container {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    padding: 0px;
+    margin: 0px;
+    /* border: 1px solid blue; */
+  }
+  .folders-container h4 {
+    font-size: 14px;
+    padding: 0px;
+    margin: 0px;
+  }
+  .folders-container li {
+    font-size: 12px;
+    padding: 0px;
+    margin: 0px;
+    list-style-type: none;
+  }
+
+  /* ================= BUTTONS ================= */
+  .button-container {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    padding: 0px;
+    margin: 0px; 
+  }
+
+  .edit-button {
+    padding: 5px;
+    margin: 0px; 
+    background-color: white;
+    border: 1px solid white;
+  }
+
+  .delete-button {
+    padding: 5px;
+    margin: 0px; 
+    background-color: white;
+    border: 1px solid white;
+  }
 }
-
-.edit-button {
-  padding: 5px;
-  margin: 0px; 
-}
-
-.delete-button {
-  padding: 5px;
-  margin: 0px; 
-}
-

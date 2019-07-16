@@ -7,7 +7,7 @@ import RequiresLogin from './requires-login';
 
 // Components
 import NoteList from './Notes/NoteList';
-// import NotesSearch from './Notes/NotesSearch';
+import NotesSearch from './Notes/NotesSearch';
 import FolderList from './Folders/FolderList';
 import NavigationBar from './NavigationBar';
 
@@ -26,12 +26,13 @@ class Dashboard extends Component {
           <NavigationBar />
         </header>
         <div className="dashboard">
-          <FolderList />
-          <NoteList />
-          {/* <div className="note-list-display">
+          <div className="folder-list-display">
+            <FolderList />
+          </div>
+          <div className="note-list-display">
             <NotesSearch />
             <NoteList />
-          </div> */}
+          </div>
         </div>
       </div>
     );

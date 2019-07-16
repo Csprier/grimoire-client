@@ -1,22 +1,55 @@
-.tag {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  width: 98%;
-  margin: 0 auto;
-  margin-top: 5px;
-  padding: 10px 5px;
-  font-family: arial;
-  border-bottom: 1px solid lightgray;
+/* MOBILE DIMENSIONS */
+@media only screen and (max-width: 600px) {
+  .tag {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 98%;
+    margin: 0 auto;
+    margin-top: 5px;
+    padding: 10px 5px;
+    font-family: arial;
+    border-bottom: 1px solid lightgray;
+  }
+
+  .tag p {
+    margin: 0px;
+    padding: 5px;
+  }
+
+  .tag-delete-button {
+    margin: 0px;
+    padding: 5px;
+    font-size: 15px;
+    border: 1px solid white;
+    background-color: white;
+  }
 }
 
-.tag p {
-  margin: 0px;
-  padding: 5px;
-}
+/* LARGER THAN MOBILE DIMENSIONS */
+@media only screen and (min-width: 601px) {
+  .tag {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 98%;
+    margin: 0 auto;
+    margin-top: 5px;
+    padding: 10px 5px;
+    font-family: arial;
+    border-bottom: 1px solid lightgray;
+  }
 
-.tag-delete-button {
-  margin: 0px;
-  padding: 5px;
-  font-size: 15px;
+  .tag p {
+    margin: 0px;
+    padding: 5px;
+  }
+
+  .tag-delete-button {
+    margin: 0px;
+    padding: 5px;
+    font-size: 15px;
+    border: 1px solid white;
+    background-color: white;
+  }
 }

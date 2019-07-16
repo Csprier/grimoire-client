@@ -52,7 +52,6 @@ class FolderNoteList extends Component {
           <NotesSearch />
         </div>
         <div>
-          {/* <NotesSearch /> */}
           {(this.props.searchTerm.length !== 0) 
             ? filteredNotes
             : defaultNotes }

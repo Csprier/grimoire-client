@@ -1,49 +1,120 @@
-.folder-list-container {
-  width: 100%;
-  height: 100%;
-  margin: 10px 0px 0px 0px;
-  padding: 0px;
-  overflow: hidden;
+/* MOBILE DIMENSION */
+@media only screen and (max-width: 600px) {
+  .folder-list-container {
+    width: 100%;
+    height: 100%;
+    margin: 10px 0px 0px 0px;
+    padding: 0px;
+    overflow: hidden;
+  }
+
+  .folder-list-nav {
+    margin: 0px;
+    padding: 0px;
+  }
+  .folder-list-nav h4 {
+    width: 98%;
+    margin: 0 auto;
+    padding: 5px;
+    font-family: arial;
+    font-weight: 100;
+    font-size: 20px;
+    border-bottom: 1px solid black;
+  }
+
+  .fl-main {
+    position: relative;
+    width: 100%;
+    margin: 0px;
+    padding: 0px; 
+  }
+
+  .folder-list {
+    position: relative;
+    width: 98%;
+    height: 100%;
+    margin: 0 auto;
+    padding: 0px; 
+  }
+
+  .new-folder-button-container {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+  }
+
+  .render-add-folder-input-button {
+    float: right;
+    width: 40%;
+    margin: 0px;
+    padding: 0px;
+    padding-bottom: 10px;
+    font-weight: bold;
+    font-size: 15px;
+    font-family: arial;
+    color: goldenrod;
+  }
 }
 
-.folder-list-nav {
-  margin: 0px;
-  padding: 0px;
-}
-.folder-list-nav h4 {
-  width: 98%;
-  margin: 0 auto;
-  padding: 5px;
-  font-family: arial;
-  font-weight: 100;
-  font-size: 20px;
-  border-bottom: 1px solid black;
-}
+/* LARGER THAN MOBILE DIMENSIONS */
+@media only screen and (min-width: 601px) {
+  .folder-list-container {
+    width: 100%;
+    height: 100%;
+    margin: 0px 0px 0px 0px;
+    padding: 0px;
+    overflow: hidden;
+  }
 
-.folder-list {
-  position: relative;
-  width: 98%;
-  height: 100%;
-  margin: 0 auto;
-  padding: 0px; 
-}
+  .folder-list-nav {
+    margin: 0px;
+    padding: 0px;
+  }
+  .folder-list-nav h4 {
+    padding: 5px;
+    font-family: arial;
+    font-weight: 100;
+    font-size: 20px;
+    border-bottom: 1px solid black;
+  }
 
-.new-folder-button-container {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  margin: 0px;
-  padding: 0px;
-}
+  .fl-main {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 98%;
+    margin: 0 auto;
+    padding: 0px; 
+  }
 
-.render-add-folder-input-button {
-  float: right;
-  width: 40%;
-  margin: 0px;
-  padding: 0px;
-  padding-bottom: 10px;
-  font-weight: bold;
-  font-size: 15px;
-  font-family: arial;
-  color: goldenrod;
+  .folder-list {
+    position: relative;
+    width: 98%;
+    margin: 0 auto;
+    padding: 0px; 
+  }
+
+  .new-folder-button-container {
+    /* position: absolute; */
+    /* bottom: 0px; */
+    width: 100%;
+    margin: 10px 0px;
+    padding: 0px;
+    /* border: 1px solid red; */
+  }
+
+  .render-add-folder-input-button {
+    width: 40%;
+    margin: 0px;
+    padding: 10px;
+    padding-bottom: 10px;
+    font-weight: bold;
+    font-size: 15px;
+    font-family: arial;
+    color: goldenrod;
+    border: 1px solid white;
+    background-color: white;
+  }
 }

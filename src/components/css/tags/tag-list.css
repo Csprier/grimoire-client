@@ -1,49 +1,114 @@
-.tag-list-container {
-  width: 100%;
-  margin: 0px;
-  padding: 0px;
+/* MOBILE DIMENSIONS */
+@media only screen and (max-width: 600px) {
+  .tag-list-container {
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+  }
+
+  /* NAV */
+  .tag-list-nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 98%;
+    margin: 0 auto;
+    padding: 10px;
+    font-family: arial;
+  }
+  .tag-list-nav h4 {
+    padding: 5px;
+    font-family: arial;
+    font-weight: 100;
+    font-size: 20px;
+  }
+
+  /* LIST OF TAGS */
+  .tag-list {
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+  }
+
+  /* ADD TAG INPUT */
+  .tag-list-input-container {
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+  }
+
+  .render-add-tag-input-button {
+    float: right;
+    width: 40%;
+    margin: 0px;
+    padding: 10px;
+    font-weight: bold;
+    font-size: 15px;
+    font-family: arial;
+    color: goldenrod;
+  }
 }
 
-/* NAV */
-.tag-list-nav {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  width: 98%;
-  margin: 0 auto;
-  padding: 10px;
-  font-family: arial;
-}
-.tag-list-nav h4 {
-  padding: 5px;
-  font-family: arial;
-  font-weight: 100;
-  font-size: 20px;
-}
+/* LARGER THAN MOBILE DIMENSIONS */
+@media only screen and (min-width: 601px) {
+  .tag-list-container {
+    width: 100%;
+    margin: 0 auto;
+    padding: 0px;
+  }
 
-/* LIST OF TAGS */
-.tag-list {
-  width: 100%;
-  margin: 0px;
-  padding: 0px;
-}
+  /* NAV */
+  .tag-list-nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 98%;
+    margin: 0 auto;
+    padding: 10px;
+    font-family: arial;
+  }
+  .tag-list-nav h4 {
+    padding: 5px;
+    font-family: arial;
+    font-weight: 100;
+    font-size: 20px;
+    border-bottom: 1px solid black;
+    width: 80%;
+  }
+  .tag-list-nav button {
+    width: 20%;
+    margin: 0px;
+    padding: 10px;
+    background-color: white;
+    border: 1px solid white;
+  }
 
-/* ADD TAG INPUT */
-.tag-list-input-container {
-  position: fixed;
-  bottom: 0px;
-  width: 100%;
-  margin: 0px;
-  padding: 0px;
-}
+  /* LIST OF TAGS */
+  .tag-list {
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+  }
 
-.render-add-tag-input-button {
-  float: right;
-  width: 40%;
-  margin: 0px;
-  padding: 10px;
-  font-weight: bold;
-  font-size: 15px;
-  font-family: arial;
-  color: goldenrod;
+  /* ADD TAG INPUT */
+  .tag-list-input-container {
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+  }
+
+  .render-add-tag-input-button {
+    float: right;
+    width: 100%;
+    margin: 10px 0px;
+    padding: 10px;
+    font-weight: bold;
+    font-size: 15px;
+    font-family: arial;
+    color: goldenrod;
+    background-color: white;
+    border: 1px solid white;
+  } 
 }

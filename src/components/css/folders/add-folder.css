@@ -1,84 +1,177 @@
-.add-folder-input-component-container {
-  width: 98%;
-  margin: 0 auto;
-  margin-bottom: 5px;
-  padding: 0px;
-  border: 1px solid lightgray;
+/* MOBILE DIMENSIONS */
+@media only screen and (max-width: 600px) {
+  .add-folder-input-component-container {
+    width: 98%;
+    margin: 0 auto;
+    margin-bottom: 5px;
+    padding: 0px;
+    border: 1px solid lightgray;
+  }
+
+  .add-folder-form-container {
+    width: 100%;
+    margin: 10px 0px;
+    padding: 0px;
+  }
+
+  .add-folder-form {
+    display: flex;
+    flex-direction: column;
+    width: 98%;
+    margin: 0 auto;
+    padding: 0px;
+  }
+
+  .add-folder-form-input {
+    width: 100%;
+    padding: 5px;
+    background-color: lightgray;
+    border: 1px solid white;
+  }
+
+  /* ===== CHIPS ======================== */
+  .add-folder-chip-container {
+    display: grid;
+    grid-template-columns: fit-content(100px) fit-content(100px) 1fr;
+    grid-gap: 5px;
+    box-sizing: border-box;
+    width: 100%;
+    height: auto;
+    padding: 5px;
+  }
+  .add-folder-form-chip {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin: 0px;
+    padding: 0px;
+    font-weight: 100;
+    font-family: arial;
+    border-radius: 25px;
+    background-color: #f1f1f1;
+  }
+  .add-folder-form-chip span {
+    margin: 0px;
+    padding: 5px;
+  }
+  .folder-chip-remove-button {
+    margin: 0px 0px 0px 0px;
+    padding: 0px 3px 0px 3px;
+    color: #888;
+    font-weight: bold;
+    float: right;
+    cursor: pointer;
+  }
+
+  /* ======== BUTTONS ======================= */
+  .add-folder-button-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+  }
+
+  .af-btn {
+    margin: 0px;
+    padding: 5px;
+    font-family: arial;
+    font-size: 12px;
+    font-weight: 100;
+  }
+  .af-submit {
+    font-size: 30px;
+    color: goldenrod;
+  }
 }
 
-.add-folder-form-container {
-  width: 100%;
-  margin: 10px 0px;
-  padding: 0px;
-}
+/* LARGER THAN MOBILE DIMENSIONS */
+@media only screen and (min-width: 601px) {
+  .add-folder-input-component-container {
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 10px;
+    padding: 0px;
+    border: 1px solid lightgray;
+  }
 
-.add-folder-form {
-  display: flex;
-  flex-direction: column;
-  width: 98%;
-  margin: 0 auto;
-  padding: 0px;
-}
+  .add-folder-form-container {
+    max-width: 100%;
+    margin: 10px 0px;
+    padding: 0px;
+  }
 
-.add-folder-form-input {
-  width: 100%;
-  padding: 5px;
-  background-color: lightgray;
-  border: 1px solid white;
-}
+  .add-folder-form {
+    display: flex;
+    flex-direction: column;
+    max-width: 98%;
+    margin: 0 auto;
+    padding: 0px;
+  }
 
-/* ===== CHIPS ======================== */
-.add-folder-chip-container {
-  display: grid;
-  grid-template-columns: fit-content(100px) fit-content(100px) 1fr;
-  grid-gap: 5px;
-  box-sizing: border-box;
-  width: 100%;
-  height: auto;
-  padding: 5px;
-}
-.add-folder-form-chip {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  margin: 0px;
-  padding: 0px;
-  font-weight: 100;
-  font-family: arial;
-  border-radius: 25px;
-  background-color: #f1f1f1;
-}
-.add-folder-form-chip span {
-  margin: 0px;
-  padding: 5px;
-}
-.folder-chip-remove-button {
-  margin: 0px 0px 0px 0px;
-  padding: 0px 3px 0px 3px;
-  color: #888;
-  font-weight: bold;
-  float: right;
-  cursor: pointer;
-}
+  .add-folder-form-input {
+    width: 100%;
+    padding: 5px;
+    background-color: lightgray;
+    border: 1px solid white;
+  }
 
-/* ======== BUTTONS ======================= */
-.add-folder-button-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  margin: 0px;
-  padding: 0px;
-  width: 100%;
-}
+  /* ===== CHIPS ======================== */
+  .add-folder-chip-container {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    max-width: 100%;
+    height: auto;
+    padding: 5px;
+  }
+  .add-folder-form-chip {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 2px;
+    padding: 2px;
+    font-weight: 100;
+    font-family: arial;
+    border-radius: 25px;
+    background-color: #f1f1f1;
+    border: 1px solid lightgray;
+  }
+  .add-folder-form-chip span {
+    margin: 0px;
+    padding: 5px;
+  }
+  .folder-chip-remove-button {
+    margin: 0px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
+    color: #888;
+    font-weight: bold;
+    float: right;
+    cursor: pointer;
+  }
 
-.af-btn {
-  margin: 0px;
-  padding: 5px;
-  font-family: arial;
-  font-size: 12px;
-  font-weight: 100;
-}
-.af-submit {
-  font-size: 30px;
-  color: goldenrod;
+  /* ======== BUTTONS ======================= */
+  .add-folder-button-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+  }
+
+  .af-btn {
+    margin: 0px;
+    padding: 5px;
+    font-family: arial;
+    font-size: 12px;
+    font-weight: 100;
+    background-color: white;
+    border: 1px solid white;
+  }
+  .af-submit {
+    font-size: 30px;
+    color: goldenrod;
+  } 
 }
