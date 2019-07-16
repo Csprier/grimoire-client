@@ -102,7 +102,7 @@ class AddTagInput extends Component {
             <div className="add-tag-chip-container">
               {this.state.tagsToAddToDatabase.map(tag => {
                 return (
-                  <div key={tag} className="add-tag-chip">
+                  <div key={tag} className="add-tag-form-chip">
                     <span>{tag}</span>
                     <span
                       onClick={() => {
@@ -119,6 +119,7 @@ class AddTagInput extends Component {
             <div className="add-tag-button-container">
               <button
                 value={this.state.tagValue}
+                className="at-chip-button"
                 onClick={(e) => {
                   e.preventDefault();
                   this.handleClick(e);
