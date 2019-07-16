@@ -89,7 +89,7 @@
 /* LARGER THAN MOBILE DIMENSIONS */
 @media only screen and (min-width: 601px) {
   .add-folder-input-component-container {
-    width: 30%;
+    width: 100%;
     margin: 0 auto;
     margin-top: 10px;
     padding: 0px;
