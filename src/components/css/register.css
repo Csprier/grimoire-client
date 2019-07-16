@@ -1,75 +1,157 @@
-.user-creation-form-container {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  height: 568px;
-  margin: 0 auto;
-  padding: 0px;
-  font-family: arial;
-  color: goldenrod;
-  background: linear-gradient(
-                     rgba(20,20,20, .8), 
-                     rgba(20,20,20, .8)),
-                      url(../../images/arcaneCirclesGold.jpg) no-repeat;
+/* MOBILE DIMENSIONS */
+@media only screen and (max-width: 600px) {
+  .user-creation-form-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    margin: 0 auto;
+    padding: 0px;
+    font-family: arial;
+    color: goldenrod;
+    background: linear-gradient(
+                      rgba(20,20,20, .8), 
+                      rgba(20,20,20, .8)),
+                        url(../../images/arcaneCirclesGold.jpg) no-repeat;
+  }
+
+  .user-creation-form h2 {
+    width: 100%;
+    margin: 0px;
+    padding: 5px;
+    text-align: center;
+  }
+
+  .register-form {
+    width: 100%;
+    margin: 0px;
+    padding: 25% 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .register-input-container {
+    width: 98%;
+    margin: 0 auto;
+    padding: 10px 0px;
+  }
+  .register-input {
+    width: 100%;
+    margin: 0px;
+    padding: 10px;
+    color: wheat;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid wheat;
+  }
+
+  .register-buttons {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    bottom: 0px;
+  }
+  .creation-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    height: 50px;
+    margin: 0 auto;
+    padding: 0px;
+    color: black;
+    background-color: goldenrod;
+    font-weight: bold;
+    border: 1px solid black;
+  }
+  .go-back {
+    text-align: center;
+    width: 50%;
+    margin: 0 auto;
+    padding: 15px;
+    font-weight: bold;
+    text-decoration: none;
+    color: wheat;
+  }
 }
 
-.user-creation-form h2 {
-  width: 100%;
-  margin: 0px;
-  padding: 5px;
-  text-align: center;
-}
+/* LARGER THAN MOBILE DIMENSIONS */
+@media only screen and (min-width: 601px) {
+  .user-creation-form-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    margin: 0 auto;
+    padding: 0px;
+    font-family: arial;
+    color: goldenrod;
+    background: linear-gradient(
+                      rgba(20,20,20, .8), 
+                      rgba(20,20,20, .8)),
+                      url(../../images/arcaneCirclesGold.jpg) no-repeat center center fixed;
+    background-size: cover;
+  }
 
-.register-form {
-  width: 100%;
-  margin: 0px;
-  padding: 25% 0px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+  .user-creation-form h2 {
+    width: 100%;
+    margin: 0px;
+    padding: 5px;
+    text-align: center;
+  }
 
-.register-input-container {
-  width: 98%;
-  margin: 0 auto;
-  padding: 10px 0px;
-}
-.register-input {
-  width: 100%;
-  margin: 0px;
-  padding: 10px;
-  color: wheat;
-  background: transparent;
-  border: none;
-  border-bottom: 1px solid wheat;
-}
+  .register-form {
+    width: 30%;
+    margin: 0 auto;
+    padding: 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
-.register-buttons {
-  position: fixed;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  bottom: 0px;
-}
-.creation-button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 50%;
-  height: 50px;
-  margin: 0 auto;
-  padding: 0px;
-  color: black;
-  background-color: goldenrod;
-  font-weight: bold;
-  border: 1px solid black;
-}
-.go-back {
-  text-align: center;
-  width: 50%;
-  margin: 0 auto;
-  padding: 15px;
-  font-weight: bold;
-  text-decoration: none;
-  color: wheat;
+  .register-input-container {
+    width: 98%;
+    margin: 0 auto;
+    padding: 10px 0px;
+  }
+  .register-input {
+    width: 100%;
+    margin: 0px;
+    padding: 10px;
+    color: wheat;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid wheat;
+  }
+
+  .register-buttons {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    bottom: 0px;
+  }
+  .creation-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    height: 50px;
+    margin: 0 auto;
+    padding: 0px;
+    color: black;
+    background-color: goldenrod;
+    font-weight: bold;
+    border: 1px solid black;
+  }
+  .go-back {
+    text-align: center;
+    width: 50%;
+    margin: 0 auto;
+    padding: 15px;
+    font-weight: bold;
+    text-decoration: none;
+    color: wheat;
+  }
 }
