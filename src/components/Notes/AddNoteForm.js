@@ -175,7 +175,6 @@ class AddNoteForm extends Component {
 
     return (
       <div className="add-note-container">
-        {/* <h4>Create a new note</h4> */}
         <form className="add-note-form" onSubmit={this.handleSubmit}>
           <label>
             Title:
