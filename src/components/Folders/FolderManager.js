@@ -6,6 +6,7 @@ import { getFolders, deleteFolderFromDatabase, toggleAddFolderInputRender } from
 
 // Components
 import AddFolderInput from './AddFolderInput';
+import NavigationBar from '../NavigationBar';
 
 // CSS
 import '../css/folders/folder-manager.css';
@@ -45,6 +46,9 @@ class FolderManager extends Component {
 
     return (
       <div className="folder-manager-container">
+        <header>
+          <NavigationBar />
+        </header>
         <div className="folder-manager-nav">
           <h4>Folders</h4>
           <button 

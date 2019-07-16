@@ -220,7 +220,6 @@
     width: 50%;
     padding: 0px;
     margin: 0px;
-    /* border: 1px solid blue; */
   }
   .tags-container h4 {
     font-size: 14px;
@@ -267,10 +266,14 @@
   .edit-button {
     padding: 5px;
     margin: 0px; 
+    background-color: white;
+    border: 1px solid white;
   }
 
   .delete-button {
     padding: 5px;
     margin: 0px; 
+    background-color: white;
+    border: 1px solid white;
   }
 }

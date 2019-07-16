@@ -89,27 +89,24 @@
 /* LARGER THAN MOBILE DIMENSIONS */
 @media only screen and (min-width: 601px) {
   .add-folder-input-component-container {
-    position: relative;
-    width: 100%;
-    margin: 0px;
-    margin-bottom: 5px;
-    padding: 2px;
+    width: 30%;
+    margin: 0 auto;
+    margin-top: 10px;
+    padding: 0px;
     border: 1px solid lightgray;
   }
 
   .add-folder-form-container {
-    position: relative;
     max-width: 100%;
     margin: 10px 0px;
     padding: 0px;
   }
 
   .add-folder-form {
-    position: relative;
-    /* display: flex; */
-    /* flex-direction: column; */
-    max-width: 100%;
-    margin: 0px;
+    display: flex;
+    flex-direction: column;
+    max-width: 98%;
+    margin: 0 auto;
     padding: 0px;
   }
 
@@ -122,9 +119,6 @@
 
   /* ===== CHIPS ======================== */
   .add-folder-chip-container {
-    /* display: grid; */
-    /* grid-template-columns: fit-content(100px) fit-content(100px) 1fr; */
-    /* grid-gap: 5px; */
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
