@@ -103,18 +103,24 @@
   }
 
   .register-form {
-    width: 30%;
+    max-width: 320px;
+    max-height: 568px;
     margin: 0 auto;
-    padding: 0px;
+    margin-top: 5%;
+    padding: 15px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    border: 1px solid rgb(151, 132, 100);
+    border-radius: 5px;
   }
 
   .register-input-container {
     width: 98%;
     margin: 0 auto;
-    padding: 10px 0px;
+    /* margin-bottom: 10px; */
+    padding: 5px 0px;
   }
   .register-input {
     width: 100%;
@@ -123,14 +129,15 @@
     color: wheat;
     background: transparent;
     border: none;
-    border-bottom: 1px solid wheat;
+    border-bottom: 1px solid  rgb(151, 132, 100);
   }
 
   .register-buttons {
+    position: relative;
+    bottom: 0px;
     display: flex;
     flex-direction: column;
     width: 100%;
-    bottom: 0px;
   }
   .creation-button {
     display: flex;
