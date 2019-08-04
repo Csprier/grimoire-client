@@ -1,5 +1,5 @@
 import React from 'react';
-// import '../css/renderField.css';
+import '../css/renderField.css';
 
 const renderField = ({ containerClassName, className, input, label, placeholder, type, meta: { touched, error } }) => (
   <div className={containerClassName}>
