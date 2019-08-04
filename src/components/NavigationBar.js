@@ -45,7 +45,7 @@ class NavigationBar extends Component {
         <button
           onClick={this.onClickLogout}
           className="logout-button"
-        >&#10097;</button>
+        >Logout</button>
       </div>
     );
   }
