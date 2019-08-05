@@ -40,6 +40,7 @@ Server Repo: https://github.com/Csprier/grimoire-server (Node.js/Express.js/Mong
 - Just like the tags, you can create multiple folders!
 
 
+
 You can view your notes in the list on the dashboard, or in their respective folder.
 You can edit their content via the 'Edit' button on each note; this includes adding/creating tags & folders. If it exists in the database, it will be added to the note. Otherwise, it will be created and put into the database!
 
