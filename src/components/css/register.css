@@ -25,10 +25,11 @@
   .register-form {
     width: 100%;
     margin: 0px;
-    padding: 25% 0px;
+    padding: 0px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
   }
 
   .register-input-container {
@@ -47,7 +48,8 @@
   }
 
   .register-buttons {
-    position: fixed;
+    position: relative;
+    bottom: 0px;
     display: flex;
     flex-direction: column;
     width: 100%;
