@@ -58,9 +58,9 @@
     align-items: center;
     justify-content: center;
     width: 50%;
-    height: 50px;
+    /* height: 50px; */
     margin: 0 auto;
-    padding: 0px;
+    padding: 10px;
     color: black;
     background-color: goldenrod;
     font-weight: bold;
