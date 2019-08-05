@@ -332,7 +332,6 @@
   .tag-chip-remove {
     padding-left: 10px;
     padding-right: 5px;
-    color: #888;
     font-weight: bold;
     float: right;
     cursor: pointer;
@@ -388,7 +387,6 @@
   .folder-chip-remove {
     padding-left: 10px;
     padding-right: 5px;
-    color: #888;
     font-weight: bold;
     float: right;
     cursor: pointer;
