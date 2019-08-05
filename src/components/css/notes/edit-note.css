@@ -34,6 +34,8 @@
   .edit-note-form-buttons-container button {
     margin: 0px;
     padding: 10px 0px;
+    background-color: white;
+    border: 1px solid white;
   }
   .sc {
     font-weight: bold;
@@ -53,13 +55,17 @@
     font-weight: bold;
     font-size: 15px;
     font-family: arial;
-    color: goldenrod
+    color: goldenrod;
+    background-color: white;
+    border: 1px solid white;
   }
   .toggle-folder-input-button {
     font-weight: bold;
     font-size: 15px;
     font-family: arial;
-    color: goldenrod
+    color: goldenrod;
+    background-color: white;
+    border: 1px solid white;
   }
 
   /* BUTTONS */
@@ -114,10 +120,11 @@
   .tag-chip-remove {
     padding-left: 10px;
     padding-right: 5px;
-    color: #888;
     font-weight: bold;
     float: right;
     cursor: pointer;
+    background-color: #f1f1f1;
+    border: 1px solid #f1f1f1;
   }
   .edit-add-tag-input-container {
     display: flex;
@@ -170,10 +177,11 @@
   .folder-chip-remove {
     padding-left: 10px;
     padding-right: 5px;
-    color: #888;
     font-weight: bold;
     float: right;
     cursor: pointer;
+    background-color: #f1f1f1;
+    border: 1px solid #f1f1f1;
   }
   .edit-add-folder-input-container {
     display: flex;
