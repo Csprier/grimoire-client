@@ -26,11 +26,14 @@
   /* ACTUAL FORM */
   .login-form {
     width: 100%;
-    margin: 50% 0px;
+    height: 100%;
+    /* margin: 50% 0px; */
+    margin: 0px;
     padding: 0px 0px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
   }
   .login-input-container {
     width: 98%;
