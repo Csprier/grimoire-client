@@ -182,14 +182,13 @@
     border: 1px solid white;
     background-color: white;
   }
-  .at-chip-button {
-    border: 1px solid white;
-    background-color: white;
-  }
-  .at-submit {
+  .at-chip {
     font-size: 30px;
     color: goldenrod;
-    border: 1px solid white;
-    background-color: white;
-  } 
+  }
+  .at-submit {
+    font-size: 14px;
+    font-weight: bold;
+    color: goldenrod;
+  }
 }

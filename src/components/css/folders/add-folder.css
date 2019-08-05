@@ -177,8 +177,13 @@
     background-color: white;
     border: 1px solid white;
   }
-  .af-submit {
+  .af-chip {
     font-size: 30px;
     color: goldenrod;
-  } 
+  }
+  .af-submit {
+    font-size: 14px;
+    font-weight: bold;
+    color: goldenrod;
+  }
 }
