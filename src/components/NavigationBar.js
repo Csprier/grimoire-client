@@ -31,18 +31,22 @@ class NavigationBar extends Component {
     return (
       <div className="header-elements">
         <button 
+          title="Create a note"
           className="pencil-icon"
           onClick={this.moveToAddNote}
         >&#9998;</button>
         <button
+          title="Go to Tags"
           className="tag-icon"
           onClick={this.moveToTagList}
         >&#9744;</button>
         <button
+          title="Go to Folders"
           className="folder-icon"
           onClick={this.moveToFolderManager}
         >&#10063;</button>
         <button
+          title="Logout"
           onClick={this.onClickLogout}
           className="logout-button"
         >Logout</button>
