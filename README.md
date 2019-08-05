@@ -1,6 +1,7 @@
 # Grimoire Client
 
 Live URL: https://csp-grimoire.netlify.com
+
 Server Repo: https://github.com/Csprier/grimoire-server (Node.js/Express.js/MongoDB(Mongoose))
 
 ### Dependencies:
