@@ -79,9 +79,16 @@
     font-family: arial;
     font-size: 12px;
     font-weight: 100;
+    background-color: white;
+    border: 1px solid white;
+  }
+  .at-chip {
+    font-size: 30px;
+    color: goldenrod;
   }
   .at-submit {
-    font-size: 30px;
+    font-size: 14px;
+    font-weight: bold;
     color: goldenrod;
   }
 }

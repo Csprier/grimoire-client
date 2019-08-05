@@ -119,18 +119,18 @@ class AddTagInput extends Component {
             <div className="add-tag-button-container">
               <button
                 value={this.state.tagValue}
-                className="at-chip-button"
                 onClick={(e) => {
                   e.preventDefault();
                   this.handleClick(e);
                   document.getElementById('createATagInput').value = "";
                 }}
-              >Add Chip</button>
+                className="at-btn at-chip"
+              >&#43;</button>
               <button
-                className="at-submit"
+                className="at-btn at-submit"
                 id="addTagInputSubmit"
                 type="submit"
-              >&#43;</button>
+              >Create tag(s)</button>
               <button
                 className="at-btn"
                 onClick={(e) => {
