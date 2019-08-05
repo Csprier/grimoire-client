@@ -28,3 +28,8 @@
   flex-direction: row;
   justify-content: space-between;
 }
+
+.under-nav-title-and-redirect button {
+  background-color: white;
+  border: 1px solid white;
+}

@@ -126,13 +126,13 @@ class AddFolderInput extends Component {
                   this.handleClick(e);
                   document.getElementById('createAFolderInput').value = "";
                 }}
-                className="af-btn"
-              >Add Chip</button>
+                className="af-btn af-chip"
+              >&#43;</button>
               <button
                 id="addFolderInputSubmit"
                 type="submit"
                 className="af-btn af-submit"
-              >&#43;</button>
+              >Create Folder(s)</button>
               <button
                 className="af-btn"
                 onClick={(e) => {

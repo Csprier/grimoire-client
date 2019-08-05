@@ -22,6 +22,10 @@
     font-weight: 100;
     font-size: 20px;
   }
+  .tag-list-nav button {
+    background-color: white;
+    border: 1px solid white;
+  }
 
   /* LIST OF TAGS */
   .tag-list {
@@ -48,6 +52,8 @@
     font-size: 15px;
     font-family: arial;
     color: goldenrod;
+    background-color: white;
+    border: 1px solid white;
   }
 }
 

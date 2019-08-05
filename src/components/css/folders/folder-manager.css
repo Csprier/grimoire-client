@@ -22,6 +22,10 @@
     font-weight: 100;
     font-size: 20px;
   }
+  .folder-manager-nav button {
+    background-color: white;
+    border: 1px solid white;
+  }
 
   .folder-list {
     width: 100%;
@@ -51,6 +55,8 @@
     margin: 0px;
     padding: 5px;
     font-size: 15px;
+    background-color: white;
+    border: 1px solid white;
   }
 
   /* ADD FOLDER INPUT */

@@ -21,6 +21,10 @@
     font-size: 20px;
     border-bottom: 1px solid black;
   }
+  .folder-list-nav button {
+    background-color: white;
+    border: 1px solid white;
+  }
 
   .fl-main {
     position: relative;
@@ -55,6 +59,8 @@
     font-size: 15px;
     font-family: arial;
     color: goldenrod;
+    background-color: white;
+    border: 1px solid white;
   }
 }
 
@@ -78,6 +84,10 @@
     font-weight: 100;
     font-size: 20px;
     border-bottom: 1px solid black;
+  }
+  .folder-list-nav button {
+    background-color: white;
+    border: 1px solid white;
   }
 
   .fl-main {
