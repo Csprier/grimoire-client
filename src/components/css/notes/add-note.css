@@ -42,7 +42,9 @@
     font-weight: bold;
     font-size: 15px;
     font-family: arial;
-    color: goldenrod
+    color: goldenrod;
+    background-color: white;
+    border: 1px solid white;
   }
   .an-add-folder-input-container {
     display: flex;
@@ -61,7 +63,9 @@
     font-weight: bold;
     font-size: 15px;
     font-family: arial;
-    color: goldenrod
+    color: goldenrod;
+    background-color: white;
+    border: 1px solid white;
   }
 
   /* SUBMIT/CANCEL BUTTONS */
@@ -84,12 +88,16 @@
     font-size: 15px;
     font-family: arial;
     color: goldenrod;
+    background-color: white;
+    border: 1px solid white;
   }
   .an-cancel {
     font-weight: bold;
     font-size: 15px;
     font-family: arial;
     color: red;
+    background-color: white;
+    border: 1px solid white;
   }
 }
 
