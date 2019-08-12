@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+// import { Redirect } from 'react-router-dom';
 
 // Utility functions
 import { utility } from '../utility';
 
 // Actions
-import { toggleEditMode, getNoteByIdToEdit } from '../../actions/notes.actions';
+import { toggleEditMode, getNoteByIdToEdit, clearNoteToEdit } from '../../actions/notes.actions';
 import { 
   addTagForEditNote, 
   addFolderForEditNote, 
@@ -23,6 +23,7 @@ import {
   editNewFolderValue,
   resetEditNoteReduxStateValues
 } from '../../actions/editNote.actions';
+import { showModal } from '../../actions/modal.actions';
 
 // CSS 
 import '../css/notes/edit-note.css';
@@ -137,23 +138,11 @@ class EditNoteForm extends Component {
     e.preventDefault();
     let tagToRemove = e.target.value;
     this.props.dispatch(removeTagForEditNote(tagToRemove));
-    // this.setState({
-    //   editedValues: {
-    //     tags: this.state.editedValues.tags.filter(tag => tag !== tagToRemove),
-    //     folders: [ ...this.state.editedValues.folders ]
-    //   }
-    // });
   }
   removeFolder = (e) => {
     e.preventDefault();
     let folderToRemove = e.target.value;
     this.props.dispatch(removeFolderForEditNote(folderToRemove));
-    // this.setState({
-    //   editedValues: {
-    //     tags: [ ...this.state.editedValues.tags ],
-    //     folders: this.state.editedValues.folders.filter(folder => folder !== folderToRemove)
-    //   }
-    // });
   } 
 
   // Submit
@@ -185,6 +174,8 @@ class EditNoteForm extends Component {
     }
     this.props.dispatch(editNotePutRequest(id, updatedNote));
     this.props.dispatch(toggleEditMode());
+    this.props.dispatch(showModal());
+    this.props.dispatch(clearNoteToEdit());
   }
 
   // Redirect/cancel, move back to dashboard/notelist
@@ -211,12 +202,14 @@ class EditNoteForm extends Component {
       newFolderValue: ''
     });
     this.props.dispatch(toggleEditMode());
+    this.props.dispatch(showModal());
+    this.props.dispatch(clearNoteToEdit());
   }
 
   render() {
-    if (this.props.editMode === false) {
-      return <Redirect to="/dashboard" />
-    }
+    // if (this.props.editMode === false) {
+    //   return <Redirect to="/dashboard" />
+    // }
 
     const tagChips = <ul className="tag-chips-ul">
                       {(this.props.reduxTags) 

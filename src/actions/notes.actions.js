@@ -208,6 +208,12 @@ export const TOGGLE_EDIT_MODE = 'TOGGLE_EDIT_MODE',
       type: TOGGLE_EDIT_MODE
     }
   }
+export const CLEAR_NOTE_TO_EDIT = 'CLEAR_NOTE_TO_EDIT',
+  clearNoteToEdit = () => {
+    return {
+      type: CLEAR_NOTE_TO_EDIT
+    }
+  }
 
 export const NOTE_TO_EDIT = 'NOTE_TO_EDIT',
   noteToEdit = (noteId) => {

@@ -5,6 +5,7 @@ import { withRouter } from 'react-router-dom';
 // Components
 import Modal from './Modal';
 import AddNoteForm from '../components/Notes/AddNoteForm';
+import EditNoteForm from '../components/Notes/EditNoteForm';
 
 // Actions
 import { logout } from '../actions/auth.actions';
@@ -39,9 +40,21 @@ class NavigationBar extends Component {
           className="pencil-icon"
           onClick={(e) => this.openAddNoteFormModal(e)}
         >&#9998;</button>
-        <Modal onClose={this.openAddNoteFormModal}>
-          <AddNoteForm />
-        </Modal>
+        
+        {(this.props.show && !this.props.editMode && this.props.noteToEdit === '') 
+          ? <Modal onClose={this.openAddNoteFormModal}>
+              <AddNoteForm />
+            </Modal>
+          : null
+        }
+
+        {(this.props.editMode && this.props.noteToEdit !== '') 
+          ? <Modal onClose={this.openEditNoteModal}>
+              <EditNoteForm noteToEdit={this.props.noteToEdit} />
+            </Modal>
+          : null
+        }
+        
         <button
           title="Go to Tags"
           className="tag-icon"
@@ -63,6 +76,8 @@ class NavigationBar extends Component {
 }
 
 const mapStateToProps = state => ({
+  editMode: state.notes.editMode,
+  noteToEdit: state.notes.noteToEdit,
   show: state.modal.show
 });
 

@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router';
+// import { Redirect } from 'react-router';
 import { connect } from 'react-redux';
 
 // Async Actions
 import { deleteNoteById } from '../../actions/notes.actions';
 import { toggleEditMode, noteToEdit } from '../../actions/notes.actions';
+import { showModal } from '../../actions/modal.actions';
+
+// Components
+// import Modal from '../Modal';
+// import EditNoteForm from './EditNoteForm';
 
 // CSS
 import '../css/notes/note.css';
@@ -26,11 +31,12 @@ class Note extends Component {
     });
   }
 
-  redirectToEditNoteForm = (e) => {
+  openEditNoteModal = (e) => {
     e.preventDefault();
     let noteId = e.target.value;
     this.props.dispatch(noteToEdit(noteId));
     this.props.dispatch(toggleEditMode());
+    this.props.dispatch(showModal());
   }
 
   handleDelete = (e) => {
@@ -41,10 +47,6 @@ class Note extends Component {
   render() {
     const { key, title, id, content, tags, folders } = this.props.note;
     
-    if (this.props.editMode === true && this.props.noteToEdit !== '') {
-      return <Redirect to="/editNote" />
-    }
-
     return (
       <div className="note" key={key}>
         <div className="note-title-and-toggle-container">
@@ -103,7 +105,7 @@ class Note extends Component {
           <div className="button-container">
             <button
               className="edit-button"
-              onClick={this.redirectToEditNoteForm}
+              onClick={(e) => this.openEditNoteModal(e)}
               value={this.props.note.id}
             >Edit</button>
             <button 
@@ -122,7 +124,8 @@ const mapStateToProps = state => ({
   userId: state.auth.user.id,
   notes: state.notes,
   editMode: state.notes.editMode,
-  noteToEdit: state.notes.noteToEdit
+  noteToEdit: state.notes.noteToEdit,
+  show: state.modal.show
 })
 
 export default connect(mapStateToProps)(Note);

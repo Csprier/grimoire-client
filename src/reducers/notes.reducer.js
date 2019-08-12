@@ -14,6 +14,7 @@ import {
   DELETE_NOTE_ERROR,
   TOGGLE_EDIT_MODE,
   NOTE_TO_EDIT,
+  CLEAR_NOTE_TO_EDIT
 } from '../actions/notes.actions';
 
 const initialState = {
@@ -109,6 +110,11 @@ export default function notesReducer(state = initialState, action) {
       return {
         ...state,
         editMode: !state.editMode
+      }
+    case CLEAR_NOTE_TO_EDIT: 
+      return {
+        ...state,
+        noteToEdit: ''
       }
     case NOTE_TO_EDIT:
         return {

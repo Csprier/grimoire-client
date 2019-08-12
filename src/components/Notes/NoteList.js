@@ -46,7 +46,8 @@ const mapStateToProps = state => ({
   tags: state.tags.data || [],
   folders: state.folders.data || [],
   searchTerm: state.search.query.searchTerm,
-  filtered: state.notes.filtered || []
+  filtered: state.notes.filtered || [],
+  show: state.modal.show
 });
 
 export default RequiresLogin()(connect(mapStateToProps)(NoteList));
