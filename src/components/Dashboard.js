@@ -15,6 +15,18 @@ import NavigationBar from './NavigationBar';
 import './css/dashboard.css';
 
 class Dashboard extends Component {
+  constructor() {
+    super();
+    this.state = {
+      show: false
+    }
+  }
+  showModal = (e) => {
+    this.setState({
+      show: !this.state.show
+    });
+  }
+
   render() {
     if (this.props.loading){
 			return (<div className="loader">Loading...</div>);
@@ -23,7 +35,7 @@ class Dashboard extends Component {
     return(
       <div className="dashboard-container">
         <header>
-          <NavigationBar />
+          <NavigationBar show={this.state.show} showModal={this.showModal} />
         </header>
         <div className="dashboard">
           <div className="folder-list-display">

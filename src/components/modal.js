@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import '../components/css/modal.css';
+
 class Modal extends Component {
   constructor(props) {
     super(props);
@@ -14,7 +16,7 @@ class Modal extends Component {
       return null;
     }
     return (
-      <div>
+      <div className="modal" id="modal">
         <div className="content">{this.props.children}</div>
         <div className="actions">
           <button 
@@ -26,3 +28,5 @@ class Modal extends Component {
     );
   }
 }
+
+export default connect()(Modal);
