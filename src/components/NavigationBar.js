@@ -8,6 +8,7 @@ import AddNoteForm from '../components/Notes/AddNoteForm';
 
 // Actions
 import { logout } from '../actions/auth.actions';
+import { showModal } from '../actions/modal.actions';
 
 // CSS
 import './css/navigation-bar.css';
@@ -17,10 +18,6 @@ class NavigationBar extends Component {
     this.props.dispatch(logout());
     this.props.history.push('/');
   }
-
-  // moveToAddNote = () => {
-  //   this.props.history.push('/addNote');
-  // }
 
   moveToTagList = () => {
     this.props.history.push('/tagList');
@@ -33,7 +30,7 @@ class NavigationBar extends Component {
   openAddNoteFormModal = (e) => {
     e.preventDefault();
     console.log('Toggle ZE MODAL!!! Mwahahah!');
-    this.props.showModal(e);
+    this.props.dispatch(showModal());
   }
 
   render() {
@@ -42,11 +39,9 @@ class NavigationBar extends Component {
         <button 
           title="Create a note"
           className="pencil-icon"
-          // onClick={this.moveToAddNote}
           onClick={(e) => this.openAddNoteFormModal(e)}
         >&#9998;</button>
         <Modal onClose={this.openAddNoteFormModal} show={this.props.show}>
-          {/* This is the modal test */}
           <AddNoteForm />
         </Modal>
         <button
@@ -69,4 +64,8 @@ class NavigationBar extends Component {
   }
 }
 
-export default withRouter(connect()(NavigationBar));
+const mapStateToProps = state => ({
+  show: state.modal.show
+});
+
+export default withRouter(connect(mapStateToProps)(NavigationBar));

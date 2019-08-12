@@ -11,6 +11,7 @@ import createNoteReducer from './reducers/createNote.reducer';
 import searchReducer from './reducers/search.reducer';
 import notesReducer from './reducers/notes.reducer';
 import editNoteReducer from './reducers/editNote.reducer';
+import modalReducer from './reducers/modal.reducer';
 import tagsReducer from './reducers/tags.reducer';
 import foldersReducer from './reducers/folders.reducer';
 
@@ -22,6 +23,7 @@ const rootReducer = combineReducers({
   createNote: createNoteReducer,
   editNote: editNoteReducer,
   form: formReducer,
+  modal: modalReducer,
   notes: notesReducer,
   tags: tagsReducer,
   folders: foldersReducer,
