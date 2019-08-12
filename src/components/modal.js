@@ -9,7 +9,7 @@ import '../components/css/modal.css';
 
 
 class Modal extends Component {
-  onClose = e => {
+  onClose = () => {
     this.props.dispatch(showModal());
   }
 
