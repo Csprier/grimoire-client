@@ -20,12 +20,6 @@ class Modal extends Component {
     return (
       <div className="modal" id="modal">
         <div className="content">{this.props.children}</div>
-        {/*<div className="actions">
-          <button 
-            className="toggle-button"
-            onClick={this.onClose}
-          >OK</button>
-        </div> */}
       </div>
     );
   }
