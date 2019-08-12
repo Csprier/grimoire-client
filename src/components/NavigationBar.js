@@ -13,6 +13,7 @@ import { showModal } from '../actions/modal.actions';
 
 // CSS
 import './css/navigation-bar.css';
+import './css/modal.css';
 
 class NavigationBar extends Component {
   onClickLogout = () => {
@@ -56,17 +57,22 @@ class NavigationBar extends Component {
           className="logout-button"
         >Logout</button>
 
-        {(this.props.show && !this.props.editMode && this.props.noteToEdit === '') 
-          ? <Modal onClose={this.openAddNoteFormModal}>
-              <AddNoteForm />
-            </Modal>
-          : null}
+        <div>
+          {(this.props.show && !this.props.editMode && this.props.noteToEdit === '') 
+            ? <Modal 
+                className={`${(this.props.show) ? 'open' : 'closed'}`}
+                onClose={this.openAddNoteFormModal}
+              >
+                <AddNoteForm />
+              </Modal>
+            : null}
 
-        {(this.props.editMode && this.props.noteToEdit !== '') 
-          ? <Modal onClose={this.openEditNoteModal}>
-              <EditNoteForm noteToEdit={this.props.noteToEdit} />
-            </Modal>
-          : null}
+          {(this.props.editMode && this.props.noteToEdit !== '') 
+            ? <Modal onClose={this.openEditNoteModal}>
+                <EditNoteForm noteToEdit={this.props.noteToEdit} />
+              </Modal>
+            : null}
+        </div>
       </div>
     );
   }
