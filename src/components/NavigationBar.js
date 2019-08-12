@@ -13,10 +13,6 @@ import { logout } from '../actions/auth.actions';
 import './css/navigation-bar.css';
 
 class NavigationBar extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   onClickLogout = () => {
     this.props.dispatch(logout());
     this.props.history.push('/');

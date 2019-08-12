@@ -4,10 +4,6 @@ import { connect } from 'react-redux';
 import '../components/css/modal.css';
 
 class Modal extends Component {
-  // constructor(props) {
-  //   super(props);
-  // }
-
   // send a value back to App
   onClose = e => this.props.onClose && this.props.onClose(e);
 
