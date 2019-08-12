@@ -23,6 +23,13 @@ import history from './history';
 import './App.css';
 
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      show: false
+    }
+  }
+
   startPeriodicRefresh() {
     this.refreshInterval = setInterval(
       () => this.props.dispatch(refreshAuthToken()), 
