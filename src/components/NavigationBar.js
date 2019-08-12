@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
 // Components
-import Modal from '../components/Modal';
+import Modal from './modal';
 import AddNoteForm from '../components/Notes/AddNoteForm';
 import EditNoteForm from '../components/Notes/EditNoteForm';
 
