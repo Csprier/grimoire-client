@@ -13,7 +13,7 @@ import {
   DELETE_NOTE_SUCCESS,
   DELETE_NOTE_ERROR,
   TOGGLE_EDIT_MODE,
-  NOTE_TO_EDIT
+  NOTE_TO_EDIT,
 } from '../actions/notes.actions';
 
 const initialState = {

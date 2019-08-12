@@ -1,6 +1,8 @@
 import Axios from 'axios';
 import { API_BASE_URL } from '../config';
 
+import { clearReduxTagChips, clearReduxFolderChips } from '../actions/createNote.actions';
+
 // =======================================================
 // GET NOTE ACTIONS
 // =======================================================
@@ -140,6 +142,8 @@ export const addNewNote = (newNote) => (dispatch, getState) => {
       dispatch(addNote(note));
       dispatch(getNotes());
       dispatch(addNoteSuccess());
+      dispatch(clearReduxTagChips());
+      dispatch(clearReduxFolderChips());
     })
     .catch(e => { 
       console.error('Note POST Error', e);
