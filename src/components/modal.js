@@ -9,8 +9,6 @@ import '../components/css/modal.css';
 
 
 class Modal extends Component {
-  // send a value back to App
-  // onClose = e => this.props.onClose && this.props.onClose(e);
   onClose = e => {
     this.props.dispatch(showModal());
   }
@@ -22,12 +20,12 @@ class Modal extends Component {
     return (
       <div className="modal" id="modal">
         <div className="content">{this.props.children}</div>
-        <div className="actions">
+        {/*<div className="actions">
           <button 
             className="toggle-button"
             onClick={this.onClose}
           >OK</button>
-        </div>
+        </div> */}
       </div>
     );
   }

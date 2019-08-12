@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
 // Components
-import Modal from '../components/modal';
+import Modal from './Modal';
 import AddNoteForm from '../components/Notes/AddNoteForm';
 
 // Actions
@@ -27,9 +27,7 @@ class NavigationBar extends Component {
     this.props.history.push('/folderManager');
   }
 
-  openAddNoteFormModal = (e) => {
-    e.preventDefault();
-    console.log('Toggle ZE MODAL!!! Mwahahah!');
+  openAddNoteFormModal = () => {
     this.props.dispatch(showModal());
   }
 
@@ -41,7 +39,7 @@ class NavigationBar extends Component {
           className="pencil-icon"
           onClick={(e) => this.openAddNoteFormModal(e)}
         >&#9998;</button>
-        <Modal onClose={this.openAddNoteFormModal} show={this.props.show}>
+        <Modal onClose={this.openAddNoteFormModal}>
           <AddNoteForm />
         </Modal>
         <button

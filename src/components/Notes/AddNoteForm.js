@@ -12,6 +12,7 @@ import {
   addFolderToNewNote, 
   removeFolderFromNewNote 
 } from '../../actions/createNote.actions';
+import { showModal } from '../../actions/modal.actions';
 
 // CSS
 import '../css/notes/add-note.css';
@@ -36,7 +37,8 @@ class AddNoteForm extends Component {
       tagValue: '',
       folderValue: ''
     });
-    this.props.history.push('/dashboard');
+    // this.props.history.push('/dashboard');
+    this.props.dispatch(showModal());
   };
 
   handleTitleChange = (e) => {
@@ -160,7 +162,8 @@ class AddNoteForm extends Component {
       folders: foldersForNote
     }
     this.props.dispatch(addNewNote(newNote));
-    this.props.history.push('/dashboard'); 
+    this.props.dispatch(showModal());
+    // this.props.history.push('/dashboard'); 
   }
 
   render() {

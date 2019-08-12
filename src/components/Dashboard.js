@@ -21,11 +21,6 @@ class Dashboard extends Component {
       show: false
     }
   }
-  showModal = (e) => {
-    this.setState({
-      show: !this.state.show
-    });
-  }
 
   render() {
     if (this.props.loading){
@@ -35,7 +30,7 @@ class Dashboard extends Component {
     return(
       <div className="dashboard-container">
         <header>
-          <NavigationBar show={this.state.show} showModal={this.showModal} />
+          <NavigationBar />
         </header>
         <div className="dashboard">
           <div className="folder-list-display">
