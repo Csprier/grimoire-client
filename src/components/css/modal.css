@@ -16,6 +16,18 @@
     height: 100%;
     margin: 0 auto;
     padding: 0px;
+    animation-name: open, close;
+    animation-duration: 0.5s;
+  }
+
+  /* Add Animation */
+  @keyframes open {
+    from {top: -300px; opacity: 0}
+    to {top: 0; opacity: 1}
+  }
+  @keyframes close {
+    from {top: 0; opacity: 1}
+    to {top: -300px; opacity: 0;}
   }
 }
 
@@ -31,6 +43,9 @@
     padding: 5px;
     background-color: white;
     border: 1px solid black;
+    animation-name: animatetop;
+    animation-name: animateclose;
+    animation-duration: 0.4s;
   }
 
   .content {
@@ -39,5 +54,16 @@
     height: 100%;
     margin: 0 auto;
     padding: 0px;
+  }
+
+   /* Add Animation */
+   @keyframes animatetop {
+    from {top: -300px; opacity: 0}
+    to {top: 0; opacity: 1}
+  }
+
+  @keyframes animateclose {
+    from {top: 0; opacity: 1}
+    to {top: -300px; opacity: 0;}
   }
 }

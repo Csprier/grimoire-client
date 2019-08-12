@@ -18,7 +18,7 @@ class Modal extends Component {
       return null;
     }
     return (
-      <div className="modal" id="modal">
+      <div className={`modal ${(this.props.show) ? `open` : `closed`}`} id="modal">
         <div className="content">{this.props.children}</div>
       </div>
     );
