@@ -9,7 +9,7 @@ import '../components/css/modal.css';
 
 
 class Modal extends Component {
-  onClose = e => {
+  onClose = () => {
     this.props.dispatch(showModal());
   }
 
@@ -18,7 +18,7 @@ class Modal extends Component {
       return null;
     }
     return (
-      <div className={`modal ${(this.props.show) ? `open` : `closed`}`} id="modal">
+      <div className="modal" id="modal">
         <div className="content">{this.props.children}</div>
       </div>
     );

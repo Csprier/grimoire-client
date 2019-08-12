@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
 // Components
-import Modal from './Modal';
+import Modal from '../components/Modal';
 import AddNoteForm from '../components/Notes/AddNoteForm';
 import EditNoteForm from '../components/Notes/EditNoteForm';
 
@@ -40,21 +40,6 @@ class NavigationBar extends Component {
           className="pencil-icon"
           onClick={(e) => this.openAddNoteFormModal(e)}
         >&#9998;</button>
-        
-        {(this.props.show && !this.props.editMode && this.props.noteToEdit === '') 
-          ? <Modal onClose={this.openAddNoteFormModal}>
-              <AddNoteForm />
-            </Modal>
-          : null
-        }
-
-        {(this.props.editMode && this.props.noteToEdit !== '') 
-          ? <Modal onClose={this.openEditNoteModal}>
-              <EditNoteForm noteToEdit={this.props.noteToEdit} />
-            </Modal>
-          : null
-        }
-        
         <button
           title="Go to Tags"
           className="tag-icon"
@@ -70,6 +55,18 @@ class NavigationBar extends Component {
           onClick={this.onClickLogout}
           className="logout-button"
         >Logout</button>
+
+        {(this.props.show && !this.props.editMode && this.props.noteToEdit === '') 
+          ? <Modal onClose={this.openAddNoteFormModal}>
+              <AddNoteForm />
+            </Modal>
+          : null}
+
+        {(this.props.editMode && this.props.noteToEdit !== '') 
+          ? <Modal onClose={this.openEditNoteModal}>
+              <EditNoteForm noteToEdit={this.props.noteToEdit} />
+            </Modal>
+          : null}
       </div>
     );
   }

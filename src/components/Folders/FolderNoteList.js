@@ -24,11 +24,13 @@ class FolderNoteList extends Component {
   render() {
     const folderName = this.props.folders.filter(folder => folder._id === this.props.currentFolderId).map(item => item.name)[0];
     let notesInTheFolder = this.props.notes.filter(note => {
+      let noteWithFolder;
       for (let i = 0; i < note.folders.length; i++) {
         if (note.folders[i]._id === this.props.currentFolderId) {
-          return note;
+          noteWithFolder = note;
         }
       }
+      return noteWithFolder;
     });
     
     const defaultNotes = (notesInTheFolder !== undefined || notesInTheFolder.length !== 0) 
