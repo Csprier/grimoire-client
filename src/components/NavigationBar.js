@@ -34,7 +34,7 @@ class NavigationBar extends Component {
     this.props.history.push('/folderManager');
   }
 
-  openModalForm = (e) => {
+  openAddNoteFormModal = (e) => {
     e.preventDefault();
     console.log('Toggle ZE MODAL!!! Mwahahah!');
     this.props.showModal(e);
@@ -47,10 +47,11 @@ class NavigationBar extends Component {
           title="Create a note"
           className="pencil-icon"
           // onClick={this.moveToAddNote}
-          onClick={(e) => this.openModalForm(e)}
+          onClick={(e) => this.openAddNoteFormModal(e)}
         >&#9998;</button>
-        <Modal onClose={this.showModal} show={this.props.show}>
-          This is the modal test
+        <Modal onClose={this.openAddNoteFormModal} show={this.props.show}>
+          {/* This is the modal test */}
+          <AddNoteForm />
         </Modal>
         <button
           title="Go to Tags"
