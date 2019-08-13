@@ -19,12 +19,6 @@ class FolderList extends Component {
     this.props.dispatch(getFolders());
   }
 
-  componentWillUpdate = (prevProps) => {
-    return (prevProps.folders !== this.props.folders) 
-              ? this.props.dispatch(getFolders())
-              : null;
-  }
-
   toggleRenderFolderInput = () => {
     this.props.dispatch(toggleAddFolderInputRender());
   }
