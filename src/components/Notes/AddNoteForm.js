@@ -13,7 +13,9 @@ import {
   addTagToNewNote, 
   removeTagFromNewNote, 
   addFolderToNewNote, 
-  removeFolderFromNewNote 
+  removeFolderFromNewNote,
+  clearReduxTagChips,
+  clearReduxFolderChips
 } from '../../actions/createNote.actions';
 import { showModal } from '../../actions/modal.actions';
 
@@ -40,6 +42,8 @@ class AddNoteForm extends Component {
       tagValue: '',
       folderValue: ''
     });
+    this.props.dispatch(clearReduxTagChips());
+    this.props.dispatch(clearReduxFolderChips());
     this.props.dispatch(showModal());
   };
 

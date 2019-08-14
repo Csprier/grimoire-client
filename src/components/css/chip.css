@@ -20,6 +20,8 @@ chip:hover {
   font-weight: bold;
   float: right;
   cursor: pointer;
+  background-color: #f1f1f1;
+  border: 1px solid #f1f1f1;
 }
 .chip-remove:hover {
   background-color: red;

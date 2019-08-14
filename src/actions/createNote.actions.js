@@ -30,15 +30,15 @@ export const ADD_FOLDER_TO_NEW_NOTE = 'ADD_FOLDER_TO_NEW_NOTE',
 
 
 export const CLEAR_REDUX_TAG_CHIPS = 'CLEAR_REDUX_TAG_CHIPS',
-clearReduxTagChips = () => {
-  return {
-    type: CLEAR_REDUX_TAG_CHIPS
+  clearReduxTagChips = () => {
+    return {
+      type: CLEAR_REDUX_TAG_CHIPS
+    }
   }
-}
 
 export const CLEAR_REDUX_FOLDER_CHIPS = 'CLEAR_REDUX_FOLDER_CHIPS',
-clearReduxFolderChips = () => {
-return {
-  type: CLEAR_REDUX_FOLDER_CHIPS
-}
-}
+  clearReduxFolderChips = () => {
+    return {
+      type: CLEAR_REDUX_FOLDER_CHIPS
+    }
+  }
