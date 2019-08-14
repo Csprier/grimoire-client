@@ -37,23 +37,23 @@ class NavigationBar extends Component {
       <div className="header-elements">
         <button 
           title="Create a note"
-          className="pencil-icon"
+          className="pencil-icon icon"
           onClick={(e) => this.openAddNoteFormModal(e)}
         >&#9998;</button>
         <button
           title="Go to Tags"
-          className="tag-icon"
+          className="tag-icon icon"
           onClick={this.moveToTagList}
         >&#9744;</button>
         <button
           title="Go to Folders"
-          className="folder-icon"
+          className="folder-icon icon"
           onClick={this.moveToFolderManager}
         >&#10063;</button>
         <button
           title="Logout"
           onClick={this.onClickLogout}
-          className="logout-button"
+          className="logout-button icon"
         >Logout</button>
 
         {(this.props.show && !this.props.editMode && this.props.noteToEdit === '') 

@@ -11,6 +11,17 @@
     background-color: white;
     box-shadow: 3px 5px 4px 5px #888888;
   }
+  .modal h1 {
+    width: 100%;
+    margin: 0px;
+    padding: 2px;
+    font-family: arial;
+    font-weight: light;
+    letter-spacing: 2px;
+    background-color: black;
+    color: goldenrod;
+    text-align: center;
+  }
 
   .content {
     position: relative;
@@ -29,7 +40,7 @@
     height: auto;
     z-index: 10;
     margin: 0 auto;
-    margin-top: 10%;
+    margin-top: 5%;
     padding: 0px;
     background-color: white;
     box-shadow: 3px 5px 4px 5px #888888;
