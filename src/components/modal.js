@@ -17,6 +17,7 @@ class Modal extends Component {
     if (!this.props.show) {
       return null;
     }
+
     return (
       <div className="modal" id="modal">
         <h1>{this.props.modalHeader}</h1>

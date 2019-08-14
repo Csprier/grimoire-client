@@ -56,23 +56,23 @@ class NavigationBar extends Component {
           className="logout-button icon"
         >Logout</button>
 
-        {(this.props.show && !this.props.editMode && this.props.noteToEdit === '') 
+        {/* {(this.props.show && !this.props.editMode && this.props.noteToEdit === '') 
           ? <Modal 
               onClose={this.openAddNoteFormModal}
               modalHeader={'Add a note'}
             >
               <AddNoteForm />
             </Modal>
-          : null}
+          : null} */}
 
-        {(this.props.editMode && this.props.noteToEdit !== '') 
+        {/* {(this.props.editMode && this.props.noteToEdit !== '') 
           ? <Modal 
               onClose={this.openEditNoteModal}
               modalHeader={'Edit a note'}
             >
               <EditNoteForm noteToEdit={this.props.noteToEdit} />
             </Modal>
-          : null}
+          : null} */}
       </div>
     );
   }
