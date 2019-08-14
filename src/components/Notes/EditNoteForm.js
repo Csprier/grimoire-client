@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-// import { Redirect } from 'react-router-dom';
 
 // Utility functions
 import { utility } from '../utility';
+
+// Components 
+import Chip from '../Chip';
 
 // Actions
 import { toggleEditMode, getNoteByIdToEdit, clearNoteToEdit } from '../../actions/notes.actions';
@@ -133,18 +135,6 @@ class EditNoteForm extends Component {
     });
   }
 
-  // Remove chips
-  removeTag = (e) => {
-    e.preventDefault();
-    let tagToRemove = e.target.value;
-    this.props.dispatch(removeTagForEditNote(tagToRemove));
-  }
-  removeFolder = (e) => {
-    e.preventDefault();
-    let folderToRemove = e.target.value;
-    this.props.dispatch(removeFolderForEditNote(folderToRemove));
-  } 
-
   // Submit
   handleEditSubmit = (e) => {
     e.preventDefault();
@@ -207,26 +197,12 @@ class EditNoteForm extends Component {
   }
 
   render() {
-    // if (this.props.editMode === false) {
-    //   return <Redirect to="/dashboard" />
-    // }
-
     const tagChips = <ul className="tag-chips-ul">
                       {(this.props.reduxTags) 
-                        ? this.props.reduxTags.map(tag => {
-                            return (<li key={tag} className="tag-chips-li">
-                                      {tag}
-                                      <button 
-                                        onClick={(e) => this.removeTag(e)}
-                                        className="tag-chip-remove"
-                                        value={tag}
-                                      >&times;</button>
-                                    </li>
-                                  )}) 
-                        : null}
+                          ? this.props.reduxTags.map((tag, e) => <Chip item={tag} key={tag} value={tag} action={removeTagForEditNote(tag)} />)
+                          : null}
                     </ul>
     const addTagInput = <div className="edit-add-tag-input-container">
-                          {/* <label>Add tags:</label> */}
                           <input 
                             id="add-tag"
                             className="atic-edit-notes-tags-input"
@@ -249,20 +225,10 @@ class EditNoteForm extends Component {
                         </div>
     const folderChips = <ul className="folder-chips-ul">
                         {(this.props.reduxFolders) 
-                          ? this.props.reduxFolders.map(folder => {
-                              return (<li key={folder} className="folder-chips-li">
-                                      {folder}
-                                      <button 
-                                        onClick={(e) => this.removeFolder(e)}
-                                        className="folder-chip-remove"
-                                        value={folder}
-                                      >&times;</button>
-                                    </li>
-                                  )}) 
+                          ? this.props.reduxFolders.map(folder => <Chip item={folder} key={folder} value={folder} action={removeFolderForEditNote(folder)} />)
                           : null}
                       </ul> 
     const addFolderInput = <div className="edit-add-folder-input-container">
-                            {/* <label>Add folders:</label> */}
                             <input 
                               id="add-folder"
                               className="atic-edit-notes-folders-input"
@@ -287,7 +253,6 @@ class EditNoteForm extends Component {
 
     return(
       <div className="edit-note-form-container">
-        {/* <h4>Edit Note</h4> */}
         <form onSubmit={this.handleEditSubmit}>
           <label>
             Title:

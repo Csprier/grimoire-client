@@ -8,14 +8,15 @@ class Chip extends Component {
     return (
       <div key={this.props.item} className="chip">
         <span>{this.props.item}</span>
-        <span
+        <button
           onClick={() => {
             this.props.dispatch(this.props.action);
           }}
+          value={this.props.item}
           className="chip-remove"
         >
           &times;
-        </span>
+        </button>
       </div>
     );
   }

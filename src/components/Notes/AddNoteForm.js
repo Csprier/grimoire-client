@@ -199,7 +199,7 @@ class AddNoteForm extends Component {
             />
           </label>
 
-          {/* TAG INPUTS & CHIPS */}
+          {/* TAG INPUT & CHIPS CONTAINER*/}
           <div className="add-tags-to-notes-container">
             <div className="an-add-tag-input-container">
               <input 
@@ -224,7 +224,7 @@ class AddNoteForm extends Component {
             </div>
           </div>
           
-          {/* FOLDER INPUTS & CHIPS */}
+          {/* FOLDER INPUT & CHIPS CONTAINER*/}
           <div className="add-folders-to-notes-container">
             <div className="an-add-folder-input-container">
               <input 
