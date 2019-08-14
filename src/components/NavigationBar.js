@@ -57,13 +57,19 @@ class NavigationBar extends Component {
         >Logout</button>
 
         {(this.props.show && !this.props.editMode && this.props.noteToEdit === '') 
-          ? <Modal onClose={this.openAddNoteFormModal}>
+          ? <Modal 
+              onClose={this.openAddNoteFormModal}
+              modalHeader={'Add a note'}
+            >
               <AddNoteForm />
             </Modal>
           : null}
 
         {(this.props.editMode && this.props.noteToEdit !== '') 
-          ? <Modal onClose={this.openEditNoteModal}>
+          ? <Modal 
+              onClose={this.openEditNoteModal}
+              modalHeader={'Edit a note'}
+            >
               <EditNoteForm noteToEdit={this.props.noteToEdit} />
             </Modal>
           : null}

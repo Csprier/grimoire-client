@@ -19,6 +19,7 @@ class Modal extends Component {
     }
     return (
       <div className="modal" id="modal">
+        <h1>{this.props.modalHeader}</h1>
         <div className="content">{this.props.children}</div>
       </div>
     );
