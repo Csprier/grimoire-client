@@ -33,7 +33,7 @@ class FolderList extends Component {
     return (
       <div className="folder-list-container">
         <div className="folder-list-nav">
-          <h4>Folders</h4>
+          <h4>&#9780; Folders</h4>
         </div>
         <div className="fl-main">
           <div className="folder-list">

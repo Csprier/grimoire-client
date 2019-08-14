@@ -30,7 +30,7 @@ class Folder extends Component {
         key={this.props.folder._id} 
         onClick={(e) => this.redirectToFolder(e, folderId)}
       >
-        <p>{this.props.folder.name}</p>
+        <p>&#10148; {`${this.props.folder.name}`}</p>
         <button
           className="folder-redirect-button"
           value={this.props.folder._id}
@@ -43,6 +43,6 @@ class Folder extends Component {
 
 const mapStateToProps = state => ({
   userId: state.auth.user.id
-})
+});
 
 export default withRouter(connect(mapStateToProps)(Folder));

@@ -250,7 +250,6 @@ class EditNoteForm extends Component {
                             </div>
                           </div>
 
-
     return(
       <div className="edit-note-form-container">
         <form onSubmit={this.handleEditSubmit}>
