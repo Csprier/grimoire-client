@@ -40,7 +40,7 @@
     height: auto;
     z-index: 10;
     margin: 0 auto;
-    margin-top: 5%;
+    top: 50px;
     padding: 0px;
     background-color: white;
     box-shadow: 3px 5px 4px 5px #888888;
