@@ -220,7 +220,7 @@ class AddNoteForm extends Component {
               >+ Add Tag</button>
             </div>
             <div className="tag-chips-container">
-              {this.props.createNote.tags.map(tag => <Chip item={tag} action={removeTagFromNewNote(tag)} />)}
+              {this.props.createNote.tags.map(tag => <Chip item={tag} key={tag} action={removeTagFromNewNote(tag)} />)}
             </div>
           </div>
           
@@ -245,7 +245,7 @@ class AddNoteForm extends Component {
               >+ Add Folder</button>
             </div>
             <div className="folder-chips-container">
-              {this.props.createNote.folders.map(folder => <Chip item={folder} actions={removeFolderFromNewNote(folder)} />)}
+              {this.props.createNote.folders.map(folder => <Chip item={folder} key={folder} actions={removeFolderFromNewNote(folder)} />)}
             </div>
           </div>
 
