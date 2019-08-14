@@ -109,14 +109,6 @@
     font-family: arial;
     border: 1px solid white;
   }
-  
-  .add-note-container h2 {
-    display: block;
-    width: 100%;
-    font-family: arial;
-    background-color: black;
-    color: goldenrod;
-  }
 
   .add-note-form {
     display: flex;
