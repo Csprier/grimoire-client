@@ -249,7 +249,7 @@ class AddNoteForm extends Component {
               >+ Add Folder</button>
             </div>
             <div className="folder-chips-container">
-              {this.props.createNote.folders.map(folder => <Chip item={folder} key={folder} actions={removeFolderFromNewNote(folder)} />)}
+              {this.props.createNote.folders.map(folder => <Chip item={folder} key={folder} action={removeFolderFromNewNote(folder)} />)}
             </div>
           </div>
 
