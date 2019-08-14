@@ -22,11 +22,6 @@ class NoteList extends Component {
     this.props.dispatch(getFolders());
   }
 
-  // componentDidUpdate = (prevState) => {
-  //   console.log('prevState', prevState.folders);
-  //   console.log(this.props.folders);
-  // }
-
   render() {
     const defaultNotes = (this.props.notes !== undefined) 
                           ? this.props.notes.map((note, i) => <Note note={note} key={i} />)

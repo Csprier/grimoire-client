@@ -15,13 +15,6 @@ import Folder from './Folder';
 import '../css/folders/folder-list.css';
 
 class FolderList extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      foldersForReRender: []
-    }
-  }
-
   componentDidMount() {
     this.props.dispatch(getFolders());
   }
