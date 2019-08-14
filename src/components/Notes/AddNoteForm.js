@@ -37,7 +37,6 @@ class AddNoteForm extends Component {
       tagValue: '',
       folderValue: ''
     });
-    // this.props.history.push('/dashboard');
     this.props.dispatch(showModal());
   };
 
@@ -163,7 +162,6 @@ class AddNoteForm extends Component {
     }
     this.props.dispatch(addNewNote(newNote));
     this.props.dispatch(showModal());
-    // this.props.history.push('/dashboard'); 
   }
 
   render() {
@@ -178,6 +176,7 @@ class AddNoteForm extends Component {
 
     return (
       <div className="add-note-container">
+        <h2>Create a note</h2>
         <form className="add-note-form" onSubmit={this.handleSubmit}>
           <label>
             Title:

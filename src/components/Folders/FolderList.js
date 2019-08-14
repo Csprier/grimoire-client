@@ -15,8 +15,21 @@ import Folder from './Folder';
 import '../css/folders/folder-list.css';
 
 class FolderList extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      foldersForReRender: []
+    }
+  }
+
   componentDidMount() {
     this.props.dispatch(getFolders());
+  }
+
+  componentDidUpdate = (prevProps) => {
+    if (prevProps.notes !== this.props.notes) {
+      this.props.dispatch(getFolders());
+    }
   }
 
   toggleRenderFolderInput = () => {
@@ -48,11 +61,12 @@ class FolderList extends Component {
       </div>
     )
   }
-}
+};
 
 const mapStateToProps = state => ({
   folders: state.folders.data,
+  notes: state.notes.data,
   renderAddFolderInput: state.folders.renderAddFolderInput
-})
+});
 
 export default RequiresLogin()(connect(mapStateToProps)(FolderList));

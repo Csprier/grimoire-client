@@ -103,11 +103,19 @@
 @media only screen and (min-width: 601px) {
   .add-note-container {
     width: 100%;
-    height: auto;
+    height: 100%;
     margin: 0px;
     padding: 0px;
     font-family: arial;
     border: 1px solid white;
+  }
+  
+  .add-note-container h2 {
+    display: block;
+    width: 100%;
+    font-family: arial;
+    background-color: black;
+    color: goldenrod;
   }
 
   .add-note-form {
