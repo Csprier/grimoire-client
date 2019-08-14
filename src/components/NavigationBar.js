@@ -2,11 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
-// Components
-import Modal from './modal';
-import AddNoteForm from '../components/Notes/AddNoteForm';
-import EditNoteForm from '../components/Notes/EditNoteForm';
-
 // Actions
 import { logout } from '../actions/auth.actions';
 import { showModal } from '../actions/modal.actions';
@@ -55,24 +50,6 @@ class NavigationBar extends Component {
           onClick={this.onClickLogout}
           className="logout-button icon"
         >Logout</button>
-
-        {/* {(this.props.show && !this.props.editMode && this.props.noteToEdit === '') 
-          ? <Modal 
-              onClose={this.openAddNoteFormModal}
-              modalHeader={'Add a note'}
-            >
-              <AddNoteForm />
-            </Modal>
-          : null} */}
-
-        {/* {(this.props.editMode && this.props.noteToEdit !== '') 
-          ? <Modal 
-              onClose={this.openEditNoteModal}
-              modalHeader={'Edit a note'}
-            >
-              <EditNoteForm noteToEdit={this.props.noteToEdit} />
-            </Modal>
-          : null} */}
       </div>
     );
   }
