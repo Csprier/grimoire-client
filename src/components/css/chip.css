@@ -1,0 +1,28 @@
+.chip {
+  display: inline-block;
+  margin: 3px 3px;
+  padding: 5px;
+  font-weight: 100;
+  font-family: arial;
+  border-radius: 25px;
+  background-color: #f1f1f1;
+}
+
+chip:hover {
+  background-color: darkslategray;
+  color: white;
+}
+
+.chip-remove {
+  display: flex;
+  justify-content: space-around;
+  color: #888;
+  font-weight: bold;
+  float: right;
+  cursor: pointer;
+}
+.chip-remove:hover {
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+}

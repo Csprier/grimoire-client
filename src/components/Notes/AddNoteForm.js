@@ -4,6 +4,9 @@ import { connect } from 'react-redux';
 // HOC
 import RequiresLogin from '../requires-login';
 
+// Components 
+import Chip from '../Chip';
+
 // Actions
 import { addNewNote } from '../../actions/notes.actions';
 import { 
@@ -196,6 +199,7 @@ class AddNoteForm extends Component {
             />
           </label>
 
+          {/* TAG INPUTS & CHIPS */}
           <div className="add-tags-to-notes-container">
             <div className="an-add-tag-input-container">
               <input 
@@ -216,24 +220,11 @@ class AddNoteForm extends Component {
               >+ Add Tag</button>
             </div>
             <div className="tag-chips-container">
-              {this.props.createNote.tags.map(tag => {
-                return (
-                  <div key={tag} className="tag-chip">
-                    <span>{tag}</span>
-                    <span
-                      onClick={() => {
-                        this.props.dispatch(removeTagFromNewNote(tag));
-                      }}
-                      className="chip-remove"
-                    >
-                      &times;
-                    </span>
-                  </div>
-                )
-              })}
+              {this.props.createNote.tags.map(tag => <Chip item={tag} action={removeTagFromNewNote(tag)} />)}
             </div>
           </div>
           
+          {/* FOLDER INPUTS & CHIPS */}
           <div className="add-folders-to-notes-container">
             <div className="an-add-folder-input-container">
               <input 
@@ -254,21 +245,7 @@ class AddNoteForm extends Component {
               >+ Add Folder</button>
             </div>
             <div className="folder-chips-container">
-              {this.props.createNote.folders.map(folder => {
-                return (
-                  <div key={folder} className="folder-chip">
-                    <span>{folder}</span>
-                    <span
-                      onClick={() => {
-                        this.props.dispatch(removeFolderFromNewNote(folder));
-                      }}
-                      className="chip-remove"
-                    >
-                      &times;
-                    </span>
-                  </div>
-                )
-              })}
+              {this.props.createNote.folders.map(folder => <Chip item={folder} actions={removeFolderFromNewNote(folder)} />)}
             </div>
           </div>
 
