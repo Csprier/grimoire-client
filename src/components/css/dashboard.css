@@ -1,5 +1,17 @@
 /* MOBILE DIMENSIONS */
 @media only screen and (max-width: 600px) {
+  /* ANIMATION */
+  .show {
+    display: block;
+    height: 568px;
+    opacity: 1;
+  }
+  .hidden {
+    /* display: block; */
+    height: 0px;
+    opacity: 0;
+  }
+
   .dashboard {
     display: flex;
     flex-direction: column;
@@ -10,12 +22,13 @@
   }
 
   .modal-container {
-    position: absolute;
+    /* position: absolute; */
     width: 100%;
     height: auto;
     margin: 0px;
     padding: 0px;
     z-index: 10;
+    transition: height 0.5s ease, opacity 0.5s ease;
   }
 
   .folder-list-display {
@@ -35,6 +48,18 @@
 
 /* LARGER THAN MOBILE DIMENSIONS */
 @media only screen and (min-width: 601px) {
+  /* ANIMATION */
+  .show {
+    display: block;
+    height: 568px;
+    opacity: 1;
+  }
+  .hidden {
+    display: block;
+    height: 0px;
+    opacity: 0;
+  }
+
   .dashboard {
     margin: 0px;
     padding: 0px;
@@ -43,7 +68,7 @@
   }
 
   .modal-container {
-    position: absolute;
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -52,6 +77,7 @@
     margin: 5% 0px 0px 0px;
     padding: 0px;
     z-index: 10;
+    transition: height 1s ease, opacity 0.5s ease;
   }
 
   .folder-list-display {

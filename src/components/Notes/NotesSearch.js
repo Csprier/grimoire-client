@@ -19,7 +19,6 @@ class NotesSearch extends Component {
     return (
       <div className="notes-form-container">
         <form ref="form">
-          {/* <label htmlFor="NotesSearch"></label> */}
           <Field 
             name="searchTerm"
             component={renderField}

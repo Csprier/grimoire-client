@@ -43,7 +43,7 @@ class Dashboard extends Component {
           <NavigationBar />
         </header>
         <div className="dashboard">
-          <div className="modal-container">
+          <div className={(this.props.show) ? 'modal-container show' : 'modal-container hidden'}>
             {(this.props.show && !this.props.editMode && this.props.noteToEdit === '') 
               ? <Modal 
                   onClose={this.openAddNoteFormModal}
