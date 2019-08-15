@@ -1,15 +1,10 @@
 import React, { Component } from 'react';
-// import { Redirect } from 'react-router';
 import { connect } from 'react-redux';
 
 // Async Actions
 import { deleteNoteById } from '../../actions/notes.actions';
 import { toggleEditMode, noteToEdit } from '../../actions/notes.actions';
 import { showModal } from '../../actions/modal.actions';
-
-// Components
-// import Modal from '../Modal';
-// import EditNoteForm from './EditNoteForm';
 
 // CSS
 import '../css/notes/note.css';
