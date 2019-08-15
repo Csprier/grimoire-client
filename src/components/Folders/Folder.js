@@ -30,7 +30,7 @@ class Folder extends Component {
         key={this.props.folder._id} 
         onClick={(e) => this.redirectToFolder(e, folderId)}
       >
-        <p>&#10148; {`${this.props.folder.name}`}</p>
+        <p>{`${this.props.folder.name}`}</p>
         <button
           className="folder-redirect-button"
           value={this.props.folder._id}
