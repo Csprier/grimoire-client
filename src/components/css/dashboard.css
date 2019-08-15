@@ -51,7 +51,7 @@
   /* ANIMATION */
   .show {
     display: block;
-    height: 568px;
+    height: 300px;
     opacity: 1;
   }
   .hidden {

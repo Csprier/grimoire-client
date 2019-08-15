@@ -196,7 +196,7 @@
   /* ANIMATION */
   .show {
     display: block;
-    height: 200px;
+    height: 100px;
     opacity: 1;
   }
 
