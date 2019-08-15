@@ -32,7 +32,7 @@ class NotesSearch extends Component {
             }}
             value={this.props.values}
             type="text"
-            placeholder="Search notes..."
+            placeholder="&#x1F50D; Search notes..."
           />
         </form>
       </div>
