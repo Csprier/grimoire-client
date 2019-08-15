@@ -19,6 +19,7 @@
   }
 
   .note {
+    position: relative;
     width: 98%;
     padding: 10px;
     margin: 0 auto;
@@ -165,6 +166,7 @@
   }
 
   .note {
+    position: relative;
     width: 98%;
     height: auto;
     padding: 10px;
@@ -189,7 +191,7 @@
     height: auto;
     padding: 5px;
     margin: 0 auto;
-    transition: height 1s ease-out, opacity 1s ease-out;
+    transition: height 0.5s ease-out, opacity 0.2s ease-out;
   }
   /* ANIMATION */
   .show {
